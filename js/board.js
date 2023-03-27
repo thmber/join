@@ -148,16 +148,23 @@ function showTask(index) {
     document.getElementById('overlayTask').classList.remove('d-none');
     let element = tasks[j];
     document.getElementById('overlayTask').innerHTML += `
-
-        <div class="overlayOneRow"><div class="overlayCategory ${element.category}">${element.category}</div><div id="closeTask" onclick="closeTask()">X</div></div>
-        <div class="overlayTitle">${element.title}</div>
-        <div class="overlayDescription">${element.description}</div>
-        <div class="overlayContent"><b>Due Date:</b> ${element.duedate}</div>
-       <div class="overlayContent"><b>Priority:</b>  ${element.priority}<img src="assets/img/${element.priority}.svg">
+<div class="fullUseOfSpace">
+    <div class="fullUseOfSpaceTop">
+            <div class="overlayOneRow">
+                <div class="overlayCategory ${element.category}">${element.category}</div>
+                <div id="closeTask" onclick="closeTask()">X</div>
+            </div>
+            <div class="overlayTitle">${element.title}</div>
+            <div class="overlayDescription">${element.description}</div>
+            <div class="overlayContent"><b>Due Date:</b> ${element.duedate}</div>
+            <div class="overlayContent"><b>Priority:</b>  ${element.priority}<img src="assets/img/${element.priority}.svg"></div>
         
-       <div id="assignTo${index}" class="assignTo"><b> Assigned To:</div>
-       <div id="assign"></div>
-   
+            <div id="assignTo${index}" class="assignTo"><b> Assigned To:</b></div>
+            <div id="assign"></div>
+    </div>
+        <div class="fullUseOfSpaceBottom">
+            <div id="edit${j}" class="edit">button</div>
+        </div>
 </div>`;
 showAssigned(element);
 }
@@ -169,7 +176,8 @@ function closeTask(){
 function showAssigned(element){
     console.log(element.assignedTo);
 for (let index = 0; index < element.assignedTo.length; index++) {
-    const people = element.assignTo[index];
-    document.getElementById('assign').innerHTML += people;
+    
+    let people = element.assignedTo[index];
+       document.getElementById('assign').innerHTML += `<div>${people}</div>`;
 }
 }
