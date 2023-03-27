@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./mini_backend.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/add_task.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/board.js"></script>
+
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/summary.css">
+    <link rel="stylesheet" href="styles/board.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/add_task.css">
+    <link rel="stylesheet" href="styles/contact.css">
+
+ <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <title>Document</title>
+</head>
+
+<body onload="includeHTML(), init(), waitForBackend()">
+    <div w3-include-html="templates/sidebar.html"></div>
+    <div w3-include-html="templates/header.html"></div>
+
+    <div id="addContact" class="overlay"></div>
+
+</body>
+
+</html>

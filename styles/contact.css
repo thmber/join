@@ -1,0 +1,12 @@
+#addContact {
+    width: 700px;
+    height: 400px;
+    background-color: aliceblue;
+    padding: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 150px;
+    left: 250px;
+}

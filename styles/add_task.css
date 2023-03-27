@@ -1,0 +1,290 @@
+#mainAddTask {
+    display: flex;
+}
+
+.d-none {
+    display: none;
+}
+.containerAddTaskLeftSide {
+   padding-right: 15px;
+   width: 40%;
+   border-right: 1px solid lightgrey;
+}
+
+.containerAddTaskRightSide {
+    padding-left: 15px;
+    width: 40%
+ }
+ 
+.inputUnit {
+    position: relative;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 10px;
+    font-size: 16px;
+    height: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+}
+
+ .inputDescription {
+  font-family:'Poppins';
+  word-wrap: break-word;
+    font-size: 16px;
+    /* display: flex; */
+    /* flex-direction: row;
+    align-items: flex-start; */
+    padding: 10px 10px;
+    height: 108px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+
+
+
+
+#selected {
+    background-color: white;
+   }
+
+   .d-none{
+    display: none;
+
+   }
+.inputArea {
+  color: grey;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    background-color: white;
+   
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* padding: 10px 10px 10px 15px; */
+}
+
+
+
+.options {
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    background-color: white;
+border-top: none;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 10px 10px 10px 15px; */
+    display: flex;
+    flex-direction: column;
+    margin-top: -1px;
+    
+}
+
+.item {
+ 
+
+    padding: 10px 10px 10px 15px;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+.round {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 100%;
+    
+}
+
+/* .circle:before {
+    content: ' \25CF';
+    font-size: 20px;
+    color: red;
+   
+  } */
+
+  .circle {
+    margin-left: 5px;
+   width: 12px;
+   height: 12px;
+   border-radius: 100%;
+     
+  }
+
+
+
+
+  .checkbox {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+    cursor: pointer;
+  }
+
+  .bigNameCircle {
+    font-size: 12px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid white;
+    
+    color: white;
+    margin-right: -5px;
+
+  }
+
+  .prioButtons {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+
+  .buttonPrio {
+    gap: 15px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    cursor: pointer;
+    
+  }
+
+  .buttonPrio:hover {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  #urgent::after {
+    background-color: red;
+  }
+
+  #createTaskBTN{
+    cursor: pointer;
+    border: none;
+    margin-top: 50px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(38, 38, 38);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  #createTaskBTN:hover {
+    background-color: rgb(59, 175, 243);
+  }
+
+  .BTN {
+    gap: 15px;
+    display: flex;
+    justify-content: right;
+  }
+
+  .plus {
+    position: absolute;
+    top: 33px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  #displaySubtasks {
+    font-size: 12px;
+  }
+
+  .colorspot {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+   margin: 5px;
+   cursor: pointer;
+  }
+  #col0{
+     background-color: #f99090;
+   
+  }
+  #col1 {
+    background: #ff1717;
+  }
+  
+  #col2 {
+background-color: #fac66e;
+  }
+  
+  #col3 {
+background-color: #845400;
+  }
+  
+  #col4{
+background-color: #b6fa81;
+  }
+  
+  #col5 {
+background-color: #07ab1d;
+  }
+  
+  #col6 {
+    background-color: #81adfd;
+  }
+  
+  #col7 {
+background-color: #0048cd;
+  }
+  
+  #col8 {
+    background-color: #ffb0f7;
+  }
+  
+  #col9{
+    background-color: #f500dc;
+  }
+
+  .colorspots {
+    display: flex;
+ 
+  }
+
+  .colorspot:hover {
+   
+   
+    box-shadow: 0px 0px 4px 1px rgba(82,82,82,0.69);
+  }
+
+ 
+  .duo {
+    padding: 10px 10px 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .duo:hover {
+    background-color: rgb(233, 233, 233);
+}
+
+
+.inlineDuo {
+  cursor: pointer;
+    display: flex;
+    align-items: center;
+}

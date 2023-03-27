@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 36px 20px 123px;
+    gap: 34px;
+    position: fixed;
+    left: 232px;
+    right: 0;
+    top: 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pic {
+    border: 3px solid #2A3647;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.header_right {
+    display: flex;
+    gap: 34px;
+    align-items: center;
+}

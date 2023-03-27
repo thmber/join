@@ -1,0 +1,98 @@
+
+.firstLine {
+    display: flex;
+    gap: 35px;
+    width: 580px;
+    font-size: 21px;
+}
+.summaryBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 0px;
+    gap: 13px;
+    text-align:center;
+    width: 170px;
+    height: 120px;
+    
+    /* white */
+    
+    background: #FFFFFF;
+    /* nuevo */
+    
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    
+    /* Inside auto layout */
+    
+    /* flex: none;
+    order: 0;
+    flex-grow: 0; */
+}
+
+.firstLineBox {
+        font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 64px;
+line-height: 120%;
+/* identical to box height, or 77px */
+
+text-align: center;
+
+color: #000000;
+}
+.urgentSummery {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 28px 48px;
+/* gap: 61px; */
+
+width: 484px;
+height: 94px;
+
+background: #FFFFFF;
+
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+border-radius: 30px;
+
+/* flex: none;
+order: 1;
+flex-grow: 0; */
+}
+
+.summeryContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.thirdLine {
+    display: flex;
+    width: 580px;
+    height: 150px;
+    gap: 18px;
+}
+
+
+.todoBox {
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 38px 19px;
+
+width: 272.5px;
+height: 74px;
+
+background: #FFFFFF;
+box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+border-radius: 30px;
+
+/* flex: none;
+order: 0;
+flex-grow: 0; */
+}
