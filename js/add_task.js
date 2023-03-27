@@ -191,11 +191,11 @@ function renderAddTasksHTML(){
       <div class="inputUnit">
           <label for="prio">Prio</label>
           <div class="prioButtons">
-              <button onclick="addPrio('urgent')" class="buttonPrio" id="urgent">Urgent<img
+              <button onclick="addPrio('urgent'); changeColorUrgent('urgent', 'red')" class="buttonPrio" id="urgent">Urgent<img
                       src="assets/img/urgent.svg"></button>
-              <button onclick="addPrio('medium')" class="buttonPrio" id="medium">Medium<img
+              <button onclick="addPrio('medium'); changeColorMedium('medium', 'orange')" class="buttonPrio" id="medium">Medium<img
                       src="assets/img/medium.svg"></button>
-              <button onclick="addPrio('low')" class="buttonPrio" id="low">Low<img
+              <button onclick="addPrio('low'); changeColorLow('low', 'green')" class="buttonPrio" id="low">Low<img
                       src="assets/img/low.svg"></button>
           </div>
       </div>
@@ -308,3 +308,20 @@ function addNewCat(){
   renderCategories();
 }
 
+
+function changeColorUrgent(idU, color){
+  document.getElementById(idU).classList.add(color);
+  document.getElementById('medium').classList.remove('orange');
+  document.getElementById('low').classList.remove('green');
+}
+function changeColorMedium(idM, color){
+  document.getElementById(idM).classList.add(color);
+  document.getElementById('urgent').classList.remove('red');
+  document.getElementById('low').classList.remove('green');
+}
+
+function changeColorLow(idL, color){
+  document.getElementById(idL).classList.add(color);
+  document.getElementById('urgent').classList.remove('red');
+  document.getElementById('medium').classList.remove('orange');
+}

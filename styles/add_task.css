@@ -176,9 +176,9 @@ border-top: none;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
   }
 
-  #urgent::after {
+  /* #urgent: {
     background-color: red;
-  }
+  } */
 
   #createTaskBTN{
     cursor: pointer;
@@ -224,7 +224,7 @@ border-top: none;
    
   }
   #col1 {
-    background: #ff1717;
+    background-color: #ff1717;
   }
   
   #col2 {
@@ -270,7 +270,15 @@ background-color: #0048cd;
     box-shadow: 0px 0px 4px 1px rgba(82,82,82,0.69);
   }
 
- 
+.red {
+  background-color: rgba(255, 0, 0, 0.491);
+}
+.orange {
+  background-color: rgba(255, 119, 0, 0.491);
+}
+.green {
+  background-color: rgba(0, 255, 17, 0.491);
+}
   .duo {
     padding: 10px 10px 10px 15px;
     cursor: pointer;
