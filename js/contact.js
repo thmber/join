@@ -14,7 +14,7 @@ function addContact(){
             'fullname': fullname.value,
             'email': email.value,
             'phone': phone.value,
-            'contactColor' : getBgColor()
+            'contactColor' : getRandomColor()
         }
     
     contacts.push(contact);
@@ -51,11 +51,20 @@ function waitForBackend(){
 }
 
 
+
+// function getBgColor(){
+//     randomColor = Math.floor(Math.random()*16777215).toString(16);
+//     return `#${randomColor}`;
+//   }
+
 /**
- * 
- * @returns random Color for contacts. Does not work good.
+ * @returns new function for random color for contacts. Works hopfully better than the previous.
  */
-function getBgColor(){
-    randomColor = Math.floor(Math.random()*16777215).toString(16);
-    return `#${randomColor}`;
+  function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
