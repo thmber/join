@@ -132,13 +132,15 @@ function showSubtasks(subtasks){
  
 }
 function renderAddTasks(){
+  let soonestDueDate = getTodayDate();
   document.getElementById('mainAddTask').innerHTML = ``;
-  document.getElementById('mainAddTask').innerHTML = renderAddTasksHTML();
+  document.getElementById('mainAddTask').innerHTML = renderAddTasksHTML(soonestDueDate);
   delayRenderAssignTo();
   delayRenderCategories();
+ 
 }
 
-function renderAddTasksHTML(){
+function renderAddTasksHTML(soonestDueDate){
   return `
   
   <div class="containerAddTaskLeftSide">
@@ -186,16 +188,16 @@ function renderAddTasksHTML(){
   <div class="containerAddTaskRightSide">
       <div class="inputUnit">
           <label for="dueDate">Due Date</label>
-          <input id="dueDate" class="input" type="date" required min="2023-03-22" placeholder="Enter a title">
+          <input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
       </div>
       <div class="inputUnit">
           <label for="prio">Prio</label>
           <div class="prioButtons">
-              <button onclick="addPrio('urgent'); changeColorUrgent('urgent', 'red')" class="buttonPrio" id="urgent">Urgent<img
+              <button onclick="addPrio('urgent'); changeColorUrgent('urgent', 'red')" class="buttonPrio" id="urgent">Urgent<img id="picUrgent"
                       src="assets/img/urgent.svg"></button>
-              <button onclick="addPrio('medium'); changeColorMedium('medium', 'orange')" class="buttonPrio" id="medium">Medium<img
+              <button onclick="addPrio('medium'); changeColorMedium('medium', 'orange')" class="buttonPrio" id="medium">Medium<img id="picMedium"
                       src="assets/img/medium.svg"></button>
-              <button onclick="addPrio('low'); changeColorLow('low', 'green')" class="buttonPrio" id="low">Low<img
+              <button onclick="addPrio('low'); changeColorLow('low', 'green')" class="buttonPrio" id="low">Low<img id="picLow"
                       src="assets/img/low.svg"></button>
           </div>
       </div>
@@ -213,7 +215,27 @@ function renderAddTasksHTML(){
 </div>`
 
 }
+/**
+ * 
+ * @returns The soonest Date (today) valid for Due Date in Form Add Task
+ */
+function getTodayDate(){
+  let today = new Date();
+  let day = today.getDate();
+  let month = today.getMonth() + 1;
+  let year = today.getFullYear();
+  let completeDate; 
+  if(month <10){
+   completeDate = year + "-" + "0"+month + "-" + day;
+  }
+  else {completeDate = year + "-" + month + "-" + day;}
+      return completeDate;
+   
+}
 
+/**
+ * Solves the problem that the JSON has not loaded when render it. --> Ich bin nicht glücklich damit, weil doch eigentlich "await" dafür sorgen soll, dass zuerst alles geladen wird.
+ */
 function delayRenderAssignTo(){
   setTimeout(renderUserAssignTo, 300);
 }
@@ -310,18 +332,34 @@ function addNewCat(){
 
 
 function changeColorUrgent(idU, color){
+  document.getElementById(idU).style = `color: white`;
   document.getElementById(idU).classList.add(color);
+  document.getElementById('picUrgent').style = `filter: brightness(0) invert(1)`;
   document.getElementById('medium').classList.remove('orange');
   document.getElementById('low').classList.remove('green');
 }
 function changeColorMedium(idM, color){
+  document.getElementById('urgent').style = ``;
+  // document.getElementById(idM).style = `color: white`;
+  document.getElementById(idM).classList.add(color);
+  // document.getElementById('picMedium').classList.add('invert');
   document.getElementById(idM).classList.add(color);
   document.getElementById('urgent').classList.remove('red');
   document.getElementById('low').classList.remove('green');
+
+  // undoButtonChanges();
 }
 
 function changeColorLow(idL, color){
+  // document.getElementById(idL).style = `color: white`;
   document.getElementById(idL).classList.add(color);
-  document.getElementById('urgent').classList.remove('red');
+  // document.getElementById('picLow').classList.add('invert');
+   document.getElementById('urgent').classList.remove('red');
   document.getElementById('medium').classList.remove('orange');
+}
+
+function undoButtonChanges(){
+  document.getElementById('urgent').style = ``;
+  document.getElementById('urgent').classList.remove(color);
+  document.getElementById('picUrgent').style= ``;;
 }
