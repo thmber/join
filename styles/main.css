@@ -31,4 +31,10 @@ flex-grow: 0;
         margin-left: 250px;}
 }
 
+@media (max-width: 900px){
+    .cols {
+        gap: 3px;
+    }
+}
+
 
