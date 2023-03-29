@@ -108,7 +108,7 @@ function showContact(firstname, lastname, initiales, email, color, phone) {
                 <div class="contact-information-box">
                     <span>Contact Information</span>
                     <div class="edit-contact-box">
-                        <img src="edit.png">
+                        <img src="assets/img/edit.png">
                         <span>Edit Contact</span>
                     </div>
                 </div>
