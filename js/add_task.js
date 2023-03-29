@@ -306,9 +306,12 @@ function addNewCategoryHTML() {
   return `
   <label for="Category">Category</label>
     <input id="showNewCat" class="input" type="text" placeholder="New Category name">
-    <div class="plus"><img src="assets/img/plus.svg" onclick="addNewCat()" alt=""></div>
+    
+    <div class="plus"><img src="assets/img/plus.svg" onclick="resetCategoryChoice()"> | <img src="assets/img/plus.svg" onclick="addNewCat()" alt=""></div>
     <div class="colorspots" id="colorspots"></div>                      `
 }
+
+
 
 
 function renderColorSpots() {
