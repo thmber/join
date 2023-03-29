@@ -306,3 +306,14 @@ background-color: #0048cd;
     align-items: center;
 }
 
+.seperate {
+  width: 1px;
+  background-color: grey;
+  height: 1.2em;
+  margin: 0 3px;
+}
+
+.cancelOrAdd {
+  display: flex;
+
+}
