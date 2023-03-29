@@ -159,7 +159,7 @@ function renderAddTasksHTML(soonestDueDate) {
   
   <div class="containerAddTaskLeftSide">
       <div class="inputUnit">
-          <label for="name">Name</label>
+          <label for="name">Title</label>
           <input id="title" class="input" type="text" placeholder="Enter a title">
       </div>
       <div class="inputUnit">
@@ -371,7 +371,7 @@ function addNewCat() {
   renderInputUnit();
   // renderCategories();
   console.log('letzte Cat: ', category.categoryName);
-  document.getElementById('selectedCategory').value = category.categoryName;
+  // document.getElementById('selectedCategory').value = category.categoryName;
 }
 
 
