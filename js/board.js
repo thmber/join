@@ -188,6 +188,7 @@ function renderEditTask(i){
     document.getElementById('editTask').classList.remove('d-none');
   console.log(i);
     let edit = document.getElementById('editTask');
+    edit.innerHTML = ``;
     edit.innerHTML += `<div class="containerEditTask">
     <div class="inputUnit">
         <label for="name">Title</label>
@@ -244,7 +245,7 @@ function renderEditTask(i){
 </div>
 <div id="displaySubtasks"></div>
 <div class="BTN">
-    <button id="createTaskBTN" onclick="clear()">Cancel<img src=""></button>
+    <button id="createTaskBTN" onclick="closeIt()">Cancel<img src=""></button>
     <button id="createTaskBTN" onclick="addTask()">Create Task<img src=""></button>
 </div>
 
@@ -260,4 +261,8 @@ renderCategories();
 title.value = tasks[i].title;
 description.value = tasks[i].description;
  selectedCategory.textContent = tasks[i].category;
+}
+
+function closeIt(){
+    document.getElementById('editTask').classList.add('d-none');
 }
