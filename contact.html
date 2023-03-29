@@ -5,30 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./mini_backend.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/add_task.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/board.js"></script>
-
-    <link rel="stylesheet" href="styles/sidebar.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/summary.css">
-    <link rel="stylesheet" href="styles/board.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/add_task.css">
-    <link rel="stylesheet" href="styles/contact.css">
-
- <link rel="stylesheet" href="assets/fonts/fonts.css">
     <title>Document</title>
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="contact.css">
+    <script src="contact.js"></script>
 </head>
 
-<body onload="includeHTML(), init(), waitForBackend()">
-    <div w3-include-html="templates/sidebar.html"></div>
-    <div w3-include-html="templates/header.html"></div>
 
-    <div id="addContact" class="overlay"></div>
+<body onload="renderContacts()">
 
+    <div class="main">
+        <div class="new-contact-overlay-box d-none" id="overlay-box">
+            <div class="new-contact-overlay" id="new-contact-overlay">
+                <div class="new-contact-left" >
+                    <div class="new-contact-left-img-box d-none" id="contact-new-img">
+                        <img src="Capa_white.png" alt="">
+                    </div>
+                    <span class="d-none contact-left-headline" id="contact-left-add">Add Contact</span>
+                    <span class="d-none" id="contact-left-tasks">Tasks are better with a team!</span>
+                    <div class="new-contact-left-line">
+                    </div>
+                </div>
+                <div class="new-contact-right">
+                </div>
+            </div>
+        </div>
+        <div class="contact-container">
+            <div class="contact-list-box" id="contact-list-content">
+            </div>
+            <div class="contact-main-box">
+                <div class="contact-headline-box">
+                    <span class="contact-headline">Contacts</span>
+                    <span class="contact-vertical">&vert;</span>
+                    <span class="contact-better-with">Better with a team</span>
+                </div>
+                <div class="contact-main-content" id="show-contact-content">
+                </div>
+                <div class="add-new-contact-button" onclick="addNewContact()">
+                    <span>New contact</span>
+                    <img src="contactnew.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
