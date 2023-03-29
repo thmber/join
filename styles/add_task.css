@@ -280,6 +280,7 @@ background-color: #0048cd;
 
 .red {
   background-color: rgba(255, 0, 0);
+  color: white;
 }
 .orange {
   background-color: rgba(255, 119, 0, 0.491);

@@ -4,105 +4,117 @@ let tasks = [];
 let prio;
 let subtasks = [];
 let checkBxSub = [];
-let checkBox =[];
+let checkBox = [];
 let taskID = 0;
 let categories = [];
-let colors = ['#f99090','#ff1717','#fac66e','#845400','#b6fa81','#07ab1d','#81adfd','#0048cd','#ffb0f7','#f500dc',''];
+let colors = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc', ''];
 let colorspot;
+let priorities = [{
+  prio: 'urgent',
+  color: 'red'
+},
+  {
+    prio: 'medium',
+    color: 'orange'
+ },
+  {
+    prio: 'low',
+    color: 'green'
+}];
 
-function addTask(){
+function addTask() {
 
- let assignedTo = getAssignetToUser();
+  let assignedTo = getAssignetToUser();
   let title = document.getElementById('title');
-  
+
   let description = document.getElementById('description');
   let category = document.getElementById('selectedCategory');
   let duedate = document.getElementById('dueDate');
   let autoID;
-  if (tasks.length >0){
-  autoID = tasks.length 
+  if (tasks.length > 0) {
+    autoID = tasks.length
   }
   else autoID = 0;
-  
+
   let task = {
-          'id': autoID,
-         'status' : 'todo',
-        'title' : title.value,
-        'description' : description.value,
-        'duedate' : duedate.value,
-         'priority' : prio,
-         'assignedTo' : assignedTo ,
-        'category' : category.textContent,
-        'subtasks' : subtasks,
-        'checkBxSub': checkCheckedBoxes()
-    }
+    'id': autoID,
+    'status': 'todo',
+    'title': title.value,
+    'description': description.value,
+    'duedate': duedate.value,
+    'priority': prio,
+    'assignedTo': assignedTo,
+    'category': category.textContent,
+    'subtasks': subtasks,
+    'checkBxSub': checkCheckedBoxes()
+  }
 
-  
-  
-    tasks.push(task);
-   
-    save();
-    console.log(tasks);
 
-    let minimum = document.getElementById("dueDate").min;
+
+  tasks.push(task);
+
+  save();
+  console.log(tasks);
+
+  let minimum = document.getElementById("dueDate").min;
 }
 
-function saveTasks(){
+function saveTasks() {
   backend.setItem('tasks', JSON.stringify(tasks));
 }
 
-function checkCheckedBoxes(){
+function checkCheckedBoxes() {
   let checkBxSub = document.querySelectorAll("input[name='subtask']");
   for (let index = 0; index < checkBxSub.length; index++) {
     const element = checkBxSub[index];
     checkBox.push(element.checked);
-    
+
   }
   return checkBox;
 }
 
-function toggleOptions(){
+function toggleOptions() {
   document.getElementById('seeCat').classList.toggle('d-none');
 }
 
-function getAssignetToUser(){
+function getAssignetToUser() {
 
-  
-    let checkboxes = document.querySelectorAll('input[name="assignedTo"]:checked');
-    let values = [];
-    checkboxes.forEach((checkbox) => {
-      values.push(checkbox.value);
-    });
-      return values;
-  
-}
 
-function addPrio(id){
- prio = id;
- console.log(prio);
+  let checkboxes = document.querySelectorAll('input[name="assignedTo"]:checked');
+  let values = [];
+  checkboxes.forEach((checkbox) => {
+    values.push(checkbox.value);
+  });
+  return values;
 
 }
 
-function selectCategory(param){
+function addPrio(id) {
+  prio = id;
+  console.log(prio);
+
+}
+
+function selectCategory(param) {
   console.log(param);
   let category = document.getElementById(`${param}`).textContent;
-   document.getElementById('selectedCategory').innerHTML = `<div class="inlineDuo"><span>${category}</span><span class="circle" style="background-color: ${categories[param].categoryColor};"></span></div>`;
-   document.getElementById('seeCat').classList.add('d-none');
+  document.getElementById('selectedCategory').innerHTML = `<div class="inlineDuo"><span>${category}</span><span class="circle" style="background-color: ${categories[param].categoryColor};"></span></div>`;
+  document.getElementById('seeCat').classList.add('d-none');
 }
 
 
-function toggleOptionsAss(){
+function toggleOptionsAss() {
   document.getElementById('see').classList.toggle('d-none');
 }
 
 
-function selectAssignTo(param){
-let category = document.getElementById(`${param}`).textContent;
- document.getElementById('selected').innerHTML = category;
- document.getElementById('see').classList.add('d-none');
+function selectAssignTo(param) {
+  let category = document.getElementById(`${param}`).textContent;
+  document.getElementById('selected').innerHTML = category;
+  document.getElementById('see').classList.add('d-none');
 }
 
-function addAssignPeople(param){
+function addAssignPeople(param) {
   let name = document.getElementById(param).textContent;
   let beginners = name.match(/\b\w/g).join('')
   console.log('Name', name, ' beginnt mit: ', beginners);
@@ -111,15 +123,15 @@ function addAssignPeople(param){
 
 
 
-function addSubtask(){
+function addSubtask() {
   let subtaskField = document.getElementById('subtask');
   let subtask = subtaskField.value;
   subtasks.push(subtask);
-subtaskField.value = ``;
-showSubtasks(subtasks);
+  subtaskField.value = ``;
+  showSubtasks(subtasks);
 }
 
-function showSubtasks(subtasks){
+function showSubtasks(subtasks) {
   document.getElementById('displaySubtasks').innerHTML = ``;
   console.log(subtasks);
   subtasks.forEach(element => {
@@ -129,18 +141,18 @@ function showSubtasks(subtasks){
       <label for="subtask">${element}</label>
     </div>`;
   });
- 
+
 }
-function renderAddTasks(){
+function renderAddTasks() {
   let soonestDueDate = getTodayDate();
   document.getElementById('mainAddTask').innerHTML = ``;
   document.getElementById('mainAddTask').innerHTML = renderAddTasksHTML(soonestDueDate);
   delayRenderAssignTo();
   delayRenderCategories();
- 
+
 }
 
-function renderAddTasksHTML(soonestDueDate){
+function renderAddTasksHTML(soonestDueDate) {
   return `
   
   <div class="containerAddTaskLeftSide">
@@ -193,11 +205,11 @@ function renderAddTasksHTML(soonestDueDate){
       <div class="inputUnit">
           <label for="prio">Prio</label>
           <div class="prioButtons">
-              <button onclick="addPrio('urgent'); changeColorUrgent('urgent', 'red')" class="buttonPrio" id="urgent">Urgent<img id="picUrgent"
+              <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
                       src="assets/img/urgent.svg"></button>
-              <button onclick="addPrio('medium'); changeColorMedium('medium', 'orange')" class="buttonPrio" id="medium">Medium<img id="picMedium"
+              <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
                       src="assets/img/medium.svg"></button>
-              <button onclick="addPrio('low'); changeColorLow('low', 'green')" class="buttonPrio" id="low">Low<img id="picLow"
+              <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
                       src="assets/img/low.svg"></button>
           </div>
       </div>
@@ -219,38 +231,38 @@ function renderAddTasksHTML(soonestDueDate){
  * 
  * @returns The soonest Date (today) valid for Due Date in Form Add Task
  */
-function getTodayDate(){
+function getTodayDate() {
   let today = new Date();
   let day = today.getDate();
   let month = today.getMonth() + 1;
   let year = today.getFullYear();
-  let completeDate; 
-  if(month <10){
-   completeDate = year + "-" + "0"+month + "-" + day;
+  let completeDate;
+  if (month < 10) {
+    completeDate = year + "-" + "0" + month + "-" + day;
   }
-  else {completeDate = year + "-" + month + "-" + day;}
-      return completeDate;
-   
+  else { completeDate = year + "-" + month + "-" + day; }
+  return completeDate;
+
 }
 
 /**
  * Solves the problem that the JSON has not loaded when render it. --> Ich bin nicht glücklich damit, weil doch eigentlich "await" dafür sorgen soll, dass zuerst alles geladen wird.
  */
-function delayRenderAssignTo(){
+function delayRenderAssignTo() {
   setTimeout(renderUserAssignTo, 300);
 }
 
-function renderUserAssignTo(){
-  document.getElementById('optionsUser').innerHTML = ``; 
+function renderUserAssignTo() {
+  document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = contacts[index];
     document.getElementById('optionsUser').innerHTML += renderUserAssignToHTML(index, element);
   }
-  
+
 }
 
 
-function renderUserAssignToHTML(index, element){
+function renderUserAssignToHTML(index, element) {
   return `
   <div class="checkbox">
   <label for="user${index}">${element.fullname}</label>
@@ -260,37 +272,37 @@ function renderUserAssignToHTML(index, element){
 }
 
 
-function delayRenderCategories(){
+function delayRenderCategories() {
   setTimeout(renderCategories, 300);
 }
 
-function renderCategories(){
-  document.getElementById('optionsCat').innerHTML = ``; 
+function renderCategories() {
+  document.getElementById('optionsCat').innerHTML = ``;
   document.getElementById('optionsCat').innerHTML += renderNewCategoryHTML();
   for (let index = 0; index < categories.length; index++) {
     const element = categories[index];
     document.getElementById('optionsCat').innerHTML += renderCategoriesHTML(index, element);
   }
-  
+
 }
-function renderNewCategoryHTML(){
+function renderNewCategoryHTML() {
   return `<span id="newCat" class="item" onclick="addNewCategory()">New Category</span>`;
 }
 
-function renderCategoriesHTML(index, element){
+function renderCategoriesHTML(index, element) {
   console.log(element.categoryColor);
-   return `
+  return `
   <div class="duo" <span id="${index}" class="item" onclick="selectCategory(${index})">${element.categoryName}</span><span class="circle" style="background-color: ${element.categoryColor};"></span></div>`;
 }
 
 
 
-function addNewCategory(){
-document.getElementById(`inputUnit`).innerHTML = addNewCategoryHTML();
-renderColorSpots();
+function addNewCategory() {
+  document.getElementById(`inputUnit`).innerHTML = addNewCategoryHTML();
+  renderColorSpots();
 }
 
-function addNewCategoryHTML(){
+function addNewCategoryHTML() {
   return `
   <label for="Category">Category</label>
     <input id="showNewCat" class="input" type="text" placeholder="New Category name">
@@ -299,28 +311,28 @@ function addNewCategoryHTML(){
 }
 
 
-function renderColorSpots(){
+function renderColorSpots() {
   for (let index = 0; index < colors.length; index++) {
     const element = colors[index];
     document.getElementById('colorspots').innerHTML += renderColorSpotsHTML(index, element);
   }
 }
 
-function renderColorSpotsHTML(index, element){
+function renderColorSpotsHTML(index, element) {
   return `
   <div class="colorspot" id="col${index}" onclick="rememberColor(${index})"></div> `;
 }
 
-function rememberColor(index){
- colorspot = colors[index];
+function rememberColor(index) {
+  colorspot = colors[index];
 
 }
 
-function addNewCat(){
+function addNewCat() {
   let newCatField = document.getElementById('showNewCat');
 
   let category = {
-    'categoryName' : newCatField.value,
+    'categoryName': newCatField.value,
     'categoryColor': colorspot
   }
 
@@ -330,36 +342,30 @@ function addNewCat(){
   renderCategories();
 }
 
-
-function changeColorUrgent(idU, color){
-  document.getElementById(idU).style = `color: white`;
-  document.getElementById(idU).classList.add(color);
-  document.getElementById('picUrgent').style = `filter: brightness(0) invert(1)`;
-  document.getElementById('medium').classList.remove('orange');
-  document.getElementById('low').classList.remove('green');
-}
-function changeColorMedium(idM, color){
-  document.getElementById('urgent').style = ``;
-  // document.getElementById(idM).style = `color: white`;
-  document.getElementById(idM).classList.add(color);
-  // document.getElementById('picMedium').classList.add('invert');
-  document.getElementById(idM).classList.add(color);
-  document.getElementById('urgent').classList.remove('red');
-  document.getElementById('low').classList.remove('green');
-
-  // undoButtonChanges();
+/**
+ * This function gives the active Button the right look and sets the inactive to default
+ * @param {*} id
+ */
+function selectButton(id) {
+  changeSelectedButton(id);
+  resetUnselectedButtons(id);
 }
 
-function changeColorLow(idL, color){
-  // document.getElementById(idL).style = `color: white`;
-  document.getElementById(idL).classList.add(color);
-  // document.getElementById('picLow').classList.add('invert');
-   document.getElementById('urgent').classList.remove('red');
-  document.getElementById('medium').classList.remove('orange');
+
+function changeSelectedButton(id) {
+  let priority = document.getElementById(`${priorities[id].prio}`);
+  document.getElementById(`pic${priorities[id].prio}`).style = `filter: brightness(0) invert(1)`;
+  priority.style = `background-color: ${priorities[id].color}; color: white`;
 }
 
-function undoButtonChanges(){
-  document.getElementById('urgent').style = ``;
-  document.getElementById('urgent').classList.remove(color);
-  document.getElementById('picUrgent').style= ``;;
+function resetUnselectedButtons(id) {
+ 
+for (let index = 0; index < priorities.length; index++) {
+       if(index != id){
+       document.getElementById(`pic${priorities[index].prio}`).style = ``;
+       document.getElementById(`${priorities[index].prio}`).style = ``;
+     }
+    }
+  
 }
+
