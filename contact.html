@@ -13,20 +13,49 @@
 
 
 <body onload="renderContacts()">
-
-    <div class="main">
+    <div class="main" id="main-contact">
         <div class="new-contact-overlay-box d-none" id="overlay-box">
             <div class="new-contact-overlay" id="new-contact-overlay">
-                <div class="new-contact-left" >
+                <div class="new-contact-left" id="new-contact-left">
                     <div class="new-contact-left-img-box d-none" id="contact-new-img">
                         <img src="assets/img/Capa_white.png" alt="">
                     </div>
                     <span class="d-none contact-left-headline" id="contact-left-add">Add Contact</span>
-                    <span class="d-none" id="contact-left-tasks">Tasks are better with a team!</span>
-                    <div class="new-contact-left-line">
+                    <span class="d-none contact-left-better" id="contact-left-tasks">Tasks are better with a team!</span>
+                    <div class="new-contact-left-line" id="blue-line">
                     </div>
                 </div>
-                <div class="new-contact-right">
+                <div class="new-contact-right" id="new-contact-right-content">
+                    <div class="new-contact-circle-name" id="new-contact-circle-name">
+                        <div class="contact-circle-big contact-circle-card bg0" id="circle-new-contact">
+                            <img src="assets/img/person-icon-big.png" alt="">
+                        </div>
+                        <div class="contact-new-inputs d-none" id="contact-new-inputs">
+                            <span onclick="closeNewContact()" class="close-contact-cross">&#10005;</span>
+                                <div class="input-form-new-contact">
+                                    <input type="text" id="new-contact-name" placeholder ="name">
+                                    <img src="assets/img/icon_person.png" alt="">
+                                </div>
+                                <div class="input-form-new-contact">
+                                    <input type="email" id="new-contact-mail" placeholder ="e-mail">
+                                    <img src="assets/img/icon-email.svg" alt="">
+                                </div>
+                                <div class="input-form-new-contact">
+                                    <input type="text" id="new-contact-phone" placeholder ="phone">
+                                    <img src="assets/img/icon-phone.png" alt="">
+                                </div>
+                            <div class="create-cancel-box" id="create-edit-content">
+                                <button class="contact-new-cancel" onclick="closeNewContact()">
+                                    <span>Cancel  </span>
+                                    <span>&#10005;</span>
+                                </button>
+                                <button class="contact-new-create" onclick="saveNewContact()">
+                                    <span>Create Contact</span>
+                                    <img src="assets/img/create-icon.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
