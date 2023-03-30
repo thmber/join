@@ -289,7 +289,7 @@ background-color: #0048cd;
   background-color: rgba(0, 255, 17, 0.491);
 }
   .duo {
-    padding: 10px 10px 10px 15px;
+    padding: 5px 10px 5px 15px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -306,3 +306,14 @@ background-color: #0048cd;
     align-items: center;
 }
 
+.seperate {
+  width: 1px;
+  background-color: grey;
+  height: 1.2em;
+  margin: 0 3px;
+}
+
+.cancelOrAdd {
+  display: flex;
+
+}

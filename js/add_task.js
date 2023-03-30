@@ -7,7 +7,7 @@ let checkBxSub = [];
 let checkBox = [];
 let taskID = 0;
 let categories = [];
-let colors = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc', ''];
+let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc', ''];
 let colorspot;
 let priorities = [{
   prio: 'urgent',
@@ -100,6 +100,8 @@ function selectCategory(param) {
   let category = document.getElementById(`${param}`).textContent;
   document.getElementById('selectedCategory').innerHTML = `<div class="inlineDuo"><span>${category}</span><span class="circle" style="background-color: ${categories[param].categoryColor};"></span></div>`;
   document.getElementById('seeCat').classList.add('d-none');
+
+  //render toggle Button
 }
 
 
@@ -157,7 +159,7 @@ function renderAddTasksHTML(soonestDueDate) {
   
   <div class="containerAddTaskLeftSide">
       <div class="inputUnit">
-          <label for="name">Name</label>
+          <label for="name">Title</label>
           <input id="title" class="input" type="text" placeholder="Enter a title">
       </div>
       <div class="inputUnit">
@@ -172,9 +174,7 @@ function renderAddTasksHTML(soonestDueDate) {
               <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
           </div>
           <div id="seeCat" class="d-none">
-              <div class="options" id="optionsCat">
-                  
-              </div>
+              <div class="options" id="optionsCat"></div>
           </div>
       </div>
 
@@ -290,7 +290,7 @@ function renderNewCategoryHTML() {
 }
 
 function renderCategoriesHTML(index, element) {
-  console.log(element.categoryColor);
+  // console.log(element.categoryColor);
   return `
   <div class="duo" <span id="${index}" class="item" onclick="selectCategory(${index})">${element.categoryName}</span><span class="circle" style="background-color: ${element.categoryColor};"></span></div>`;
 }
@@ -305,15 +305,44 @@ function addNewCategory() {
 function addNewCategoryHTML() {
   return `
   <label for="Category">Category</label>
-    <input id="showNewCat" class="input" type="text" placeholder="New Category name">
-    <div class="plus"><img src="assets/img/plus.svg" onclick="addNewCat()" alt=""></div>
-    <div class="colorspots" id="colorspots"></div>                      `
+  
+  <input id="showNewCat" class="input" type="text" placeholder="New Category name">
+    
+      
+ 
+    
+  <div id="seeCat">
+     <div class="options" id="optionsCat"></div>
+  </div>
+
+  <div class="cancelOrAdd plus"><img src="assets/img/cancel.png" onclick="renderInputUnit()"><div class="seperate"></div> <img src="assets/img/check.png" onclick="addNewCat()" alt=""></div>
+  <div class="colorspots" id="colorspots"></div>                      `
+}
+
+
+
+function renderInputUnit(){
+  document.getElementById(`inputUnit`).innerHTML =``;
+  document.getElementById(`inputUnit`).innerHTML += `
+ 
+  <label>Category</label>
+  <div class="inputArea" id="newCateg">
+      <div id="selectedCategory">Select a Category</div>
+      <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
+  </div>
+  <div id="seeCat" class="d-none">
+      <div class="options" id="optionsCat"></div>
+  </div>
+</div>`;
+renderCategories();
+selectCategory(categories.length-1);
+
 }
 
 
 function renderColorSpots() {
-  for (let index = 0; index < colors.length; index++) {
-    const element = colors[index];
+  for (let index = 0; index < colorspots.length; index++) {
+    const element = colorspots[index];
     document.getElementById('colorspots').innerHTML += renderColorSpotsHTML(index, element);
   }
 }
@@ -336,10 +365,28 @@ function addNewCat() {
     'categoryColor': colorspot
   }
 
-  newCatField.value = ``;
+  // newCatField.value = ``;
   categories.push(category);
   backend.setItem('categories', JSON.stringify(categories));
-  renderCategories();
+  renderInputUnit();
+  // renderCategories();
+  console.log('letzte Cat: ', category.categoryName);
+  // document.getElementById('selectedCategory').value = category.categoryName;
+}
+
+
+
+function resetCategoryChoice(){
+ let inputUnit = document.getElementById('inputUnit'); 
+inputUnit.innerHTML = ``;
+  inputUnit.innerHTML += ` <label>Category</label>
+  <div class="inputArea" id="newCateg">
+      <div id="selectedCategory">Select a Category</div>
+      <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
+  </div>
+  <div id="seeCat" class="d-none">
+      <div class="options" id="optionsCat"> </div>
+  </div>`;
 }
 
 /**
