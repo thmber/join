@@ -82,7 +82,6 @@ function saveJSONToServer() {
         let proxy = determineProxySettings();
         let serverURL = proxy + BASE_SERVER_URL + '/save_json.php';
         xhttp.open('POST', serverURL);
-
         xhttp.onreadystatechange = function(oEvent) {
             if (xhttp.readyState === 4) {
                 if (xhttp.status >= 200 && xhttp.status <= 399) {
@@ -92,7 +91,6 @@ function saveJSONToServer() {
                 }
             }
         };
-
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(jsonFromServer));
 
