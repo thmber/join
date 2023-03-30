@@ -26,8 +26,13 @@ body {
     width: 100vw;
     display: flex;
     overflow: hidden;
-
-
+}
+.test{
+    position: absolute;
+    height: 100vh;
+    width: 230px;
+    background-color: rgb(41, 54, 70);
+    z-index: -1;
 }
 
 .contact-container {
@@ -41,6 +46,7 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    box-shadow: 4px 4px 6px 6px rgba(0, 0, 0, 0.1);
 }
 
 .contact-list-box {
