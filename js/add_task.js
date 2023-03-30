@@ -7,7 +7,7 @@ let checkBxSub = [];
 let checkBox = [];
 let taskID = 0;
 let categories = [];
-let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc', ''];
+let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
 let colorspot;
 let priorities = [{
   prio: 'urgent',
@@ -143,8 +143,9 @@ function showSubtasks(subtasks) {
       <label for="subtask">${element}</label>
     </div>`;
   });
-
 }
+
+
 function renderAddTasks() {
   let soonestDueDate = getTodayDate();
   document.getElementById('mainAddTask').innerHTML = ``;
@@ -353,8 +354,19 @@ function renderColorSpotsHTML(index, element) {
 }
 
 function rememberColor(index) {
-  colorspot = colors[index];
+  colorspot = colorspots[index];
 
+  document.getElementById(`col${index}`).classList.add('highlighted');
+
+ resetUnselectedSpots(index);
+}
+
+function resetUnselectedSpots(index){
+  for (let j = 0; j < colorspots.length; j++) {
+    if(index != j){
+    document.getElementById(`col${j}`).classList.remove('highlighted');
+     }
+ }
 }
 
 function addNewCat() {
@@ -411,6 +423,7 @@ for (let index = 0; index < priorities.length; index++) {
        if(index != id){
        document.getElementById(`pic${priorities[index].prio}`).style = ``;
        document.getElementById(`${priorities[index].prio}`).style = ``;
+       document.getElementById(`${priorities[index].prio}`).classList.remove(priorities[index].color);
      }
     }
   

@@ -1,6 +1,7 @@
 
 let currentdraggableElement;
 let stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
+
 let a = 0;
 
 function clearBoard() {
@@ -143,11 +144,13 @@ function getTheRightTask(objID) {
 }
 
 function showTask(index) {
+    document.getElementById('makeBgDarker').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
     let j = getTheRightTask(index);
     document.getElementById('overlayTask').classList.remove('d-none');
     let element = tasks[j];
     document.getElementById('overlayTask').innerHTML += `
+    
 <div class="fullUseOfSpace">
     <div class="fullUseOfSpaceTop">
             <div class="overlayOneRow">
@@ -157,20 +160,43 @@ function showTask(index) {
             <div class="overlayTitle">${element.title}</div>
             <div class="overlayDescription">${element.description}</div>
             <div class="overlayContent"><b>Due Date:</b> ${element.duedate}</div>
-            <div class="overlayContent"><b>Priority:</b>  ${element.priority}<img src="assets/img/${element.priority}.svg"></div>
+            <div class="overlayContent"><b>Priority:</b><div id="priority">${element.priority}<img id="prioPic" src="assets/img/${element.priority}.svg"></div></div>
         
             <div id="assignTo${index}" class="assignTo"><b> Assigned To:</b></div>
             <div id="assign"></div>
     </div>
         <div class="fullUseOfSpaceBottom">
-            <div id="edit${j}" class="edit" onclick="renderEditTask(${j})"><img id="edit${j}" src="./assets/img/edit.svg"></div>
+            <div id="edit${j}" class="edit" onclick="renderEditTask(${j})"><img  id="edit${j}" src="./assets/img/edit.svg" ></div>
         </div>
-</div>`;
+</div>
+`;
 showAssigned(element);
+getbgColor(index);
+}
+
+function getbgColor(index){
+    if (tasks[index].priority == 'urgent') {
+        document.getElementById('prioPic').classList.add('invert');
+    document.getElementById('priority').classList.add('red');
+}
+   
+   
+    else if (tasks[index].priority == 'medium'){
+        document.getElementById('prioPic').classList.add('invert');
+        document.getElementById('priority').classList.add('orange');
+    }
+    
+    else if(tasks[index].priority == 'low') {
+        document.getElementById('prioPic').classList.add('invert');
+        document.getElementById('priority').classList.add('green');
+    }
+    
 }
 
 function closeTask(){
+    document.getElementById('makeBgDarker').classList.add('d-none');
     document.getElementById('overlayTask').classList.add('d-none');
+    document.getElementById('editTask').classList.add('d-none');
 }
 
 function showAssigned(element){
@@ -184,8 +210,10 @@ for (let index = 0; index < element.assignedTo.length; index++) {
 
 
 function renderEditTask(i){
+    
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.remove('d-none');
+   
   console.log(i);
     let edit = document.getElementById('editTask');
     edit.innerHTML = ``;
@@ -198,18 +226,22 @@ function renderEditTask(i){
         <label for="description">Description</label>
         <textarea id="description" class="inputDescription" type="textarea"></textarea>
     </div>
-    <div class="inputUnit" id="inputUnit">
-        <label>Category</label>
-        <div class="inputArea" id="newCateg">
-            <div id="selectedCategory">Select a Category</div>
-            <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
-        </div>
-        <div id="seeCat" class="d-none">
-            <div class="options" id="optionsCat"></div>
-        </div>
+    <div class="inputUnit">
+    <label for="dueDate">Due Date</label>
+    <input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
+</div>
+
+<div class="inputUnit">
+    <label for="prio">Prio</label>
+    <div id="prioButtons" class="prioButtons">
+        <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+                src="assets/img/urgent.svg"></button>
+        <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+                src="assets/img/medium.svg"></button>
+        <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+                src="assets/img/low.svg"></button>
     </div>
-
-
+</div>
     <div class="inputUnit">
         <label>Assigned to</label>
         <div class="inputArea">
@@ -221,23 +253,11 @@ function renderEditTask(i){
         </div>
 
     </div>
+   
     <div id="showAssignedPeople"></div>
 
-    <div class="inputUnit">
-    <label for="dueDate">Due Date</label>
-    <input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
-</div>
-<div class="inputUnit">
-    <label for="prio">Prio</label>
-    <div class="prioButtons">
-        <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
-                src="assets/img/urgent.svg"></button>
-        <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
-                src="assets/img/medium.svg"></button>
-        <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
-                src="assets/img/low.svg"></button>
-    </div>
-</div>
+   
+
 <div class="inputUnit">
     <label for="subtask">Subtasks</label>
     <input id="subtask" class="input" type="text" placeholder="Add new subtask">
@@ -246,7 +266,7 @@ function renderEditTask(i){
 <div id="displaySubtasks"></div>
 <div class="BTN">
     <button id="createTaskBTN" onclick="closeIt()">Cancel<img src=""></button>
-    <button id="createTaskBTN" onclick="addTask()">Create Task<img src=""></button>
+    <button id="createTaskBTN" onclick="">Save Task<img src=""></button>
 </div>
 
 
@@ -256,13 +276,81 @@ function renderEditTask(i){
     
 
 </div>`;
+
+
 renderUserAssignTo();
-renderCategories();
 title.value = tasks[i].title;
 description.value = tasks[i].description;
- selectedCategory.textContent = tasks[i].category;
+//  selectedCategory.textContent = tasks[i].category;
+readPrio(i);
+
+ dueDate.value = tasks[i].duedate;
+//  showSubtasks(tasks[i].subtasks)
+ checkSubtasks(i);
+ 
+}
+
+function readPrio(i){
+    console.log(i);
+   if(tasks[i].priority == 'urgent') renderUrgentHTML();
+   else if (tasks[i].priority == 'medium') renderMediumHTML();
+   else if(tasks[i].priority == 'low') renderLowHTML();
+
 }
 
 function closeIt(){
     document.getElementById('editTask').classList.add('d-none');
+    document.getElementById('makeBgDarker').classList.add('d-none');
 }
+
+function renderUrgentHTML(){
+    document.getElementById('prioButtons').innerHTML = ``;
+    document.getElementById('prioButtons').innerHTML +=
+     ` <button onclick="selectButton(0)" class="buttonPrio red" id="urgent">Urgent<img id="picurgent"
+    src="assets/img/urgent.svg" style="filter:brightness(0) invert(1)"></button>
+    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+    src="assets/img/medium.svg"></button>
+    <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+    src="assets/img/low.svg"></button>`
+}
+function renderMediumHTML(){
+    document.getElementById('prioButtons').innerHTML = ``;
+    document.getElementById('prioButtons').innerHTML += ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+    src="assets/img/urgent.svg"></button>
+    <button onclick="selectButton(1)" class="buttonPrio orange" id="medium">Medium<img id="picmedium"
+    src="assets/img/medium.svg" style="filter:brightness(0) invert(1)"></button>
+    <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+    src="assets/img/low.svg"></button>`
+}
+function renderLowHTML(){
+    document.getElementById('prioButtons').innerHTML = ``;
+    document.getElementById('prioButtons').innerHTML += ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+    src="assets/img/urgent.svg"></button>
+    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+    src="assets/img/medium.svg"></button>
+    <button onclick="selectButton(2)" class="buttonPrio green" id="low">Low<img id="piclow"
+    src="assets/img/low.svg" style="filter:brightness(0) invert(1)"></button>`
+}
+
+function checkSubtasks(i) {
+    console.log('checkSubtasks');
+    document.getElementById('displaySubtasks').innerHTML = ``;
+    let subtasks = tasks[i].subtasks;
+    let checkos = tasks[i].checkBxSub;
+    let ch = ``;
+   for (let index = 0; index < subtasks.length; index++) {
+    const element = subtasks[index];
+    console.log(checkos[index]);
+    if(checkos[index]) ch = 'checked';
+    
+    document.getElementById('displaySubtasks').innerHTML += `
+      <div class="wrapper">
+        <input type="checkbox" name="subtask" value="${element}" ${ch}>
+        <label for="subtask">${element}</label>
+      </div>`;
+      ch = '';
+   }
+      
+  }
+  
+ 
