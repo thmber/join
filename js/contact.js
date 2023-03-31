@@ -175,7 +175,7 @@ function saveEditedContact(color, index){
     animateCloseContact(color, initials);
     clearNewContactInput();
     clearContactList();
-    clearShowedContact();
+    showContact(firstname, lastname, initials, newMail, color, newPhone, index);
     renderContacts();
 }
 
@@ -201,6 +201,7 @@ function saveNewContact(){
     clearContactList();
     renderContacts();
 }
+
 
 function showWarningName(){
     document.getElementById('new-contact-name').style.color = "red";
@@ -241,6 +242,7 @@ function closeNewContact(){
     clearContactCard();
     editing = false;
 }
+
 
 function clearContactCard(){
     document.getElementById('new-contact-left').innerHTML = '';    
@@ -342,8 +344,10 @@ function generateLeftSideNewContact(){
 
 function generateRightSideNewContact(){
     return        ` <div class="new-contact-circle-name" id="new-contact-circle-name">
-                        <div class="contact-circle-big contact-circle-card bg0" id="circle-new-contact">
-                            <img src="assets/img/person-icon-big.png" alt="">
+                         <div class="edit-contact-circle">
+                            <div class="contact-circle-big contact-circle-card bg0" id="circle-new-contact">
+                                <img src="assets/img/person-icon-big.png" alt="">
+                            </div>  
                         </div>
                         <div class="contact-new-inputs" id="contact-new-inputs">
                             <span onclick="closeNewContact()" class="close-contact-cross">&#10005;</span>
@@ -361,7 +365,7 @@ function generateRightSideNewContact(){
                                 </div>
                             <div class="create-cancel-box" id="create-edit-content">
                                 <button class="contact-new-cancel" onclick="closeNewContact()">
-                                    <span>Cancel  </span>
+                                    <span>Cancel</span>
                                     <span>&#10005;</span>
                                 </button>
                                 <button class="contact-new-create" onclick="saveNewContact()">
@@ -390,8 +394,10 @@ function generateLeftSideEditContact(){
 
 function generateRightSideEditContact(firstname, lastname, email, phone, initials, color, index){
     return        ` <div class="new-contact-circle-name" id="new-contact-circle-name">
-                        <div class="contact-circle-big contact-circle-card bg${color}" id="circle-new-contact">
-                            ${initials}
+                        <div class="edit-contact-circle">
+                            <div class="contact-circle-big contact-circle-card bg${color}" id="circle-new-contact">
+                             ${initials}
+                            </div>  
                         </div>
                         <div class="contact-new-inputs" id="contact-new-inputs">
                             <span onclick="closeNewContact()" class="close-contact-cross">&#10005;</span>
