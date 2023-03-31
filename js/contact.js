@@ -180,12 +180,12 @@ function saveEditedContact(color, index){
 }
 
 
-
 function saveNewContact(){
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-mail').value;
     let newPhone = document.getElementById('new-contact-phone').value;
     if (newName.length == 0 || newName.indexOf(' ') == -1) {
+        showWarningName();
         return;
     }
     let newNamesplitted = newName.split(' ');
@@ -202,6 +202,14 @@ function saveNewContact(){
     renderContacts();
 }
 
+function showWarningName(){
+    document.getElementById('new-contact-name').style.color = "red";
+    document.getElementById('new-contact-name').value = "first and last name";
+    setTimeout(() => {
+        document.getElementById('new-contact-name').style.color = "rgb(11, 173, 221)";
+        document.getElementById('new-contact-name').value = ""; 
+    }, 320);
+}
 
 function pushNewNeedLetter(lastname){
     if (neededLetters.indexOf(lastname.toUpperCase().charAt(0)) == -1) {
@@ -240,14 +248,6 @@ function clearContactCard(){
 }
 
 
-function hideNewContactCard(){
-        document.getElementById('contact-new-img').classList.add('d-none');
-        document.getElementById('contact-left-add').classList.add('d-none');
-        document.getElementById('contact-left-tasks').classList.add('d-none');
-        document.getElementById('contact-new-inputs').classList.add('d-none');
-}
-
-
 function changeCircleColorNewContact(randomcolor, initiales){
         document.getElementById('circle-new-contact').classList.remove('bg0');
         document.getElementById('circle-new-contact').classList.add(`bg${randomcolor}`)
@@ -262,6 +262,7 @@ function animateCloseContact(randomcolor, initiales){
             document.getElementById('new-contact-right-content').style.width = "0";
             document.getElementById('new-contact-circle-name').style.opacity = "0";
             document.getElementById('new-contact-left').style.transform = "scale(0)";
+
             setTimeout(() => {
                 document.getElementById('overlay-box').classList.add('d-none');
                 document.getElementById('new-contact-right-content').style.width = "60%";
@@ -324,31 +325,6 @@ function showContact(firstname, lastname, initiales, email, color, phone, index)
             </div>
 `;
 }
-
-
-
-function getCreateBottom(){
-    return `                    <button class="contact-new-cancel" onclick="closeNewContact()">
-                                    <span>Cancel  </span>
-                                    <span>&#10005;</span>
-                                </button>
-                                <button class="contact-new-create" onclick="saveNewContact()">
-                                    <span>Create Contact</span>
-                                    <img src="assets/img/create-icon.png" alt="">
-                                </button>
-    `;
-
-}
-
-
-function getEditBottom(){
-    return `                    <button class="contact-new-save" onclick="saveNewContact()">
-                                    <span>Save</span>
-                                    <img src="assets/img/create-icon.png" alt="">
-                                </button>
-    `;
-}
-
 
 
 function generateLeftSideNewContact(){

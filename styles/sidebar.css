@@ -44,7 +44,7 @@
     background: #091931; 
 }
 
-a:link, a:visited {
+.sideMenu a{
     text-decoration: none;
     color:#CDCDCD;
    }

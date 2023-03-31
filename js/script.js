@@ -14,7 +14,7 @@ async function init() {
 /**
  * includes the header and sidebar
  */
-async function includeHTML() {
+async function includeHTML(element) {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -26,6 +26,7 @@ async function includeHTML() {
             element.innerHTML = 'Page not found';
         }
     }
+    document.getElementById(`sidebar-${element}`).style.backgroundColor = "#091931";
 }
 
 
