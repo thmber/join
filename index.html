@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./mini_backend.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/add_task.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/board.js"></script>
-    
-    <link rel="stylesheet" href="styles/sidebar.css">
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/summary.css">
-    <link rel="stylesheet" href="styles/board.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/add_task.css">
-    <link rel="stylesheet" href="styles/contact.css">
+    <title>Join</title>
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="icon" href="Capa_icon.png">
+    <link rel="stylesheet" href="styles/index.css">
+    <script src="js/index.js"></script>
 
- <link rel="stylesheet" href="assets/fonts/fonts.css">
-    
-    <title>Document</title>
 </head>
-<body>
-    
-    <div class="index">
-       
 
-   
+<body>
+
+
+    <div class="container">
+        <div class="logo-box">
+            <img src="assets/img/Capa_dark.png" alt="" class="dark-img">
+            <img src="assets/img/Capa_white.png" alt="" class="white-img">
+            <img src="assets/img/Capa_point.png" alt="" class="point-img">
+        </div>
+        <div class="sign-in" id="log-in-content">
+            <div class="sign-box" id="sign-box">
+                <span class="login-headline" id="login-headline">Log In</span>
+                <div class="underline-login" id="login-underline">
+                </div>
+                <form onsubmit="login()" class="login-form">
+                    <div class="login-box">
+                        <input type="email" required minlength="5" placeholder="Email">
+                        <img src="icon-email.svg" alt="">
+                    </div>
+                    <div class="login-box">
+                        <input type="password" required minlength="5" placeholder="Password">
+                        <img src="icon-password.svg" alt="">
+                    </div>
+                    <div class="remember-forgot-box">
+                        <div class="remember-check">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember Me</label>
+                        </div>
+                        <a onclick="showForgotPassword()">Forgot my password</a>
+                    </div>
+                    <div class="login-and-guest">
+                        <button class="login">Log in</button>
+                        <a class="guest-login">Guest Log in</a>
+                    </div>
+                </form>
+            </div>
+            <div class="forgot-container d-none" id="forgot-container">
+                
+            </div>
+        </div>
+        <div class="not-user-head">
+            Not a Join user?
+            <button onclick="showSignUp()">Sign up</button>
+        </div>
     </div>
 
- 
+
+
+
 </body>
+
 </html>
