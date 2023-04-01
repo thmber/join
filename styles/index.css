@@ -86,7 +86,17 @@ body {
     align-items: center;
     overflow: hidden;
 }
-
+.arrow-left{
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--lightblue);
+}
+.arrow-left:hover{
+    color: var(--darkblue);
+}
 .not-user-head {
     position: absolute;
     right: 0;
@@ -213,12 +223,15 @@ body {
     align-items: center;
     width: 120px;
     height: 38px;
+    text-decoration: none;
 }
  .login-and-guest a:hover{
     color: var(--lightblue);
     border: 1px solid var(--lightblue);
  }
-
+ .login-and-guest a:visited{
+    text-decoration: none;
+ }
 .sign-box{
     display: flex;
     flex-direction: column;
