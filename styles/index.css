@@ -23,6 +23,7 @@ body {
     height: 155px;
     width: 110px;
     position: absolute;
+    cursor: pointer;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
@@ -88,7 +89,7 @@ body {
 }
 .arrow-left{
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 5%;
     font-size: 30px;
     cursor: pointer;
@@ -135,6 +136,14 @@ body {
     margin-bottom: 15px;
     font-weight: 600;
 }
+.login-headline-password{
+    color: rgb(41, 54, 70);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 40px;
+    text-align: center;
+}
 
 .underline-login {
     width: 120px;
@@ -178,6 +187,7 @@ body {
 .remember-forgot-box a{
     text-decoration: none;
     color: rgba(11, 173, 221, 1);
+    cursor: pointer;
 }
  .remember-forgot-box a:hover{
     color: var(--darkblue);
@@ -190,11 +200,14 @@ body {
 }
 .login-and-guest button{
     border: unset;
+    padding-right: 20px;
+    padding-left: 20px;
     border-radius: 10px;
     color: white;
     font-size: 16px;
     height: 40px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     background-color: rgb(41, 54, 70);
     display: flex;
     align-items: center;
@@ -238,7 +251,7 @@ body {
     align-items: center;
 }
 .worry-not{
-    font-size: 23px;
+    font-size: 18px;
     width: 600px;
     margin-bottom: 30px;
     text-align: center;
@@ -261,6 +274,12 @@ body {
     .logo-box{
         width: 80px;
     }
+    .login-headline-password{
+        font-size: 36px;
+        padding-right: 60px;
+        padding-left: 60px;
+    }
+
 }
 @media (max-width: 500px){
    
@@ -297,6 +316,11 @@ body {
     .worry-not{
         font-size: 16px;
         width: 250px;
+    }
+    .login-headline-password{
+        font-size: 30px;
+        padding-right: 30px;
+        padding-left: 30px;
     }
 
 }

@@ -30,7 +30,7 @@ function showForgotPassword(){
     let loginBox = document.getElementById('log-in-content');
     loginBox.innerHTML = `
         <span onclick="showLogin()" class="arrow-left">&larr;</span>
-        <span class="login-headline" id="login-headline">I forgot my password</span>
+        <span class="login-headline-password" id="login-headline">I forgot my password</span>
         <div class="underline-login" id="login-underline">
         </div>
         <div class="worry-not">
@@ -40,7 +40,7 @@ function showForgotPassword(){
         <form onsubmit="login()" class="login-form">
             <div class="login-box">
                 <input type="email" required minlength="5" placeholder="Email">
-                <img src="icon-email.svg" alt="">
+                <img src="assets/img/icon-email.svg" alt="">
             </div>
             <div class="login-and-guest">
                 <button class="login">Send me the email</button>
@@ -60,11 +60,11 @@ function showLogin(){
                 <form onsubmit="login()" class="login-form">
                     <div class="login-box">
                         <input type="email" required minlength="5" placeholder="Email">
-                        <img src="icon-email.svg" alt="">
+                        <img src="assets/img/icon-email.svg" alt="">
                     </div>
                     <div class="login-box">
                         <input type="password" required minlength="5" placeholder="Password">
-                        <img src="icon-password.svg" alt="">
+                        <img src="assets/img/icon-password.svg" alt="">
                     </div>
                     <div class="remember-forgot-box">
                         <div class="remember-check">

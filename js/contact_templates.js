@@ -75,7 +75,7 @@ function generateRightSideNewContact(){
                         <div class="contact-new-inputs" id="contact-new-inputs">
                             <span onclick="closeNewContact()" class="close-contact-cross">&#10005;</span>
                                 <div class="input-form-new-contact">
-                                    <input type="text" id="new-contact-name" placeholder ="first and last name">
+                                    <input type="text" id="new-contact-name" placeholder ="first and last name" pattern="^\S+\s\S+$" >
                                     <img src="assets/img/icon_person.png" alt="">
                                 </div>
                                 <div class="input-form-new-contact">

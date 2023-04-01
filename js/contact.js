@@ -6,7 +6,8 @@ let contacts = [{
         'email': 'telefonieren@gmx.de',
         'phone': '+49 172 927 860 29',
         'initials': 'TH',
-        'color': 1
+        'color': 1,
+        'id': 0,
     },
     {
         'firstname': 'Christian',
@@ -14,7 +15,8 @@ let contacts = [{
         'email': 'pleite@yahoo.com',
         'phone': '+49 171 987 872 29',
         'initials': 'CS',
-        'color': 2
+        'color': 2,
+        'id': 1,
     },
     {
         'firstname': 'Jennifer',
@@ -22,7 +24,8 @@ let contacts = [{
         'email': 'tippen@web.de',
         'phone': '+49 176 911 222 69',
         'initials': 'JM',
-        'color': 3
+        'color': 3,
+        'id': 2,
     },
     {
         'firstname': 'Carla',
@@ -30,7 +33,8 @@ let contacts = [{
         'email': 'drkrivet@telekom.com',
         'phone': '+49 174 993 445 22',
         'initials': 'CK',
-        'color': 4
+        'color': 4,
+        'id': 3,
     },
     {
         'firstname': 'Herbert',
@@ -38,7 +42,8 @@ let contacts = [{
         'email': 'rasen@web.de',
         'phone': '+49 170 222 345 44',
         'initials': 'HD',
-        'color': 5
+        'color': 5,
+        'id': 4,
     },
     {
         'firstname': 'Niklas',
@@ -46,7 +51,8 @@ let contacts = [{
         'email': 'sofa@gmx.de',
         'phone': '+49 177 232 454 99',
         'initials': 'NÖ',
-        'color': 6
+        'color': 6,
+        'id': 5,
     },
     {
         'firstname': 'Rolf',
@@ -54,7 +60,8 @@ let contacts = [{
         'email': 'energyundkraft@web.de',
         'phone': '+49 86 - 353 874 35',
         'initials': 'RB',
-        'color': 7
+        'color': 7,
+        'id': 6,
     },
     {
         'firstname': 'Simone',
@@ -62,23 +69,22 @@ let contacts = [{
         'email': 'klebestark@gmail.com',
         'phone': '+49 175 - 393 234 99',
         'initials': 'SB',
-        'color': 8
+        'color': 8,
+        'id': 7,
     }
 ];
 
 
 let neededLetters = ['H', 'S', 'M', 'K', 'D', 'Ö', 'B'];
 let onlyLastnames = [];
+let onlyFirstnames = [];
 let sortedContacts = [];
 let same = false;
 
 
 function renderContacts() {
         sortNeededLetters();
-        if (same == false) {
-            sortContactsAlphabeticallyByLastName();
-        }
-        same = false;
+        sortContactsAlphabeticallyByLastName();
         let contactlist = document.getElementById('contact-list-content');
         for (let i = 0; i < neededLetters.length; i++) {
             let letter = neededLetters[i];
@@ -113,7 +119,7 @@ function generateContactForEachLetter(letter, j, contactlist){
 
 function getOnlyLastnamesAndSort(){
     for (let i = 0; i < contacts.length; i++) {
-        let lastname = contacts[i]['lastname'];
+        let lastname = contacts[i]['lastname'] + contacts[i]['firstname'];
         onlyLastnames.push(lastname);
     }
     onlyLastnames.sort(function (a, b) {
@@ -130,7 +136,7 @@ function sortContactsAlphabeticallyByLastName(){
     for (let i = 0; i < onlyLastnames.length; i++) {
         let name = onlyLastnames[i];
         for (let j = 0; j < contacts.length; j++) {
-            element = contacts[j]['lastname'];
+            let element = contacts[j]['lastname'] + contacts[j]['firstname']
             if (name == element) {
                 sortedContacts.push(contacts[j]);
             }
@@ -164,11 +170,6 @@ function addNewContact(){
 }
 
 
-function checkSameLastname(lastname){
-     if (onlyLastnames.indexOf(lastname) > -1) {
-        same = true;
-    }
-}
 
 function saveEditedContact(color, index){
     let newName = document.getElementById('new-contact-name').value;
@@ -184,15 +185,9 @@ function saveEditedContact(color, index){
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
-    checkSameLastname(lastname);
     let initials = firstname.charAt(0) + lastname.charAt(0);
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color};
-    if (same == false) {
-        contacts.push(newContact);
-    }
-    else{
-        contacts.splice(index, 0, newContact);
-    }
+    contacts.push(newContact);
     showContact(firstname, lastname, initials, newMail, color, newPhone, index);
     clearAndPush(lastname, color, initials);
     renderContacts();
@@ -207,16 +202,6 @@ function clearAndPush(lastname, color, initials){
 
 }
 
-function getIndex(lastname){
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        if (contact['lastname'] == lastname) {
-            return i
-        }
-        
-    }
-}
-
 
 function saveNewContact(){
     let newName = document.getElementById('new-contact-name').value;
@@ -229,20 +214,20 @@ function saveNewContact(){
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
-    checkSameLastname(lastname);
+    if (onlyLastnames.indexOf(lastname+firstname) > -1) {
+        alert('cannnot create contact that already exists');
+        return;
+    }
     let initials = firstname.charAt(0) + lastname.charAt(0);
     let randomcolor = Math.floor((Math.random()) * 7) + 1;
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor};
-    if (same == false) {
-        contacts.push(newContact);
-    }
-    else{
-        contacts.splice(getIndex(lastname), 0, newContact);
-    }
+    contacts.push(newContact);
     clearAndPush(lastname, randomcolor, initials)
     showContact(firstname, lastname, initials, newMail, randomcolor, newPhone, (contacts.length-1));
     renderContacts();
 }
+
+
 
 
 function showWarningName(){
@@ -253,6 +238,7 @@ function showWarningName(){
         document.getElementById('new-contact-name').value = ""; 
     }, 320);
 }
+
 
 function pushNewNeedLetter(lastname){
     if (neededLetters.indexOf(lastname.toUpperCase().charAt(0)) == -1) {

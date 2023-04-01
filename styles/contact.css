@@ -407,7 +407,6 @@ body {
 }
 .contact-new-inputs input::placeholder{
     opacity: 0.4;
-    color: rgb(11, 173, 221);
 }
 .contact-new-inputs input{
     border: none;
