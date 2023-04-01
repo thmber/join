@@ -1,0 +1,77 @@
+
+
+       
+        <div id="mainAddTask">
+
+                <div class="containerAddTaskLeftSide">
+                        <div class="inputUnit">
+                            <label for="name">Title</label>
+                            <input id="title" class="input" type="text" placeholder="Enter a title">
+                        </div>
+                        <div class="inputUnit">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="inputDescription" type="textarea"
+                                placeholder="Enter a Description"></textarea>
+                        </div>
+                        <div class="inputUnit" id="inputUnit">
+                            <label>Category</label>
+                            <div class="inputArea" id="newCateg">
+                                <div id="selectedCategory">Select a Category</div>
+                                <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
+                            </div>
+                            <div id="seeCat" class="d-none">
+                                <div class="options" id="optionsCat"></div>
+                            </div>
+                        </div>
+                  
+                  
+                        <div class="inputUnit">
+                            <label>Assigned to</label>
+                            <div class="inputArea">
+                                <div id="selected">Assigned to</div>
+                                <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsAss()" alt="">
+                            </div>
+                            <div id="see" class="d-none">
+                                <div class="options" id="optionsUser"></div>
+                            </div>
+                  
+                        </div>
+                        <div id="showAssignedPeople"></div>
+                  
+                  
+                  
+                  
+                  
+                    </div>
+                    <div class="containerAddTaskRightSide">
+                        <div class="inputUnit">
+                            <label for="dueDate">Due Date</label>
+                            <input id="dueDate" class="input" type="date" required>
+                        </div>
+                        <div class="inputUnit">
+                            <label for="prio">Prio</label>
+                            <div class="prioButtons">
+                                <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+                                        src="assets/img/urgent.svg"></button>
+                                <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+                                        src="assets/img/medium.svg"></button>
+                                <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+                                        src="assets/img/low.svg"></button>
+                            </div>
+                        </div>
+                        <div class="inputUnit">
+                            <label for="subtask">Subtasks</label>
+                            <input id="subtask" class="input" type="text" placeholder="Add new subtask">
+                            <div class="plus"><img src="assets/img/plus.svg" onclick="addSubtask()" alt=""></div>
+                        </div>
+                        <div id="displaySubtasks"></div>
+                        <div class="BTN">
+                            <button id="createTaskBTN" onclick="clear()">Cancel<img src=""></button>
+                            <button id="createTaskBTN" onclick="addTask()">Create Task<img src=""></button>
+                        </div>
+                    </div>
+                  </div>
+                  
+
+        </div>
+        

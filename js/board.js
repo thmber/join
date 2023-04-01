@@ -16,7 +16,12 @@ function renderAll() {
     for (let index = 0; index < tasks.length; index++) {
         const element = tasks[index];
         document.getElementById(`${element.status}`).innerHTML += showTasksOnBoardHTML(index, element);
-        getProgressBarWidth(index);
+        
+       
+        if(element.subtasks.length > 0){
+            document.getElementById(`progressField${index}`).innerHTML += renderProgressBar(index,element);
+            getProgressBarWidth(index);
+            }
         getFirstCharacterOfNames(index);
     }
     renderPlaceholder();
@@ -34,21 +39,32 @@ function showTasksOnBoard() {
     renderAll();
 }
 
+function renderProgressBar(index,element){
+  return `  <div class="oneRow">
+    <div class="container">
+       <div class="progress">
+            <div id="bar${index}" class="bar ${element.category}"></div>
+       </div>
+    </div>
+    <div class="howMuch">${countTrue(index)}/${element.subtasks.length} done</div>
+</div>`;
+}
+
+
 function showTasksOnBoardHTML(index, element) {
     return `
     <div class="box"  onclick="showTask(${element.id})" draggable="true" ondragstart="startDragging(${element.id})">
         <div class="category ${element.category}">${element.category}</div>
         <div class="title">${element.title}</div>
         <div class="description">${element.description}</div>
+<div id="progressField${index}"></div>
 
-    <div class="oneRow">
-        <div class="container">
-           <div class="progress">
-                <div id="bar${index}" class="bar ${element.category}"></div>
-           </div>
-        </div>
-        <div class="howMuch">${countTrue(index)}/${element.subtasks.length} done</div>
-    </div>
+
+
+
+
+
+
 
     <div class="oneRow">
         <div id="assignTo${index}" class="assignTo"></div>
@@ -56,6 +72,14 @@ function showTasksOnBoardHTML(index, element) {
 </div>` ;
 }
 
+{/* <div class="oneRow">
+<div class="container">
+   <div class="progress">
+        <div id="bar${index}" class="bar ${element.category}"></div>
+   </div>
+</div>
+<div class="howMuch">${countTrue(index)}/${element.subtasks.length} done</div>
+</div> */}
 
 function delay() {
     setTimeout(function () {
@@ -213,82 +237,113 @@ function renderEditTask(i){
     
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.remove('d-none');
-   
-  console.log(i);
     let edit = document.getElementById('editTask');
     edit.innerHTML = ``;
-    edit.innerHTML += `<div class="containerEditTask">
-    <div class="inputUnit">
-        <label for="name">Title</label>
-        <input id="title" class="input" type="text">
-    </div>
-    <div class="inputUnit">
-        <label for="description">Description</label>
-        <textarea id="description" class="inputDescription" type="textarea"></textarea>
-    </div>
-    <div class="inputUnit">
-    <label for="dueDate">Due Date</label>
-    <input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
+    edit.innerHTML += renderEditTaskHTML(i);
+
+
+renderContactsAssignTo();
+ checkSubtasks(i);
+ readPrio(i)
+ loadTheTaskContent(i);
+}
+
+function loadTheTaskContent(i){
+    console.log('lade Titel und so');
+    title.value = tasks[i].title;
+description.value = tasks[i].description;
+//  selectedCategory.textContent = tasks[i].category;
+ dueDate.value = tasks[i].duedate;
+//  showSubtasks(tasks[i].subtasks)
+}
+
+
+function renderEditTaskHTML(i){
+return `<div class="containerEditTask">
+<div class="inputUnit">
+    <label for="name">Title</label>
+    <input id="title" class="input" type="text">
+</div>
+<div class="inputUnit">
+    <label for="description">Description</label>
+    <textarea id="description" class="inputDescription" type="textarea"></textarea>
+</div>
+<div class="inputUnit">
+<label for="dueDate">Due Date</label>
+<input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
 </div>
 
 <div class="inputUnit">
-    <label for="prio">Prio</label>
-    <div id="prioButtons" class="prioButtons">
-        <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
-                src="assets/img/urgent.svg"></button>
-        <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
-                src="assets/img/medium.svg"></button>
-        <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
-                src="assets/img/low.svg"></button>
-    </div>
+<label for="prio">Prio</label>
+<div id="prioButtons" class="prioButtons">
+    <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+            src="assets/img/urgent.svg"></button>
+    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+            src="assets/img/medium.svg"></button>
+    <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+            src="assets/img/low.svg"></button>
 </div>
-    <div class="inputUnit">
-        <label>Assigned to</label>
-        <div class="inputArea">
-            <div id="selected">Assigned to</div>
-            <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsAss()" alt="">
-        </div>
-        <div id="see" class="d-none">
-            <div class="options" id="optionsUser"></div>
-        </div>
-
+</div>
+<div class="inputUnit">
+    <label>Assigned to</label>
+    <div class="inputArea">
+        <div id="selected">Assigned to</div>
+        <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsAss()" alt="">
     </div>
-   
-    <div id="showAssignedPeople"></div>
+    <div id="see" class="d-none">
+        <div class="options" id="optionsUser"></div>
+    </div>
 
-   
+</div>
+
+<div id="showAssignedPeople"></div>
+
+
 
 <div class="inputUnit">
-    <label for="subtask">Subtasks</label>
-    <input id="subtask" class="input" type="text" placeholder="Add new subtask">
-    <div class="plus"><img src="assets/img/plus.svg" onclick="addSubtask()" alt=""></div>
+<label for="subtask">Subtasks</label>
+<input id="subtask" class="input" type="text" placeholder="Add new subtask">
+<div class="plus"><img src="assets/img/plus.svg" onclick="addSubtask()" alt=""></div>
 </div>
 <div id="displaySubtasks"></div>
 <div class="BTN">
-    <button id="createTaskBTN" onclick="closeIt()">Cancel<img src=""></button>
-    <button id="createTaskBTN" onclick="">Save Task<img src=""></button>
+<button id="createTaskBTN" onclick="closeIt()">Cancel<img src=""></button>
+<button id="createTaskBTN" onclick="saveExistingTask(${i})">Save Task<img src=""></button>
 </div>
 
 
 
 </div>
 
-    
+
 
 </div>`;
-
-
-renderUserAssignTo();
-title.value = tasks[i].title;
-description.value = tasks[i].description;
-//  selectedCategory.textContent = tasks[i].category;
-readPrio(i);
-
- dueDate.value = tasks[i].duedate;
-//  showSubtasks(tasks[i].subtasks)
- checkSubtasks(i);
- 
 }
+function saveExistingTask(i){
+    let assignedTo = getAssignedToUser();
+  let title = document.getElementById('title');
+  let description = document.getElementById('description');
+  let category = document.getElementById('selectedCategory');
+  let duedate = document.getElementById('dueDate');
+    let task = {
+        'id': i,
+        'status': tasks[i].status,
+        'title': title.value,
+        'description': description.value,
+        'duedate': duedate.value,
+        'priority': prio,
+        'assignedTo': assignedTo,
+        'category': tasks[i].category,
+        'subtasks': subtasks,
+        'checkBxSub': checkCheckedBoxes()
+      }
+      tasks[i] = task;
+      saveTasks();
+      document.getElementById('editTask').classList.add('d-none');
+      document.getElementById('makeBgDarker').classList.add('d-none');
+      showTasksOnBoard();
+}
+
 
 function readPrio(i){
     console.log(i);
@@ -301,8 +356,12 @@ function readPrio(i){
 function closeIt(){
     document.getElementById('editTask').classList.add('d-none');
     document.getElementById('makeBgDarker').classList.add('d-none');
+    document.getElementById('addTaskForm').classList.add('d-none');
 }
 
+function setDarkLayer(){
+    document.getElementById('makeBgDarker').classList.add('d-none');
+}
 function renderUrgentHTML(){
     document.getElementById('prioButtons').innerHTML = ``;
     document.getElementById('prioButtons').innerHTML +=
@@ -353,4 +412,26 @@ function checkSubtasks(i) {
       
   }
   
+
+//   function flyingAddTask(){
+//     document.getElementById('flyingAddTask').classList.remove('d-none');
+//   document.getElementById('makeBgDarker').classList.remove('d-none');
+
+   
+//   }
+
+function showAddTaskOverlay(){
+    showDarkOverlay();
+    document.getElementById('addTaskForm').classList.remove('d-none');
+    renderCategriesAndContacts();
+}
+
+  function closeItToo(){
+    document.getElementById('flyingAddTask').classList.add('d-none');
+    document.getElementById('makeBgDarker').classList.add('d-none');
+  }
  
+
+  function showDarkOverlay(){
+    document.getElementById('makeBgDarker').classList.remove('d-none');
+  }

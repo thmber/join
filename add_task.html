@@ -20,18 +20,24 @@
     <!-- <link rel="stylesheet" href="styles/contact.css"> -->
 
  <link rel="stylesheet" href="assets/fonts/fonts.css">
+ <link rel="icon" href="assets/img/Capa_icon.png">
 
-    <title>Document</title>
+    <title>Join &vert; Add Task</title>
 </head>
 
-<body onload="includeHTML(), init(), renderAddTasks()">
+<body onload="includeHTML(), init(), renderCategriesAndContacts() ">
     <div w3-include-html="templates/sidebar.html"></div>
     <div w3-include-html="templates/header.html"></div>
-
+    
     <div class="main">
         <h1>Add Task</h1>
-<div id="mainAddTask"></div></div>
+        <div w3-include-html="templates/add_task_form.html" class="containerTasks" ></div>
+        <!-- <div id="mainAddTask"></div> -->
 
+        
+    </div>
+   
+   
 </body>
 
 

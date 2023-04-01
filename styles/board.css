@@ -152,7 +152,7 @@ display: -webkit-box;
     margin: 5px;
     border-radius: 15px;
     padding: 10px;
-    z-index: 99;
+    z-index: 10;
     background-color: rgba(255, 255, 255, 0.466);
     
 }
@@ -166,7 +166,7 @@ display: -webkit-box;
     display: flex;
     position: absolute;
     top: 130px;
-    left: 40%;
+    left: 35%;
     right: 0;
     bottom: 0;
     width: 450px; 
@@ -186,7 +186,7 @@ display: -webkit-box;
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.386);
-    z-index: 20;
+    z-index: 1;
 }
 .overlayCategory {
  
@@ -262,7 +262,7 @@ width: 450px;
 box-shadow: 0px 5px 15px 3px rgba(122,122,122,0.53);
 background-color: white;
 border-radius: 20px;
-z-index: 50;
+z-index: 10;
 justify-content: center;
 }
 
@@ -273,6 +273,43 @@ justify-content: center;
    flex-direction: column;
    align-items: inherit;
 }
+
+.mainAddTask {
+    position: absolute;
+    top:50px;
+    left: 200px;
+    right: 200px;
+    bottom: 100px;
+    background-color: white;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flyingAddTask {
+    
+        width: 600px;
+        height: 500px;
+        /* background-color: whitesmoke; */
+        background-color:  white;
+        border-radius: 20px;
+z-index: 50;
+        position: absolute;
+        top: 150px;
+        left: 250px;
+        padding: 20px;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 150px;
+        left: 200px;
+        right: 150px;
+        bottom: 100px;
+        padding: 30px;
+        background-color: white !important;
+      }
 
 @media (max-width: 1300px){
     .headline img {
