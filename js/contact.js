@@ -184,9 +184,15 @@ function saveEditedContact(color, index){
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
+    checkSameLastname(lastname);
     let initials = firstname.charAt(0) + lastname.charAt(0);
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color};
-    contacts.push(newContact);
+    if (same == false) {
+        contacts.push(newContact);
+    }
+    else{
+        contacts.splice(index, 0, newContact);
+    }
     showContact(firstname, lastname, initials, newMail, color, newPhone, index);
     clearAndPush(lastname, color, initials);
     renderContacts();
