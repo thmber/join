@@ -123,6 +123,12 @@ body {
     height: 50px;
     
 }
+.vertical-and-better{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+    width: 200px;
+}
 
 .contact-better-with {
     font-size: 20px;
@@ -494,6 +500,12 @@ body {
     height: 2px;
     width: 70px;
     margin-bottom: 10px;
+   }
+   .vertical-and-better{
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 50px;
    }
    .contact-card{
     width: 300px;
