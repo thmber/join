@@ -70,11 +70,15 @@ let contacts = [{
 let neededLetters = ['H', 'S', 'M', 'K', 'D', 'Ö', 'B'];
 let onlyLastnames = [];
 let sortedContacts = [];
+let same = false;
 
 
 function renderContacts() {
         sortNeededLetters();
-        sortContactsAlphabeticallyByLastName();
+        if (same == false) {
+            sortContactsAlphabeticallyByLastName();
+        }
+        same = false;
         let contactlist = document.getElementById('contact-list-content');
         for (let i = 0; i < neededLetters.length; i++) {
             let letter = neededLetters[i];
@@ -118,6 +122,7 @@ function getOnlyLastnamesAndSort(){
 
 }
 
+
 function sortContactsAlphabeticallyByLastName(){
     onlyLastnames = [];
     sortedContacts = [];
@@ -159,6 +164,12 @@ function addNewContact(){
 }
 
 
+function checkSameLastname(lastname){
+     if (onlyLastnames.indexOf(lastname) > -1) {
+        same = true;
+    }
+}
+
 function saveEditedContact(color, index){
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-mail').value;
@@ -190,6 +201,16 @@ function clearAndPush(lastname, color, initials){
 
 }
 
+function getIndex(lastname){
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+        if (contact['lastname'] == lastname) {
+            return i
+        }
+        
+    }
+}
+
 
 function saveNewContact(){
     let newName = document.getElementById('new-contact-name').value;
@@ -202,10 +223,16 @@ function saveNewContact(){
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
+    checkSameLastname(lastname);
     let initials = firstname.charAt(0) + lastname.charAt(0);
     let randomcolor = Math.floor((Math.random()) * 7) + 1;
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor};
-    contacts.push(newContact);
+    if (same == false) {
+        contacts.push(newContact);
+    }
+    else{
+        contacts.splice(getIndex(lastname), 0, newContact);
+    }
     clearAndPush(lastname, randomcolor, initials)
     showContact(firstname, lastname, initials, newMail, randomcolor, newPhone, (contacts.length-1));
     renderContacts();
