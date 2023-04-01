@@ -67,6 +67,7 @@ let contacts = [{
 ];
 
 
+
 let neededLetters = ['H', 'S', 'M', 'K', 'D', 'Ö', 'B'];
 let onlyLastnames = [];
 let sortedContacts = [];

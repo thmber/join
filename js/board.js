@@ -129,7 +129,7 @@ function getFirstCharacterOfNames(i) {
 function renderAcronym(i, acronym) {
     for (let index = 0; index < acronym.length; index++) {
         const element = acronym[index];
-        document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${contacts[index].contactColor}">${element}</div>`;
+        // document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${contacts[index].color}">${element}</div>`;
     }
 }
 

@@ -55,9 +55,16 @@ function addTask() {
   title.value = ``;
   description.value = ``;
   dueDate.value = ``;
+  // saveContacts();
 
 }
 
+
+
+
+// function saveContacts() {
+//   backend.setItem('contacts', JSON.stringify(contacts));
+// }
 
 function saveTasks() {
   backend.setItem('tasks', JSON.stringify(tasks));
@@ -275,8 +282,8 @@ function renderContactsAssignTo() {
 function renderContactsAssignToHTML(index, element) {
   return `
   <div class="checkbox">
-  <label for="user${index}">${element.fullname}</label>
-  <input type="checkbox" name="assignedTo" value="${element.fullname}" id="user${index}">
+  <label for="user${index}">${element.firstname} ${element.lastname}</label>
+  <input type="checkbox" name="assignedTo" value="${element.firstname} ${element.lastname}" id="user${index}">
 
 </div>`;
 }
