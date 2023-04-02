@@ -1,9 +1,16 @@
 #mainAddTask {
-    display: flex;
+    /* display: flex; */
     height: 400px;
     width: 690px;
+    gap: 30px;
+  
 }
 
+.divider {
+  height: 400px;
+  background-color: grey;
+  width: 1px;
+}
 .secondAddTask {
   display: flex;
 }
@@ -11,14 +18,14 @@
     display: none;
 }
 .containerAddTaskLeftSide {
-   padding-right: 15px;
-   width: 40%;
-   border-right: 1px solid lightgrey;
+   /* padding-right: 15px; */
+   width: 55%;
+   /* border-right: 1px solid lightgrey; */
 }
 
 .containerAddTaskRightSide {
-    padding-left: 15px;
-    width: 40%
+    /* padding-left: 15px; */
+    width: 55%
  }
  
 .inputUnit {
@@ -194,7 +201,7 @@ border-top: none;
   #createTaskBTN{
     cursor: pointer;
     border: none;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     color: white;
     font-weight: bold;
     background-color: rgb(38, 38, 38);
@@ -208,10 +215,31 @@ border-top: none;
 
   .BTN {
     gap: 15px;
-    display: flex;
+    /* display: flex; */
     justify-content: right;
   }
 
+  .btn {
+    cursor: pointer;
+    border: none;
+    /* margin-top: 50px; */
+    color: white;
+    font-weight: bold;
+    background-color: rgb(38, 38, 38);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .light {
+    background-color: white !important;
+    color: rgb(38, 38, 38);
+    border: 1px solid rgb(38, 38, 38);
+
+  }
+  .light:hover {
+    border: 1px solid rgb(59, 175, 243);
+    color:rgb(59, 175, 243);
+  }
   .plus {
     position: absolute;
     top: 33px;
@@ -345,7 +373,7 @@ background-color: #0048cd;
   margin-right: 5px;
 }
 .containerTasks{
-  width: 600px;
+  width: 700px;
   height: 500px;
   background-color: whitesmoke;
   border-radius: 20px;

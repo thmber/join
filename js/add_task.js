@@ -83,6 +83,7 @@ function checkCheckedBoxes() {
 
 function toggleOptions() {
   document.getElementById('seeCat').classList.toggle('d-none');
+  renderCategriesAndContacts();
 }
 
 
@@ -116,6 +117,7 @@ function selectCategory(param) {
 
 function toggleOptionsAss() {
   document.getElementById('see').classList.toggle('d-none');
+  renderCategriesAndContacts();
 }
 
 
