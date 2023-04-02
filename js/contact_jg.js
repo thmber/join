@@ -1,4 +1,4 @@
-let contacts = [];
+let oldContacts = [];
 
 /**
  * A contact is created and pushed to the contacts array. contacts is then stored in the backend.
@@ -9,7 +9,7 @@ function addContact(){
     let email = document.getElementById('email');
     let phone = document.getElementById('phone');
     
-    let contact = 
+    let oldContact = 
         {
             'fullname': fullname.value,
             'email': email.value,
@@ -17,8 +17,8 @@ function addContact(){
             'contactColor' : getRandomColor()
         }
     
-    contacts.push(contact);
-    backend.setItem('contacts', JSON.stringify(contacts));
+    oldContacts.push(oldContact);
+    backend.setItem('oldContacts', JSON.stringify(oldContacts));
     
 }
 /**
