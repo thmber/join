@@ -22,7 +22,8 @@ function renderAll() {
             document.getElementById(`progressField${index}`).innerHTML += renderProgressBar(index,element);
             getProgressBarWidth(index);
             }
-        getFirstCharacterOfNames(index);
+        // getFirstCharacterOfNames(index);
+        renderContactsOnBoard(index);
     }
     renderPlaceholder();
 }
@@ -58,28 +59,12 @@ function showTasksOnBoardHTML(index, element) {
         <div class="title">${element.title}</div>
         <div class="description">${element.description}</div>
 <div id="progressField${index}"></div>
-
-
-
-
-
-
-
-
     <div class="oneRow">
         <div id="assignTo${index}" class="assignTo"></div>
         <img src="assets/img/${element.priority}.svg">
 </div>` ;
 }
 
-{/* <div class="oneRow">
-<div class="container">
-   <div class="progress">
-        <div id="bar${index}" class="bar ${element.category}"></div>
-   </div>
-</div>
-<div class="howMuch">${countTrue(index)}/${element.subtasks.length} done</div>
-</div> */}
 
 function delay() {
     setTimeout(function () {
@@ -133,6 +118,10 @@ function renderAcronym(i, acronym) {
     }
 }
 
+function renderContactsOnBoard(i){
+    document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${colors[contacts[i].color]}">${contacts[i].initials}</div>`;
+}
+
 
 function generatePlaceholderBox(status) {
     document.getElementById(status).innerHTML += `<div class="placeholder d-none" id="box-end-Column-${status}"></div>`;
@@ -161,7 +150,6 @@ function allowDrop(ev) {
 
 
 function getTheRightTask(objID) {
-    // let index = -1;
     let searchFor = objID;
     let whatINeed = tasks.findIndex(obj => obj.id == searchFor);
     return whatINeed;
@@ -196,6 +184,13 @@ function showTask(index) {
 `;
 showAssigned(element);
 getbgColor(index);
+}
+
+function close(){
+    console.log('Fenster schließen');
+    document.getElementById('addTaskForm').classList.add('d-none');
+    document.getElementById('makeBgDarker').classList.add('d-none');
+    
 }
 
 function showEditTask(i){
@@ -254,93 +249,16 @@ for (let index = 0; index < element.assignedTo.length; index++) {
 }
 
 
-// function renderEditTask(i){
-    
-//     document.getElementById('overlayTask').classList.add('d-none');
-//     document.getElementById('editTask').classList.remove('d-none');
-//     let edit = document.getElementById('editTask');
-//     edit.innerHTML = ``;
-//     edit.innerHTML += renderEditTaskHTML(i);
-
-
-// renderContactsAssignTo();
-//  checkSubtasks(i);
-//  readPrio(i)
-//  loadTheTaskContent(i);
-// }
-
 function loadTheTaskContent(i){
-    console.log('lade Titel und so');
+    
     title.value = tasks[i].title;
 description.value = tasks[i].description;
   selectedCategory.textContent = tasks[i].category;
- dueDate.value = tasks[i].duedate;
- console.log(tasks[i].duedate);
+ duedate.value = tasks[i].duedate;
 //  showSubtasks(tasks[i].subtasks)
 }
 
 
-// function renderEditTaskHTML(i){
-// return `<div class="containerEditTask">
-// <div class="inputUnit">
-//     <label for="name">Title</label>
-//     <input id="title" class="input" type="text">
-// </div>
-// <div class="inputUnit">
-//     <label for="description">Description</label>
-//     <textarea id="description" class="inputDescription" type="textarea"></textarea>
-// </div>
-// <div class="inputUnit">
-// <label for="dueDate">Due Date</label>
-// <input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
-// </div>
-
-// <div class="inputUnit">
-// <label for="prio">Prio</label>
-// <div id="prioButtons" class="prioButtons">
-//     <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
-//             src="assets/img/urgent.svg"></button>
-//     <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
-//             src="assets/img/medium.svg"></button>
-//     <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
-//             src="assets/img/low.svg"></button>
-// </div>
-// </div>
-// <div class="inputUnit">
-//     <label>Assigned to</label>
-//     <div class="inputArea">
-//         <div id="selected">Assigned to</div>
-//         <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsAss()" alt="">
-//     </div>
-//     <div id="see" class="d-none">
-//         <div class="options" id="optionsUser"></div>
-//     </div>
-
-// </div>
-
-// <div id="showAssignedPeople"></div>
-
-
-
-// <div class="inputUnit">
-// <label for="subtask">Subtasks</label>
-// <input id="subtask" class="input" type="text" placeholder="Add new subtask">
-// <div class="plus"><img src="assets/img/plus.svg" onclick="addSubtask()" alt=""></div>
-// </div>
-// <div id="displaySubtasks"></div>
-// <div class="BTN">
-// <button id="createTaskBTN" onclick="closeIt()">Cancel<img src=""></button>
-// <button id="createTaskBTN" onclick="saveExistingTask(${i})">Save Task<img src=""></button>
-// </div>
-
-
-
-// </div>
-
-
-
-// </div>`;
-// }
 function saveExistingTask(i){
     let assignedTo = getAssignedToUser();
   let title = document.getElementById('title');
@@ -434,13 +352,6 @@ function checkSubtasks(i) {
       
   }
   
-
-//   function flyingAddTask(){
-//     document.getElementById('flyingAddTask').classList.remove('d-none');
-//   document.getElementById('makeBgDarker').classList.remove('d-none');
-
-   
-//   }
 
 function showAddTaskOverlay(){
     showDarkOverlay();

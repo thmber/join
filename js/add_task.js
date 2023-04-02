@@ -8,6 +8,8 @@ let checkBox = [];
 let taskID = 0;
 let categories = [];
 let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
+let colors = ['#4A49FF','#FF4571','#800080','#800000','#808000','#FF00FF','#808080','#008000','#008080','#0066FF','#996633','#FF6600','#CC66FF']
+
 let colorspot;
 let priorities = [{
   prio: 'urgent',
@@ -51,7 +53,8 @@ function addTask() {
   saveTasks();
   console.log(tasks);
   let minimum = document.getElementById("dueDate").min;
-  document.getElementById('editTask').classList.add('d-none');
+  document.getElementById('addTaskForm').classList.add('d-none');
+  document.getElementById('makeBgDarker').classList.add('d-none');
   title.value = ``;
   description.value = ``;
   dueDate.value = ``;

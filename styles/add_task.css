@@ -215,7 +215,7 @@ border-top: none;
 
   .BTN {
     gap: 15px;
-    /* display: flex; */
+   display: flex;
     justify-content: right;
   }
 

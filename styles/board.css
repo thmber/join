@@ -341,6 +341,12 @@ z-index: 50;
         top: 690px;
         left: 325px;
       }
+
+      #totalInput {
+        display: flex;
+        gap: 30px;
+        
+      }
 @media (max-width: 1300px){
     .headline img {
         width: 20px;
