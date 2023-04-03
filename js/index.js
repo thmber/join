@@ -1,4 +1,18 @@
-        
+let users = [];
+let newUser
+
+function signUp(){
+    let newName = document.getElementById('signup-name').value;
+    let newMail = document.getElementById('signup-email').value;
+    let newPassword = document.getElementById('signup-password').value;
+    newUser = {'name': newName, 'email': newMail, 'password': newPassword, 'newUser': newUser};
+    users.push(newUser);
+
+}
+
+
+
+
 function showSignUp(){
     let loginBox = document.getElementById('log-in-content');
     loginBox.innerHTML = `
@@ -6,21 +20,21 @@ function showSignUp(){
         <span class="login-headline" id="login-headline">Sign Up</span>
         <div class="underline-login" id="login-underline">
         </div>
-        <form onsubmit="login()" class="login-form">
+        <form onsubmit="signUp()" class="login-form" action="#" id="signup-form">
              <div class="login-box">
-                <input type="text" required minlength="5" placeholder="Name">
+                <input type="text" required placeholder="Name" id="signup-name">
                 <img src="assets/img/icon_person.png" alt="">
             </div>
             <div class="login-box">
-                <input type="email" required minlength="5" placeholder="Email">
+                <input type="email" required minlength="5" placeholder="Email" id="signup-email">
                 <img src="assets/img/icon-email.svg" alt="">
             </div>
             <div class="login-box">
-                <input type="password" required minlength="5" placeholder="Password">
+                <input required minlength="5" type="password" placeholder="Password" id="signup-password">
                 <img src="assets/img/icon-password.svg" alt="">
             </div>
             <div class="login-and-guest">
-                <button class="login">Save</button>
+                <button type="submit" class="login">Save</button>
             </div>
         </form>
     `;
