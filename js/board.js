@@ -23,7 +23,8 @@ function renderAll() {
             getProgressBarWidth(index);
             }
         // getFirstCharacterOfNames(index);
-        renderContactsOnBoard(index);
+        renderContactsOnBoard(index, element);
+        // renderAcronym(index);
     }
     renderPlaceholder();
 }
@@ -107,19 +108,30 @@ function getFirstCharacterOfNames(i) {
         let fullname = tasks[i].assignedTo[index];
         acronym.push(fullname.split(/\s/).reduce((response, word) => response += word.slice(0, 1), ''));
     }
-    renderAcronym(i, acronym);
+    return acronym;
+    // renderAcronym(i, acronym);
 }
 
 
 function renderAcronym(i, acronym) {
+    let initials = getFirstCharacterOfNames(i);
     for (let index = 0; index < acronym.length; index++) {
         const element = acronym[index];
-        // document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${contacts[index].color}">${element}</div>`;
+         document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${colors[element.color]}">${element.assignedTo}</div>`;
     }
 }
 
-function renderContactsOnBoard(i){
-    document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${colors[contacts[i].color]}">${contacts[i].initials}</div>`;
+function renderContactsOnBoard(i, element){
+
+    for (let index = 0; index < element.assignedTo.length; index++) {
+        const contact = element.assignedTo[index];
+        console.log('contact: ' , contact);
+       let j = getTheRightContact(contact)
+       console.log('j: ', j);
+       console.log(contacts[j].initials);
+       document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${colors[contacts[j].color]}">${contacts[j].initials}</div>`;
+    }
+    
 }
 
 
@@ -155,6 +167,12 @@ function getTheRightTask(objID) {
     return whatINeed;
 }
 
+function getTheRightContact(objID) {
+    let searchFor = objID;
+    let whatINeed = contacts.findIndex(obj => obj.id == searchFor);
+    return whatINeed;
+}
+
 function showTask(index) {
     document.getElementById('makeBgDarker').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
@@ -186,12 +204,12 @@ showAssigned(element);
 getbgColor(index);
 }
 
-function close(){
-    console.log('Fenster schließen');
-    document.getElementById('addTaskForm').classList.add('d-none');
-    document.getElementById('makeBgDarker').classList.add('d-none');
+// function close2(){
+   
+//     document.getElementById('addTaskForm').classList.add('d-none');
+//     document.getElementById('makeBgDarker').classList.add('d-none');
     
-}
+// }
 
 function showEditTask(i){
     showAddTaskOverlay();

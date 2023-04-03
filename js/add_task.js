@@ -92,6 +92,8 @@ function toggleOptions() {
 
 function getAssignedToUser() {
   let checkboxes = document.querySelectorAll('input[name="assignedTo"]:checked');
+  console.log(checkboxes);
+  // console.log(checkbox.value);
   let values = [];
   checkboxes.forEach((checkbox) => {
     values.push(checkbox.value);
@@ -288,7 +290,7 @@ function renderContactsAssignToHTML(index, element) {
   return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
-  <input type="checkbox" name="assignedTo" value="${element.firstname} ${element.lastname}" id="user${index}">
+  <input type="checkbox" name="assignedTo" value="${element.id}" id="user${index}">
 
 </div>`;
 }
