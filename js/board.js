@@ -189,8 +189,8 @@ function showTask(index) {
             </div>
             <div class="overlayTitle">${element.title}</div>
             <div class="overlayDescription">${element.description}</div>
-            <div class="overlayContent"><b>Due Date:</b> ${element.duedate}</div>
-            <div class="overlayContent"><b>Priority:</b><div id="priority">${element.priority}<img id="prioPic" src="assets/img/${element.priority}.svg"></div></div>
+            <div class="overlayContent"><b>Due Date: </b> ${element.duedate}</div>
+            <div class="overlayContent"><b>Priority: </b><div id="priority">${element.priority}<img id="prioPic" src="assets/img/${element.priority}.svg"></div></div>
         
             <div id="assignTo${index}" class="assignTo"><b> Assigned To:</b></div>
             <div id="assign"></div>
@@ -261,8 +261,8 @@ function showAssigned(element){
     console.log(element.assignedTo);
 for (let index = 0; index < element.assignedTo.length; index++) {
     
-    let people = element.assignedTo[index];
-       document.getElementById('assign').innerHTML += `<div>${people}</div>`;
+    let id = element.assignedTo[index];
+       document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle" style="background-color: ${colors[contacts[id].color]}">${contacts[id].initials}</div> <div>${contacts[id].firstname} ${contacts[id].lastname}</div></div>`;
 }
 }
 

@@ -1,9 +1,13 @@
 #mainAddTask {
     /* display: flex; */
-    height: 400px;
+    height: 500px;
     width: 690px;
     gap: 30px;
   
+}
+
+input {
+  border: unset;
 }
 
 .divider {
@@ -87,8 +91,15 @@
     /* padding: 10px 10px 10px 15px; */
 }
 
+#optionsCat {
+  max-height: 80px;
+  overflow:scroll;
+}
 
-
+#optionsUser {
+  max-height: 80px;
+  overflow: scroll;
+}
 .options {
     border-radius: 8px;
     border: 1px solid lightgray;
@@ -217,6 +228,7 @@ border-top: none;
     gap: 15px;
    display: flex;
     justify-content: right;
+
   }
 
   .btn {
@@ -374,9 +386,10 @@ background-color: #0048cd;
 }
 .containerTasks{
   width: 700px;
-  height: 500px;
+  max-height: 500px;
   background-color: whitesmoke;
   border-radius: 20px;
+  overflow: scroll;
   z-index: 10;
 }
 

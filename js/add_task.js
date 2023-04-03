@@ -53,7 +53,7 @@ function addTask() {
   saveTasks();
   console.log(tasks);
   let minimum = document.getElementById("dueDate").min;
-  document.getElementById('addTaskForm').classList.add('d-none');
+  
   document.getElementById('makeBgDarker').classList.add('d-none');
   title.value = ``;
   description.value = ``;

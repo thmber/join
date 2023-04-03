@@ -59,6 +59,11 @@ h3 {
     gap: 10px;
 }
 
+.row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 .category {
     border-radius: 8px;
     padding-right: 15px;
