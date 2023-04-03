@@ -1,7 +1,7 @@
 #mainAddTask {
     /* display: flex; */
-    height: 500px;
-    width: 690px;
+    /* height: 500px; */
+    /* width: 690px; */
     gap: 30px;
   
 }
@@ -92,7 +92,7 @@ input {
 }
 
 #optionsCat {
-  max-height: 80px;
+  /* max-height: 80px; */
   overflow:scroll;
 }
 
@@ -386,10 +386,10 @@ background-color: #0048cd;
 }
 .containerTasks{
   width: 700px;
-  max-height: 500px;
+  /* max-height: 500px; */
   background-color: whitesmoke;
   border-radius: 20px;
-  overflow: scroll;
+  /* overflow: scroll; */
   z-index: 10;
 }
 

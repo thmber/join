@@ -329,12 +329,10 @@ z-index: 50;
 
       .overlayEdit {
         position: absolute;
-        
-    top: 70px;
+         top: 70px;
     left: 35%;
-    
-    width: 500px;
-    height: 80%;
+        width: 500px;
+    /* height: 80%; */
         padding: 20px 20px 20px 50px;
         background-color: white !important;
         border-radius: 20px;
@@ -350,6 +348,7 @@ z-index: 50;
       #totalInput {
         display: flex;
         gap: 30px;
+        /* position: relative; */
         
       }
 @media (max-width: 1300px){

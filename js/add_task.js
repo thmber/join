@@ -8,7 +8,7 @@ let checkBox = [];
 let taskID = 0;
 let categories = [];
 let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
-let colors = ['#4A49FF','#FF4571','#800080','#800000','#808000','#FF00FF','#808080','#008000','#008080','#0066FF','#996633','#FF6600','#CC66FF']
+// let colors = ['#4A49FF','#FF4571','#800080','#800000','#808000','#FF00FF','#808080','#008000','#008080','#0066FF','#996633','#FF6600','#CC66FF']
 
 let colorspot;
 let priorities = [{

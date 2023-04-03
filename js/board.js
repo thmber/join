@@ -25,6 +25,8 @@ function renderAll() {
         // getFirstCharacterOfNames(index);
         renderContactsOnBoard(index, element);
         // renderAcronym(index);
+        renderBgCategory(index);
+        // renderBgProgressBar(index);
     }
     renderPlaceholder();
 }
@@ -45,7 +47,7 @@ function renderProgressBar(index,element){
   return `  <div class="oneRow">
     <div class="container">
        <div class="progress">
-            <div id="bar${index}" class="bar ${element.category}"></div>
+            <div id="bar${index}" class="bar"></div>
        </div>
     </div>
     <div class="howMuch">${countTrue(index)}/${element.subtasks.length} done</div>
@@ -56,7 +58,7 @@ function renderProgressBar(index,element){
 function showTasksOnBoardHTML(index, element) {
     return `
     <div class="box"  onclick="showTask(${element.id})" draggable="true" ondragstart="startDragging(${element.id})">
-        <div class="category ${element.category}">${element.category}</div>
+        <div class="category" id="categoryBgColor${index}">${element.category}</div>
         <div class="title">${element.title}</div>
         <div class="description">${element.description}</div>
 <div id="progressField${index}"></div>
@@ -66,6 +68,12 @@ function showTasksOnBoardHTML(index, element) {
 </div>` ;
 }
 
+function renderBgCategory(index){
+    let count = getTheRightBgColor(tasks[index].category);
+    let bgColor = categories[count].categoryColor;
+    console.log(bgColor);
+    document.getElementById(`categoryBgColor${index}`).style.backgroundColor = bgColor;
+}
 
 function delay() {
     setTimeout(function () {
@@ -87,11 +95,17 @@ function getProgressBarWidth(i) {
     getDoneSubtasks(i, numberDone);
 }
 
+function getCategoryBgColor(i){
+
+}
 
 function getDoneSubtasks(i, numberDone) {
+    let count = getTheRightBgColor(tasks[i].category);
+    let bgColor = categories[count].categoryColor;
     let total = tasks[i].checkBxSub.length;
     let width = numberDone / total * 100;
     document.getElementById(`bar${i}`).style.width = `${width}%`;
+    document.getElementById(`bar${i}`).style.backgroundColor = bgColor;
 }
 
 
@@ -129,7 +143,7 @@ function renderContactsOnBoard(i, element){
        let j = getTheRightContact(contact)
        console.log('j: ', j);
        console.log(contacts[j].initials);
-       document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${colors[contacts[j].color]}">${contacts[j].initials}</div>`;
+       document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle bg${j}" >${contacts[j].initials}</div>`;
     }
     
 }
@@ -173,6 +187,12 @@ function getTheRightContact(objID) {
     return whatINeed;
 }
 
+function getTheRightBgColor(objID) {
+    let searchFor = objID;
+    let whatINeed = categories.findIndex(obj => obj.categoryName == searchFor);
+    return whatINeed;
+}
+
 function showTask(index) {
     document.getElementById('makeBgDarker').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
@@ -204,12 +224,6 @@ showAssigned(element);
 getbgColor(index);
 }
 
-// function close2(){
-   
-//     document.getElementById('addTaskForm').classList.add('d-none');
-//     document.getElementById('makeBgDarker').classList.add('d-none');
-    
-// }
 
 function showEditTask(i){
     showAddTaskOverlay();
@@ -219,17 +233,18 @@ function showEditTask(i){
     document.getElementById('addTaskForm').classList.remove('containerTasks');
     document.getElementById('addTaskForm').classList.remove('overlay');
     document.getElementById('addTaskForm').classList.add('overlayEdit');
-    document.getElementById('BTN').classList.add('d-none');
+    // document.getElementById('BTN').classList.add('d-none');
   document.getElementById('BTN-save').classList.remove('d-none');
-
+document.getElementById('totalInput').style = `display: block`;
+createSaveButton(i);
     loadTheTaskContent(i)
     checkSubtasks(i);
     readPrio(i);
-    createSaveButton(i);
+    
 }
 
 function createSaveButton(i){
-    document.getElementById('BTN-save').innerHTML = `<button class="btn" id="ok" onclick="saveExistingTask(${i})">Ok<img src=""></button>`;
+    document.getElementById('BTN').innerHTML = `<button class="btn" id="ok" onclick="saveExistingTask(${i})">Ok<img src=""></button>`;
 }
 
 function getbgColor(index){
@@ -262,7 +277,7 @@ function showAssigned(element){
 for (let index = 0; index < element.assignedTo.length; index++) {
     
     let id = element.assignedTo[index];
-       document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle" style="background-color: ${colors[contacts[id].color]}">${contacts[id].initials}</div> <div>${contacts[id].firstname} ${contacts[id].lastname}</div></div>`;
+       document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${id}">${contacts[id].initials}</div> <div>${contacts[id].firstname} ${contacts[id].lastname}</div></div>`;
 }
 }
 
@@ -272,8 +287,10 @@ function loadTheTaskContent(i){
     title.value = tasks[i].title;
 description.value = tasks[i].description;
   selectedCategory.textContent = tasks[i].category;
- duedate.value = tasks[i].duedate;
-//  showSubtasks(tasks[i].subtasks)
+  document.getElementById('dueDate').value = tasks[i].duedate;
+  prio = tasks[i].priority;
+//  dueDate.value = tasks[i].duedate;
+  showSubtasks(tasks[i].subtasks)
 }
 
 
@@ -288,7 +305,7 @@ function saveExistingTask(i){
         'status': tasks[i].status,
         'title': title.value,
         'description': description.value,
-        'duedate': duedate.value,
+        'duedate': dueDate.value,
         'priority': prio,
         'assignedTo': assignedTo,
         'category': tasks[i].category,
@@ -304,7 +321,7 @@ function saveExistingTask(i){
 
 
 function readPrio(i){
-    console.log(i);
+    console.log('prio', i);
    if(tasks[i].priority == 'urgent') renderUrgentHTML();
    else if (tasks[i].priority == 'medium') renderMediumHTML();
    else if(tasks[i].priority == 'low') renderLowHTML();
