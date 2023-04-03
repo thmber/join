@@ -52,7 +52,7 @@ function addTask() {
   tasks.push(task);
   saveTasks();
   console.log(tasks);
-  let minimum = document.getElementById("dueDate").min;
+  // let minimum = document.getElementById("dueDate").min;
   
   document.getElementById('makeBgDarker').classList.add('d-none');
   title.value = ``;
@@ -264,16 +264,19 @@ function renderDate(){
  let currentDate = document.getElementById('dueDate');
  let possibleDueDate = getTodayDate();
 currentDate.value = possibleDueDate;
-currentDate.min = possibleDueDate;
+// currentDate.min = possibleDueDate;
  
 }
 
 function renderCategriesAndContacts(){
   setTimeout(renderCategories, 300);
   setTimeout(renderContactsAssignTo, 300);
-  setTimeout(renderDate, 100);
+ 
 }
 
+function delayDate(){
+  setTimeout(renderDate, 100);
+}
 
 function renderContactsAssignTo() {
   document.getElementById('optionsUser').innerHTML = ``;
