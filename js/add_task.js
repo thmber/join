@@ -15,13 +15,13 @@ let priorities = [{
   prio: 'urgent',
   color: 'red'
 },
-  {
-    prio: 'medium',
-    color: 'orange'
- },
-  {
-    prio: 'low',
-    color: 'green'
+{
+  prio: 'medium',
+  color: 'orange'
+},
+{
+  prio: 'low',
+  color: 'green'
 }];
 
 function addTask() {
@@ -53,21 +53,12 @@ function addTask() {
   saveTasks();
   console.log(tasks);
   // let minimum = document.getElementById("dueDate").min;
-  
+
   document.getElementById('makeBgDarker').classList.add('d-none');
-  title.value = ``;
-  description.value = ``;
-  dueDate.value = ``;
-  // saveContacts();
+  clearAddTask();
 
 }
 
-
-
-
-// function saveContacts() {
-//   backend.setItem('contacts', JSON.stringify(contacts));
-// }
 
 function saveTasks() {
   backend.setItem('tasks', JSON.stringify(tasks));
@@ -76,6 +67,7 @@ function saveTasks() {
 
 function checkCheckedBoxes() {
   let checkBxSub = document.querySelectorAll("input[name='subtask']");
+  console.log(checkBxSub);
   for (let index = 0; index < checkBxSub.length; index++) {
     const element = checkBxSub[index];
     checkBox.push(element.checked);
@@ -93,30 +85,23 @@ function toggleOptions() {
 function getAssignedToUser() {
   let checkboxes = document.querySelectorAll('input[name="assignedTo"]:checked');
   console.log(checkboxes);
-  // console.log(checkbox.value);
   let values = [];
   checkboxes.forEach((checkbox) => {
     values.push(checkbox.value);
   });
   return values;
-
 }
 
 
 function addPrio(id) {
   prio = id;
-  console.log(prio);
-
 }
 
 
 function selectCategory(param) {
-  console.log(param);
   let category = document.getElementById(`${param}`).textContent;
   document.getElementById('selectedCategory').innerHTML = `<div class="inlineDuo"><span>${category}</span><span class="circle" style="background-color: ${categories[param].categoryColor};"></span></div>`;
   document.getElementById('seeCat').classList.add('d-none');
-
-  //render toggle Button
 }
 
 
@@ -160,91 +145,6 @@ function showSubtasks(subtasks) {
   });
 }
 
-
-// function renderAddTasks() {
-//   let soonestDueDate = getTodayDate();
-//   document.getElementById('mainAddTask').innerHTML = ``;
-//   document.getElementById('mainAddTask').innerHTML = renderAddTasksHTML(soonestDueDate);
-//    delayRenderAssignTo();
-//    delayRenderCategories();
-
-// }
-
-// function renderAddTasksHTML(datum) {
-//   return `
-  
-//   <div class="containerAddTaskLeftSide">
-//       <div class="inputUnit">
-//           <label for="name">Title</label>
-//           <input id="title" class="input" type="text" placeholder="Enter a title">
-//       </div>
-//       <div class="inputUnit">
-//           <label for="description">Description</label>
-//           <textarea id="description" class="inputDescription" type="textarea"
-//               placeholder="Enter a Description"></textarea>
-//       </div>
-//       <div class="inputUnit" id="inputUnit">
-//           <label>Category</label>
-//           <div class="inputArea" id="newCateg">
-//               <div id="selectedCategory">Select a Category</div>
-//               <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
-//           </div>
-//           <div id="seeCat" class="d-none">
-//               <div class="options" id="optionsCat"></div>
-//           </div>
-//       </div>
-
-
-//       <div class="inputUnit">
-//           <label>Assigned to</label>
-//           <div class="inputArea">
-//               <div id="selected">Assigned to</div>
-//               <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsAss()" alt="">
-//           </div>
-//           <div id="see" class="d-none">
-//               <div class="options" id="optionsUser"></div>
-//           </div>
-
-//       </div>
-//       <div id="showAssignedPeople"></div>
-
-
-
-
-
-//   </div>
-//   <div class="containerAddTaskRightSide">
-//       <div class="inputUnit">
-//           <label for="dueDate">Due Date</label>
-//           <input id="dueDate" class="input" type="date" required min="${getTodayDate()}" value="${getTodayDate()}">
-//       </div>
-//       <div class="inputUnit">
-//           <label for="prio">Prio</label>
-//           <div class="prioButtons">
-//               <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
-//                       src="assets/img/urgent.svg"></button>
-//               <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
-//                       src="assets/img/medium.svg"></button>
-//               <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
-//                       src="assets/img/low.svg"></button>
-//           </div>
-//       </div>
-//       <div class="inputUnit">
-//           <label for="subtask">Subtasks</label>
-//           <input id="subtask" class="input" type="text" placeholder="Add new subtask">
-//           <div class="plus"><img src="assets/img/plus.svg" onclick="addSubtask()" alt=""></div>
-//       </div>
-//       <div id="displaySubtasks"></div>
-//       <div class="BTN">
-//           <button id="createTaskBTN" onclick="clear()">Cancel<img src=""></button>
-//           <button id="createTaskBTN" onclick="addTask()">Create Task<img src=""></button>
-//       </div>
-//   </div>
-// </div>`
-
-// }
-
-//required min="${getTodayDate()}" value="${getTodayDate()}"
 /**
  * 
  * @returns The soonest Date (today) valid for Due Date in Form Add Task
@@ -255,37 +155,34 @@ function getTodayDate() {
   let month = today.getMonth() + 1;
   let year = today.getFullYear();
   let completeDate;
-    completeDate = year.toString().padStart(4, '0') + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
-    return completeDate;
+  completeDate = year.toString().padStart(4, '0') + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
+  return completeDate;
 }
 
 
-function renderDate(){
- let currentDate = document.getElementById('dueDate');
- let possibleDueDate = getTodayDate();
-currentDate.value = possibleDueDate;
-// currentDate.min = possibleDueDate;
- 
+function renderDate() {
+  let currentDate = document.getElementById('dueDate');
+  let possibleDueDate = getTodayDate();
+  currentDate.value = possibleDueDate;
 }
 
-function renderCategriesAndContacts(){
+function renderCategriesAndContacts() {
   setTimeout(renderCategories, 300);
   setTimeout(renderContactsAssignTo, 300);
- 
+
 }
 
-function delayDate(){
+function delayDate() {
   setTimeout(renderDate, 100);
 }
+
 
 function renderContactsAssignTo() {
   document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = contacts[index];
-    console.log(element);
     document.getElementById('optionsUser').innerHTML += renderContactsAssignToHTML(index, element);
   }
-
 }
 
 
@@ -294,24 +191,24 @@ function renderContactsAssignToHTML(index, element) {
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
   <input type="checkbox" name="assignedTo" value="${element.id}" id="user${index}">
-
 </div>`;
 }
 
 
-
 function renderCategories() {
-   document.getElementById('optionsCat').innerHTML = ``;
+  document.getElementById('optionsCat').innerHTML = ``;
   document.getElementById('optionsCat').innerHTML += renderNewCategoryHTML();
   for (let index = 0; index < categories.length; index++) {
     const element = categories[index];
     document.getElementById('optionsCat').innerHTML += renderCategoriesHTML(index, element);
   }
-
 }
+
+
 function renderNewCategoryHTML() {
   return `<span id="newCat" class="item" onclick="addNewCategory()">New Category</span>`;
 }
+
 
 function renderCategoriesHTML(index, element) {
   return `
@@ -319,11 +216,11 @@ function renderCategoriesHTML(index, element) {
 }
 
 
-
 function addNewCategory() {
   document.getElementById(`inputUnit`).innerHTML = addNewCategoryHTML();
   renderColorSpots();
 }
+
 
 function addNewCategoryHTML() {
   return `
@@ -337,8 +234,8 @@ function addNewCategoryHTML() {
 }
 
 
-function renderInputUnit(){
-  document.getElementById(`inputUnit`).innerHTML =``;
+function renderInputUnit() {
+  document.getElementById(`inputUnit`).innerHTML = ``;
   document.getElementById(`inputUnit`).innerHTML += `
  
   <label>Category</label>
@@ -350,9 +247,8 @@ function renderInputUnit(){
       <div class="options" id="optionsCat"></div>
   </div>
 </div>`;
-renderCategories();
-selectCategory(categories.length-1);
-
+  renderCategories();
+  selectCategory(categories.length - 1);
 }
 
 
@@ -363,49 +259,46 @@ function renderColorSpots() {
   }
 }
 
+
 function renderColorSpotsHTML(index, element) {
   return `
   <div class="colorspot" id="col${index}" onclick="rememberColor(${index})"></div> `;
 }
 
+
 function rememberColor(index) {
   colorspot = colorspots[index];
-
   document.getElementById(`col${index}`).classList.add('highlighted');
-
- resetUnselectedSpots(index);
+  resetUnselectedSpots(index);
 }
 
-function resetUnselectedSpots(index){
+
+function resetUnselectedSpots(index) {
   for (let j = 0; j < colorspots.length; j++) {
-    if(index != j){
-    document.getElementById(`col${j}`).classList.remove('highlighted');
-     }
- }
+    if (index != j) {
+      document.getElementById(`col${j}`).classList.remove('highlighted');
+    }
+  }
 }
 
 function addNewCat() {
   let newCatField = document.getElementById('showNewCat');
-
   let category = {
     'categoryName': newCatField.value,
     'categoryColor': colorspot
   }
 
-  // newCatField.value = ``;
+
   categories.push(category);
   backend.setItem('categories', JSON.stringify(categories));
   renderInputUnit();
-  // renderCategories();
-  console.log('letzte Cat: ', category.categoryName);
-  // document.getElementById('selectedCategory').value = category.categoryName;
 }
 
 
 
-function resetCategoryChoice(){
- let inputUnit = document.getElementById('inputUnit'); 
-inputUnit.innerHTML = ``;
+function resetCategoryChoice() {
+  let inputUnit = document.getElementById('inputUnit');
+  inputUnit.innerHTML = ``;
   inputUnit.innerHTML += ` <label>Category</label>
   <div class="inputArea" id="newCateg">
       <div id="selectedCategory">Select a Category</div>
@@ -434,14 +327,24 @@ function changeSelectedButton(id) {
 }
 
 function resetUnselectedButtons(id) {
- 
-for (let index = 0; index < priorities.length; index++) {
-       if(index != id){
-       document.getElementById(`pic${priorities[index].prio}`).style = ``;
-       document.getElementById(`${priorities[index].prio}`).style = ``;
-       document.getElementById(`${priorities[index].prio}`).classList.remove(priorities[index].color);
-     }
+  for (let index = 0; index < priorities.length; index++) {
+    if (index != id) {
+      document.getElementById(`pic${priorities[index].prio}`).style = ``;
+      document.getElementById(`${priorities[index].prio}`).style = ``;
+      document.getElementById(`${priorities[index].prio}`).classList.remove(priorities[index].color);
     }
-  
+  }
 }
 
+
+function clearAddTask() {
+  document.getElementById('title').value = ``;
+  document.getElementById('description').value = ``;
+  document.getElementById('selectedCategory').value = ``;
+  document.getElementById('selected').value = ``;
+}
+
+
+function changeButtonOnclick() {
+  document.getElementById('clearBTN').onclick = `clearAddTask`;
+}

@@ -16,17 +16,13 @@ function renderAll() {
     for (let index = 0; index < tasks.length; index++) {
         const element = tasks[index];
         document.getElementById(`${element.status}`).innerHTML += showTasksOnBoardHTML(index, element);
-
-
         if (element.subtasks.length > 0) {
             document.getElementById(`progressField${index}`).innerHTML += renderProgressBar(index, element);
             getProgressBarWidth(index);
         }
-        // getFirstCharacterOfNames(index);
+
         renderContactsOnBoard(index, element);
-        // renderAcronym(index);
         renderBgCategory(index);
-        // renderBgProgressBar(index);
     }
     renderPlaceholder();
 }
@@ -75,6 +71,13 @@ function renderBgCategory(index) {
     document.getElementById(`categoryBgColor${index}`).style.backgroundColor = bgColor;
 }
 
+function renderBgCategoryShowTask(index) {
+    let count = getTheRightBgColor(tasks[index].category);
+    let bgColor = categories[count].categoryColor;
+    console.log(bgColor);
+    document.getElementById(`categoryBgColorShowTask${index}`).style.backgroundColor = bgColor;
+}
+
 function delay() {
     setTimeout(function () {
         showTasksOnBoard();
@@ -115,25 +118,6 @@ function countTrue(i) {
     return count;
 }
 
-
-// function getFirstCharacterOfNames(i) {
-//     let acronym = [];
-//     for (let index = 0; index < tasks[i].assignedTo.length; index++) {
-//         let fullname = tasks[i].assignedTo[index];
-//         acronym.push(fullname.split(/\s/).reduce((response, word) => response += word.slice(0, 1), ''));
-//     }
-//     return acronym;
-//      renderAcronym(i, acronym);
-// }
-
-
-// function renderAcronym(i, acronym) {
-//     let initials = getFirstCharacterOfNames(i);
-//     for (let index = 0; index < acronym.length; index++) {
-//         const element = acronym[index];
-//          document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle" style="background-color: ${colors[element.color]}">${element.assignedTo}</div>`;
-//     }
-// }
 
 function renderContactsOnBoard(i, element) {
 
@@ -203,7 +187,7 @@ function showTask(index) {
 <div class="fullUseOfSpace">
     <div class="fullUseOfSpaceTop">
             <div class="overlayOneRow">
-                <div class="overlayCategory ${element.category}">${element.category}</div>
+                <div class="overlayCategory" id="categoryBgColorShowTask${index}">${element.category}</div>
                 <div id="closeTask" onclick="closeTask()">X</div>
             </div>
             <div class="overlayTitle">${element.title}</div>
@@ -221,6 +205,7 @@ function showTask(index) {
 `;
     showAssigned(element);
     getbgColor(index);
+    renderBgCategoryShowTask(index);
 }
 
 
