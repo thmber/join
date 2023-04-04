@@ -3,13 +3,11 @@
 let tasks = [];
 let prio;
 let subtasks = [];
-let checkBxSub = [];
-let checkBox = [];
+// let checkBxSub = [];
+// let checkBox = [];
 let taskID = 0;
 let categories = [];
 let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
-// let colors = ['#4A49FF','#FF4571','#800080','#800000','#808000','#FF00FF','#808080','#008000','#008080','#0066FF','#996633','#FF6600','#CC66FF']
-
 let colorspot;
 let priorities = [{
   prio: 'urgent',
@@ -24,6 +22,8 @@ let priorities = [{
   color: 'green'
 }];
 
+
+
 function addTask() {
 
   let assignedTo = getAssignedToUser();
@@ -32,12 +32,13 @@ function addTask() {
   let category = document.getElementById('selectedCategory');
   let duedate = document.getElementById('dueDate');
   let autoID;
+ 
   if (tasks.length > 0) {
     autoID = tasks.length
   }
   else autoID = 0;
 
-  let task = {
+    let task = {
     'id': autoID,
     'status': 'todo',
     'title': title.value,
@@ -46,8 +47,7 @@ function addTask() {
     'priority': prio,
     'assignedTo': assignedTo,
     'category': category.textContent,
-    'subtasks': subtasks,
-    'checkBxSub': checkCheckedBoxes()
+    'subtasks': getSubtasks(subtasks)
   }
   tasks.push(task);
   saveTasks();
@@ -60,19 +60,60 @@ function addTask() {
 }
 
 
-function saveTasks() {
-  backend.setItem('tasks', JSON.stringify(tasks));
+function addSubtask() {
+  let subtaskField = document.getElementById('subtask');
+  let singleSubtask = subtaskField.value;
+  subtasks.push(singleSubtask);
+  subtaskField.value = ``;
+
+  showSubtasks(subtasks);
+  
+}
+
+function showSubtasks(subtasks) {
+  document.getElementById('displaySubtasks').innerHTML = ``;
+  console.log('blö', subtasks);
+  
+  subtasks.forEach((element, index) => {
+    document.getElementById('displaySubtasks').innerHTML += `
+    <div class="wrapper">
+      <input type="checkbox" name="subtask" value="${element}" id="input${index}">
+      <label for="subtask">${element}</label>
+    </div>`;
+  });
+  
 }
 
 
-function checkCheckedBoxes() {
-  let checkBxSub = document.querySelectorAll("input[name='subtask']");
-  console.log(checkBxSub);
-  for (let index = 0; index < checkBxSub.length; index++) {
-    const element = checkBxSub[index];
-    checkBox.push(element.checked);
-  }
-  return checkBox;
+
+// function checkCheckedBoxes() {
+//   let checkBxSub = document.querySelectorAll("input[name='subtask']");
+//   console.log(checkBxSub);
+//   for (let index = 0; index < checkBxSub.length; index++) {
+//     const element = checkBxSub[index];
+//     checkBox.push(element.checked);
+//   }
+//   return checkBox;
+// }
+
+function getSubtasks(subtasks){
+  let allSubtasks = [];
+  for (let index = 0; index < subtasks.length; index++) {
+    let subtask = {
+      'subtaskName': subtasks[index],
+      'check': document.getElementById(`input${index}`).checked
+    }
+    console.log(subtask);
+    allSubtasks.push(subtask);
+    }
+    console.log(allSubtasks);
+    return allSubtasks; 
+  
+}
+
+
+function saveTasks() {
+  backend.setItem('tasks', JSON.stringify(tasks));
 }
 
 
@@ -125,25 +166,7 @@ function addAssignPeople(param) {
   document.getElementById('showAssignedPeople').innerHTML += `<div class="bigNameCircle">${beginners}</div>`
 }
 
-function addSubtask() {
-  let subtaskField = document.getElementById('subtask');
-  let subtask = subtaskField.value;
-  subtasks.push(subtask);
-  subtaskField.value = ``;
-  showSubtasks(subtasks);
-}
 
-function showSubtasks(subtasks) {
-  document.getElementById('displaySubtasks').innerHTML = ``;
-  console.log(subtasks);
-  subtasks.forEach(element => {
-    document.getElementById('displaySubtasks').innerHTML += `
-    <div class="wrapper">
-      <input type="checkbox" name="subtask" value="${element}">
-      <label for="subtask">${element}</label>
-    </div>`;
-  });
-}
 
 /**
  * 

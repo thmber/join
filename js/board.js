@@ -18,7 +18,7 @@ function renderAll() {
         document.getElementById(`${element.status}`).innerHTML += showTasksOnBoardHTML(index, element);
         if (element.subtasks.length > 0) {
             document.getElementById(`progressField${index}`).innerHTML += renderProgressBar(index, element);
-            getProgressBarWidth(index);
+            getDoneSubtasks(index)
         }
 
         renderContactsOnBoard(index, element);
@@ -84,43 +84,28 @@ function delay() {
     }, 300);
 }
 
-// function changeStatus(i){
-// tasks[i].status = `inProgress`;
-// showTasksOnBoard();
-// }
 
-function getProgressBarWidth(i) {
-    let numberDone = 0;
-    for (let index = 0; index < tasks[i].checkBxSub.length; index++) {
-        const element = tasks[i].checkBxSub[index];
-        if (element) numberDone++;
-    }
-    getDoneSubtasks(i, numberDone);
-}
-
-function getCategoryBgColor(i) {
-
-}
-
-function getDoneSubtasks(i, numberDone) {
+function getDoneSubtasks(i) {
     let count = getTheRightBgColor(tasks[i].category);
     let bgColor = categories[count].categoryColor;
-    let total = tasks[i].checkBxSub.length;
-    let width = numberDone / total * 100;
+    let total = tasks[i].subtasks.length;
+    let width = countTrue(i) / total * 100;
     document.getElementById(`bar${i}`).style.width = `${width}%`;
     document.getElementById(`bar${i}`).style.backgroundColor = bgColor;
 }
 
 
 function countTrue(i) {
-    let element = tasks[i].checkBxSub;
-    let count = element.filter(x => x == true).length;
-    return count;
+    let element = tasks[i].subtasks; 
+    console.log(element);
+    let count = element.filter(a => a.check == true);
+    // let count = element.filter(x => x == true).length;
+    console.log(count);
+    return count.length;
 }
 
 
 function renderContactsOnBoard(i, element) {
-
     for (let index = 0; index < element.assignedTo.length; index++) {
         const contact = element.assignedTo[index];
 
@@ -128,13 +113,13 @@ function renderContactsOnBoard(i, element) {
         console.log('contact-Index: ', j);
         document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[j].color}" >${contacts[j].initials}</div>`;
     }
-
 }
 
 
 function generatePlaceholderBox(status) {
     document.getElementById(status).innerHTML += `<div class="placeholder d-none" id="box-end-Column-${status}"></div>`;
 }
+
 
 function startDragging(id) {
     currentdraggableElement = id;
@@ -223,7 +208,7 @@ function showEditTask(i) {
     document.getElementById('inputUnit').classList.add('d-none');
     createSaveButton(i);
     loadTheTaskContent(i)
-    checkSubtasks(i);
+    renderSubtasks(i);
     readPrio(i);
 
 }
@@ -273,11 +258,10 @@ function loadTheTaskContent(i) {
     description.value = tasks[i].description;
     selectedCategory.textContent = tasks[i].category;
     document.getElementById('dueDate').value = tasks[i].duedate;
-
+// subtasks = tasks[i].subtasks
     prio = tasks[i].priority;
-    //   dueDate.value = tasks[i].duedate;
-
-    showSubtasks(tasks[i].subtasks);
+    //    renderSubtasks(tasks[i].subtasks);
+    subtasks = tasks[i].subtasks;
 }
 
 
@@ -296,8 +280,8 @@ function saveExistingTask(i) {
         'priority': prio,
         'assignedTo': assignedTo,
         'category': tasks[i].category,
-        'subtasks': subtasks,
-        'checkBxSub': checkCheckedBoxes()
+        'subtasks': subtasks
+       
     }
     tasks[i] = task;
     saveTasks();
@@ -353,21 +337,21 @@ function renderLowHTML() {
     src="assets/img/low.svg" style="filter:brightness(0) invert(1)"></button>`
 }
 
-function checkSubtasks(i) {
+function renderSubtasks(i) {
     console.log('checkSubtasks');
     document.getElementById('displaySubtasks').innerHTML = ``;
-    let subtasks = tasks[i].subtasks;
-    let checkos = tasks[i].checkBxSub;
+     let subs = tasks[i].subtasks;
+   
     let ch = ``;
-    for (let index = 0; index < subtasks.length; index++) {
-        const element = subtasks[index];
-        console.log(checkos[index]);
-        if (checkos[index]) ch = 'checked';
+    for (let index = 0; index < subs.length; index++) {
+        const element = subs[index];
+        
+        if (element.check) ch = 'checked';
 
         document.getElementById('displaySubtasks').innerHTML += `
       <div class="wrapper">
-        <input type="checkbox" name="subtask" value="${element}" ${ch}>
-        <label for="subtask">${element}</label>
+        <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
+        <label for="subtask">${element.subtaskName}</label>
       </div>`;
         ch = '';
     }
