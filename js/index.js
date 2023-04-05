@@ -3,13 +3,25 @@ let newUser
 
 function signUp(){
     let newName = document.getElementById('signup-name').value;
+    let newNamesplitted = newName.split(' ');
+    let newFirstname = newNamesplitted[0];
+    let newLastname = newNamesplitted[1];
     let newMail = document.getElementById('signup-email').value;
     let newPassword = document.getElementById('signup-password').value;
-    newUser = {'name': newName, 'email': newMail, 'password': newPassword, 'newUser': newUser};
-    users.push(newUser);
+    newUser = {'firstname': newFirstname, 
+                'lastname': newLastname, 
+                'email': newMail, 
+                'password': newPassword};
+    saveUser();
 
 }
 
+
+function saveUser(){
+    users.push(newUser);
+
+
+}
 
 
 
@@ -34,7 +46,7 @@ function showSignUp(){
                 <img src="assets/img/icon-password.svg" alt="">
             </div>
             <div class="login-and-guest">
-                <button type="submit" class="login">Save</button>
+                <input type="submit" value="Save" class="signup-save">
             </div>
         </form>
     `;
