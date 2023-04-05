@@ -1,8 +1,11 @@
 
 
 let tasks = [];
+let more = true;
 let prio;
+let subtasks_namen = [];
 let subtasks = [];
+let contactsAssignTo = [];
 // let checkBxSub = [];
 // let checkBox = [];
 let taskID = 0;
@@ -32,22 +35,22 @@ function addTask() {
   let category = document.getElementById('selectedCategory');
   let duedate = document.getElementById('dueDate');
   let autoID;
- 
+
   if (tasks.length > 0) {
     autoID = tasks.length
   }
   else autoID = 0;
 
-    let task = {
+  let task = {
     'id': autoID,
     'status': 'todo',
     'title': title.value,
     'description': description.value,
     'duedate': duedate.value,
     'priority': prio,
-    'assignedTo': assignedTo,
+    'assignedTo': getAssignedContacts(),
     'category': category.textContent,
-    'subtasks': getSubtasks(subtasks)
+    'subtasks': getSubtasks()
   }
   tasks.push(task);
   saveTasks();
@@ -61,56 +64,78 @@ function addTask() {
 
 
 function addSubtask() {
+ 
   let subtaskField = document.getElementById('subtask');
   let singleSubtask = subtaskField.value;
-  subtasks.push(singleSubtask);
-  subtaskField.value = ``;
-
-  showSubtasks(subtasks);
+  console.log(singleSubtask);
+  if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
+   
+    for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
+      subtasks_namen.push(tasks[currentOpenTask].subtasks[index].subtaskName);
+    
+  }
+  more = false;
   
+
+
+  }
+  subtasks_namen.push(singleSubtask);
+    subtaskField.value = ``;
+
+    showSubtasks(subtasks_namen);
 }
 
-function showSubtasks(subtasks) {
+function showSubtasks(subtasks_name) {
   document.getElementById('displaySubtasks').innerHTML = ``;
-  console.log('blö', subtasks);
-  
-  subtasks.forEach((element, index) => {
+  subtasks_name.forEach((element, index) => {
     document.getElementById('displaySubtasks').innerHTML += `
     <div class="wrapper">
       <input type="checkbox" name="subtask" value="${element}" id="input${index}">
       <label for="subtask">${element}</label>
     </div>`;
   });
-  
 }
 
 
-
-// function checkCheckedBoxes() {
-//   let checkBxSub = document.querySelectorAll("input[name='subtask']");
-//   console.log(checkBxSub);
-//   for (let index = 0; index < checkBxSub.length; index++) {
-//     const element = checkBxSub[index];
-//     checkBox.push(element.checked);
-//   }
-//   return checkBox;
-// }
-
-function getSubtasks(subtasks){
-  let allSubtasks = [];
-  for (let index = 0; index < subtasks.length; index++) {
+function getSubtasks() {
+  subtasks = [];
+  for (let index = 0; index < subtasks_namen.length; index++) {
     let subtask = {
-      'subtaskName': subtasks[index],
+      'subtaskName': subtasks_namen[index],
       'check': document.getElementById(`input${index}`).checked
     }
     console.log(subtask);
-    allSubtasks.push(subtask);
-    }
-    console.log(allSubtasks);
-    return allSubtasks; 
-  
+    subtasks.push(subtask);
+  }
+  console.log(subtasks);
+
+  return subtasks;
+
 }
 
+function getAssignedContacts() {
+  contactsAssignTo = [];
+  let check;
+  for (let index = 0; index < contacts.length; index++) {
+    let contactAssign = document.getElementById(`user${index}`).value;
+
+    let checkbox = document.getElementById(`user${index}`).checked;
+
+    if (checkbox) check = 'checked';
+    else { check = ``; }
+
+    let contactAssignTo = {
+      'id': contactAssign,
+      'check': check
+    }
+
+    contactsAssignTo.push(contactAssignTo);
+
+  }
+  return contactsAssignTo;
+
+
+}
 
 function saveTasks() {
   backend.setItem('tasks', JSON.stringify(tasks));
@@ -208,12 +233,26 @@ function renderContactsAssignTo() {
   }
 }
 
-
 function renderContactsAssignToHTML(index, element) {
   return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
-  <input type="checkbox" name="assignedTo" value="${element.id}" id="user${index}">
+  <input type="checkbox" name="assignedTo" value="${element.id}" id="user${index}" >
+</div>`;
+}
+
+function renderContactsAssignBoard(i) {
+  document.getElementById('optionsUser').innerHTML = ``;
+  for (let index = 0; index < contacts.length; index++) {
+    const element = tasks[i].assignedTo;
+    document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(index, element);
+  }
+}
+function renderContactsAssignBoardHTML(index, element) {
+  return `
+  <div class="checkbox">
+  <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
+  <input type="checkbox" name="assignedTo" value="${element[index].id}" id="user${index}" ${element[index].check}>
 </div>`;
 }
 

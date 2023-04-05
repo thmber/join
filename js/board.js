@@ -1,4 +1,5 @@
 
+let currentOpenTask;
 let currentdraggableElement;
 let stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
 
@@ -67,15 +68,13 @@ function showTasksOnBoardHTML(index, element) {
 function renderBgCategory(index) {
     let count = getTheRightBgColor(tasks[index].category);
     let bgColor = categories[count].categoryColor;
-    console.log(bgColor);
     document.getElementById(`categoryBgColor${index}`).style.backgroundColor = bgColor;
 }
 
 function renderBgCategoryShowTask(index) {
     let count = getTheRightBgColor(tasks[index].category);
     let bgColor = categories[count].categoryColor;
-    console.log(bgColor);
-    document.getElementById(`categoryBgColorShowTask${index}`).style.backgroundColor = bgColor;
+      document.getElementById(`categoryBgColorShowTask${index}`).style.backgroundColor = bgColor;
 }
 
 function delay() {
@@ -96,22 +95,20 @@ function getDoneSubtasks(i) {
 
 
 function countTrue(i) {
-    let element = tasks[i].subtasks; 
-    console.log(element);
-    let count = element.filter(a => a.check == true);
-    // let count = element.filter(x => x == true).length;
-    console.log(count);
-    return count.length;
+    let element = tasks[i].subtasks;
+     let count = element.filter(a => a.check == true);
+     return count.length;
 }
 
 
 function renderContactsOnBoard(i, element) {
+    let some = [];
     for (let index = 0; index < element.assignedTo.length; index++) {
-        const contact = element.assignedTo[index];
-
-        let j = getTheRightContact(contact)
-        console.log('contact-Index: ', j);
-        document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[j].color}" >${contacts[j].initials}</div>`;
+        some = element.assignedTo.filter(x => x.check == 'checked');
+    }
+    for (let j = 0; j < some.length; j++) {
+        const element = some[j];
+        document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
     }
 }
 
@@ -149,11 +146,18 @@ function getTheRightTask(objID) {
     return whatINeed;
 }
 
-function getTheRightContact(objID) {
+// function getTheRightContact(objID) {
+//     let searchFor = objID;
+//     let whatINeed = contacts.findIndex(obj => obj.id == searchFor);
+//     return whatINeed;
+// }
+
+function getTheAssignedContacts(objID) {
     let searchFor = objID;
     let whatINeed = contacts.findIndex(obj => obj.id == searchFor);
     return whatINeed;
 }
+
 
 function getTheRightBgColor(objID) {
     let searchFor = objID;
@@ -195,6 +199,7 @@ function showTask(index) {
 
 
 function showEditTask(i) {
+    currentOpenTask = i;
     showAddTaskOverlay();
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('divider').classList.add('d-none');
@@ -240,14 +245,17 @@ function closeTask() {
     document.getElementById('makeBgDarker').classList.add('d-none');
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.add('d-none');
+    showTasksOnBoard();
 }
 
 function showAssigned(element) {
     console.log(element.assignedTo);
     for (let index = 0; index < element.assignedTo.length; index++) {
 
-        let id = element.assignedTo[index];
-        document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${contacts[id].color}">${contacts[id].initials}</div> <div>${contacts[id].firstname} ${contacts[id].lastname}</div></div>`;
+        if (element.assignedTo[index].check == "checked") {
+            // let id = element.assignedTo[index];
+            document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${contacts[index].color}">${contacts[index].initials}</div> <div>${contacts[index].firstname} ${contacts[index].lastname}</div></div>`;
+        }
     }
 }
 
@@ -258,19 +266,18 @@ function loadTheTaskContent(i) {
     description.value = tasks[i].description;
     selectedCategory.textContent = tasks[i].category;
     document.getElementById('dueDate').value = tasks[i].duedate;
-// subtasks = tasks[i].subtasks
     prio = tasks[i].priority;
-    //    renderSubtasks(tasks[i].subtasks);
     subtasks = tasks[i].subtasks;
+    renderContactsAssignBoard(i);
 }
 
 
 function saveExistingTask(i) {
-    let assignedTo = getAssignedToUser();
+    // let assignedTo = getAssignedToUser();
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    let category = document.getElementById('selectedCategory');
-    let duedate = document.getElementById('dueDate');
+    // let category = document.getElementById('selectedCategory');
+    // let duedate = document.getElementById('dueDate');
     let task = {
         'id': i,
         'status': tasks[i].status,
@@ -278,18 +285,49 @@ function saveExistingTask(i) {
         'description': description.value,
         'duedate': dueDate.value,
         'priority': prio,
-        'assignedTo': assignedTo,
+        'assignedTo': getAssignedContacts(),
         'category': tasks[i].category,
-        'subtasks': subtasks
-       
+        'subtasks': getExistingSubtasks(i)
     }
     tasks[i] = task;
     saveTasks();
     document.getElementById('addTaskForm').classList.add('d-none');
     showTask(i)
-
+    currentOpenTask = -1;
 }
 
+function getExistingSubtasks(i){
+    data = tasks[i].subtasks.length;
+    if(data < subtasks_namen.length) data = subtasks_namen.length;
+   new_subtasks = [];
+    for (let index = 0; index < data; index++) {
+      let subtask = {
+        'subtaskName': document.getElementById(`input${index}`).value,
+        'check': document.getElementById(`input${index}`).checked
+      }
+      console.log(subtask);
+      new_subtasks.push(subtask);
+      }
+      console.log(new_subtasks);
+     return new_subtasks; 
+    
+  }
+
+
+
+function showExistingSubtasks(i){
+  if(tasks[i].subtasks.length > 0 ) {
+
+    tasks[i].subtasks.forEach((element, j) => {
+  document.getElementById('displaySubtasks').innerHTML += `
+  <div class="wrapper">
+  <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${j}">
+  <label for="subtask">${element.subtaskName}</label>
+</div>`;
+});
+   
+  }
+}
 
 function readPrio(i) {
     console.log('prio', i);
@@ -299,15 +337,19 @@ function readPrio(i) {
 
 }
 
+
 function closeIt() {
     document.getElementById('editTask').classList.add('d-none');
     document.getElementById('makeBgDarker').classList.add('d-none');
     document.getElementById('addTaskForm').classList.add('d-none');
 }
 
+
 function setDarkLayer() {
     document.getElementById('makeBgDarker').classList.add('d-none');
 }
+
+
 function renderUrgentHTML() {
     document.getElementById('prioButtons').innerHTML = ``;
     document.getElementById('prioButtons').innerHTML +=
@@ -340,14 +382,14 @@ function renderLowHTML() {
 function renderSubtasks(i) {
     console.log('checkSubtasks');
     document.getElementById('displaySubtasks').innerHTML = ``;
-     let subs = tasks[i].subtasks;
-   
+    let subs = tasks[i].subtasks;
+
     let ch = ``;
     for (let index = 0; index < subs.length; index++) {
         const element = subs[index];
-        
-        if (element.check) ch = 'checked';
 
+        if (element.check) ch = 'checked';
+        
         document.getElementById('displaySubtasks').innerHTML += `
       <div class="wrapper">
         <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
