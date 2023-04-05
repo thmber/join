@@ -30,7 +30,7 @@ function showContact(firstname, lastname, initiales, email, color, phone, index)
                 </div>
                 <div class="name-add-task">
                     <span class="name-main">${firstname} ${lastname}</span>
-                    <span class="add-task-main">+ Add Task</span>
+                    <span class="add-task-main" onclick=generateCardHTML(${index})>+ Add Task</span>
                 </div>
             </div>
             <div class="contact-information-box">

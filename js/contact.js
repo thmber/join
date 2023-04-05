@@ -170,6 +170,19 @@ function addNewContact(){
     }, 225);
 }
 
+function checkIfLetterIsUsedForName(letter){
+    let letterposition = neededLetters.indexOf(`${letter}`);
+    let letterIsNeeded = 0;
+    for (let i = 0; i < contacts.length; i++) {
+        lastname = contacts[i]['lastname'];
+        if (lastname.charAt(0) == letter) {
+            letterIsNeeded++
+        }
+    }
+    if (letterIsNeeded < 2) {
+        neededLetters.splice(letterposition, 1);
+    }
+}
 
 
 function saveEditedContact(color, index){
@@ -180,8 +193,7 @@ function saveEditedContact(color, index){
         return;
     }
     let letter = contacts[index].lastname.charAt(0);
-    let letterposition = neededLetters.indexOf(`${letter}`);
-    neededLetters.splice(letterposition,1);
+    checkIfLetterIsUsedForName(letter);
     contacts.splice(index, 1);
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);

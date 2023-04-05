@@ -10,19 +10,27 @@
     <link rel="stylesheet" href="styles/contact.css">
     <link rel="stylesheet" href="styles/sidebar.css">
     <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/contact_addtask.css">
     <script src="js/contact.js"></script>
     <script src="js/script.js"></script>
     <script src="js/contact_templates.js"></script>
+    <script src="js/contact_addtask.js"></script>
     <link rel="icon" href="assets/img/Capa_icon.png">
 </head>
 
 
 <body onload="renderContacts(), includeHTML('Contacts')">
+   
     <div w3-include-html="templates/sidebar.html"></div>
     <div w3-include-html="templates/header.html"></div>
     <div class="test"></div>
 
+   
+
+    <div class="container" id="container-content">
+    </div>
     <div class="main2" id="main-contact">
+        
         <div class="new-contact-overlay-box d-none" id="overlay-box">
             <div class="new-contact-overlay" id="new-contact-overlay">
                 <div class="new-contact-left" id="new-contact-left">
