@@ -13,7 +13,7 @@ function clearBoard() {
 }
 
 
-function renderAll() {
+function renderCompleteBoard() {
     for (let index = 0; index < tasks.length; index++) {
         const element = tasks[index];
         document.getElementById(`${element.status}`).innerHTML += showTasksOnBoardHTML(index, element);
@@ -21,7 +21,6 @@ function renderAll() {
             document.getElementById(`progressField${index}`).innerHTML += renderProgressBar(index, element);
             getDoneSubtasks(index)
         }
-
         renderContactsOnBoard(index, element);
         renderBgCategory(index);
     }
@@ -37,7 +36,7 @@ function renderPlaceholder() {
 
 function showTasksOnBoard() {
     clearBoard();
-    renderAll();
+    renderCompleteBoard();
 }
 
 function renderProgressBar(index, element) {
@@ -60,7 +59,7 @@ function showTasksOnBoardHTML(index, element) {
         <div class="description">${element.description}</div>
 <div id="progressField${index}"></div>
     <div class="oneRow">
-        <div id="assignTo${index}" class="assignTo"></div>
+        <div id="assignToBoard${index}" class="assignTo">hgjhghjg</div>
         <img src="assets/img/${element.priority}.svg">
 </div>` ;
 }
@@ -102,13 +101,14 @@ function countTrue(i) {
 
 
 function renderContactsOnBoard(i, element) {
+    document.getElementById(`assignToBoard${i}`).innerHTML =``;
     let some = [];
-    for (let index = 0; index < element.assignedTo.length; index++) {
+    // for (let index = 0; index < element.assignedTo.length; index++) {
         some = element.assignedTo.filter(x => x.check == 'checked');
-    }
+    // }
     for (let j = 0; j < some.length; j++) {
         const element = some[j];
-        document.getElementById(`assignTo${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
+        document.getElementById(`assignToBoard${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
     }
 }
 
@@ -166,6 +166,7 @@ function getTheRightBgColor(objID) {
 }
 
 function showTask(index) {
+    currentOpenTask = index;
     document.getElementById('makeBgDarker').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
     let j = getTheRightTask(index);
@@ -199,7 +200,7 @@ function showTask(index) {
 
 
 function showEditTask(i) {
-    currentOpenTask = i;
+    // currentOpenTask = i;
     showAddTaskOverlay();
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('divider').classList.add('d-none');
@@ -212,7 +213,8 @@ function showEditTask(i) {
     document.getElementById('totalInput').style = `display: block`;
     document.getElementById('inputUnit').classList.add('d-none');
     createSaveButton(i);
-    loadTheTaskContent(i)
+    loadTheTaskContent(i);
+    setToggleID(i);
     renderSubtasks(i);
     readPrio(i);
 
@@ -246,6 +248,9 @@ function closeTask() {
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.add('d-none');
     showTasksOnBoard();
+    
+
+    //  renderContactsOnBoard(currentOpenTask, tasks[currentOpenTask])
 }
 
 function showAssigned(element) {
@@ -404,7 +409,7 @@ function renderSubtasks(i) {
 function showAddTaskOverlay() {
     showDarkOverlay();
     document.getElementById('addTaskForm').classList.remove('d-none');
-    renderCategriesAndContacts();
+    // renderCategriesAndContacts();
 }
 
 function closeItToo() {

@@ -144,7 +144,8 @@ function saveTasks() {
 
 function toggleOptions() {
   document.getElementById('seeCat').classList.toggle('d-none');
-  renderCategriesAndContacts();
+  // renderCategriesAndContacts();
+  renderCategories();
 }
 
 
@@ -173,9 +174,21 @@ function selectCategory(param) {
 
 function toggleOptionsAss() {
   document.getElementById('see').classList.toggle('d-none');
-  renderCategriesAndContacts();
+   renderCategriesAndContacts();
+  // renderContactsAssignBoard(i);
 }
 
+function setToggleID(i){
+  document.getElementById('toggleID').innerHTML = `<div id="selected">Assigned to</div>
+  <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsContactsAssignTo(${i})" alt="">`;
+}
+
+function toggleOptionsContactsAssignTo(i){
+  document.getElementById('see').classList.toggle('d-none');
+  
+  //  renderCategriesAndContacts();
+    renderContactsAssignBoard(i);
+}
 
 function selectAssignTo(param) {
   let category = document.getElementById(`${param}`).textContent;
@@ -242,6 +255,7 @@ function renderContactsAssignToHTML(index, element) {
 }
 
 function renderContactsAssignBoard(i) {
+ 
   document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = tasks[i].assignedTo;
