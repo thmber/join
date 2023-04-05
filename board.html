@@ -38,7 +38,14 @@
    
   
     <div class="main">
-        <h1>Board</h1>
+        <div class="boardHeader">
+        
+            <h1>Board</h1>
+            <div class="boardHeader_right">
+                <div><input type="text" placeholder="Find Task"></div>
+                <div><button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button></div>
+            </div>
+        </div>
         <!-- <div class="editTask d-none" id="editTask"></div> -->
         <div class="cols">
             <div class="col">
@@ -49,20 +56,20 @@
             </div>
             <div class="col">
                 <div class="headline">
-                    <h3>In Progress</h3><img src="assets/img/plusbutton.svg" alt="">
+                    <h3>In Progress</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
                 </div>
                 <div class="col" id="inProgress" ondrop="setStatus('inProgress')" ondragover="allowDrop(event)"></div>
             </div>
             <div class="col">
                 <div class="headline">
-                    <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" alt="">
+                    <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
                 </div>
                 <div class="col" id="awaitingFeedback" ondrop="setStatus('awaitingFeedback')"
                     ondragover="allowDrop(event)"></div>
             </div>
             <div class="col">
                 <div class="headline">
-                    <h3>Done</h3><img src="assets/img/plusbutton.svg" alt="">
+                    <h3>Done</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
                 </div>
                 <div class="col" id="done" ondrop="setStatus('done')" ondragover="allowDrop(event)"></div>
             </div>

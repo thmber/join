@@ -351,6 +351,18 @@ z-index: 50;
         /* position: relative; */
         
       }
+
+      .boardHeader {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 150px;
+        align-items: center;
+      }
+
+      .boardHeader_right {
+        display: flex;
+        gap: 50px;
+      }
 @media (max-width: 1300px){
     .headline img {
         width: 20px;

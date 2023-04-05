@@ -218,6 +218,8 @@ border-top: none;
     background-color: rgb(38, 38, 38);
     padding: 10px;
     border-radius: 8px;
+    height: 50px;
+    width: 150px;
   }
 
   #createTaskBTN:hover {
@@ -393,3 +395,7 @@ background-color: #0048cd;
   z-index: 10;
 }
 
+.missingInfoText {
+  color: red;
+  font-size: 12px;
+}
