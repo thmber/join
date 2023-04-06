@@ -452,3 +452,15 @@ function filterTasks() {
 }
 
 
+window.addEventListener("resize", function () {  // closes the basket-Layer above 700px if user doesn`t do it
+    if (this.window.matchMedia("(max-width: 500px)").matches) {
+          this.document.getElementById('createTaskBTN_area').innerHTML = `<img src="assets/img/addTaskMobile.svg" onclick="showAddTaskOverlay()">`;
+    }
+
+    else {
+        this.document.getElementById('createTaskBTN_area').innerHTML = `<button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button>`;
+    }
+})
+
+
+

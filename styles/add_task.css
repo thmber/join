@@ -403,8 +403,8 @@ background-color: #0048cd;
 }
 
 .containerAddTask{
-  position:absolute;
-  left: 300px;
+  /* position:absolute; */
+  
   top: 250px;
   height: 500px;
   width: 700px;

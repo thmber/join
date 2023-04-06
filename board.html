@@ -27,64 +27,73 @@
 
 <body onload="includeHTML('board'), init(), delay(), delayDate()">
     <div class="editTask d-none" id="editTask"></div>
-   
+
     <div w3-include-html="templates/sidebar.html"></div>
     <div w3-include-html="templates/header.html"></div>
-   
-   
+
+
 
     <div class="makeBgDarker d-none" id="makeBgDarker" onclick="closeTask()"></div>
     <div class="overlayTask d-none" id="overlayTask"></div>
-   
-  
+
+
     <div class="main">
-        <div class="boardHeader">
-        
-            <h1>Board</h1>
-            <div class="boardHeader_right">
-                <div class="inputField">
-                    <input id="search" onkeyup="filterTasks()" type="text" placeholder="Find Task">
-                    <div class="right">
-                        <div class="devider"></div>
-                        <img class="picLupe" id="picLupe" src="assets/img/lupe.svg">
+
+        <div class="contentBoard">
+
+            <div class="boardHeader">
+
+                <h1>Board</h1>
+                <div class="boardHeader_right">
+                    <div class="inputField">
+                        <input id="search" onkeyup="filterTasks()" type="text" placeholder="Find Task">
+                        <div class="right">
+                            <div class="devider"></div>
+                            <img class="picLupe" id="picLupe" src="assets/img/lupe.svg">
+                        </div>
+
                     </div>
-                
-            </div>
-            <div><button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button></div>
-        </div>
-        </div>
-        <!-- <div class="editTask d-none" id="editTask"></div> -->
-        <div class="cols" id="cols">
-            <div class="col">
-                <div class="headline">
-                    <h3>To do</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                    <div id="createTaskBTN_area"><button class="btn" id="createTaskBTN"
+                            onclick="showAddTaskOverlay()">Add Task</button></div>
                 </div>
-                <div class="col" id="todo" ondrop="setStatus('todo')" ondragover="allowDrop(event)"></div>
             </div>
-            <div class="col">
-                <div class="headline">
-                    <h3>In Progress</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+
+            <!-- <div class="editTask d-none" id="editTask"></div> -->
+            <div class="cols" id="cols">
+
+                <div class="col">
+                    <div class="headline">
+                        <h3>To do</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                    </div>
+                    <div class="col" id="todo" ondrop="setStatus('todo')" ondragover="allowDrop(event)"></div>
                 </div>
-                <div class="col" id="inProgress" ondrop="setStatus('inProgress')" ondragover="allowDrop(event)"></div>
-            </div>
-            <div class="col">
-                <div class="headline">
-                    <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                <div class="col">
+                    <div class="headline">
+                        <h3>In Progress</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                    </div>
+                    <div class="col" id="inProgress" ondrop="setStatus('inProgress')" ondragover="allowDrop(event)">
+                    </div>
                 </div>
-                <div class="col" id="awaitingFeedback" ondrop="setStatus('awaitingFeedback')"
-                    ondragover="allowDrop(event)"></div>
-            </div>
-            <div class="col">
-                <div class="headline">
-                    <h3>Done</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                <div class="col">
+                    <div class="headline">
+                        <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()"
+                            alt="">
+                    </div>
+                    <div class="col" id="awaitingFeedback" ondrop="setStatus('awaitingFeedback')"
+                        ondragover="allowDrop(event)"></div>
                 </div>
-                <div class="col" id="done" ondrop="setStatus('done')" ondragover="allowDrop(event)"></div>
+                <div class="col">
+                    <div class="headline">
+                        <h3>Done</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                    </div>
+                    <div class="col" id="done" ondrop="setStatus('done')" ondragover="allowDrop(event)"></div>
+                </div>
             </div>
+
         </div>
 
+        <div w3-include-html="templates/add_task_form.html" class="containerTasks overlay d-none" id="addTaskForm">
+        </div>
 
-
-        <div w3-include-html="templates/add_task_form.html" class="containerTasks overlay d-none" id="addTaskForm" ></div>
-     
 
 </body>
