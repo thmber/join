@@ -38,7 +38,7 @@ function showContact(firstname, lastname, initiales, email, color, phone, index)
                 <div class="edit-contact-box" onclick="popUpEditContact('${firstname}', '${lastname}', '${email}', '${phone}', '${initiales}', ${color}, ${index})">
                     <div class="add-new-contact-button">
                     </div>
-                    <img src="assets/img/edit.png">
+                    <span class="pen">&#9998;</span>
                     <span>Edit Contact</span>
                 </div>
             </div>
