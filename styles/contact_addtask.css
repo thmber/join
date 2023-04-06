@@ -32,6 +32,10 @@ label{
     background-color: white;
     cursor: pointer;
 }
+#add-task-title, .assigned-options-box, .subtask-options-box,
+#due-date-input, .categories-options-box{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
 .assigned-options-box, .subtask-options-box, .textarea{
     padding-left: 10px;
 }
@@ -62,7 +66,7 @@ textarea{
     width: 800px;
     min-height: 400px;
     border-radius: 10px;
-    background-color: #F5F5F5;
+    background-color: white;
     position: relative;
     overflow: visible;
     transform: translate(0, 100%);
@@ -92,13 +96,16 @@ textarea{
     display: flex;
     flex-direction: column;
     width: 50%;
-    padding: 20px;
+    padding: 30px;
     box-sizing: border-box;
     
 }
 #due-date-input, #add-task-title{
     height: 36px;
     padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
+   
 }
 #add-task-submit{
     width: 120px;
@@ -138,7 +145,7 @@ textarea{
     justify-content: space-between;
     align-items: center;
     color: lightgrey;
-    height: 36px;
+    height: 34px;
     background-color: white;
 }
 .categories-options-headline input{

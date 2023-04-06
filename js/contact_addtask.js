@@ -254,7 +254,7 @@ function showCategoryOptions(){
             document.getElementById('categories-options-box').style.height = `36px`
             let options = document.getElementById('categories-options-box');
             options.innerHTML = `
-                         <div onclick="showCategoryOptions()" class="categories-options-headline">
+                         <div onclick="showCategoryOptions()" class="categories-options-headline" id="options1">
                             <span>Choose category</span>
                             <span class="options-triangle" id="category-options-triangle">&#x25BE;</span>
                         </div>
