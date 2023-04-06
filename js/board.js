@@ -73,7 +73,7 @@ function renderBgCategory(index) {
 function renderBgCategoryShowTask(index) {
     let count = getTheRightBgColor(tasks[index].category);
     let bgColor = categories[count].categoryColor;
-      document.getElementById(`categoryBgColorShowTask${index}`).style.backgroundColor = bgColor;
+    document.getElementById(`categoryBgColorShowTask${index}`).style.backgroundColor = bgColor;
 }
 
 function delay() {
@@ -95,16 +95,16 @@ function getDoneSubtasks(i) {
 
 function countTrue(i) {
     let element = tasks[i].subtasks;
-     let count = element.filter(a => a.check == true);
-     return count.length;
+    let count = element.filter(a => a.check == true);
+    return count.length;
 }
 
 
 function renderContactsOnBoard(i, element) {
-    document.getElementById(`assignToBoard${i}`).innerHTML =``;
+    document.getElementById(`assignToBoard${i}`).innerHTML = ``;
     let some = [];
     // for (let index = 0; index < element.assignedTo.length; index++) {
-        some = element.assignedTo.filter(x => x.check == 'checked');
+    some = element.assignedTo.filter(x => x.check == 'checked');
     // }
     for (let j = 0; j < some.length; j++) {
         const element = some[j];
@@ -248,7 +248,7 @@ function closeTask() {
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.add('d-none');
     showTasksOnBoard();
-    
+
 
     //  renderContactsOnBoard(currentOpenTask, tasks[currentOpenTask])
 }
@@ -298,40 +298,48 @@ function saveExistingTask(i) {
     saveTasks();
     document.getElementById('addTaskForm').classList.add('d-none');
     showTask(i)
+    clearInputFields(title, description, dueDate);
     currentOpenTask = -1;
 }
 
-function getExistingSubtasks(i){
+function clearInputFields(title, description, dueDate) {
+    title.value = '';
+    description.value = '';
+    dueDate.value = getTodayDate();
+    subtasks = [];
+
+}
+function getExistingSubtasks(i) {
     data = tasks[i].subtasks.length;
-    if(data < subtasks_namen.length) data = subtasks_namen.length;
-   new_subtasks = [];
+    if (data < subtasks_namen.length) data = subtasks_namen.length;
+    new_subtasks = [];
     for (let index = 0; index < data; index++) {
-      let subtask = {
-        'subtaskName': document.getElementById(`input${index}`).value,
-        'check': document.getElementById(`input${index}`).checked
-      }
-      console.log(subtask);
-      new_subtasks.push(subtask);
-      }
-      console.log(new_subtasks);
-     return new_subtasks; 
-    
-  }
+        let subtask = {
+            'subtaskName': document.getElementById(`input${index}`).value,
+            'check': document.getElementById(`input${index}`).checked
+        }
+        console.log(subtask);
+        new_subtasks.push(subtask);
+    }
+    console.log(new_subtasks);
+    return new_subtasks;
+
+}
 
 
 
-function showExistingSubtasks(i){
-  if(tasks[i].subtasks.length > 0 ) {
+function showExistingSubtasks(i) {
+    if (tasks[i].subtasks.length > 0) {
 
-    tasks[i].subtasks.forEach((element, j) => {
-  document.getElementById('displaySubtasks').innerHTML += `
+        tasks[i].subtasks.forEach((element, j) => {
+            document.getElementById('displaySubtasks').innerHTML += `
   <div class="wrapper">
   <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${j}">
   <label for="subtask">${element.subtaskName}</label>
 </div>`;
-});
-   
-  }
+        });
+
+    }
 }
 
 function readPrio(i) {
@@ -347,6 +355,7 @@ function closeIt() {
     document.getElementById('editTask').classList.add('d-none');
     document.getElementById('makeBgDarker').classList.add('d-none');
     document.getElementById('addTaskForm').classList.add('d-none');
+    subtasks_namen = [];
 }
 
 
@@ -394,7 +403,7 @@ function renderSubtasks(i) {
         const element = subs[index];
 
         if (element.check) ch = 'checked';
-        
+
         document.getElementById('displaySubtasks').innerHTML += `
       <div class="wrapper">
         <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
@@ -421,3 +430,25 @@ function closeItToo() {
 function showDarkOverlay() {
     document.getElementById('makeBgDarker').classList.remove('d-none');
 }
+
+function filterTasks() {
+    let search = document.getElementById('search').value;
+    search.toLowerCase();
+
+    let regex = new RegExp(search);
+    let content = document.getElementById('cols');
+    let boxes = content.querySelectorAll('.box');
+
+    for (let i = 0; i < boxes.length; i++) {
+        let title = boxes[i].querySelector('.title').innerHTML;
+        let description = boxes[i].querySelector('.description').innerHTML;
+
+        if (regex.test(title.toLowerCase()) || regex.test(description.toLowerCase())) {
+            boxes[i].style.display = 'flex';
+        } else {
+            boxes[i].style.display = 'none';
+        }
+    }
+}
+
+

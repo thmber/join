@@ -97,7 +97,7 @@ input {
 }
 
 #optionsUser {
-  max-height: 80px;
+  /* max-height: 80px; */
   overflow: scroll;
 }
 .options {
@@ -218,7 +218,7 @@ border-top: none;
     background-color: rgb(38, 38, 38);
     padding: 10px;
     border-radius: 8px;
-    height: 50px;
+    height: 40px;
     width: 150px;
   }
 
@@ -230,7 +230,7 @@ border-top: none;
     gap: 15px;
    display: flex;
     justify-content: right;
-
+margin-top: 15px;
   }
 
   .btn {
@@ -388,22 +388,49 @@ background-color: #0048cd;
 }
 
 .containerTasks{
-  position:absolute;
+  /* position:absolute; */
   left: 45%;
   top: 50%;
-  height: 500px;
-  /* bottom: 30%; */
+  min-height: 500px;
   width: 700px;
   transform: translate(500%, -50%);
-  /* max-height: 500px; */
+ 
   background-color: whitesmoke;
   border-radius: 20px;
-  /* overflow: scroll; */
+ 
   z-index: 10;
   animation: newcontact 275ms ease-in-out forwards;
+}
+
+.containerAddTask{
+  position:absolute;
+  left: 300px;
+  top: 250px;
+  height: 500px;
+  width: 700px;
+  
+ 
+  background-color: whitesmoke;
+  border-radius: 20px;
+ 
+  z-index: 10;
+ 
 }
 
 .missingInfoText {
   color: red;
   font-size: 12px;
+}
+
+.container_box {
+  
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(41, 54, 70);
+    animation: logo-bg 1200ms ease-in-out forwards; */
+
 }

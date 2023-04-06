@@ -38,7 +38,7 @@ function addTask() {
     autoID = tasks.length
   }
   else autoID = 0;
-let totalOK = checkInputTitle(title.value, description.value, category.textContent, prio);
+let totalOK = checkInput(title.value, description.value, category.textContent, prio);
   if (totalOK) {
     let task = {
       'id': autoID,
@@ -59,29 +59,44 @@ let totalOK = checkInputTitle(title.value, description.value, category.textConte
 
 }
 
-function checkInputTitle(title, description, category, prio) {
+function checkInput(title, description, category, prio) {
   let titleOK;
   let descriptionOK;
   let categoryOK;
   let prioOK;
   if (title.length == 0) {
-   
-    titleOK = false;
+       titleOK = false;
+       let missingTitle = document.getElementById('missingTitle');
+       missingTitle.classList.remove('d-none');
   }
-  else { titleOK = true; }
-
+  else { titleOK = true; 
+  
+  }
   if (description.length == 0) {
-    
-    descriptionOK = false; 
-  document.getElementById('missingTitle').classList.remove('d-none');}
+        descriptionOK = false; 
+        let missingDescription = document.getElementById('missingDescription');
+        missingDescription.classList.remove('d-none');}
   else { descriptionOK = true; }
 
-  if (category == 'undefined') { 
-     categoryOK = false }
+  if (category == 'Select a Category') { 
+     categoryOK = false;
+     let missingCategory = document.getElementById('missingCategory');
+       missingCategory.classList.remove('d-none');
+    }
   else { categoryOK = true; }
 
-  if (prio == 'undefined') { 
-     prioOK = false; }
+  workingContact = getAssignedContacts();
+  if (workingContact.length == 0) { 
+    contactOK = false;
+    let missingContact = document.getElementById('missingContact');
+      missingContact.classList.remove('d-none'); }
+ else { contactOK = true; }
+
+
+  if (prio == undefined) { 
+     prioOK = false;
+     let missingPrio = document.getElementById('missingPrio');
+       missingPrio.classList.remove('d-none'); }
   else { prioOK = true; }
 
   let totalOK = (titleOK && descriptionOK && categoryOK && prioOK)

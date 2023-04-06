@@ -42,12 +42,19 @@
         
             <h1>Board</h1>
             <div class="boardHeader_right">
-                <div><input type="text" placeholder="Find Task"></div>
-                <div><button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button></div>
+                <div class="inputField">
+                    <input id="search" onkeyup="filterTasks()" type="text" placeholder="Find Task">
+                    <div class="right">
+                        <div class="devider"></div>
+                        <img class="picLupe" id="picLupe" src="assets/img/lupe.svg">
+                    </div>
+                
             </div>
+            <div><button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button></div>
+        </div>
         </div>
         <!-- <div class="editTask d-none" id="editTask"></div> -->
-        <div class="cols">
+        <div class="cols" id="cols">
             <div class="col">
                 <div class="headline">
                     <h3>To do</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
