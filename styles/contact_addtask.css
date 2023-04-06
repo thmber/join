@@ -131,7 +131,7 @@ textarea{
     width: 100%;
     display: flex;
     flex-direction: column;
-    transition: height 225ms ease-in-out;
+    transition: height 125ms ease-in-out;
     background-color: white;
 }
 .subtasks-done-box{
@@ -299,7 +299,7 @@ textarea{
 }
 .assigned-options-box{
     height: 36px;
-    transition: height 225ms ease-in-out;        
+    transition: height 125ms ease-in-out;        
 }
 .card-middle-box{
     min-height: 380px;            

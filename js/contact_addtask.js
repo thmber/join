@@ -150,9 +150,9 @@ function showCategoryOptions(){
                 categoriesOpen = false;
                 colorsOpen = false;
             }
-        }
+}
         
-        function showSubTasks(){
+function showSubTasks(){
             let content = document.getElementById('subtask-options');
             content.innerHTML = '';
             for (let i = 0; i < subtasks.length; i++) {
@@ -161,9 +161,9 @@ function showCategoryOptions(){
             }
             checkSubtasksDoneLine();
 
-        }
+}
 
-        function createNewSubtask(){
+function createNewSubtask(){
             let content = document.getElementById('new-subtask-box');
             let input = document.getElementById('new-subtask').value;
             if (input.length < 1) {
@@ -184,17 +184,17 @@ function showCategoryOptions(){
                 content.innerHTML = '';
                 showSubTasks();
                 checkSubtasksDoneLine(0);
-            }, 625);
-            
-        }
+            }, 625);            
+}
 
-        function deleteSub(index){
+
+function deleteSub(index){
             subtasks.splice(index, 1);
             showSubTasks();
-        }
+}
 
 
-        function generateSubtasks(index){
+function generateSubtasks(index){
             return `
                 <div class="each-subtask">
                     <span>${subtasks[index]['subtask']}</span> 
@@ -204,11 +204,11 @@ function showCategoryOptions(){
                     </div>
                 </div>
             `;
-        }
+}
     
 
 
-        function checkSubtask(index){
+function checkSubtask(index){
             if (subtasks[index]['status'] == '') {
                 subtasks[index]['status'] = 'checked';
             }
@@ -216,9 +216,10 @@ function showCategoryOptions(){
                 subtasks[index]['status'] = ''
             }
             checkSubtasksDoneLine();
-        }
+}
 
-        function checkSubtasksDoneLine(){
+
+function checkSubtasksDoneLine(){
             let line = document.getElementById('done-subtasks-line');
             let noti = document.getElementById('done-of');
             let subtasksDone = 0;
@@ -240,15 +241,15 @@ function showCategoryOptions(){
                 line.style.backgroundColor = "rgb(11, 173, 221)";
             }
             }, 250);
+}
 
-        }
 
-        function showCoffee(param){
+function showCoffee(param){
             document.getElementById('coffee-container').style.display = `${param}`;
-        }
+}
 
 
-        function closeOptions(){
+function closeOptions(){
             categoriesOpen = false;
             chosenCategory = [];
             document.getElementById('categories-options-box').style.height = `36px`
@@ -261,31 +262,34 @@ function showCategoryOptions(){
                         <div class="category-options" id="category-options">
                         </div>
             `;
-        }
+}
 
-        function showAssignedToOptions(){
+function showAssignedToOptions(){
             let options = document.getElementById('assigned-options');
             if (assignedToOpen == false) {
                 let neededLength = (contacts.length+1) * 36;
                 document.getElementById('assigned-options-box').style.height = `${neededLength}px`;
-                document.getElementById('assigned-options-triangle').style.transform = "translateX(-10px) rotate(180deg)"
-
+                document.getElementById('assigned-options-triangle').style.transform = "translateX(-10px) rotate(180deg)";
+               
                 setTimeout(() => {
                     for (let i = 0; i < contacts.length; i++) {
                     let name = contacts[i]['firstname']+ ' ' + contacts[i]['lastname'];
                     let color = contacts[i]['color'];
                     options.innerHTML += generateAssignedToOptions(color, name, i);
+                    setTimeout(() => {
+                        document.getElementById('chosen-circles').scrollIntoView();
+                    }, 50);
                 }  
                 }, 200);
                 assignedToOpen = true;
             } else {
                 document.getElementById('assigned-options-triangle').style.transform = "rotate(0)"
-
                 document.getElementById('assigned-options-box').style.height = `36px`;
                 options.innerHTML = '';
                 assignedToOpen = false;
             }
         }
+
 
 
 function checkIfAssigned(name){
