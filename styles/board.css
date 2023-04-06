@@ -363,6 +363,28 @@ z-index: 50;
         display: flex;
         gap: 50px;
       }
+      /* .new-contact-overlay{
+        position: absolute;
+        display: flex;
+        left: 50%;
+        top: 50%;
+        transform: translate(500%, -50%);
+        height: 400px;
+        width: 750px;
+        color: white;
+        box-sizing: border-box;
+        animation: newcontact 275ms ease-in-out forwards;
+        z-index: 4;
+    } */
+      
+    @keyframes newcontact {
+        0%{transform: translate (500%, -50%);}
+       
+        100%{
+           
+            transform: translate(-50%, -50%);
+        } 
+    }
 @media (max-width: 1300px){
     .headline img {
         width: 20px;
