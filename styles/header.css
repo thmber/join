@@ -24,3 +24,8 @@
     gap: 34px;
     align-items: center;
 }
+@media (max-width: 900px){
+    .header{
+        display: none;
+    }
+}

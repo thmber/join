@@ -220,6 +220,7 @@ function showCategoryOptions(){
 
         function checkSubtasksDoneLine(){
             let line = document.getElementById('done-subtasks-line');
+            let noti = document.getElementById('done-of');
             let subtasksDone = 0;
              for (let i = 0; i < subtasks.length; i++) {
                 if (subtasks[i]['status'] == 'checked') {
@@ -228,6 +229,7 @@ function showCategoryOptions(){
             }
             percentage = subtasksDone / subtasks.length * 100
             line.style.width = `${percentage}%`;
+            noti.innerHTML = `Subtasks done (${subtasksDone} of ${subtasks.length})`;
             setTimeout(() => {
                 if (percentage == 100) {
                 showCoffee('flex');
@@ -460,7 +462,6 @@ function generateCardHTML(index){
                             <span>low</span>
                             <img id="low-symbol" src="assets/img/low.svg">
                         </div>
-
                     </div>
                     <label for="add-task-subtasks1">Subtasks</label>
                     <div class="subtask-options-box" id="subtask-options-box">
@@ -473,7 +474,8 @@ function generateCardHTML(index){
                     </div>
                     <div class="subtask-options" id="subtask-options">
                     </div> 
-                    <div class="subtasks-done-box">Subtasks done</div>
+                    <div class="subtasks-done-box" id="done-of">Subtasks done
+                    </div>
                     <div class="subtasks-done-line">
                         <div class="subtasks-really-done" id="done-subtasks-line"></div>
                         <div class="coffee-container" id="coffee-container">
@@ -487,7 +489,6 @@ function generateCardHTML(index){
                     </div>                    
                 </div>
             </form>
-
         </div>
             
             `;
