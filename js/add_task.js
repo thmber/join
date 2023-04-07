@@ -103,6 +103,8 @@ function checkInput(title, description, category, prio) {
   return totalOK;
 }
 
+
+
 function addSubtask() {
 
   let subtaskField = document.getElementById('subtask');
@@ -389,6 +391,9 @@ function resetUnselectedSpots(index) {
 
 function addNewCat() {
   let newCatField = document.getElementById('showNewCat');
+
+  if(checkIfInputIsComplete(newCatField)) {
+    document.getElementById('missingColorspot').classList.add('d-none');
   let category = {
     'categoryName': newCatField.value,
     'categoryColor': colorspot
@@ -398,6 +403,30 @@ function addNewCat() {
   renderInputUnit();
 }
 
+}
+
+function checkIfInputIsComplete(field){
+  let colorspotIsChosen = false;
+  let categorynameIsChosen = false;
+  if (colorspot == undefined){
+    document.getElementById('missingColorspot').classList.remove('d-none');
+    
+  }
+  else {
+    colorspotIsChosen = true;
+  }
+
+  if (field.value == ''){
+    categorynameIsChosen = false;
+    document.getElementById('missingColorspot').classList.remove('d-none');
+    
+  }
+  else {
+    categorynameIsChosen = true;
+  }
+console.log(categorynameIsChosen && colorspotIsChosen);
+  return (categorynameIsChosen && colorspotIsChosen);
+}
 
 function resetCategoryChoice() {
   let inputUnit = document.getElementById('inputUnit');

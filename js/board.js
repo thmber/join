@@ -433,8 +433,9 @@ function showDarkOverlay() {
 
 function filterTasks() {
     let search = document.getElementById('search').value;
-    search.toLowerCase();
+    search = search.toLowerCase();
 
+    
     let regex = new RegExp(search);
     let content = document.getElementById('cols');
     let boxes = content.querySelectorAll('.box');
@@ -452,7 +453,8 @@ function filterTasks() {
 }
 
 
-window.addEventListener("resize", function () {  // closes the basket-Layer above 700px if user doesn`t do it
+window.addEventListener("resize", function () {  
+
     if (this.window.matchMedia("(max-width: 500px)").matches) {
           this.document.getElementById('createTaskBTN_area').innerHTML = `<img src="assets/img/addTaskMobile.svg" onclick="showAddTaskOverlay()">`;
     }

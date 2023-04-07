@@ -209,7 +209,7 @@ border-top: none;
     background-color: red;
   } */
 
-  #createTaskBTN{
+  #createTaskBTN_task{
     cursor: pointer;
     border: none;
     /* margin-top: 50px; */
@@ -222,7 +222,7 @@ border-top: none;
     width: 150px;
   }
 
-  #createTaskBTN:hover {
+  #createTaskBTN_task:hover {
     background-color: rgb(59, 175, 243);
   }
 
@@ -266,8 +266,8 @@ margin-top: 15px;
   }
 
   .colorspot {
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     border-radius: 100%;
    margin: 5px;
    cursor: pointer;

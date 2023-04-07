@@ -362,6 +362,23 @@ justify-content: space-between;
     left: 325px;
 }
 
+#createTaskBTN{
+    cursor: pointer;
+    border: none;
+    /* margin-top: 50px; */
+    color: white;
+    font-weight: bold;
+    background-color: rgb(38, 38, 38);
+    padding: 10px;
+    border-radius: 8px;
+    height: 40px;
+    width: 150px;
+  }
+
+  #createTaskBTN:hover {
+    background-color: rgb(59, 175, 243);
+  }
+
 #totalInput {
     display: flex;
     gap: 30px;
@@ -525,6 +542,28 @@ justify-content: space-between;
         min-width: 50px;
        
     }
+
+    .overlayTask {
+        left: 0;
+       width: 100vw;
+       top: 50px;
+       border-radius: 0;
+       bottom: 100px;
+       justify-content: center;
+    }
+
+    .makeBgDarker {
+        width: 0;
+        height: 0;
+    }
+
+    .overlayEdit {
+        left: 0;
+        width: 100vw;
+        top: 50px;
+        border-radius: 0;
+       bottom: 100px;
+    }
 }
 
 @media (max-width: 750px){
@@ -542,6 +581,22 @@ justify-content: space-between;
     }
     .col {
         width: 280px;
+    }
+
+   
+}
+
+@media (max-width: 550px){
+
+    .overlayTask {
+justify-content: flex-start;
+    }
+    .fullUseOfSpaceTop {
+        width: 100%;
+    }
+
+    .fullUseOfSpace {
+        width: 80%;
     }
 }
 
