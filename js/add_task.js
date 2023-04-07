@@ -27,7 +27,7 @@ let priorities = [{
 
 function addTask() {
 
-  let assignedTo = getAssignedToUser();
+  // let assignedTo = getAssignedToUser();
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('selectedCategory');
@@ -38,7 +38,7 @@ function addTask() {
     autoID = tasks.length
   }
   else autoID = 0;
-let totalOK = checkInput(title.value, description.value, category.textContent, prio);
+  let totalOK = checkInput(title.value, description.value, category.textContent, prio);
   if (totalOK) {
     let task = {
       'id': autoID,
@@ -56,7 +56,6 @@ let totalOK = checkInput(title.value, description.value, category.textContent, p
     document.getElementById('makeBgDarker').classList.add('d-none');
     clearAddTask();
   }
-
 }
 
 function checkInput(title, description, category, prio) {
@@ -65,44 +64,39 @@ function checkInput(title, description, category, prio) {
   let categoryOK;
   let prioOK;
   if (title.length == 0) {
-       titleOK = false;
-       let missingTitle = document.getElementById('missingTitle');
-       missingTitle.classList.remove('d-none');
+    titleOK = false;
+    let missingTitle = document.getElementById('missingTitle');
+    missingTitle.classList.remove('d-none');
   }
-  else { titleOK = true; 
-  
+  else {
+    titleOK = true;
   }
   if (description.length == 0) {
-        descriptionOK = false; 
-        let missingDescription = document.getElementById('missingDescription');
-        missingDescription.classList.remove('d-none');}
+    descriptionOK = false;
+    let missingDescription = document.getElementById('missingDescription');
+    missingDescription.classList.remove('d-none');
+  }
   else { descriptionOK = true; }
 
-  if (category == 'Select a Category') { 
-     categoryOK = false;
-     let missingCategory = document.getElementById('missingCategory');
-       missingCategory.classList.remove('d-none');
-    }
+  if (category == 'Select a Category') {
+    categoryOK = false;
+    let missingCategory = document.getElementById('missingCategory');
+    missingCategory.classList.remove('d-none');
+  }
   else { categoryOK = true; }
 
-  workingContact = getAssignedContacts();
-  if (workingContact.length == 0) { 
-    contactOK = false;
-    let missingContact = document.getElementById('missingContact');
-      missingContact.classList.remove('d-none'); }
- else { contactOK = true; }
 
 
-  if (prio == undefined) { 
-     prioOK = false;
-     let missingPrio = document.getElementById('missingPrio');
-       missingPrio.classList.remove('d-none'); }
+  if (prio == undefined) {
+    prioOK = false;
+    let missingPrio = document.getElementById('missingPrio');
+    missingPrio.classList.remove('d-none');
+  }
   else { prioOK = true; }
 
   let totalOK = (titleOK && descriptionOK && categoryOK && prioOK)
   return totalOK;
 }
-
 
 
 function addSubtask() {
@@ -174,9 +168,28 @@ function saveTasks() {
 
 
 function toggleOptions() {
-  document.getElementById('seeCat').classList.toggle('d-none');
-   renderCategories();
+  let seeCat = document.getElementById('seeCat');
+  seeCat.classList.toggle('d-none');
+
+
+  let checkit = !seeCat.classList.contains('d-none');
+  if (checkit) {
+    document.getElementById('newCateg').style.borderBottomLeftRadius = `0px`;
+    document.getElementById('newCateg').style.borderBottomRightRadius = `0px`;
+  }
+  else {
+    document.getElementById('newCateg').style.borderRadius = `8px`;
+  }
+
+  if (!document.getElementById('see').classList.contains('d-none')) {
+    document.getElementById('see').classList.add('d-none')
+    document.getElementById('toggleID').style.borderRadius = `8px`;
+  }
+  else { }
+  renderCategories();
+
 }
+
 
 
 function getAssignedToUser() {
@@ -199,13 +212,33 @@ function selectCategory(param) {
   let category = document.getElementById(`${param}`).textContent;
   document.getElementById('selectedCategory').innerHTML = `<div class="inlineDuo"><span>${category}</span><span class="circle" style="background-color: ${categories[param].categoryColor};"></span></div>`;
   document.getElementById('seeCat').classList.add('d-none');
+  document.getElementById('newCateg').style.borderBottomLeftRadius = "8px";
+  document.getElementById('newCateg').style.borderBottomRightRadius = "8px";
+  document.getElementById('missingCategory').classList.add('d-none');
 }
 
 
 function toggleOptionsAss() {
-  document.getElementById('see').classList.toggle('d-none');
-  renderCategriesAndContacts();
- 
+  let see = document.getElementById('see');
+  see.classList.toggle('d-none');
+
+  let checkit = !see.classList.contains('d-none');
+  if (checkit) {
+    document.getElementById('toggleID').style.borderBottomLeftRadius = `0px`;
+    document.getElementById('toggleID').style.borderBottomRightRadius = `0px`;
+  }
+  else {
+    document.getElementById('toggleID').style.borderRadius = `8px`;
+  }
+
+  if (!document.getElementById('seeCat').classList.contains('d-none')) {
+    document.getElementById('seeCat').classList.add('d-none')
+    document.getElementById('newCateg').style.borderRadius = `8px`;
+  }
+  else { }
+
+  // renderCategriesAndContacts();
+
 }
 
 
@@ -216,6 +249,9 @@ function setToggleID(i) {
 
 function toggleOptionsContactsAssignTo(i) {
   document.getElementById('see').classList.toggle('d-none');
+
+  if (!document.getElementById('see').classList.contains('d-none')) { document.getElementById('see').classList.add('d-none') }
+  else { }
   renderContactsAssignBoard(i);
 }
 
@@ -256,8 +292,8 @@ function renderDate() {
 }
 
 
-function renderCategriesAndContacts() {
-  setTimeout(renderCategories, 300);
+function renderTheContacts() {
+  // setTimeout(renderCategories, 300);
   setTimeout(renderContactsAssignTo, 300);
 }
 
@@ -314,7 +350,7 @@ function renderCategories() {
 
 
 function renderNewCategoryHTML() {
-  return `<span id="newCat" class="item" onclick="addNewCategory()">New Category</span>`;
+  return `<span id="newCat" class="item" onclick="addANewCategory()">New Category</span>`;
 }
 
 
@@ -324,22 +360,13 @@ function renderCategoriesHTML(index, element) {
 }
 
 
-function addNewCategory() {
-  document.getElementById(`inputUnit`).innerHTML = addNewCategoryHTML();
+function addANewCategory() {
+  document.getElementById('missingCategory').classList.add('d-none');
+  document.getElementById(`inputUnit`).innerHTML = addANewCategoryHTML();
+  document.getElementById('seeCat').classList.add('d-none');
   renderColorSpots();
 }
 
-
-function addNewCategoryHTML() {
-  return `
-  <label for="Category">Category</label>
-    <input id="showNewCat" class="input" type="text" placeholder="New Category name">
-     <div id="seeCat">
-     <div class="options" id="optionsCat"></div>
-  </div>
-  <div class="cancelOrAdd plus"><img src="assets/img/cancel.png" onclick="renderInputUnit()"><div class="seperate"></div> <img src="assets/img/check.png" onclick="addNewCat()" alt=""></div>
-  <div class="colorspots" id="colorspots"></div>                      `
-}
 
 
 function renderInputUnit() {
@@ -378,6 +405,9 @@ function rememberColor(index) {
   colorspot = colorspots[index];
   document.getElementById(`col${index}`).classList.add('highlighted');
   resetUnselectedSpots(index);
+
+
+
 }
 
 
@@ -392,39 +422,41 @@ function resetUnselectedSpots(index) {
 function addNewCat() {
   let newCatField = document.getElementById('showNewCat');
 
-  if(checkIfInputIsComplete(newCatField)) {
+  if (checkIfInputIsComplete(newCatField)) {
     document.getElementById('missingColorspot').classList.add('d-none');
-  let category = {
-    'categoryName': newCatField.value,
-    'categoryColor': colorspot
+    let category = {
+      'categoryName': newCatField.value,
+      'categoryColor': colorspot
+    }
+    categories.push(category);
+    backend.setItem('categories', JSON.stringify(categories));
+    renderInputUnit();
   }
-  categories.push(category);
-  backend.setItem('categories', JSON.stringify(categories));
-  renderInputUnit();
-}
 
 }
 
-function checkIfInputIsComplete(field){
+function checkIfInputIsComplete(field) {
   let colorspotIsChosen = false;
   let categorynameIsChosen = false;
-  if (colorspot == undefined){
+  if (colorspot == undefined) {
     document.getElementById('missingColorspot').classList.remove('d-none');
-    
+
   }
   else {
     colorspotIsChosen = true;
   }
 
-  if (field.value == ''){
+  if (field.value == '') {
     categorynameIsChosen = false;
     document.getElementById('missingColorspot').classList.remove('d-none');
-    
+
   }
   else {
     categorynameIsChosen = true;
   }
-console.log(categorynameIsChosen && colorspotIsChosen);
+  console.log(categorynameIsChosen && colorspotIsChosen);
+
+
   return (categorynameIsChosen && colorspotIsChosen);
 }
 
@@ -446,6 +478,7 @@ function resetCategoryChoice() {
  * @param {*} id
  */
 function selectButton(id) {
+  document.getElementById('missingPrio').classList.add('d-none');
   prio = priorities[id].prio;
   changeSelectedButton(id);
   resetUnselectedButtons(id);
@@ -480,4 +513,9 @@ function clearAddTask() {
 
 function changeButtonOnclick() {
   document.getElementById('clearBTN').onclick = `clearAddTask`;
+}
+
+
+function hideMissingText(field){
+  document.getElementById(`${field}`).classList.add('d-none');
 }

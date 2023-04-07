@@ -96,7 +96,7 @@ justify-content: space-between;
     font-weight: 400;
     color: rgb(118, 118, 118);
     line-height: 19px;
-    width: 220px;
+   /*  */
     /* white-space: nowrap; */
     max-height: 60px;
     overflow: hidden;
@@ -471,7 +471,7 @@ justify-content: space-between;
          }
 
     .description {
-        width: 150px;
+        /* width: 150px; */
     }
 
     .container {
@@ -526,7 +526,7 @@ justify-content: space-between;
         align-items: center;
         
         margin-left: 0;
-        margin-top: 50px;
+        margin-top: 100px;
     }
 
     .box {

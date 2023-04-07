@@ -89,6 +89,8 @@ input {
     padding-left: 15px;
     padding-right: 15px;
     /* padding: 10px 10px 10px 15px; */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 #optionsCat {
@@ -101,7 +103,7 @@ input {
   overflow: scroll;
 }
 .options {
-    border-radius: 8px;
+    /* border-radius: 8px; */
     border: 1px solid lightgray;
     background-color: white;
 border-top: none;
@@ -112,7 +114,8 @@ border-top: none;
     flex-direction: column;
     margin-top: -1px;
     font-size: 0.9em;
-    
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .item {
@@ -275,6 +278,7 @@ margin-top: 15px;
   }
   #col0{
      background-color: #f99090;
+     
    
   }
   #col1 {
@@ -433,4 +437,26 @@ background-color: #0048cd;
     /* background-color: rgb(41, 54, 70);
     animation: logo-bg 1200ms ease-in-out forwards; */
 
+}
+
+
+@media (max-width: 970px){
+  #totalInput {
+    gap: 15px;
+    justify-content: center;
+  }
+  .containerAddTaskLeftSide {
+    width: 40%;
+  }
+  .containerAddTaskRightSide {
+    width: 40%;
+  }
+
+}
+
+
+@media (max-width: 630px){
+  #totalInput {
+    font-size: 0.8em;
+  }
 }

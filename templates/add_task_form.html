@@ -3,13 +3,13 @@
     <div class="containerAddTaskLeftSide">
         <div class="inputUnit">
             <label for="name">Title</label>
-            <input id="title" class="input" type="text" placeholder="Enter a title">
+            <input id="title" onfocus="hideMissingText('missingTitle')" class="input" type="text" placeholder="Enter a title">
                    </div>
         <div class="missingInfoText d-none" id="missingTitle">Please enter a title</div>
 
         <div class="inputUnit">
             <label for="description">Description</label>
-            <textarea id="description" class="inputDescription" type="textarea"
+            <textarea id="description" onfocus="hideMissingText('missingDescription')" class="inputDescription" type="textarea"
                 placeholder="Enter a Description"></textarea>
                         </div>
         <div class="missingInfoText d-none" id="missingDescription">Please enter a discription </div>
