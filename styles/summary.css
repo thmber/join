@@ -19,6 +19,9 @@ body{
     background-color: var(--background-grey);
     box-sizing: border-box;
 }
+.kanban-header-headline{
+    display: none;
+}
 .padding-header-side{
     padding-top: 140px;
     padding-left: 300px;
@@ -30,8 +33,8 @@ body{
     gap: var(--gap-between-boxes);
 }
 .summary-line{
-    width: 2px;
-    height: 30px;
+    width: 4px;
+    height: 40px;
     background-color: var(--lightblue);
 }
 .summary-headline{
@@ -39,6 +42,11 @@ body{
     align-items: center;
     gap: 15px;
     height: 15%;
+}
+.headline-box-line{
+    display: flex;
+    align-items: center;
+    gap: var(--gap-between-boxes);
 }
 .greeting-box, .summary-box{
     display: flex;
@@ -161,12 +169,82 @@ body{
 @media (max-width: 900px){
     .padding-header-side{
         padding-left: 50px;
-        padding-top: 30px;
+        padding-top: 100px;
     }
     .summary-and-greeting-box{
-        height: 60%;
+        height: 70%;
     }
     .big-number{
         font-size: 40px;
     }
+    .kanban-header-headline{
+        display: flex;
+    }
 }
+@media (max-width: 750px){
+    .big-number{
+        font-size: 30px;
+    }
+    .greeting-box{
+        display: none;
+    }
+    h1{
+        margin: 0;
+    }
+    .summary-and-greeting-box{
+        width: 100%;
+        height: 65%;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+    .padding-header-side{
+        padding-left: 0;
+        padding-top: 120px;
+    }
+    .deadline-headline{
+        font-size: 20px;
+    }
+    .summary-headline{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-left: 5%;
+        height: 10%;
+       
+    }
+    .headline-box-line{
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .summary-line{
+        height: 4px;
+        width: 150px;
+    
+    }
+    .summary-and-greeting-box{
+        height: 70%;
+    }
+    .summary-box{
+        width: 90%;
+    }
+    .kanban-header-headline{
+        width: 100%;
+        margin-left: 5%;
+        margin-top: -30px;
+        margin-bottom: 30px;
+    }
+
+}
+@media (max-width: 550px){
+    .summary-img-box, .second-line-urgent-box img{
+        width: 45px;
+        height: 45px;
+    }
+    .second-line-urgent-box{
+        display: flex;
+        align-items: center;
+    }
+
+}
+

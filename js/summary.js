@@ -77,10 +77,15 @@ function getNumberofTasks(category, status, relevantArray){
 function generateSummaryHTML(){
     let content = document.getElementById('summary-content');
     content.innerHTML = `
+        <div class="kanban-header-headline">
+            <span>Kanban Projekt Management Tool</span>
+        </div>
         <div class="summary-headline">
             <h1>Summary</h1>
-            <div class="summary-line"></div>
-            <span>Everything in a nutshell</span>
+            <div class="headline-box-line">
+                <div class="summary-line"></div>
+                <span>Everything in a nutshell</span>
+            </div>
         </div>
         <div class="summary-and-greeting-box">
             <div class="summary-box">
