@@ -178,7 +178,7 @@ function showTask(index) {
     <div class="fullUseOfSpaceTop">
             <div class="overlayOneRow">
                 <div class="overlayCategory" id="categoryBgColorShowTask${index}">${element.category}</div>
-                <div id="closeTask" onclick="closeTask()">X</div>
+                <div id="closeTask" onclick="closeTask()">&#10005;</div>
             </div>
             <div class="overlayTitle">${element.title}</div>
             <div class="overlayDescription">${element.description}</div>
@@ -418,7 +418,7 @@ function renderSubtasks(i) {
 function showAddTaskOverlay() {
     showDarkOverlay();
     document.getElementById('addTaskForm').classList.remove('d-none');
-    // renderCategriesAndContacts();
+   renderTheContacts();
 }
 
 function closeItToo() {

@@ -21,7 +21,7 @@ let subtasks = [];
         
 
 function addNewCategory(){
-    let addedCategory = document.getElementById('input-new-category').value;
+      let addedCategory = document.getElementById('input-new-category').value;
     if (addedCategory.length < 1) {
         return;
     }
