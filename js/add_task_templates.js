@@ -1,7 +1,7 @@
 function addANewCategoryHTML() {
     return `
     <label for="Category">Category</label>
-      <input id="showNewCat" class="input" type="text" placeholder="New Category name">
+      <input id="showNewCat" onfocus="hideMissingText('missingColorspot')" class="input" type="text" placeholder="New Category name">
        <div id="seeCat">
        <div class="options" id="optionsCat"></div>
     </div>

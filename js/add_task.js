@@ -249,10 +249,11 @@ function setToggleID(i) {
 
 function toggleOptionsContactsAssignTo(i) {
   document.getElementById('see').classList.toggle('d-none');
-
-  if (!document.getElementById('see').classList.contains('d-none')) { document.getElementById('see').classList.add('d-none') }
-  else { }
   renderContactsAssignBoard(i);
+  // if (!document.getElementById('see').classList.contains('d-none')) {
+  //    document.getElementById('see').classList.add('d-none') }
+  // else { }
+  
 }
 
 
