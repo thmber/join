@@ -36,7 +36,7 @@ label{
 #due-date-input, .categories-options-box{
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
-.assigned-options-box, .subtask-options-box, .textarea{
+.assigned-options-box, .subtask-options-box, textarea{
     padding-left: 10px;
 }
 .categories-options-box{

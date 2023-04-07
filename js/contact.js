@@ -232,7 +232,7 @@ function saveNewContact(){
         return;
     }
     let initials = firstname.charAt(0) + lastname.charAt(0);
-    let randomcolor = Math.floor((Math.random()) * 7) + 1;
+    let randomcolor = Math.floor((Math.random()) * 11) + 1;
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor};
     contacts.push(newContact);
     clearAndPush(lastname, randomcolor, initials)

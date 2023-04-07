@@ -55,7 +55,7 @@ function categoryChosen(color, category){
                     <div class="new-category-option">
                         <input id="input-new-category" onfocus="showNewCategoryCheckmark(), showNewCategoryColorOptions()" placeholder="Add new category">
                         <div class="color-avatar" id="color-avatar"></div>
-                        <span onclick="addNewCategory()" id="input-new-category-symbol" min-length="3">&#10004;</span>
+                        <img src="assets/img/check.png" onclick="addNewCategory()" id="input-new-category-symbol">
                     </div>
                     <div class="choose-category-colors" id="color-options">
                     </div>
@@ -93,7 +93,7 @@ function addNewCategory(){
 function showNewCategoryColorOptions(){
        if (colorsOpen == false) {
         let options = document.getElementById('color-options');
-        for (let i = 1; i < 9; i++) {
+        for (let i = 1; i < 13; i++) {
          options.innerHTML += generatColorOptions(i);
         }
         colorsOpen = true;
