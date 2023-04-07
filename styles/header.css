@@ -1,18 +1,27 @@
 .header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 36px 20px 67px;
-    gap: 34px;
     position: fixed;
-    left: 232px;
-    right: 0;
-    top: 0px;
+    top: 0;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    height: 100px;
+    width: 100%;
+    z-index: 0;
 }
-
+.header-logo-box{
+    height: 40px;
+    width: 40px;
+    display: none;
+    margin-left: 30px;
+}
+.header-logo-box img{
+    width: 100%;
+}
+.header-text{
+    padding-left: 302px;
+}
 .pic {
     border: 3px solid #2A3647;
     border-radius: 50%;
@@ -23,9 +32,17 @@
     display: flex;
     gap: 34px;
     align-items: center;
+    justify-content: space-between;
+    margin-right: 30px;
 }
 @media (max-width: 900px){
-    .header{
+    .header-text{
         display: none;
+    }
+    .header-logo-box{
+        display: flex;
+    }
+    .header{
+        height: 80px;
     }
 }

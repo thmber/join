@@ -230,11 +230,12 @@ function checkSubtasksDoneLine(){
             }
             percentage = subtasksDone / subtasks.length * 100
             line.style.width = `${percentage}%`;
-            noti.innerHTML = `Subtasks done (${subtasksDone} of ${subtasks.length})`;
+            noti.innerHTML = `(${subtasksDone}/${subtasks.length}) Done`;
             setTimeout(() => {
                 if (percentage == 100) {
                 showCoffee('flex');
                 line.style.backgroundColor = "rgb(41, 54, 70)";
+                noti.innerHTML = `all Done!`
             }
             else{
                 showCoffee('none');
