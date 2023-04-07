@@ -35,6 +35,29 @@
     justify-content: space-between;
     margin-right: 5%;
 }
+.log-out-button{
+    position: absolute;
+    background-color:  rgb(41, 54, 70);
+    padding: 10px 15px 10px 15px;
+    font-size: 13px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform: translate(15px, 45px);
+    display: none;
+}
+.log-out-button a{
+    text-decoration: none;
+    color: #f5f5f5;
+
+}
+.log-out-button:hover{
+    background-color: rgba(11, 173, 221, 1);;
+}
+.header_right:hover .log-out-button{
+    display: unset;
+}
+
 @media (max-width: 900px){
     .header-text{
         display: none;
