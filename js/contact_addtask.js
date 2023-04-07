@@ -87,6 +87,7 @@ function showCategoryOptions(){
             }
 }
 
+
 function closeOptionsBox(){
                 let options = document.getElementById('category-options');
                 document.getElementById('category-options-triangle').style.transform = "rotate(0deg)"
@@ -230,6 +231,7 @@ function showAssignedToOptions(){
             }
         }
 
+        
 
 function renderContactsInCategoryOptions(){
     let options = document.getElementById('assigned-options');

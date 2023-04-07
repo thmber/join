@@ -1,5 +1,15 @@
-let users = [];
-let newUser
+let users = [{'firstname': 'Anna', 
+                'lastname': 'Haland', 
+                'email': 'haland@web.de', 
+                'password': 'Mobi19', 
+                'remember': false}, 
+                {'firstname': 'Kim', 
+                'lastname': 'Sonnemann', 
+                'email': 'kimsonne@gmx.de', 
+                'password': 'sonnenschein00', 
+                'remember': true}];
+let newUser;
+
 
 function signUp(){
     let newName = document.getElementById('signup-name').value;
@@ -13,17 +23,18 @@ function signUp(){
                 'email': newMail, 
                 'password': newPassword};
     saveUser();
+}
+
+
+function login(){
+
 
 }
 
 
 function saveUser(){
     users.push(newUser);
-    
-
-
 }
-
 
 
 function showSignUp(){
@@ -47,11 +58,12 @@ function showSignUp(){
                 <img src="assets/img/icon-password.svg" alt="">
             </div>
             <div class="login-and-guest">
-                <input type="submit" value="Save" class="signup-save">
+                <input type="submit" value="Sign up" class="signup-save">
             </div>
         </form>
     `;
 }
+
 
 function showForgotPassword(){
     let loginBox = document.getElementById('log-in-content');
@@ -62,7 +74,7 @@ function showForgotPassword(){
         </div>
         <div class="worry-not">
                  <span>Don't worry! 
-                    We will send you and email with the instructions to reset your password.</span>
+                    We will send you an email with the instructions to reset your password.</span>
             </div>
         <form onsubmit="login()" class="login-form">
             <div class="login-box">
@@ -101,14 +113,12 @@ function showLogin(){
                         <a onclick="showForgotPassword()">Forgot my password</a>
                     </div>
                     <div class="login-and-guest">
-                        <button class="login">Log in</button>
+                        <input type="submit" value="Log in" class="input-submit">
                         <a class="guest-login" href="summary.html">Guest Log in</a>
                     </div>
                 </form>
             </div>
-            <div class="forgot-container d-none" id="forgot-container">
-                
+            <div class="forgot-container d-none" id="forgot-container">   
             </div>
     `;
-
 }

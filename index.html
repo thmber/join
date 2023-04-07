@@ -6,14 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join | Log In</title>
+    <script src="./mini_backend.js"></script>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="icon" href="assets/img/Capa_icon.png">
     <link rel="stylesheet" href="styles/index.css">
+    <script src="js/script.js"></script>
     <script src="js/index.js"></script>
 
 </head>
 
-<body>
+<body onload="init()">
 
 
     <div class="container">
@@ -44,7 +46,7 @@
                         <a onclick="showForgotPassword()">Forgot my password</a>
                     </div>
                     <div class="login-and-guest">
-                        <button class="login">Log in</button>
+                        <input type="submit" value="Log in" class="input-submit">
                         <a class="guest-login" href="summary.html">Guest Log in</a>
                     </div>
                 </form>
