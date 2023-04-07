@@ -28,8 +28,16 @@ async function includeHTML(element) {
     }
     document.getElementById(`sidebar-${element}`).style.backgroundColor = "#091931";
 }
+let logOutShown = false;
 
 function showLogout(){
     let button = document.getElementById('logout-button');
-    button.style.display = "unset";
+    if (logOutShown == false) {
+        button.style.display = "unset";
+        logOutShown = true;
+    }
+    else{
+        button.style.display = "none";
+        logOutShown = false;
+    }
 }
