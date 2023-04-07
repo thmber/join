@@ -113,7 +113,8 @@ function generateContactForEachLetter(letter, j, contactlist){
         let initiales = contact.initials;
         let color = contact.color;
         let phone = contact.phone;
-        contactlist.innerHTML += generateContactHTML(firstname, lastname, email, initiales, color, phone, j);
+        let id = contact.id
+        contactlist.innerHTML += generateContactHTML(firstname, lastname, email, initiales, color, phone, j, id);
     }
 }
 
@@ -194,14 +195,16 @@ function saveEditedContact(color, index){
     }
     let letter = contacts[index].lastname.charAt(0);
     checkIfLetterIsUsedForName(letter);
+    let newAndOldID = contacts[index]['id'];
     contacts.splice(index, 1);
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
     let initials = firstname.charAt(0) + lastname.charAt(0);
-    let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color};
+    
+    let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color, 'id': newAndOldID};
     contacts.push(newContact);
-    showContact(firstname, lastname, initials, newMail, color, newPhone, index);
+    showContact(firstname, lastname, initials, newMail, color, newPhone, index, newAndOldID);
     clearAndPush(lastname, color, initials);
     renderContacts();
 }
@@ -233,10 +236,10 @@ function saveNewContact(){
     }
     let initials = firstname.charAt(0) + lastname.charAt(0);
     let randomcolor = Math.floor((Math.random()) * 11) + 1;
-    let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor};
+    let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor, 'id': contacts.length};
     contacts.push(newContact);
     clearAndPush(lastname, randomcolor, initials)
-    showContact(firstname, lastname, initials, newMail, randomcolor, newPhone, (contacts.length-1));
+    showContact(firstname, lastname, initials, newMail, randomcolor, newPhone, (contacts.length-1), contacts.length-1);
     renderContacts();
 }
 

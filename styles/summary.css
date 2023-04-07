@@ -75,6 +75,33 @@ body{
     border-radius: 15px;
     color: var(--darkerblue);
 }
+@keyframes showin {
+    from{background-color: var(--darkerblue);
+
+    }
+    to{background-color: white;
+
+    }
+}
+.animation1{
+    animation: showin 300ms ease-in-out 50ms;
+}
+.animation2{
+    animation: showin 300ms ease-in-out 100ms;
+}
+.animation3{
+    animation: showin 300ms ease-in-out 150ms;
+}
+.animation4{
+    animation: showin 300ms ease-in-out 200ms;
+}
+.animation5{
+    animation: showin 300ms ease-in-out 250ms;
+}
+.animation6{
+    animation: showin 300ms ease-in-out 300ms;
+}
+
 .single-box:hover{
     background-color: var(--darkblue);
     color: white;
@@ -103,6 +130,7 @@ body{
     align-items: center;
     justify-content: center;
     gap: var(--gap-between-boxes);
+
 }
 .summary-img-box{
     background-color: var(--darkblue);
@@ -128,6 +156,7 @@ body{
     align-items: center;
     justify-content: space-around;
     gap: var(--gap-between-boxes);
+
 }
 .middle-row-line{
     height: 80%;

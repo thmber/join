@@ -413,8 +413,15 @@ function resetInputs(){
 }
 
 
-function generateCardHTML(index){
-            assignedTo.push(contacts[index])
+function generateCardHTML(id){
+            let index;
+            for (let i = 0; i < contacts.length; i++) {
+                let contact = contacts[i];
+                if (contact['id'] == id) {
+                    assignedTo.push(contact);
+                    index = i;
+                }
+            }
             let content = document.getElementById('container-content');
             content.style.display = "flex";
             content.innerHTML = `

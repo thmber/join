@@ -8,8 +8,8 @@ function generateLettersHTML(letter) {
 }
 
 
-function generateContactHTML(firstname, lastname, email, initiales, color, phone, index) {
-    return `<div class="contact-card" onclick="showContact('${firstname}', '${lastname}', '${initiales}', '${email}', ${color}, '${phone}', ${index})">
+function generateContactHTML(firstname, lastname, email, initiales, color, phone, index, id) {
+    return `<div class="contact-card" onclick="showContact('${firstname}', '${lastname}', '${initiales}', '${email}', ${color}, '${phone}', ${index}, ${id})">
                 <div class="contact-list-circle bg${color}">
                     ${initiales}
                 </div>
@@ -22,7 +22,7 @@ function generateContactHTML(firstname, lastname, email, initiales, color, phone
 }
 
 
-function showContact(firstname, lastname, initiales, email, color, phone, index) {
+function showContact(firstname, lastname, initiales, email, color, phone, index, id) {
     document.getElementById('show-contact-content').innerHTML = `
             <div class="contact-main-name">
                 <div class="contact-circle-big bg${color}">
@@ -30,7 +30,7 @@ function showContact(firstname, lastname, initiales, email, color, phone, index)
                 </div>
                 <div class="name-add-task">
                     <span class="name-main">${firstname} ${lastname}</span>
-                    <span class="add-task-main" onclick=generateCardHTML(${index})>+ Add Task</span>
+                    <span class="add-task-main" onclick=generateCardHTML(${id})>+ Add Task</span>
                 </div>
             </div>
             <div class="contact-information-box">
@@ -87,7 +87,7 @@ function generateRightSideNewContact(){
                                     <img src="assets/img/icon-phone.png" alt="">
                                 </div>
                             <div class="create-cancel-box" id="create-edit-content">
-                                <button class="contact-new-cancel" onclick="closeNewContact()">
+                                <button class="contact-new-cancel" id="contact-new-cancel" onclick="closeNewContact()">
                                     <span>Cancel</span>
                                     <span>&#10005;</span>
                                 </button>

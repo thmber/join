@@ -2,6 +2,7 @@ let allCounts = [];
 let dates = [];
 let tasksNotDone = [];
 let greetings = ['Good Morning', 'Hello', 'Good Afternoon', 'Good Evening'];
+let position;
 
 
 
@@ -30,13 +31,29 @@ function getTasksNotDone(){
     }
 }
 
+function getGreeting(hoursFormat){
+    if (hoursFormat < 10) {
+        position = 0;  
+    }
+    if(hoursFormat >= 10 && hoursFormat <15){
+        position = 1;
+    }
+    if (hoursFormat >= 15 && hoursFormat <19) {
+        position = 2;
+    }
+    if (hoursFormat >= 19) {
+        position = 3;
+    }
+
+}
+
 
 function getGreetingTime(){
     let date = new Date().toISOString().split("T")[1];
     let hours = date.charAt(0)+date.charAt(1);
-    let hoursFormat = +hours;
-    let position = hoursFormat / 6 -1
-    allCounts.push(greetings[position.toFixed()])
+    let hoursFormat = +hours + 2;
+    getGreeting(hoursFormat);
+    allCounts.push(greetings[position])
 }
 
 
@@ -90,21 +107,21 @@ function generateSummaryHTML(){
         <div class="summary-and-greeting-box">
             <div class="summary-box">
                 <div class="summary-row">
-                    <div class="single-box single-first-row">
+                    <div class="single-box single-first-row animation1">
                         <span class="big-number">${tasks.length}</span>
                         <span>Tasks in <br>Board</span>
                     </div>
-                    <div class="single-box single-first-row">
+                    <div class="single-box single-first-row animation2">
                         <span class="big-number">${allCounts[0]}</span>
                         <span>Tasks in <br>Progress</span>
                     </div>
-                    <div class="single-box single-first-row">
+                    <div class="single-box single-first-row animation3">
                         <span class="big-number">${allCounts[1]}</span>
                         <span>Awaiting <br> Feedback</span>
                     </div>
                 </div>
                 <div class="summary-row">
-                    <div class="single-box single-second-row">
+                    <div class="single-box single-second-row animation4">
                         <div class="urgent-box">
                             <div class="second-line-urgent-box">
                                 <img src="assets/img/urgent_icon.svg" alt="" id="urgent-summary">
@@ -123,7 +140,7 @@ function generateSummaryHTML(){
                     </div>
                 </div>
                 <div class="summary-row">
-                    <div class="single-box single-third-row">
+                    <div class="single-box single-third-row animation5">
                         <div class="summary-img-box">
                             <img class="summary-icon" src="assets/img/edit_white.png" alt="">
                         </div>
@@ -132,7 +149,7 @@ function generateSummaryHTML(){
                             <span>To-do</span>
                         </div>
                     </div>
-                    <div class="single-box single-third-row">
+                    <div class="single-box single-third-row animation6">
                         <div class="summary-img-box">
                             <img class="summary-icon" src="assets/img/icon-done.svg" alt="">
                         </div>
