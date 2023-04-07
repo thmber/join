@@ -16,7 +16,7 @@ body {
     border-radius: 10px;
 }
 .darkblue{
-    color: #091931;
+    color: rgb(41, 54, 70)
 }
 .white{
     color: white;
@@ -242,6 +242,7 @@ body {
 }
 .edit-contact-box:hover .pen{
     color: rgb(11, 173, 221);
+    transform: scale(2.4);
    
 }
 .mail-phone{
@@ -269,7 +270,7 @@ body {
     justify-content: center;
     height: 40px;
     width: 150px;
-    background-color: #091931; 
+    background-color:rgb(41, 54, 70); 
     padding: 5px;
     border-radius: 10px;
     color: white;
@@ -322,7 +323,7 @@ body {
 .new-contact-left{
     width: 300px;
     height: 100%;
-    background-color: #091931; 
+    background-color: rgb(41, 54, 70); 
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     display: flex;
@@ -513,9 +514,8 @@ body {
    }
    .contact-card{
     width: 300px;
+    padding-left: 10px;
    }
-}
-@media (max-width: 1200px){
     .contact-main-name, .contact-information-box, .mail-phone, .contact-headline-box{
     margin-left: 40px;
    }
@@ -546,8 +546,13 @@ body {
     .edit-contact-box{
         margin-left: 0;
     }
-    .contact-main-box, .contact-list-box{
-        width: 50%;
+    .contact-main-box{
+        width: 55%;
+        margin-top: 80px;
+    }
+    .contact-list-box{
+        width: 45%;
+        margin-top: 80px;
     }
     .contact-list-letter{
         justify-content: flex-start;
@@ -560,8 +565,58 @@ body {
         margin-left: 0;
     }
 }
-@media (max-width: 650px){
-
+@media (max-width: 750px){
+    .new-contact-overlay{
+        flex-direction: column;
+        align-items: center;
+        width: 350px;
+        height: 650px;
+    }
+    .new-contact-left{
+        width: 350px;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 20px;
+        align-items: center;
+        height: 45%;
+    }
+    .new-contact-left-line{
+    }
+    .new-contact-left-img-box{
+        display: none;
+    }
+    .close-contact-cross{
+        transform: translate(260px, -320px);
+        color: white;
+    
+    }
+    .new-contact-right{
+        width: 350px;
+        height: 55%;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0;
+    }
+    .new-contact-circle-name{
+        flex-direction: column;
+    }
+    .edit-contact-circle{
+        z-index: 2;
+        position: absolute;
+        transform: translateY(-75px);
+       
+    }
+    .contact-new-inputs{
+        margin-top: 50px;
+    }
+    .contact-new-cancel{
+        display: unset;
+        display: none;
+    }
+    .create-cancel-box{
+        justify-content: center;
+    }
+    .contact-new-save{
+        margin-left: 0;
+    }
 
 }
 

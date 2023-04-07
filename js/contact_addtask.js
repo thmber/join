@@ -266,6 +266,9 @@ function closeOptions(){
 }
 
 function showAssignedToOptions(){
+            if (categoriesOpen == true) {
+                closeOptions();
+            }
             let options = document.getElementById('assigned-options');
             if (assignedToOpen == false) {
                 let neededLength = (contacts.length+1) * 36;
