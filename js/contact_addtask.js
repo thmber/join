@@ -277,7 +277,6 @@ function showAssignedToOptions(){
                     let color = contacts[i]['color'];
                     options.innerHTML += generateAssignedToOptions(color, name, i);
                     setTimeout(() => {
-                        document.getElementById('chosen-circles').scrollIntoView();
                     }, 50);
                 }  
                 }, 200);
@@ -344,6 +343,8 @@ function renderChosenCircles(){
                 let color = assignedTo[i]['color'];
                 content.innerHTML += generateAssignedToCircles(initials, color, i);
             }
+            document.getElementById('chosen-circles').scrollIntoView();
+
 }
 
       
