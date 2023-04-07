@@ -29,4 +29,7 @@ async function includeHTML(element) {
     document.getElementById(`sidebar-${element}`).style.backgroundColor = "#091931";
 }
 
-
+function showLogout(){
+    let button = document.getElementById('logout-button');
+    button.style.display = "unset";
+}
