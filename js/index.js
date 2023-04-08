@@ -1,15 +1,5 @@
-let users = [{'firstname': 'Anna', 
-                'lastname': 'Haland', 
-                'email': 'haland@web.de', 
-                'password': 'Mobi19', 
-                'remember': false}, 
-                {'firstname': 'Kim', 
-                'lastname': 'Sonnemann', 
-                'email': 'kimsonne@gmx.de', 
-                'password': 'sonnenschein00', 
-                'remember': true}];
 let newUser;
-
+let activeUser = {};
 
 function signUp(){
     let newName = document.getElementById('signup-name').value;
@@ -21,9 +11,14 @@ function signUp(){
     newUser = {'firstname': newFirstname, 
                 'lastname': newLastname, 
                 'email': newMail, 
-                'password': newPassword};
-    saveUser();
+                'password': newPassword, 
+                'remember': false};
+    users.push(newUser)
+    activeUser = newUser;
+    saveUser(newUser);
 }
+
+
 
 
 function login(){
@@ -32,8 +27,9 @@ function login(){
 }
 
 
-function saveUser(){
-    users.push(newUser);
+async function saveUser(){
+    await backend.setItem('users', JSON.stringify(users));
+    window.location.href = 'summary.html'
 }
 
 
