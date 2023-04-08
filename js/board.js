@@ -196,6 +196,7 @@ function showEditTask(i) {
     //  renderContactsAssignBoard(i);
     // toggleOptionsContactsAssignTo(i);
     renderContactsAssignBoard(i);
+    filterTheAssignedPeople(i);
      setToggleID(i);
     renderSubtasks(i);
     readPrio(i);
@@ -460,3 +461,13 @@ function testRenderNewTask(){
      renderTheContacts();
 }
 
+
+function filterTheAssignedPeople(i){
+    document.getElementById(`showAssignedPeople`).innerHTML = ``;
+    let some = [];
+       some = tasks[i].assignedTo.filter(x => x.check == 'checked');
+    for (let j = 0; j < some.length; j++) {
+        const element = some[j];
+        document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
+    }
+   }
