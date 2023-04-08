@@ -305,8 +305,7 @@ function renderDate() {
 
 
 function renderTheContacts() {
-  // setTimeout(renderCategories, 300);
-  setTimeout(renderContactsAssignTo, 300);
+   setTimeout(renderContactsAssignTo, 300);
 }
 
 
@@ -316,22 +315,29 @@ function delayDate() {
 
 
 function renderContactsAssignTo() {
+console.log('renderContactsAssignTo()');
   document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = contacts[index];
     document.getElementById('optionsUser').innerHTML += renderContactsAssignToHTML(index, element);
   }
+ 
+
 }
 
 
 function renderContactsAssignToHTML(index, element) {
+  console.log('andere!');
   return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
-  <input type="checkbox" name="assignedTo" value="${element.id}" id="user${index}" >
+  <input type="checkbox" onchange="showTheJustChosenContacts(${index})" name="assignedTo" value="${element.id}" id="user${index}" >
 </div>`;
 }
 
+function showTheJustChosenContacts(index){
+  let chosenID = contacts[index].assignTo
+}
 
 function renderContactsAssignBoard(i) {
   document.getElementById('optionsUser').innerHTML = ``;
@@ -339,6 +345,8 @@ function renderContactsAssignBoard(i) {
     const element = tasks[i].assignedTo;
     document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(index, element);
   }
+  // document.getElementById('see').classList.toggle('d-none');
+  
 }
 
 
