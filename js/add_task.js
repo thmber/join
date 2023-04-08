@@ -51,10 +51,16 @@ function addTask() {
       'category': category.textContent,
       'subtasks': getSubtasks()
     }
-    tasks.push(task);
-    saveTasks();
+   
+
+if(!document.getElementById('makeBgDarker').classList.contains('d-none')) {
     document.getElementById('makeBgDarker').classList.add('d-none');
-    clearAddTask();
+}
+console.log(!document.getElementById('makeBgDarker').classList.contains('d-none'));
+console.log('na?');
+tasks.push(task);
+saveTasks();
+    // clearAddTask();
   }
 }
 
@@ -104,6 +110,8 @@ function addSubtask() {
   let subtaskField = document.getElementById('subtask');
   let singleSubtask = subtaskField.value;
   console.log(singleSubtask);
+
+  
   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
 
     for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
@@ -111,7 +119,10 @@ function addSubtask() {
     }
     more = false;
   }
+
+  if (singleSubtask.length > 0){
   subtasks_namen.push(singleSubtask);
+  }
   subtaskField.value = ``;
   showSubtasks(subtasks_namen);
 }

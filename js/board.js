@@ -200,16 +200,12 @@ function showTask(index) {
 
 
 function showEditTask(i) {
-    
-    // testRenderEditTask();
-
-
     showAddTaskOverlay();
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('divider').classList.add('d-none');
     document.getElementById('mainAddTask').classList.remove('d-flex');
     document.getElementById('addTaskForm').classList.remove('containerTasks');
-    document.getElementById('addTaskForm').classList.remove('overlay');
+    // document.getElementById('addTaskForm').classList.remove('overlay');
     document.getElementById('addTaskForm').classList.add('overlayEdit');
     document.getElementById('BTN-save').classList.remove('d-none');
     document.getElementById('totalInput').style = `display: block`;
@@ -356,11 +352,13 @@ function readPrio(i) {
 
 
 function closeIt() {
-    document.getElementById('editTask').classList.add('d-none');
     document.getElementById('makeBgDarker').classList.add('d-none');
-    document.getElementById('addTaskForm').classList.add('d-none');
+    
+    document.getElementById('newTask').classList.add('d-none');
+     
     resetMissingText();
-    subtasks_namen = [];
+    // subtasks_namen = [];
+    document.getElementById('newTask').innerHTML = ``;
 }
 
 
@@ -469,12 +467,15 @@ window.addEventListener("resize", function () {
     }
 })
 
-function testRenderEditTask(){
+function testRenderNewTask(){
+    showDarkOverlay();
+    document.getElementById('newTask').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
-    document.getElementById('overlayTask').innerHTML += testRenderEditTaskHTML();
+    document.getElementById('newTask').innerHTML += testRenderNewTaskHTML();
+    renderTheContacts();
 }
 
-function testRenderEditTaskHTML(){
+function testRenderNewTaskHTML(){
     return `
     <div class="containerAddTaskLeftSide">
     <div class="inputUnit">
@@ -515,7 +516,7 @@ function testRenderEditTaskHTML(){
     <div class="missingInfoText d-none" id="missingContact">Please select one ore more contacts for this task</div>
     <div id="showAssignedPeople"></div>
 </div>
-
+<div class="divider" id="divider"></div>
 <div class="containerAddTaskRightSide">
     <div class="inputUnit">
         <label for="dueDate">Due Date</label>

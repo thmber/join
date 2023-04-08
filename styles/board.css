@@ -440,6 +440,24 @@ justify-content: space-between;
 
 }
 
+.newTask {
+    position: absolute;
+    display: flex;
+    gap: 30px;
+    left: 55%;
+  top: 50%;
+  min-height: 500px;
+  width: 700px;
+  transform: translate(500%, -50%);
+ 
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+ padding: 15px;
+  z-index: 10;
+  animation: newcontact 275ms ease-in-out forwards;
+
+}
+
 @keyframes newcontact {
     0% {
         transform: translate (500%, -50%);

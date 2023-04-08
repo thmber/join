@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/add_task.css">
     <link rel="stylesheet" href="styles/contact.css">
+    <link rel="stylesheet" href="styles/colors.css">
 
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="icon" href="assets/img/Capa_icon.png">
@@ -54,16 +55,16 @@
 
                     </div>
                     <div id="createTaskBTN_area"><button class="btn" id="createTaskBTN"
-                            onclick="showAddTaskOverlay()">Add Task</button></div>
+                            onclick="testRenderNewTask()">Add Task</button></div>
                 </div>
             </div>
 
-            <!-- <div class="editTask d-none" id="editTask"></div> -->
+            <div class="newTask d-none" id="newTask"></div>
             <div class="cols" id="cols">
 
                 <div class="col">
                     <div class="headline">
-                        <h3>To do</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                        <h3>To do</h3><img src="assets/img/plusbutton.svg" onclick="testRenderNewTask()" alt="">
                     </div>
                     <div class="col" id="todo" ondrop="setStatus('todo')" ondragover="allowDrop(event)"></div>
                 </div>
