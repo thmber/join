@@ -520,3 +520,12 @@ function changeButtonOnclick() {
 function hideMissingText(field){
   document.getElementById(`${field}`).classList.add('d-none');
 }
+
+
+function resetMissingText(){
+document.getElementById('missingTitle').classList.add('d-none');
+document.getElementById('missingDescription').classList.add('d-none');
+document.getElementById('missingCategory').classList.add('d-none');
+document.getElementById('missingColorspot').classList.add('d-none');
+document.getElementById('missingPrio').classList.add('d-none');
+}
