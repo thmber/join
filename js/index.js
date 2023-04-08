@@ -2,7 +2,8 @@ let newUser;
 let activeUser = [];
 let users = [];
 
-function signUp(){
+
+async function signUp(){
     let newName = document.getElementById('signup-name').value;
     let newNamesplitted = newName.split(' ');
     let newFirstname = newNamesplitted[0];
@@ -14,9 +15,9 @@ function signUp(){
                 'email': newMail, 
                 'password': newPassword, 
                 'remember': false};
-    users.push(newUser)
     activeUser = newUser;
-    saveUser(newUser);
+    users.push(newUser)
+    await saveUser(newUser);
 }
 
 
@@ -28,14 +29,32 @@ function login(){
 
 
 function guestLogin(){
-    
+    let guest = {'firstname': 'Guest', 
+    'lastname': '', 
+    'email': 'guest-login@join.com', 
+    'password': 12345, 
+    'remember': false};
+    let inputmail = document.getElementById('login-input-email');
+    inputmail.value = guest['firstname'];
+    let inputpass = document.getElementById('login-input-password');
+    inputpass.value = guest['password']
+    setTimeout(() => {
+        setActiveUser(guest);
+    }, 300);
 }
 
+
+async function setActiveUser(user){
+    activeUser = user;
+    await backend.setItem('activeUser', JSON.stringify(activeUser));
+    window.location.href = 'summary.html'
+
+}
 
 async function saveUser(){
     await backend.setItem('activeUser', JSON.stringify(activeUser));
     await backend.setItem('users', JSON.stringify(users));
-    window.location.href = 'summary.html'
+    window.location.href = 'summary.html';
 }
 
 
@@ -100,11 +119,11 @@ function showLogin(){
                 </div>
                 <form onsubmit="login()" class="login-form">
                     <div class="login-box">
-                        <input type="email" required minlength="5" placeholder="Email">
+                        <input type="email" required minlength="5" placeholder="Email" id="login-input-email">
                         <img src="assets/img/icon-email.svg" alt="">
                     </div>
                     <div class="login-box">
-                        <input type="password" required minlength="5" placeholder="Password">
+                        <input type="password" required minlength="5" placeholder="Password" id="login-input-password">
                         <img src="assets/img/icon-password.svg" alt="">
                     </div>
                     <div class="remember-forgot-box">
