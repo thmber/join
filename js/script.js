@@ -9,6 +9,10 @@ async function init() {
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     categories = JSON.parse(backend.getItem('categories')) || [];
+    users = JSON.parse(backend.getItem('users')) || [];
+    activeUser = JSON.parse(backend.getItem('activeUser')) || [];
+
+
 }
 
 /**

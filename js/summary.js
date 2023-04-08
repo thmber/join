@@ -162,7 +162,7 @@ function generateSummaryHTML(){
             </div>
             <div class="greeting-box">
                 <span class="greeting" id="greeting">${allCounts[5]}</span>
-                <span class="greeting-user" id="greeting-user">${activeUser['firstname']}  ${activeUser['lastname']}</span>
+                <span class="greeting-user" id="greeting-user">${activeUser['firstname']}<br>${activeUser['lastname']}</span>
             </div>
         </div>
 

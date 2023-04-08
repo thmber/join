@@ -1,5 +1,6 @@
 let newUser;
-let activeUser = {};
+let activeUser = [];
+let users = [];
 
 function signUp(){
     let newName = document.getElementById('signup-name').value;
@@ -26,7 +27,13 @@ function login(){
 }
 
 
+function guestLogin(){
+    
+}
+
+
 async function saveUser(){
+    await backend.setItem('activeUser', JSON.stringify(activeUser));
     await backend.setItem('users', JSON.stringify(users));
     window.location.href = 'summary.html'
 }
@@ -109,7 +116,7 @@ function showLogin(){
                     </div>
                     <div class="login-and-guest">
                         <input type="submit" value="Log in" class="input-submit">
-                        <a class="guest-login" href="summary.html">Guest Log in</a>
+                        <div class="guest-login" onclick="guestLogin()">Guest Log in</div>
                     </div>
                 </form>
             </div>
