@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -5,7 +6,6 @@ body {
 }
 ::-webkit-scrollbar {
     width: 1px;
-
 }
 .d-none{
     display: none;
@@ -13,7 +13,6 @@ body {
 input{
     font-family: 'Poppins', sans-serif;
 }
-
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px white;
     border-radius: 10px;
@@ -37,13 +36,11 @@ input{
     background-color: rgb(41, 54, 70);
     z-index: -1;
 }
-
 .contact-container {
     display: flex;
     margin-top: 90px;
     margin-left: 232px;
 }
-
 .contact-main-box {
     background-color: rgb(247, 247, 247);
     height: 100vh;
@@ -51,7 +48,6 @@ input{
     overflow: hidden;
     box-shadow: 4px 4px 6px 6px rgba(0, 0, 0, 0.1);
 }
-
 .contact-list-box {
     display: flex;
     flex-direction: column;
@@ -63,7 +59,6 @@ input{
     gap: 20px;
     overflow-y: auto;
 }
-
 .contact-card {
     display: flex;
     align-items: center;
@@ -149,42 +144,6 @@ input{
     align-items: center;
     justify-content: center;
 }
-.bg0{
-    background-color: lightgray;
-}
-
-.bg1 {
-    background-color: #f99090;
-}
-
-.bg2 {
-    background-color: #ff1717;
- }
-
-.bg3 {
-    background-color: #fac66e;
-}
-
-.bg4 {
-    background-color: #845400;
-}
-
-.bg5 {
-    background-color: #b6fa81;
-}
-
-.bg6 {
-    background-color: #07ab1d;
-}
-
-.bg7 {
-    background-color: #81adfd;
-}
-
-.bg8 {
-    background-color: #0048cd;
-}
-
 .contact-main-name {
     display: flex;
     margin-top: 40px;
@@ -192,7 +151,6 @@ input{
     align-items: center;
     height: 100px;
 }
-
 .contact-circle-big {
     height: 94px;
     width: 94px;
@@ -203,25 +161,20 @@ input{
     justify-content: center;
     font-size: 40px;
     border: 2px solid white;
-    
 }
-
 .contact-circle-big img{
     width: 31px;
-    height: 42px;
-    
+    height: 42px;   
 }
 .name-add-task {
     display: flex;
     flex-direction: column;
     margin-left: 40px;
 }
-
 .name-main {
     font-size: 40px;
     color: rgb(41, 54, 70);
 }
-
 .add-task-main {
     font-size: 16px;
     color: rgb(11, 173, 221);
@@ -371,7 +324,6 @@ input{
         transform: translate(0, 35px) scale(1);
     }
 }
-
 .new-contact-right{
     width: 450px;
     height: 100%;
@@ -390,7 +342,6 @@ input{
     height: 100%;
     width: 100%;
 }
-
 .input-form-new-contact{
     display: flex;
     align-items: center;
@@ -410,7 +361,6 @@ input{
 .contact-new-inputs{
     position: relative;
 }
-
 .contact-new-inputs input:focus{
      outline: none;
 }
@@ -421,8 +371,6 @@ input{
     border: none;
     font-size: 16px;
     width: 200px;
-    
-
 }
 .contact-new-inputs button{
     height: 40px;
@@ -438,7 +386,6 @@ input{
 .contact-new-inputs button img{
     width: 10px;
     height: 10px;
-    
 }
 .contact-new-cancel{
     border: 2px solid rgb(41, 54, 70);
@@ -493,7 +440,6 @@ input{
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 /* ################################## for mobiles ############## */
 

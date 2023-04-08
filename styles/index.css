@@ -117,7 +117,7 @@ body {
     font-weight: 400;
 }
 
-.not-user-head button {
+.not-user-head button, .input-submit{
     background-color: rgb(41, 54, 70);
     border: none;
     border-radius: 10px;
@@ -130,7 +130,7 @@ body {
     cursor: pointer;
 }
 
-.not-user-head button:hover {
+.not-user-head button:hover, .input-submit:hover{
     background-color: rgba(11, 173, 221, 1);
 }
 
@@ -229,7 +229,7 @@ body {
     justify-content: space-evenly;
     margin-bottom: 30px;
 }
-.login-and-guest a{
+.guest-login{
     color:rgb(41, 54, 70);
     border: 1px solid rgb(41, 54, 70);
     font-weight: 600;
@@ -242,8 +242,9 @@ body {
     width: 120px;
     height: 38px;
     text-decoration: none;
+    cursor: pointer;
 }
- .login-and-guest a:hover{
+ .guest-login:hover{
     color: var(--lightblue);
     border: 1px solid var(--lightblue);
  }

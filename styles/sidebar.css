@@ -11,7 +11,7 @@
     top: 0;
     height: 100vh;
     width: 232px;
-    z-index: 2;
+    z-index: 11;
 }
 .menuBox {
     box-sizing: border-box;

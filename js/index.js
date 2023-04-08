@@ -1,7 +1,9 @@
+let newUser;
+let activeUser = [];
 let users = [];
-let newUser
 
-function signUp(){
+
+async function signUp(){
     let newName = document.getElementById('signup-name').value;
     let newNamesplitted = newName.split(' ');
     let newFirstname = newNamesplitted[0];
@@ -11,19 +13,49 @@ function signUp(){
     newUser = {'firstname': newFirstname, 
                 'lastname': newLastname, 
                 'email': newMail, 
-                'password': newPassword};
-    saveUser();
+                'password': newPassword, 
+                'remember': false};
+    activeUser = newUser;
+    users.push(newUser)
+    await saveUser(newUser);
+}
+
+
+
+
+function login(){
 
 }
 
 
-function saveUser(){
-    users.push(newUser);
-    
+function guestLogin(){
+    let guest = {'firstname': 'Guest', 
+    'lastname': '', 
+    'email': 'guest-login@join.com', 
+    'password': 12345, 
+    'remember': false};
+    let inputmail = document.getElementById('login-input-email');
+    inputmail.value = guest['firstname'];
+    let inputpass = document.getElementById('login-input-password');
+    inputpass.value = guest['password']
+    setTimeout(() => {
+        setActiveUser(guest);
+    }, 300);
+}
 
+
+async function setActiveUser(user){
+    activeUser = user;
+    await backend.setItem('activeUser', JSON.stringify(activeUser));
+    window.location.href = 'summary.html'
 
 }
 
+async function saveUser(){
+    await backend.setItem('activeUser', JSON.stringify(activeUser));
+    await backend.setItem('users', JSON.stringify(users));
+    window.location.href = 'summary.html';
+}
 
 
 function showSignUp(){
@@ -47,11 +79,12 @@ function showSignUp(){
                 <img src="assets/img/icon-password.svg" alt="">
             </div>
             <div class="login-and-guest">
-                <input type="submit" value="Save" class="signup-save">
+                <input type="submit" value="Sign up" class="signup-save">
             </div>
         </form>
     `;
 }
+
 
 function showForgotPassword(){
     let loginBox = document.getElementById('log-in-content');
@@ -62,7 +95,7 @@ function showForgotPassword(){
         </div>
         <div class="worry-not">
                  <span>Don't worry! 
-                    We will send you and email with the instructions to reset your password.</span>
+                    We will send you an email with the instructions to reset your password.</span>
             </div>
         <form onsubmit="login()" class="login-form">
             <div class="login-box">
@@ -86,11 +119,11 @@ function showLogin(){
                 </div>
                 <form onsubmit="login()" class="login-form">
                     <div class="login-box">
-                        <input type="email" required minlength="5" placeholder="Email">
+                        <input type="email" required minlength="5" placeholder="Email" id="login-input-email">
                         <img src="assets/img/icon-email.svg" alt="">
                     </div>
                     <div class="login-box">
-                        <input type="password" required minlength="5" placeholder="Password">
+                        <input type="password" required minlength="5" placeholder="Password" id="login-input-password">
                         <img src="assets/img/icon-password.svg" alt="">
                     </div>
                     <div class="remember-forgot-box">
@@ -101,14 +134,12 @@ function showLogin(){
                         <a onclick="showForgotPassword()">Forgot my password</a>
                     </div>
                     <div class="login-and-guest">
-                        <button class="login">Log in</button>
-                        <a class="guest-login" href="summary.html">Guest Log in</a>
+                        <input type="submit" value="Log in" class="input-submit">
+                        <div class="guest-login" onclick="guestLogin()">Guest Log in</div>
                     </div>
                 </form>
             </div>
-            <div class="forgot-container d-none" id="forgot-container">
-                
+            <div class="forgot-container d-none" id="forgot-container">   
             </div>
     `;
-
 }

@@ -4,11 +4,15 @@
  * fetches the JSON from backend and put it in the arrays tasks, contacts, categories
  */
 async function init() {
-    setURL('https://julia-georgiew.developerakademie.net/joingroup/smallest_backend_ever');
+    setURL('https://gruppe-5008.developerakademie.net/smallest_backend_ever');
     await downloadFromServer();
     tasks = JSON.parse(backend.getItem('tasks')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     categories = JSON.parse(backend.getItem('categories')) || [];
+    users = JSON.parse(backend.getItem('users')) || [];
+    activeUser = JSON.parse(backend.getItem('activeUser')) || [];
+
+
 }
 
 /**
@@ -28,5 +32,16 @@ async function includeHTML(element) {
     }
     document.getElementById(`sidebar-${element}`).style.backgroundColor = "#091931";
 }
+let logOutShown = false;
 
-
+function showLogout(){
+    let button = document.getElementById('logout-button');
+    if (logOutShown == false) {
+        button.style.display = "unset";
+        logOutShown = true;
+    }
+    else{
+        button.style.display = "none";
+        logOutShown = false;
+    }
+}
