@@ -466,6 +466,8 @@ justify-content: space-between;
 #clickMe {
     cursor: pointer;
 }
+
+
 @keyframes newcontact {
     0% {
         transform: translate (500%, -50%);
@@ -583,6 +585,11 @@ justify-content: space-between;
         top: 50px;
         border-radius: 0;
        bottom: 100px;
+    }
+
+    #headline {
+        display: flex !important;
+        justify-content: flex-start;
     }
 }
 
