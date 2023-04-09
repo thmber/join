@@ -65,20 +65,20 @@
 
                 <div class="col">
                     <div class="headline">
-                        <h3>To do</h3><img src="assets/img/plusbutton.svg" onclick="testRenderNewTask()" alt="">
+                        <h3>To do</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask()" alt="">
                     </div>
                     <div class="col" id="todo" ondrop="setStatus('todo')" ondragover="allowDrop(event)"></div>
                 </div>
                 <div class="col">
                     <div class="headline">
-                        <h3>In Progress</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                        <h3>In Progress</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask()" alt="">
                     </div>
                     <div class="col" id="inProgress" ondrop="setStatus('inProgress')" ondragover="allowDrop(event)">
                     </div>
                 </div>
                 <div class="col">
                     <div class="headline">
-                        <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()"
+                        <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask()"
                             alt="">
                     </div>
                     <div class="col" id="awaitingFeedback" ondrop="setStatus('awaitingFeedback')"
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col">
                     <div class="headline">
-                        <h3>Done</h3><img src="assets/img/plusbutton.svg" onclick="showAddTaskOverlay()" alt="">
+                        <h3>Done</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask()" alt="">
                     </div>
                     <div class="col" id="done" ondrop="setStatus('done')" ondragover="allowDrop(event)"></div>
                 </div>
@@ -96,6 +96,7 @@
 
         <div w3-include-html="templates/add_task_form.html" class="containerTasks overlay d-none" id="addTaskForm">
         </div>
+        <div id="infoText" class="d-none"><span>Task added to board</span><img src="assets/img/board_icon.svg"></div>
 
 
 </body>

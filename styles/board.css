@@ -37,6 +37,7 @@ justify-content: space-between;
 }
 
 .box {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -462,6 +463,9 @@ justify-content: space-between;
     display: flex;
 }
 
+#clickMe {
+    cursor: pointer;
+}
 @keyframes newcontact {
     0% {
         transform: translate (500%, -50%);

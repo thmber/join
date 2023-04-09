@@ -27,7 +27,7 @@ let priorities = [{
 
 
 function addTask() {
-
+ 
   // let assignedTo = getAssignedToUser();
   let title = document.getElementById('title');
   let description = document.getElementById('description');
@@ -54,8 +54,16 @@ function addTask() {
     }
    tasks.push(task);
 saveTasks();
-  //  clearAddTask();
-  }
+  flyingInfo();
+goToBoard();
+   }
+}
+
+
+function goToBoard(){
+  setTimeout(() => {
+    document.location = "../board.html"
+   }, 3000);
 }
 
 function resetOverlay(){
@@ -567,4 +575,9 @@ function showTheJustChosenContacts(theContacts){
     document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[theContacts[j]].color}" >${contacts[theContacts[j]].initials}</div>`;
 }
 
+}
+
+function flyingInfo(){
+  document.getElementById('infoText').classList.remove('d-none');
+  document.getElementById('infoText').classList.add('infoText')
 }
