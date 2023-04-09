@@ -1,6 +1,7 @@
 
 
 let tasks = [];
+let chosenContacts = [];
 let more = true;
 let prio;
 let subtasks_namen = [];
@@ -51,17 +52,16 @@ function addTask() {
       'category': category.textContent,
       'subtasks': getSubtasks()
     }
-   
+   tasks.push(task);
+saveTasks();
+  //  clearAddTask();
+  }
+}
 
+function resetOverlay(){
 if(!document.getElementById('makeBgDarker').classList.contains('d-none')) {
     document.getElementById('makeBgDarker').classList.add('d-none');
 }
-console.log(!document.getElementById('makeBgDarker').classList.contains('d-none'));
-console.log('na?');
-tasks.push(task);
-saveTasks();
-    // clearAddTask();
-  }
 }
 
 function checkInput(title, description, category, prio) {
@@ -331,13 +331,11 @@ function renderContactsAssignToHTML(index, element) {
   return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
-  <input type="checkbox" onchange="showTheJustChosenContacts(${index})" name="assignedTo" value="${element.id}" id="user${index}" >
+  <input type="checkbox" onchange="chooseTheContact(${index})" name="assignedTo" value="${element.id}" id="user${index}" >
 </div>`;
 }
 
-function showTheJustChosenContacts(index){
-  let chosenID = contacts[index].assignTo
-}
+
 
 function renderContactsAssignBoard(i) {
   document.getElementById('optionsUser').innerHTML = ``;
@@ -354,7 +352,7 @@ function renderContactsAssignBoardHTML(index, element) {
   return `
   <div class="checkbox">
   <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
-  <input type="checkbox" name="assignedTo" value="${element[index].id}" id="user${index}" ${element[index].check}>
+  <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
 </div>`;
 }
 
@@ -523,12 +521,12 @@ function resetUnselectedButtons(id) {
 }
 
 
-function clearAddTask() {
-  document.getElementById('title').value = ``;
-  document.getElementById('description').value = ``;
-  document.getElementById('selectedCategory').value = ``;
-  document.getElementById('selected').value = ``;
-}
+// function clearAddTask() {
+//   document.getElementById('title').value = ``;
+//   document.getElementById('description').value = ``;
+//   document.getElementById('selectedCategory').value = ``;
+//   document.getElementById('selected').value = ``;
+// }
 
 
 function changeButtonOnclick() {
@@ -547,4 +545,26 @@ document.getElementById('missingDescription').classList.add('d-none');
 document.getElementById('missingCategory').classList.add('d-none');
 document.getElementById('missingColorspot').classList.add('d-none');
 document.getElementById('missingPrio').classList.add('d-none');
+}
+
+function chooseTheContact(index){
+
+ 
+  let chosenContact = index;
+  let id = chosenContacts.indexOf(index);
+ if ( id == -1 ) {chosenContacts.push(chosenContact);}
+ else {
+  chosenContacts.splice(id, 1);
+ }
+  console.log(chosenContacts);
+  showTheJustChosenContacts(chosenContacts);
+}
+
+function showTheJustChosenContacts(theContacts){
+  document.getElementById(`showAssignedPeople`).innerHTML = ``;
+  for (let j = 0; j < theContacts.length; j++) {
+    
+    document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[theContacts[j]].color}" >${contacts[theContacts[j]].initials}</div>`;
+}
+
 }

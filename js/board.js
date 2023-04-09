@@ -231,6 +231,8 @@ function closeTask() {
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.add('d-none');
     showTasksOnBoard();
+    currentOpenTask = -1;
+    chosenContacts = [];
 
 
     //  renderContactsOnBoard(currentOpenTask, tasks[currentOpenTask])
@@ -466,8 +468,14 @@ function filterTheAssignedPeople(i){
     document.getElementById(`showAssignedPeople`).innerHTML = ``;
     let some = [];
        some = tasks[i].assignedTo.filter(x => x.check == 'checked');
+       console.log(some);
     for (let j = 0; j < some.length; j++) {
         const element = some[j];
         document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
     }
+
+    some.forEach(element => {
+        chosenContacts.push(+element.id);
+    });
+    // chosenContacts = some.id;
    }
