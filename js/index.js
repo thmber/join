@@ -25,21 +25,11 @@ async function signUp(){
 
 
 
-
-
 async function deleteUsers(){
     users = [];
     await backend.setItem('users', JSON.stringify(users));
-
-
 }
 
-
-function saveTest(){
-    let userID = 0;
-    let userIDasText = JSON.stringify(userID);
-    localStorage.setItem('rememberedUserID', userIDasText);
-}
 
 
 function loadRememberedUser(){

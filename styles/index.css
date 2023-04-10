@@ -344,7 +344,7 @@ body {
         position: unset;
         margin-bottom: 10px;
     }
-    .logo-box{
+    .logo-box, .logo-box-without{
         width: 50px;
     }
     .login-box{
