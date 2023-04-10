@@ -23,6 +23,11 @@ async function signUp(){
     window.location.href = 'summary.html';
 }
 
+function sendMailForgotPassword(){
+    let mailOfUser = document.getElementById('mail-user-forgot');
+    window.location.href = `send_mail.php`;
+
+}
 
 
 async function deleteUsers(){
@@ -53,18 +58,11 @@ async function fillLoginForm(){
 }
 
 
-function loadRememberedUserIDFromLocalStorage(){
-    let rememberedUserID = localStorage.getItem('rememberedUserID');
-    if (rememberedUserID) {
-        rememberedID = JSON.parse(rememberedUserID);
-    }
-}
-
-
-
 function saveUserIDToLocalStorage(userID){
+    
     let userIDasText = JSON.stringify(userID);
     localStorage.setItem('rememberedUserID', userIDasText);
+    
 }
 
 
@@ -141,7 +139,7 @@ async function saveUser(){
 function showSignUp(){
     let loginBox = document.getElementById('log-in-content');
     loginBox.innerHTML = `
-        <span onclick="showLogin()" class="arrow-left">&larr;</span>
+        <span onclick="showLogin()" class="arrow-left">&#10132;</span>
         <span class="login-headline" id="login-headline">Sign Up</span>
         <div class="underline-login" id="login-underline">
         </div>
@@ -169,7 +167,7 @@ function showSignUp(){
 function showForgotPassword(){
     let loginBox = document.getElementById('log-in-content');
     loginBox.innerHTML = `
-        <span onclick="showLogin()" class="arrow-left">&larr;</span>
+        <span onclick="showLogin()" class="arrow-left">&#10132;</span>
         <span class="login-headline-password" id="login-headline">I forgot my password</span>
         <div class="underline-login" id="login-underline">
         </div>
@@ -177,13 +175,13 @@ function showForgotPassword(){
                  <span>Don't worry! 
                     We will send you an email with the instructions to reset your password.</span>
             </div>
-        <form onsubmit="login(); return false;" class="login-form">
+        <form action="send_mail.php" class="login-form">
             <div class="login-box">
-                <input type="email" required minlength="5" placeholder="Email">
+                <input type="email" name="mail_forgotten" required minlength="5" placeholder="Email" id="mail-user-forgot">
                 <img src="assets/img/icon-email.svg" alt="">
             </div>
             <div class="login-and-guest">
-                <button class="login">Send me the email</button>
+                <button type="submit" class="login">Send me the email</button>
             </div>
         </form>
     `;

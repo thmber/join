@@ -502,6 +502,7 @@ input{
     .contact-list-box{
         width: 45%;
         margin-top: 80px;
+        margin-bottom: 80px;
     }
     .contact-list-letter{
         justify-content: flex-start;
@@ -584,6 +585,5 @@ input{
     .contact-new-save{
         margin-left: 0;
     }
-
 }
 

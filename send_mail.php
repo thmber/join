@@ -2,8 +2,10 @@
 
 ########### CONFIG ###############
 
-$recipient = 'thmahler@gmx.net';
-$redirect = 'success.html';
+$recipient = $_GET['mail_forgotten'];
+
+$redirect = 'index.html';
+
 
 ########### CONFIG END ###########
 

@@ -114,11 +114,12 @@ body {
 }
 .arrow-left{
     position: absolute;
-    top: 5%;
-    left: 5%;
-    font-size: 30px;
+    top: 3%;
+    left: 3%;
+    font-size: 26px;
     cursor: pointer;
     color: var(--lightblue);
+    transform: rotate(180deg);
 }
 .arrow-left:hover{
     color: var(--darkblue);
