@@ -40,10 +40,6 @@ function showTasksOnBoard() {
 }
 
 
-
-
-
-
 function renderBgCategory(index) {
     let count = getTheRightBgColor(tasks[index].category);
     let bgColor = categories[count].categoryColor;
@@ -83,13 +79,19 @@ function countTrue(i) {
 function renderContactsOnBoard(i, element) {
     document.getElementById(`assignToBoard${i}`).innerHTML = ``;
     let some = [];
-    // for (let index = 0; index < element.assignedTo.length; index++) {
     some = element.assignedTo.filter(x => x.check == 'checked');
-    // }
-    for (let j = 0; j < some.length; j++) {
+    let contactsLeft;
+    let countIt = some.length
+    if (some.length > 3) {
+        contactsLeft = (some.length - 2);
+        countIt = 2
+    }
+    for (let j = 0; j < countIt; j++) {
         const element = some[j];
         document.getElementById(`assignToBoard${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
+
     }
+    if (contactsLeft > 0) document.getElementById(`assignToBoard${i}`).innerHTML += `<div class="bigNameCircle bgDark" >+${contactsLeft}</div>`;
 }
 
 
@@ -126,12 +128,6 @@ function getTheRightTask(objID) {
     return whatINeed;
 }
 
-// function getTheRightContact(objID) {
-//     let searchFor = objID;
-//     let whatINeed = contacts.findIndex(obj => obj.id == searchFor);
-//     return whatINeed;
-// }
-
 function getTheAssignedContacts(objID) {
     let searchFor = objID;
     let whatINeed = contacts.findIndex(obj => obj.id == searchFor);
@@ -158,7 +154,7 @@ function showTask(index) {
     <div class="fullUseOfSpaceTop">
             <div class="overlayOneRow">
                 <div class="overlayCategory" id="categoryBgColorShowTask${index}">${element.category}</div>
-                <div id="closeTask" onclick="closeTask()">&#10005;</div>
+                <div id="closeTask" onclick="closeTask()">&#8592;</div>
             </div>
             <div class="overlayTitle">${element.title}</div>
             <div class="overlayDescription">${element.description}</div>
@@ -185,19 +181,16 @@ function showEditTask(i) {
     document.getElementById('divider').classList.add('d-none');
     document.getElementById('mainAddTask').classList.remove('d-flex');
     document.getElementById('addTaskForm').classList.remove('containerTasks');
-    // document.getElementById('addTaskForm').classList.remove('overlay');
     document.getElementById('addTaskForm').classList.add('overlayEdit');
     document.getElementById('BTN-save').classList.remove('d-none');
     document.getElementById('totalInput').style = `display: block`;
     document.getElementById('inputUnit').classList.add('d-none');
     document.getElementById('see').classList.add('d-none');
-     createSaveButton(i);
-     loadTheTaskContent(i);
-    //  renderContactsAssignBoard(i);
-    // toggleOptionsContactsAssignTo(i);
+    createSaveButton(i);
+    loadTheTaskContent(i);
     renderContactsAssignBoard(i);
     filterTheAssignedPeople(i);
-     setToggleID(i);
+    setToggleID(i);
     renderSubtasks(i);
     readPrio(i);
 
@@ -233,9 +226,6 @@ function closeTask() {
     showTasksOnBoard();
     currentOpenTask = -1;
     chosenContacts = [];
-
-
-    //  renderContactsOnBoard(currentOpenTask, tasks[currentOpenTask])
 }
 
 function showAssigned(element) {
@@ -243,7 +233,6 @@ function showAssigned(element) {
     for (let index = 0; index < element.assignedTo.length; index++) {
 
         if (element.assignedTo[index].check == "checked") {
-            // let id = element.assignedTo[index];
             document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${contacts[index].color}">${contacts[index].initials}</div> <div>${contacts[index].firstname} ${contacts[index].lastname}</div></div>`;
         }
     }
@@ -251,23 +240,19 @@ function showAssigned(element) {
 
 
 function loadTheTaskContent(i) {
-
     title.value = tasks[i].title;
     description.value = tasks[i].description;
     selectedCategory.textContent = tasks[i].category;
     document.getElementById('dueDate').value = tasks[i].duedate;
     prio = tasks[i].priority;
     subtasks = tasks[i].subtasks;
-    
+
 }
 
 
 function saveExistingTask(i) {
-    // let assignedTo = getAssignedToUser();
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-    // let category = document.getElementById('selectedCategory');
-    // let duedate = document.getElementById('dueDate');
     let task = {
         'id': i,
         'status': tasks[i].status,
@@ -281,7 +266,6 @@ function saveExistingTask(i) {
     }
     tasks[i] = task;
     saveTasks();
-    
     document.getElementById('addTaskForm').classList.add('d-none');
     showTask(i)
     clearInputFields(title, description, dueDate);
@@ -340,11 +324,10 @@ function readPrio(i) {
 
 function closeIt() {
     document.getElementById('makeBgDarker').classList.add('d-none');
-    
+
     document.getElementById('newTask').classList.add('d-none');
-     
+
     resetMissingText();
-    // subtasks_namen = [];
     document.getElementById('newTask').innerHTML = ``;
 }
 
@@ -406,11 +389,9 @@ function renderSubtasks(i) {
 
 
 function showAddTaskOverlay() {
-    // document.getElementById('mainAddTask').innerHTML = ``;
-    showDarkOverlay();
+     showDarkOverlay();
     document.getElementById('addTaskForm').classList.remove('d-none');
-//    renderTheContacts(); 
-}
+   }
 
 function closeItToo() {
     document.getElementById('flyingAddTask').classList.add('d-none');
@@ -426,7 +407,7 @@ function filterTasks() {
     let search = document.getElementById('search').value;
     search = search.toLowerCase();
 
-    
+
     let regex = new RegExp(search);
     let content = document.getElementById('cols');
     let boxes = content.querySelectorAll('.box');
@@ -444,31 +425,20 @@ function filterTasks() {
 }
 
 
-// window.addEventListener("resize", function () {  
-
-//     if (this.window.matchMedia("(max-width: 500px)").matches) {
-//           this.document.getElementById('createTaskBTN_area').innerHTML = `<img src="assets/img/addTaskMobile.svg" onclick="showAddTaskOverlay()">`;
-//     }
-
-//     else {
-//         this.document.getElementById('createTaskBTN_area').innerHTML = `<button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button>`;
-//     }
-// })
-
-function testRenderNewTask(){
+function testRenderNewTask() {
     showDarkOverlay();
     document.getElementById('newTask').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
     document.getElementById('newTask').innerHTML += testRenderNewTaskHTML();
-     renderTheContacts();
+    renderTheContacts();
 }
 
 
-function filterTheAssignedPeople(i){
+function filterTheAssignedPeople(i) {
     document.getElementById(`showAssignedPeople`).innerHTML = ``;
     let some = [];
-       some = tasks[i].assignedTo.filter(x => x.check == 'checked');
-       console.log(some);
+    some = tasks[i].assignedTo.filter(x => x.check == 'checked');
+    console.log(some);
     for (let j = 0; j < some.length; j++) {
         const element = some[j];
         document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
@@ -477,5 +447,4 @@ function filterTheAssignedPeople(i){
     some.forEach(element => {
         chosenContacts.push(+element.id);
     });
-    // chosenContacts = some.id;
    }

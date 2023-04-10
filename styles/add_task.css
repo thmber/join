@@ -186,7 +186,7 @@ input {
   padding: 10px;
   border-radius: 8px;
   height: 40px;
-  width: 150px;
+  /* width: 150px; */
 }
 
 #createTaskBTN_task:hover {
@@ -506,7 +506,7 @@ input {
     margin-bottom: 0px;
   }
 
-  .btn {
+  /* .btn {
     display: none;
-  }
+  } */
 }

@@ -17,7 +17,7 @@ function showTasksOnBoardHTML(index, element) {
         <div class="description">${element.description}</div>
 <div id="progressField${index}"></div>
     <div class="oneRow">
-        <div id="assignToBoard${index}" class="assignTo">hgjhghjg</div>
+        <div id="assignToBoard${index}" class="assignTo"></div>
         <img src="assets/img/${element.priority}.svg">
 </div>` ;
 }
