@@ -644,7 +644,7 @@ h1 {
     .cols {
         flex-direction: column;
         align-items: center;
-       
+       margin-bottom: 80px;
     }
 
     .main {
