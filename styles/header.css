@@ -35,6 +35,9 @@
     justify-content: space-between;
     margin-right: 5%;
 }
+.header_right img{
+    cursor: pointer;
+}
 .log-out-button{
     position: absolute;
     background-color:  rgb(41, 54, 70);
