@@ -489,6 +489,17 @@ input{
     margin-left: 15px;
    }
 }
+@media (max-width: 950px){
+    .contact-information-box{
+        gap: 15px;
+        flex-direction: column;
+        margin-top: 15px;
+    }
+    .edit-contact-box{
+        margin-left: 0;
+    }
+}
+
 @media (max-width: 900px){
     .test{
         display: none;
@@ -497,14 +508,6 @@ input{
         margin: 0;
         justify-content: center;
         width: 100%;
-    }
-    .contact-information-box{
-        gap: 15px;
-        flex-direction: column;
-        margin-top: 15px;
-    }
-    .edit-contact-box{
-        margin-left: 0;
     }
     .contact-main-box{
         width: 55%;

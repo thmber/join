@@ -460,5 +460,8 @@ textarea{
     .container{
         height: unset;
     }
+    .card{
+        width: 100%;
+    }
 }   
 
