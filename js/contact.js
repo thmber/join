@@ -325,3 +325,19 @@ function backToContactListMobile(){
     document.getElementById('contact-list-content').style.display = "flex";
     document.getElementById('contact-main-box').style.display = "none";
 }
+
+
+window.addEventListener("resize", backToNotMobile);
+
+
+function backToNotMobile() {
+    if (window.innerWidth > 750) {
+        this.document.getElementById('contact-list-content').style.display = "flex";
+         this.document.getElementById('contact-main-box').style.display = "flex";
+    }
+    else{
+        document.getElementById('contact-list-content').style.display = "flex";
+        document.getElementById('contact-main-box').style.display = "none";
+    }
+}
+

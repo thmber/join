@@ -121,7 +121,7 @@ input{
 }
 
 .contact-headline {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 600;
     color: rgb(41, 54, 70);
 
@@ -487,9 +487,6 @@ input{
    }
    .name-add-task{
     margin-left: 15px;
-   }
-   .contact-headline{
-    font-size: 50px;
    }
 }
 @media (max-width: 900px){
