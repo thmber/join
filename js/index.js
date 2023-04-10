@@ -1,7 +1,9 @@
 let newUser;
 let activeUser = [];
 let users = [];
-
+let userExists = false;
+let rememberedID;
+loadRememberedUser();
 
 async function signUp(){
     let newName = document.getElementById('signup-name').value;
@@ -13,18 +15,107 @@ async function signUp(){
     newUser = {'firstname': newFirstname, 
                 'lastname': newLastname, 
                 'email': newMail, 
-                'password': newPassword, 
-                'remember': false};
+                'password': newPassword,
+                'id': users.length};
     activeUser = newUser;
     users.push(newUser)
     await saveUser(newUser);
+    window.location.href = 'summary.html';
 }
 
 
 
 
-function login(){
 
+async function deleteUsers(){
+    users = [];
+    await backend.setItem('users', JSON.stringify(users));
+
+
+}
+
+
+function saveTest(){
+    let userID = 0;
+    let userIDasText = JSON.stringify(userID);
+    localStorage.setItem('rememberedUserID', userIDasText);
+}
+
+
+function loadRememberedUser(){
+    let rememberedUserID = localStorage.getItem('rememberedUserID');
+    if (rememberedUserID) {
+        rememberedID = JSON.parse(rememberedUserID);
+    }
+}
+
+
+async function fillLoginForm(){
+    await init();
+    if (rememberedID == undefined) {
+        return;
+    }
+    else{
+    document.getElementById('login-input-email').value = `${users[rememberedID]['email']}`;
+    document.getElementById('login-input-password').value = `${users[rememberedID]['password']}`;
+    document.getElementById('remember').checked = `true`;
+    }
+}
+
+
+function loadRememberedUserIDFromLocalStorage(){
+    let rememberedUserID = localStorage.getItem('rememberedUserID');
+    if (rememberedUserID) {
+        rememberedID = JSON.parse(rememberedUserID);
+    }
+}
+
+
+
+function saveUserIDToLocalStorage(userID){
+    let userIDasText = JSON.stringify(userID);
+    localStorage.setItem('rememberedUserID', userIDasText);
+}
+
+
+function login(){
+    checkIfUserExists();
+    if (userExists == true) {
+        saveUserIDToLocalStorage(activeUser.id)
+        setActiveUser(activeUser);
+    }
+    else{
+        document.getElementById('error-message-login').style.display = "block";
+        setTimeout(() => {
+            document.getElementById('error-message-login').style.display = "none";
+        }, 1000);
+    }
+}
+
+
+function rememberMe(){
+    let checkInput = document.getElementById('remember');
+    if (checkInput.checked == false) {
+        localStorage.clear();
+        document.getElementById('login-input-email').value = ``;
+        document.getElementById('login-input-password').value = ``;
+    } 
+}
+
+
+function checkIfUserExists(){
+    userExists = false;
+    passWordCorrect = false;
+    let inputMail = document.getElementById('login-input-email').value;
+    let inputPassword = document.getElementById('login-input-password').value
+    for (let i = 0; i < users.length; i++) {
+        let email = users[i]['email'];
+        let password = users[i]['password']
+        if (inputMail == email  && inputPassword == password) {
+            userExists = true;
+            activeUser = users[i];
+        }
+    }   
 }
 
 
@@ -54,7 +145,6 @@ async function setActiveUser(user){
 async function saveUser(){
     await backend.setItem('activeUser', JSON.stringify(activeUser));
     await backend.setItem('users', JSON.stringify(users));
-    window.location.href = 'summary.html';
 }
 
 
@@ -65,7 +155,7 @@ function showSignUp(){
         <span class="login-headline" id="login-headline">Sign Up</span>
         <div class="underline-login" id="login-underline">
         </div>
-        <form onsubmit="signUp()" class="login-form" action="#" id="signup-form">
+        <form onsubmit="signUp(); return false;" class="login-form" id="signup-form">
              <div class="login-box">
                 <input type="text" required placeholder="Name" id="signup-name">
                 <img src="assets/img/icon_person.png" alt="">
@@ -97,7 +187,7 @@ function showForgotPassword(){
                  <span>Don't worry! 
                     We will send you an email with the instructions to reset your password.</span>
             </div>
-        <form onsubmit="login()" class="login-form">
+        <form onsubmit="login(); return false;" class="login-form">
             <div class="login-box">
                 <input type="email" required minlength="5" placeholder="Email">
                 <img src="assets/img/icon-email.svg" alt="">
@@ -117,10 +207,13 @@ function showLogin(){
                 <span class="login-headline" id="login-headline">Log In</span>
                 <div class="underline-login" id="login-underline">
                 </div>
-                <form onsubmit="login()" class="login-form">
+                <form onsubmit="login(); return false;" class="login-form">
                     <div class="login-box">
                         <input type="email" required minlength="5" placeholder="Email" id="login-input-email">
                         <img src="assets/img/icon-email.svg" alt="">
+                    </div>
+                    <div class="error-message-login" id="error-message-login">
+                        email or password is incorrect
                     </div>
                     <div class="login-box">
                         <input type="password" required minlength="5" placeholder="Password" id="login-input-password">

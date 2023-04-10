@@ -212,7 +212,7 @@ body{
 }
 @media (max-width: 750px){
     .big-number{
-        font-size: 30px;
+        font-size: 36px;
     }
     .greeting-box{
         display: none;
