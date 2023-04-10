@@ -2,8 +2,7 @@
 
 ########### CONFIG ###############
 
-$recipient = $_GET['mail_forgotten'];
-
+$recipient = $_POST['mail_forgotten'];
 $redirect = 'index.html';
 
 

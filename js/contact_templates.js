@@ -23,7 +23,19 @@ function generateContactHTML(firstname, lastname, email, initiales, color, phone
 
 
 function showContact(firstname, lastname, initiales, email, color, phone, index, id) {
+    if (innerWidth < 750) {
+        document.getElementById('contact-list-content').style.display = "none";
+        document.getElementById('contact-main-box').style.display = "flex";
+    }
     document.getElementById('show-contact-content').innerHTML = `
+            <div class="contact-headline-box">
+                <span class="contact-headline">Contacts</span>
+                <span class="arrow-back-to-contact" onclick="backToContactListMobile()">&#10132;</span>
+                    <div class="vertical-and-better">
+                        <div class="contact-vertical"></div>
+                        <span class="contact-better-with">Better with a team</span>
+                    </div>
+            </div>
             <div class="contact-main-name">
                 <div class="contact-circle-big bg${color}">
                     ${initiales}
@@ -36,10 +48,10 @@ function showContact(firstname, lastname, initiales, email, color, phone, index,
             <div class="contact-information-box">
                 <span>Contact Information</span>
                 <div class="edit-contact-box" onclick="popUpEditContact('${firstname}', '${lastname}', '${email}', '${phone}', '${initiales}', ${color}, ${index})">
-                    <div class="add-new-contact-button">
+                    <div class="pen">
+                        <img src="assets/img/edit.png">
                     </div>
-                    <span class="pen">&#9998;</span>
-                    <span>Edit Contact</span>
+                    <span class="pen-text">Edit Contact</span>
                 </div>
             </div>
             <div class="mail-phone">

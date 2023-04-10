@@ -319,3 +319,9 @@ function animateCloseContact(randomcolor, initiales){
         }, 250);
     
 }
+
+
+function backToContactListMobile(){
+    document.getElementById('contact-list-content').style.display = "flex";
+    document.getElementById('contact-main-box').style.display = "none";
+}
