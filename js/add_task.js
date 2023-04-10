@@ -580,4 +580,5 @@ function showTheJustChosenContacts(theContacts){
 function flyingInfo(){
   document.getElementById('infoText').classList.remove('d-none');
   document.getElementById('infoText').classList.add('infoText')
+
 }

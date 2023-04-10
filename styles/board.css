@@ -673,5 +673,10 @@ justify-content: flex-start;
      #createTaskBTN {
         display: none;
      }
+     .infoText {
+        z-index: 20;
+        left: 30px;
+       
+      }
 }
 
