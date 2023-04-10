@@ -206,7 +206,6 @@ function toggleOptions() {
   }
   else { }
   renderCategories();
-
 }
 
 
@@ -254,11 +253,7 @@ function toggleOptionsAss() {
     document.getElementById('seeCat').classList.add('d-none')
     document.getElementById('newCateg').style.borderRadius = `8px`;
   }
-  else { }
-
-  // renderCategriesAndContacts();
-
-}
+  }
 
 
 function setToggleID(i) {
@@ -269,10 +264,6 @@ function setToggleID(i) {
 function toggleOptionsContactsAssignTo(i) {
   document.getElementById('see').classList.toggle('d-none');
   renderContactsAssignBoard(i);
-  // if (!document.getElementById('see').classList.contains('d-none')) {
-  //    document.getElementById('see').classList.add('d-none') }
-  // else { }
-  
 }
 
 
@@ -351,9 +342,7 @@ function renderContactsAssignBoard(i) {
     const element = tasks[i].assignedTo;
     document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(index, element);
   }
-  // document.getElementById('see').classList.toggle('d-none');
-  
-}
+  }
 
 
 function renderContactsAssignBoardHTML(index, element) {
@@ -431,9 +420,6 @@ function rememberColor(index) {
   colorspot = colorspots[index];
   document.getElementById(`col${index}`).classList.add('highlighted');
   resetUnselectedSpots(index);
-
-
-
 }
 
 
@@ -529,14 +515,6 @@ function resetUnselectedButtons(id) {
 }
 
 
-// function clearAddTask() {
-//   document.getElementById('title').value = ``;
-//   document.getElementById('description').value = ``;
-//   document.getElementById('selectedCategory').value = ``;
-//   document.getElementById('selected').value = ``;
-// }
-
-
 function changeButtonOnclick() {
   document.getElementById('clearBTN').onclick = `clearAddTask`;
 }
@@ -556,8 +534,6 @@ document.getElementById('missingPrio').classList.add('d-none');
 }
 
 function chooseTheContact(index){
-
- 
   let chosenContact = index;
   let id = chosenContacts.indexOf(index);
  if ( id == -1 ) {chosenContacts.push(chosenContact);}
@@ -574,8 +550,8 @@ function showTheJustChosenContacts(theContacts){
     
     document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[theContacts[j]].color}" >${contacts[theContacts[j]].initials}</div>`;
 }
-
 }
+
 
 function flyingInfo(){
   document.getElementById('infoText').classList.remove('d-none');
