@@ -444,16 +444,16 @@ function filterTasks() {
 }
 
 
-window.addEventListener("resize", function () {  
+// window.addEventListener("resize", function () {  
 
-    if (this.window.matchMedia("(max-width: 500px)").matches) {
-          this.document.getElementById('createTaskBTN_area').innerHTML = `<img src="assets/img/addTaskMobile.svg" onclick="showAddTaskOverlay()">`;
-    }
+//     if (this.window.matchMedia("(max-width: 500px)").matches) {
+//           this.document.getElementById('createTaskBTN_area').innerHTML = `<img src="assets/img/addTaskMobile.svg" onclick="showAddTaskOverlay()">`;
+//     }
 
-    else {
-        this.document.getElementById('createTaskBTN_area').innerHTML = `<button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button>`;
-    }
-})
+//     else {
+//         this.document.getElementById('createTaskBTN_area').innerHTML = `<button class="btn" id="createTaskBTN" onclick="showAddTaskOverlay()">Add Task</button>`;
+//     }
+// })
 
 function testRenderNewTask(){
     showDarkOverlay();

@@ -2,7 +2,7 @@
     /* display: flex; */
     /* height: 500px; */
     /* width: 690px; */
-    gap: 30px;
+    /* gap: 30px; */
   
 }
 
@@ -23,13 +23,13 @@ input {
 }
 .containerAddTaskLeftSide {
    /* padding-right: 15px; */
-   width: 55%;
+   width: 100%;
    /* border-right: 1px solid lightgrey; */
 }
 
 .containerAddTaskRightSide {
     /* padding-left: 15px; */
-    width: 55%
+    width: 100%
  }
  
 .inputUnit {
@@ -399,7 +399,7 @@ background-color: #0048cd;
   width: 700px;
   transform: translate(500%, -50%);
  
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   border-radius: 20px;
  
   z-index: 10;
@@ -410,12 +410,12 @@ background-color: #0048cd;
   /* position:absolute; */
   
   top: 250px;
-  height: 500px;
-  width: 700px;
+  /* height: 500px;
+  width: 700px; */
   
- 
+ padding: 10px;
   background-color: whitesmoke;
-  border-radius: 20px;
+  /* border-radius: 20px; */
  
   z-index: 10;
  
@@ -476,11 +476,28 @@ background-color: #0048cd;
     gap: 15px;
     justify-content: center;
   }
-  .containerAddTaskLeftSide {
-    width: 40%;
+  
+
+}
+
+@media (max-width: 900px){
+  .newTask {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 80px;
+    background-color: whitesmoke;
+    animation: none;
+    transform: none;
+    border-radius: 0;
   }
-  .containerAddTaskRightSide {
-    width: 40%;
+
+  .header {
+    z-index: 20;
+  }
+
+  .sideMenu {
+    z-index: 20;
   }
 
 }
@@ -489,5 +506,38 @@ background-color: #0048cd;
 @media (max-width: 630px){
   #totalInput {
     font-size: 0.8em;
+  }
+  .containerAddTaskLeftSide {
+    width: 100%;
+  }
+  .containerAddTaskRightSide {
+    width: 100%;
+  }
+
+  
+}
+
+@media (max-width: 600px){
+  .newTask {
+    flex-direction: column;
+  }
+
+  .newTaskThird {
+    flex-direction: column;
+  }
+
+  .containerAddTask {
+    margin-bottom: 80px;
+  }
+
+  #totalInput {
+    flex-direction: column;
+  }
+  .divider {
+    display: none;
+  }
+
+  h1 {
+    margin-bottom: 5px;
   }
 }

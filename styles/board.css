@@ -1,3 +1,7 @@
+body{
+    box-sizing: border-box;
+}
+
 h3 {
     font-size: 1em;
 }
@@ -5,32 +9,26 @@ h3 {
 .main {
 
     margin-top: 140px;
-    margin-left: 300px;
+    margin-left: 280px;
 
 }
 
 .contentBoard {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: inherit;
     margin: 20px;
 }
 .cols {
     display: flex;
-    padding-right: 10px;
-justify-content: space-between;
-    /* flex-wrap: wrap; */
-    width: 100%;
+  justify-content: space-between;
+   
 
 
 }
 
 .col {
     width: 250px;
-    /* min-width: 140px; */
-    /* margin-right: 15px; */
-    /* margin-left: -15px; */
-    /* max-width: 250px; */
     gap: 5px;
 
 
@@ -200,8 +198,8 @@ justify-content: space-between;
     top: 70px;
     left: 35%;
 
-    width: 500px;
-    height: 80%;
+    /* width: 500px; */
+    /* height: 80%; */
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     z-index: 50;
@@ -212,12 +210,12 @@ justify-content: space-between;
 
 .makeBgDarker {
     height: 100vh;
-    width: 100vw;
+    width: 99vw;
     top: 0;
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
 
-    z-index: 1;
+    z-index: 12;
 }
 
 .overlayCategory {
@@ -295,7 +293,7 @@ justify-content: space-between;
     box-shadow: 0px 5px 15px 3px rgba(122, 122, 122, 0.53);
     background-color: white;
     border-radius: 20px;
-    z-index: 10;
+    z-index: 15;
     justify-content: center;
 }
 
@@ -309,10 +307,10 @@ justify-content: space-between;
 
 .mainAddTask {
     position: absolute;
-    top: 50px;
+    /* top: 50px;
     left: 200px;
     right: 200px;
-    bottom: 100px;
+    bottom: 100px; */
     background-color: white;
 }
 
@@ -340,7 +338,7 @@ justify-content: space-between;
         left: 200px;
         right: 150px;
         bottom: 100px; */
-    padding: 30px;
+    padding: 20px;
     background-color: white !important;
 }
 
@@ -348,12 +346,12 @@ justify-content: space-between;
     position: absolute;
     top: 70px;
     left: 35%;
-    width: 500px;
+    /* width: 500px; */
 
-    padding: 20px 20px 20px 50px;
-    background-color: white !important;
+    /* padding: 20px 20px 20px 50px; */
+    background-color: white;
     border-radius: 20px;
-    z-index: 10;
+    z-index: 15;
 }
 
 #BTN-save {
@@ -381,7 +379,7 @@ justify-content: space-between;
 
 #totalInput {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     /* position: relative; */
 
 }
@@ -397,7 +395,7 @@ justify-content: space-between;
 .boardHeader_right {
     align-items: center;
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 
 #search {
@@ -447,16 +445,39 @@ justify-content: space-between;
     gap: 30px;
     left: 55%;
   top: 50%;
-  min-height: 500px;
-  width: 700px;
+   transform: translate(500%, -50%);
+   background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+ padding: 0 30px 5px 30px;
+  z-index: 25;
+  animation: newcontact 275ms ease-in-out forwards;
+flex-direction: column;
+}
+
+.completeNewTask {
+    position: absolute;
+    display: flex;
+    gap: 30px;
+    left: 55%;
+  top: 50%;
+
   transform: translate(500%, -50%);
  
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
  padding: 15px;
-  z-index: 10;
-  animation: newcontact 275ms ease-in-out forwards;
+  z-index: 13;
+  animation: newcontact 275ms ease-in-out forwards; 
+}
+.newTaskHeadline{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.newTaskThird {
+    display: flex;
+    gap: 15px;
 }
 
 #showAssignedPeople {
@@ -466,6 +487,14 @@ justify-content: space-between;
 #clickMe {
     cursor: pointer;
 }
+
+#mobileCreateTaskBTN {
+    display: none;
+ }
+ #createTaskBTN {
+    display: block;
+
+ }
 
 
 @keyframes newcontact {
@@ -480,6 +509,10 @@ justify-content: space-between;
 }
 
 @media (max-width: 1300px) {
+
+    .main {
+        margin-left: 250px
+    }
     .headline img {
         width: 20px;
     }
@@ -507,7 +540,7 @@ justify-content: space-between;
 
 @media (max-width: 1100px) {
     .main {
-        margin-left: 250px;
+        margin-left: 230px;
     }
 }
 
@@ -535,7 +568,9 @@ justify-content: space-between;
 }
 
 @media (max-width: 900px) {
-
+h1 {
+    padding-left: 10px;
+}
     .boardHeader {
         align-items: baseline;
         display: flex;
@@ -545,7 +580,7 @@ justify-content: space-between;
     .main {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: normal;
         
         margin-left: 0;
         margin-top: 100px;
@@ -567,10 +602,12 @@ justify-content: space-between;
 
     .overlayTask {
         left: 0;
-       width: 100vw;
-       top: 50px;
+        right:0;
+
+       /* width: 95vw; */
+       top: 80px;
        border-radius: 0;
-       bottom: 100px;
+       bottom: 80px;
        justify-content: center;
     }
 
@@ -581,15 +618,18 @@ justify-content: space-between;
 
     .overlayEdit {
         left: 0;
-        width: 100vw;
-        top: 50px;
+        /* width: 100vw; */
+        top: 80px;
         border-radius: 0;
-       bottom: 100px;
+       bottom: 80px;
+       right: 0;
+       background-color: whitesmoke !important;
     }
 
     #headline {
         display: flex !important;
         justify-content: flex-start;
+        padding-left: 10px;
     }
 }
 
@@ -601,7 +641,7 @@ justify-content: space-between;
     }
 
     .main {
-        align-items: center;
+        align-items: normal;
     }
     .box {
         width: 250px;
@@ -625,5 +665,13 @@ justify-content: flex-start;
     .fullUseOfSpace {
         width: 80%;
     }
+
+     #mobileCreateTaskBTN {
+        display: block;
+        padding: 0;
+     }
+     #createTaskBTN {
+        display: none;
+     }
 }
 

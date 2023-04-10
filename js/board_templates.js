@@ -24,6 +24,8 @@ function showTasksOnBoardHTML(index, element) {
 
 function testRenderNewTaskHTML(){
     return `
+    <div class="newTaskHeadline"><h1>Add Task</h1><span id="clickMe" onclick="closeIt()">&#10005;</span></div>
+    <div class="newTaskThird">
     <div class="containerAddTaskLeftSide">
     <div class="inputUnit">
         <label for="name">Title</label>
@@ -98,6 +100,7 @@ function testRenderNewTaskHTML(){
 
 </div>
 
+</div>
 </div>`
 
 }
