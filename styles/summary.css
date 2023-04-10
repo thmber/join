@@ -215,8 +215,23 @@ body{
         font-size: 36px;
     }
     .greeting-box{
-        display: none;
+        position: absolute;
+        align-items: center;
+        background: var(--background-grey);
+        height: 100vh;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        animation: showgreetingmobile 1.6s ease-in-out forwards;
+      
+        
     }
+    @keyframes showgreetingmobile {
+        0%{transform: translateX(0);}
+        30%{transform: translateX(0);}
+        100%{transform: translateX(-150%);}
+    }
+
     h1{
         margin: 0;
     }

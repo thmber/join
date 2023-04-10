@@ -25,7 +25,8 @@ async function signUp(){
 
 function sendMailForgotPassword(){
     let mailOfUser = document.getElementById('mail-user-forgot');
-    window.location.href = `send_mail.php`;
+    window.location.href = window.location.href+'?mailOfUser='+mailOfUser;
+    
 
 }
 
@@ -175,7 +176,7 @@ function showForgotPassword(){
                  <span>Don't worry! 
                     We will send you an email with the instructions to reset your password.</span>
             </div>
-        <form action="send_mail.php" class="login-form">
+        <form onsubmit="sendMailForgotPassword()" class="login-form">
             <div class="login-box">
                 <input type="email" name="mail_forgotten" required minlength="5" placeholder="Email" id="mail-user-forgot">
                 <img src="assets/img/icon-email.svg" alt="">

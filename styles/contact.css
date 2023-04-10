@@ -551,8 +551,6 @@ input{
             transform: scale(1);
         }
     }
-
-
     .new-contact-right{
         width: 350px;
         height: 55%;
@@ -585,5 +583,9 @@ input{
     .contact-new-save{
         margin-left: 0;
     }
+    .contact-main-name{
+        margin-top: 10px;
+    }
+
 }
 
