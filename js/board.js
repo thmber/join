@@ -240,8 +240,7 @@ function closeTask() {
 }
 
 function showAssigned(element) {
-    console.log(element.assignedTo);
-    for (let index = 0; index < element.assignedTo.length; index++) {
+       for (let index = 0; index < element.assignedTo.length; index++) {
 
         if (element.assignedTo[index].check == "checked") {
             document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${contacts[index].color}">${contacts[index].initials}</div> <div>${contacts[index].firstname} ${contacts[index].lastname}</div></div>`;
@@ -281,6 +280,7 @@ function saveExistingTask(i) {
     showTask(i)
     clearInputFields(title, description, dueDate);
     currentOpenTask = -1;
+    chosenContacts = [];
 }
 
 function clearInputFields(title, description, dueDate) {
@@ -300,11 +300,9 @@ function getExistingSubtasks(i) {
             'subtaskName': document.getElementById(`input${index}`).value,
             'check': document.getElementById(`input${index}`).checked
         }
-        console.log(subtask);
         new_subtasks.push(subtask);
     }
-    console.log(new_subtasks);
-    return new_subtasks;
+      return new_subtasks;
 
 }
 
@@ -325,7 +323,6 @@ function showExistingSubtasks(i) {
 }
 
 function readPrio(i) {
-    console.log('prio', i);
     if (tasks[i].priority == 'urgent') renderUrgentHTML();
     else if (tasks[i].priority == 'medium') renderMediumHTML();
     else if (tasks[i].priority == 'low') renderLowHTML();
@@ -334,14 +331,8 @@ function readPrio(i) {
 
 
 function closeIt() {
-    //document.getElementById('makeBgDarker').classList.add('d-none');
-
-    // document.getElementById('newTask').classList.add('d-none');
-
-    resetMissingText();
-    // document.getElementById('newTask').innerHTML = ``;
-    // loosenBackground();
-    document.location = "../board.html";
+       resetMissingText();
+       document.location = "../board.html";
 }
 
 
@@ -394,7 +385,6 @@ function renderLowHTML() {
 }
 
 function renderSubtasks(i) {
-    console.log('checkSubtasks');
     document.getElementById('displaySubtasks').innerHTML = ``;
     let subs = tasks[i].subtasks;
 
@@ -420,10 +410,6 @@ function showAddTaskOverlay() {
     document.getElementById('addTaskForm').classList.remove('d-none');
    }
 
-// function closeItToo() {
-//     document.getElementById('flyingAddTask').classList.add('d-none');
-//     document.getElementById('makeBgDarker').classList.add('d-none');
-// }
 
 
 function showDarkOverlay() {
@@ -466,7 +452,6 @@ function filterTheAssignedPeople(i) {
     document.getElementById(`showAssignedPeople`).innerHTML = ``;
     let some = [];
     some = tasks[i].assignedTo.filter(x => x.check == 'checked');
-    console.log(some);
     for (let j = 0; j < some.length; j++) {
         const element = some[j];
         document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;

@@ -27,8 +27,6 @@ let priorities = [{
 
 
 function addTask() {
- 
-  // let assignedTo = getAssignedToUser();
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('selectedCategory');
@@ -52,24 +50,24 @@ function addTask() {
       'category': category.textContent,
       'subtasks': getSubtasks()
     }
-   tasks.push(task);
-saveTasks();
-  flyingInfo();
-goToBoard();
-   }
+    tasks.push(task);
+    saveTasks();
+    flyingInfo();
+    goToBoard();
+  }
 }
 
 
-function goToBoard(){
+function goToBoard() {
   setTimeout(() => {
     document.location = "../board.html"
-   }, 3000);
+  }, 3000);
 }
 
-function resetOverlay(){
-if(!document.getElementById('makeBgDarker').classList.contains('d-none')) {
+function resetOverlay() {
+  if (!document.getElementById('makeBgDarker').classList.contains('d-none')) {
     document.getElementById('makeBgDarker').classList.add('d-none');
-}
+  }
 }
 
 function checkInput(title, description, category, prio) {
@@ -114,12 +112,9 @@ function checkInput(title, description, category, prio) {
 
 
 function addSubtask() {
-
   let subtaskField = document.getElementById('subtask');
   let singleSubtask = subtaskField.value;
-  console.log(singleSubtask);
 
-  
   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
 
     for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
@@ -128,8 +123,8 @@ function addSubtask() {
     more = false;
   }
 
-  if (singleSubtask.length > 0){
-  subtasks_namen.push(singleSubtask);
+  if (singleSubtask.length > 0) {
+    subtasks_namen.push(singleSubtask);
   }
   subtaskField.value = ``;
   showSubtasks(subtasks_namen);
@@ -212,7 +207,6 @@ function toggleOptions() {
 
 function getAssignedToUser() {
   let checkboxes = document.querySelectorAll('input[name="assignedTo"]:checked');
-  console.log(checkboxes);
   let values = [];
   checkboxes.forEach((checkbox) => {
     values.push(checkbox.value);
@@ -253,7 +247,7 @@ function toggleOptionsAss() {
     document.getElementById('seeCat').classList.add('d-none')
     document.getElementById('newCateg').style.borderRadius = `8px`;
   }
-  }
+}
 
 
 function setToggleID(i) {
@@ -277,7 +271,6 @@ function selectAssignTo(param) {
 function addAssignPeople(param) {
   let name = document.getElementById(param).textContent;
   let beginners = name.match(/\b\w/g).join('')
-  console.log('Name', name, ' beginnt mit: ', beginners);
   document.getElementById('showAssignedPeople').innerHTML += `<div class="bigNameCircle">${beginners}</div>`
 }
 
@@ -304,7 +297,7 @@ function renderDate() {
 
 
 function renderTheContacts() {
-   setTimeout(renderContactsAssignTo, 300);
+  setTimeout(renderContactsAssignTo, 300);
 }
 
 
@@ -314,20 +307,18 @@ function delayDate() {
 
 
 function renderContactsAssignTo() {
-console.log('renderContactsAssignTo()');
-  document.getElementById('optionsUser').innerHTML = ``;
+   document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = contacts[index];
     document.getElementById('optionsUser').innerHTML += renderContactsAssignToHTML(index, element);
   }
- 
+
 
 }
 
 
 function renderContactsAssignToHTML(index, element) {
-  console.log('andere!');
-  return `
+   return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
   <input type="checkbox" onchange="chooseTheContact(-1, ${index})" name="assignedTo" value="${element.id}" id="user${index}" >
@@ -342,7 +333,7 @@ function renderContactsAssignBoard(i) {
     const element = tasks[i].assignedTo;
     document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(i, index, element);
   }
-  }
+}
 
 
 function renderContactsAssignBoardHTML(i, index, element) {
@@ -361,7 +352,7 @@ function renderContactsAssignAddTask(i) {
     const element = tasks[i].assignedTo;
     document.getElementById('optionsUser').innerHTML += renderContactsAssignAddTaskHTML(index, element);
   }
-  }
+}
 
 
 function renderContactsAssignAddTaskHTML(index, element) {
@@ -490,10 +481,7 @@ function checkIfInputIsComplete(field) {
   else {
     categorynameIsChosen = true;
   }
-  console.log(categorynameIsChosen && colorspotIsChosen);
-
-
-  return (categorynameIsChosen && colorspotIsChosen);
+   return (categorynameIsChosen && colorspotIsChosen);
 }
 
 function resetCategoryChoice() {
@@ -544,58 +532,61 @@ function changeButtonOnclick() {
 }
 
 
-function hideMissingText(field){
+function hideMissingText(field) {
   document.getElementById(`${field}`).classList.add('d-none');
 }
 
 
-function resetMissingText(){
-document.getElementById('missingTitle').classList.add('d-none');
-document.getElementById('missingDescription').classList.add('d-none');
-document.getElementById('missingCategory').classList.add('d-none');
-document.getElementById('missingColorspot').classList.add('d-none');
-document.getElementById('missingPrio').classList.add('d-none');
+function resetMissingText() {
+  document.getElementById('missingTitle').classList.add('d-none');
+  document.getElementById('missingDescription').classList.add('d-none');
+  document.getElementById('missingCategory').classList.add('d-none');
+  document.getElementById('missingColorspot').classList.add('d-none');
+  document.getElementById('missingPrio').classList.add('d-none');
 }
 
-function chooseTheContact(i, index){
+function chooseTheContact(i, index) {
   let chosenContact = index;
   let id = chosenContacts.indexOf(index);
- if ( id == -1 ) {
-  chosenContacts.push(chosenContact);
-  if(i >= 0){
-  tasks[i].assignedTo[index] = {
-    'id': `${index}`, 'check': 'checked'}
+  if (id == -1) {
+    chosenContacts.push(chosenContact);
+    if (i >= 0) {
+      tasks[i].assignedTo[index] = {
+        'id': `${index}`, 'check': 'checked'
+      }
+    }
   }
-}
- else {
-  chosenContacts.splice(id, 1);
-  if (i >= 0){
-  tasks[i].assignedTo[index] = {
-    'id': `${index}`, 'check': ''}
+  else {
+    chosenContacts.splice(id, 1);
+    if (i >= 0) {
+      tasks[i].assignedTo[index] = {
+        'id': `${index}`, 'check': ''
+      }
+    }
   }
-   }
-  console.log(chosenContacts);
-   showTheJustChosenContacts(chosenContacts);
+  showTheJustChosenContacts(chosenContacts);
 }
 
-function showTheJustChosenContacts(theContacts){
+function showTheJustChosenContacts(theContacts) {
   document.getElementById(`showAssignedPeople`).innerHTML = ``;
   for (let j = 0; j < theContacts.length; j++) {
-    
+
     document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[theContacts[j]].color}" >${contacts[theContacts[j]].initials}</div>`;
-}
+  }
 }
 
 
-function flyingInfo(){
+function flyingInfo() {
   document.getElementById('infoText').classList.remove('d-none');
   document.getElementById('infoText').classList.add('infoText')
- resetFlyingInfo();
+  resetFlyingInfo();
 }
 
-function resetFlyingInfo(){
-  setTimeout(() => { document.getElementById('infoText').classList.add('d-none');
-  document.getElementById('infoText').classList.remove('infoText')}, 4000);
- 
+function resetFlyingInfo() {
+  setTimeout(() => {
+    document.getElementById('infoText').classList.add('d-none');
+    document.getElementById('infoText').classList.remove('infoText')
+  }, 4000);
+
 
 }
