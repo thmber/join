@@ -22,7 +22,7 @@ h3 {
 .cols {
     display: flex;
   justify-content: space-between;
-   
+   margin-bottom: 80px;
 
 
 }
@@ -197,9 +197,7 @@ h3 {
     position: absolute;
     top: 70px;
     left: 35%;
-
-    /* width: 500px; */
-    /* height: 80%; */
+font-size: 0.8em;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     z-index: 50;
@@ -214,7 +212,6 @@ h3 {
     top: 0;
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
-
     z-index: 12;
 }
 
@@ -387,15 +384,13 @@ b {
 #totalInput {
     display: flex;
     gap: 15px;
-    /* position: relative; */
+
 
 }
 
 .boardHeader {
     display: flex;
     justify-content: space-between;
-    /* margin-right: 100px;
-    align-items: center; */
     width: 100%;
 }
 
@@ -610,7 +605,7 @@ h1 {
     .overlayTask {
         left: 0;
         right:0;
-
+/* width: 100%; */
        /* width: 95vw; */
        top: 80px;
        border-radius: 0;
@@ -656,8 +651,12 @@ h1 {
     .col {
         width: 280px;
     }
-
-   
+    .overlayTitle {
+        /* padding: 15px 0 15px 0; */
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 35px;
+    }
 }
 
 @media (max-width: 550px){

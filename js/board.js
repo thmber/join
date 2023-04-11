@@ -190,7 +190,7 @@ function showEditTask(i) {
     document.getElementById('addTaskForm').classList.remove('containerTasks');
     document.getElementById('addTaskForm').classList.add('overlayEdit');
     document.getElementById('BTN-save').classList.remove('d-none');
-    document.getElementById('totalInput').style = `display: block`;
+    // document.getElementById('totalInput').style = `display: block`;
     document.getElementById('inputUnit').classList.add('d-none');
     document.getElementById('see').classList.add('d-none');
     createSaveButton(i);

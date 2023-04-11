@@ -370,7 +370,7 @@ input {
 
 .containerAddTask {
    top: 250px;
-   padding: 10px;
+   padding: 10px 40px 10px 20px;
   background-color: whitesmoke;
    z-index: 10;
 }
@@ -390,11 +390,11 @@ input {
 }
 
 .infoText {
-  z-index: 20;
+  z-index: 100;
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 20px;
+  bottom: -50px;
   left: 50%;
   border-radius: 10px;
   padding: 15px;
@@ -432,6 +432,7 @@ input {
   #totalInput {
     gap: 15px;
     justify-content: center;
+
   }
 
 
@@ -458,7 +459,7 @@ input {
   }
 
   .infoText {
-    z-index: 20;
+    z-index: 100;
    
     left: 30%;
    
