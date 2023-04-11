@@ -141,7 +141,14 @@ function getTheRightBgColor(objID) {
     return whatINeed;
 }
 
+function freezeBackground(){
+    window.scrollTo(0, 0);
+    document.documentElement.style.overflow = 'hidden';
+    document.body.scoll = "no";
+}
+
 function showTask(index) {
+   freezeBackground();
     currentOpenTask = index;
     document.getElementById('makeBgDarker').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
@@ -226,6 +233,7 @@ function closeTask() {
     showTasksOnBoard();
     currentOpenTask = -1;
     chosenContacts = [];
+  loosenBackground();
 }
 
 function showAssigned(element) {
@@ -329,6 +337,7 @@ function closeIt() {
 
     resetMissingText();
     document.getElementById('newTask').innerHTML = ``;
+    loosenBackground();
 }
 
 
@@ -336,6 +345,11 @@ function setDarkLayer() {
     document.getElementById('makeBgDarker').classList.add('d-none');
 }
 
+
+function loosenBackground(){
+    document.documentElement.style.overflow = 'auto';
+    document.body.scroll = "yes";
+}
 
 function renderUrgentHTML() {
     document.getElementById('prioButtons').innerHTML = ``;
@@ -426,6 +440,7 @@ function filterTasks() {
 
 
 function testRenderNewTask() {
+    freezeBackground();
     showDarkOverlay();
     document.getElementById('newTask').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
