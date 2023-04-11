@@ -334,14 +334,24 @@ function readPrio(i) {
 
 
 function closeIt() {
+    //document.getElementById('makeBgDarker').classList.add('d-none');
+
+    // document.getElementById('newTask').classList.add('d-none');
+
+    resetMissingText();
+    // document.getElementById('newTask').innerHTML = ``;
+    // loosenBackground();
+    document.location = "../board.html";
+}
+
+
+function closeOverlayAddTask() {
     document.getElementById('makeBgDarker').classList.add('d-none');
-
     document.getElementById('newTask').classList.add('d-none');
-
     resetMissingText();
     document.getElementById('newTask').innerHTML = ``;
     loosenBackground();
-}
+   }
 
 
 function setDarkLayer() {
@@ -410,10 +420,10 @@ function showAddTaskOverlay() {
     document.getElementById('addTaskForm').classList.remove('d-none');
    }
 
-function closeItToo() {
-    document.getElementById('flyingAddTask').classList.add('d-none');
-    document.getElementById('makeBgDarker').classList.add('d-none');
-}
+// function closeItToo() {
+//     document.getElementById('flyingAddTask').classList.add('d-none');
+//     document.getElementById('makeBgDarker').classList.add('d-none');
+// }
 
 
 function showDarkOverlay() {

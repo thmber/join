@@ -691,5 +691,9 @@ justify-content: flex-start;
       .box {
         width: 90%;
       }
+
+      .btn img {
+        width: 30px;
+      }
 }
 

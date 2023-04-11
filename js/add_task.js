@@ -330,7 +330,7 @@ function renderContactsAssignToHTML(index, element) {
   return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
-  <input type="checkbox" onchange="chooseTheContact(${index})" name="assignedTo" value="${element.id}" id="user${index}" >
+  <input type="checkbox" onchange="chooseTheContact(-1, ${index})" name="assignedTo" value="${element.id}" id="user${index}" >
 </div>`;
 }
 
@@ -352,6 +352,30 @@ function renderContactsAssignBoardHTML(i, index, element) {
   <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${i},${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
 </div>`;
 }
+
+
+
+function renderContactsAssignAddTask(i) {
+  document.getElementById('optionsUser').innerHTML = ``;
+  for (let index = 0; index < contacts.length; index++) {
+    const element = tasks[i].assignedTo;
+    document.getElementById('optionsUser').innerHTML += renderContactsAssignAddTaskHTML(index, element);
+  }
+  }
+
+
+function renderContactsAssignAddTaskHTML(index, element) {
+  return `
+  <div class="checkbox" id="${index}">
+  <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
+  <input type="checkbox" name="assignedTo" onchange="chooseTheContact( -1,${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
+</div>`;
+}
+
+
+
+
+
 
 
 function renderCategories() {
@@ -538,13 +562,17 @@ function chooseTheContact(i, index){
   let id = chosenContacts.indexOf(index);
  if ( id == -1 ) {
   chosenContacts.push(chosenContact);
+  if(i >= 0){
   tasks[i].assignedTo[index] = {
     'id': `${index}`, 'check': 'checked'}
+  }
 }
  else {
   chosenContacts.splice(id, 1);
+  if (i >= 0){
   tasks[i].assignedTo[index] = {
-    'id': index, 'check': ''}
+    'id': `${index}`, 'check': ''}
+  }
    }
   console.log(chosenContacts);
    showTheJustChosenContacts(chosenContacts);

@@ -95,7 +95,7 @@ function testRenderNewTaskHTML(){
 
 
     <div class="BTN" id="BTN">
-        <button onclick="closeIt()" class="btn light" id="clearBTN">Cancel<img src=""></button>
+        <button onclick="closeOverlayAddTask()" class="btn light" id="clearBTN">Cancel<img src=""></button>
         <button class="btn" id="createTaskBTN_task" onclick="addTask()">Create Task<img src=""></button>
     </div>
     <div class="BTN" id="BTN-save"></div>
