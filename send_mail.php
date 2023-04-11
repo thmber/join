@@ -2,9 +2,9 @@
 
 ########### CONFIG ###############
 
-$recipient = $_POST['mail_forgotten'];
-$redirect = 'index.html';
-
+$recipient = $_POST['mailadress'];
+$redirect = 'send_mail.html';
+// $message = "Here is the link to reset your password \n \n link \n \n Your Join-Team";
 
 ########### CONFIG END ###########
 
@@ -40,8 +40,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
     case ("POST"): //Send the email;
         header("Access-Control-Allow-Origin: *");
 
-        $subject = "Contact From " . $_POST['name'];
-        $headers = "From: " .$_POST['mailadress'];
+        $subject = "Reset your password";
+        $headers = "From: noreply@join-team.de";
 
         mail($recipient, $subject, $_POST['message'], $headers);
         header("Location: " . $redirect); 

@@ -12,10 +12,7 @@ let previousColorAvatar = 0;
 let testtask = [];
 let percentage;
 let subtasksDone;
-let categories = [{'category': 'Design', 'color': 1}, 
-                    {'category': 'Marketing', 'color': 2}, 
-                    {'category': 'Sales', 'color': 3},
-                    {'category': 'Customer-Briefing', 'color': 4}]
+let categories = [];
 let subtasks = [];
     
         

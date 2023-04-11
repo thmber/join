@@ -57,7 +57,6 @@ async function fillLoginForm(){
 
 
 function saveUserIDToLocalStorage(userID){
-    
     let userIDasText = JSON.stringify(userID);
     localStorage.setItem('rememberedUserID', userIDasText);
     
