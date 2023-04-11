@@ -340,16 +340,16 @@ function renderContactsAssignBoard(i) {
   document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = tasks[i].assignedTo;
-    document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(index, element);
+    document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(i, index, element);
   }
   }
 
 
-function renderContactsAssignBoardHTML(index, element) {
+function renderContactsAssignBoardHTML(i, index, element) {
   return `
-  <div class="checkbox">
+  <div class="checkbox" id="${index}">
   <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
-  <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
+  <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${i},${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
 </div>`;
 }
 
@@ -533,15 +533,21 @@ document.getElementById('missingColorspot').classList.add('d-none');
 document.getElementById('missingPrio').classList.add('d-none');
 }
 
-function chooseTheContact(index){
+function chooseTheContact(i, index){
   let chosenContact = index;
   let id = chosenContacts.indexOf(index);
- if ( id == -1 ) {chosenContacts.push(chosenContact);}
+ if ( id == -1 ) {
+  chosenContacts.push(chosenContact);
+  tasks[i].assignedTo[index] = {
+    'id': `${index}`, 'check': 'checked'}
+}
  else {
   chosenContacts.splice(id, 1);
- }
+  tasks[i].assignedTo[index] = {
+    'id': index, 'check': ''}
+   }
   console.log(chosenContacts);
-  showTheJustChosenContacts(chosenContacts);
+   showTheJustChosenContacts(chosenContacts);
 }
 
 function showTheJustChosenContacts(theContacts){
@@ -556,5 +562,12 @@ function showTheJustChosenContacts(theContacts){
 function flyingInfo(){
   document.getElementById('infoText').classList.remove('d-none');
   document.getElementById('infoText').classList.add('infoText')
+ resetFlyingInfo();
+}
+
+function resetFlyingInfo(){
+  setTimeout(() => { document.getElementById('infoText').classList.add('d-none');
+  document.getElementById('infoText').classList.remove('infoText')}, 4000);
+ 
 
 }
