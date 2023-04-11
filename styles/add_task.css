@@ -1,6 +1,6 @@
 h1 {
   margin-bottom: 0px;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 
 input {
@@ -23,6 +23,7 @@ input {
 
 .containerAddTaskLeftSide {
   width: 100%;
+  min-width: 260px;
 }
 
 .containerAddTaskRightSide {
@@ -439,6 +440,7 @@ input {
 }
 
 @media (max-width: 900px) {
+
   .newTask {
     left: 0;
     right: 0;
@@ -448,6 +450,7 @@ input {
     animation: none;
     transform: none;
     border-radius: 0;
+    overflow-y: scroll;
   }
 
   .header {
@@ -466,7 +469,14 @@ input {
   }
 
 }
-
+@media (max-width: 750px){
+  .buttonPrio {
+    gap: 15px;
+  }
+  .headline {
+    width: 70%;
+  }
+}
 
 @media (max-width: 630px) {
   #totalInput {
@@ -485,6 +495,7 @@ input {
 @media (max-width: 600px) {
   .newTask {
     flex-direction: column;
+    padding: 0 20px 5px 20px;
   }
 
   .newTaskThird {
@@ -493,6 +504,11 @@ input {
 
   .containerAddTask {
     margin-bottom: 80px;
+    
+     
+      padding: 10px 10px 10px 10px;
+     
+  
   }
 
   #totalInput {
@@ -505,9 +521,21 @@ input {
 
   h1 {
     margin-bottom: 0px;
+    margin-left: 5px;
   }
 
-  /* .btn {
-    display: none;
-  } */
+  .overlayCategory {
+    margin: 10px 0 10px 0;
+  }
+  .headline {
+    width: 90%;
+  }
+
+ 
+}
+
+@media (max-width: 450px){
+  .buttonPrio {
+    gap: 5px;
+  }
 }
