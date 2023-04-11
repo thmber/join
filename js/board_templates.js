@@ -24,6 +24,9 @@ function showTasksOnBoardHTML(index, element) {
 
 function testRenderNewTaskHTML(){
     return `
+    <div class="whiteBg">
+    <div onclick="addTask()" class="mobileCreate" id="mobileCreate">Create</div>
+</div>
     <div class="newTaskHeadline"><h1>Add Task</h1><span id="clickMe" onclick="closeIt()">&#10005;</span></div>
     <div class="newTaskThird">
     <div class="containerAddTaskLeftSide">

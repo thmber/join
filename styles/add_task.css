@@ -409,6 +409,10 @@ input {
   padding-left: 10px;
 }
 
+.mobileCreate {
+  display: none;
+}
+
 @keyframes flyInAndOut {
   0% {}
 
@@ -530,8 +534,35 @@ input {
   .headline {
     width: 90%;
   }
+  .mobileCreate {
+    display: block;
+    color: white;
+    background-color: #333;
+    padding: 10px;
+    width: 100px;
+    /* height: 40px; */
+    position: fixed;
+    top: 15px;
+    z-index: 1000;
+    right: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+ .whiteBg {
+  background-color: white;
+  display: block;
+  padding: 20px;
+  width: 110px;
+  position: fixed;
+  top: 5px;
+  z-index: 800;
+  right: 10px;
+  height: 21px;
+ }
 
- 
+ .BTN {
+  display: none;
+ }
 }
 
 @media (max-width: 450px){
