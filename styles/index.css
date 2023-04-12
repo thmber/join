@@ -298,6 +298,53 @@ body {
     display: none;
 
 }
+.you-reset-box{
+    position: absolute;
+    bottom: 4%;
+    width: 210px;
+    display: none;
+    justify-content: center;
+    background-color: rgb(41, 54, 70);
+    color: white;
+    padding: 10px 15px 10px 15px;
+    border-radius: 10px;
+    transform: translateY(200%);
+    animation: showmessage 1s ease-in-out;
+}
+
+@keyframes showmessage {
+    0%{transform: translateY(200%);}
+    10%{transform: translateY(0);}
+    90%{transform: translateY(0);}
+    100%{transform: translateY(200%);}
+}
+#name-forgot, #message-forgot, #button-submit-forgot{
+    transform: scale(0);
+}
+.continue{
+    background-color: rgb(41, 54, 70);
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    padding-right: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+    margin: 20px;
+}
+.continue:hover{
+    background-color: rgba(11, 173, 221, 1);
+}
+.send-mail-form{
+    height: 50px;
+}
+.warning-message{
+    color: red;
+    margin: 10px;
+}
+
 @media (max-width: 950px){
     .sign-in{
         margin-top: 150px;

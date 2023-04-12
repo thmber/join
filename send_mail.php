@@ -3,7 +3,7 @@
 ########### CONFIG ###############
 
 $recipient = $_POST['mailadress'];
-$redirect = 'send_mail.html';
+$redirect = 'success_mail.html';
 // $message = "Here is the link to reset your password \n \n link \n \n Your Join-Team";
 
 ########### CONFIG END ###########
