@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join | Log In</title>
+    <title>Join | Reset your password</title>
     <script src="mini_backend.js"></script>
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="icon" href="assets/img/Capa_icon.png">
@@ -27,20 +27,20 @@
                 <span class="login-headline" id="login-headline">Reset your password</span>
                 <div class="underline-login" id="login-underline">
                 </div>
-                <form onsubmit="changePassword()" class="login-form">
+                <div class="login-form">
                     <div class="login-box">
-                        <input type="email" required minlength="5" placeholder="New password">
+                        <input type="password" required minlength="5" placeholder="New password" id="new-password">
                     </div>
                     <div class="error-message-login" id="error-message-login">
                         email or password is incorrect
                     </div>
                     <div class="login-box">
-                        <input type="password" required minlength="5" placeholder="Password">
+                        <input type="password" required minlength="5" placeholder="Confirm password" id="new-password-confirmed">
                     </div>
                     <div class="login-and-guest">
-                        <button type="submit" class="input-submit">Continue</button>
+                        <button onclick="resetPassword()" class="input-submit">Continue</button>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="forgot-container d-none" id="forgot-container">
                 

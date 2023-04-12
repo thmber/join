@@ -3,7 +3,10 @@ let activeUser = [];
 let users = [];
 let userExists = false;
 let rememberedID;
+const urlParams = new URLSearchParams(window.location.search);
+const msg = +urlParams.get('msg');
 loadRememberedUser();
+
 
 async function signUp(){
     let newName = document.getElementById('signup-name').value;
@@ -23,9 +26,34 @@ async function signUp(){
     window.location.href = 'summary.html';
 }
 
-function sendMailForgotPassword(){
-    document.getElementById('mail-user-forgot').click();
+
+function resetPassword(){
+    let newPass = document.getElementById('new-password').value;
+    let newPassConfirmed = document.getElementById('new-password-confirmed').value;
+    let user = users[`${msg}`]
+    if (newPass == newPassConfirmed) {
+        user['password'] = newPass;
+        saveNewPassword();
+       
+    }
 }
+
+
+async function saveNewPassword(){
+    await backend.setItem('users', JSON.stringify(users));
+    window.location.href = "index.html"
+
+}
+
+
+function sendMailForgotPassword(){
+    let userMail = document.getElementById('mail-user-forgot').value;
+    let user = users.find(u => u.email == userMail);
+    let id = user['id'];
+    window.location.href = `resetpass.html?msg=${id}`
+    
+}
+
 
 
 async function deleteUsers(){
@@ -172,15 +200,15 @@ function showForgotPassword(){
                  <span>Don't worry! 
                     We will send you an email with the instructions to reset your password.</span>
             </div>
-        <form action="send_mail.php" method="POST" class="login-form">
+        <div class="login-form">
             <div class="login-box">
-                <input type="email" name="mail_forgotten" required minlength="5" placeholder="Email" id="mail-user-forgot">
+                <input type="email" required minlength="5" placeholder="Email" id="mail-user-forgot">
                 <img src="assets/img/icon-email.svg" alt="">
             </div>
             <div class="login-and-guest">
-                <button onclick="sendMailForgotPassword()" type="submit" class="login" id="forgotten-mail-button">Send me the email</button>
+                <button onclick="sendMailForgotPassword()" class="login" id="forgotten-mail-button">Send me the email</button>
             </div>
-        </form>
+        </div>
     `;
 }
 
