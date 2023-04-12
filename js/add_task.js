@@ -158,19 +158,22 @@ function getSubtasks() {
 
 function getAssignedContacts() {
   contactsAssignTo = [];
-  let check;
+  // let check;
   for (let index = 0; index < contacts.length; index++) {
-    let contactAssign = document.getElementById(`user${index}`).value;
-    let checkbox = document.getElementById(`user${index}`).checked;
-
-    if (checkbox) check = 'checked';
-    else { check = ``; }
+    let contactID = document.getElementById(`user${index}`).value;
+     let checkbox = document.getElementById(`user${index}`).checked;
+let contactIndex = contacts.findIndex(obj => obj.id == contactID);
+     if (checkbox) {
+    //  check = 'checked';
+    // else { check = ``; }
 
     let contactAssignTo = {
-      'id': contactAssign,
-      'check': check
+      'name': contacts[contactIndex].firstname +' '+ contacts[contactIndex].lastname,
+      'initial': contacts[contactIndex].initials,
+      'color': contacts[contactIndex].color
     }
     contactsAssignTo.push(contactAssignTo);
+  }
   }
   return contactsAssignTo;
 }
@@ -328,19 +331,36 @@ function renderContactsAssignToHTML(index, element) {
 
 
 function renderContactsAssignBoard(i) {
+  let check;
   document.getElementById('optionsUser').innerHTML = ``;
+ 
   for (let index = 0; index < contacts.length; index++) {
-    const element = tasks[i].assignedTo;
-    document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(i, index, element);
+    let contact = contacts[index];
+        
+    
+    
+    for (let a = 0; a < tasks[i].assignedTo.length; a++) {
+             if (contact.firstname + ' ' + contact.lastname == tasks[i].assignedTo[a].name) {
+            check = 'checked'
+             break;
+            }
+            
+             else {
+               check = '';
+                   }
+          }
+
+    document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(i, index, contact, check);
   }
 }
 
 
-function renderContactsAssignBoardHTML(i, index, element) {
+
+function renderContactsAssignBoardHTML(i, index, contact, check) {
   return `
   <div class="checkbox" id="${index}">
   <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
-  <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${i},${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
+  <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${i},${index})" value="${contact.id}" id="user${index}" ${check}>
 </div>`;
 }
 
@@ -546,24 +566,43 @@ function resetMissingText() {
 }
 
 function chooseTheContact(i, index) {
-  let chosenContact = index;
-  let id = chosenContacts.indexOf(index);
-  if (id == -1) {
+
+  if (i>= 0){
+  chosenContacts = tasks[i].assignedTo;
+  }
+
+
+  let chosenContact = {
+    'name': contacts[index].firstname + ' ' + contacts[index].lastname,
+    'initial': contacts[index].initials,
+    'color': contacts[index].color
+  };
+
+  let inis = chosenContacts.findIndex(obj => obj.initial == chosenContact.initial);
+
+  // let id = chosenContacts.indexOf(index);
+  if (inis == -1) {
     chosenContacts.push(chosenContact);
-    if (i >= 0) {
-      tasks[i].assignedTo[index] = {
-        'id': `${index}`, 'check': 'checked'
-      }
-    }
+    // if (i >= 0) {
+      
+    //   tasks[i].assignedTo[index] = {
+    //     'name': contact[index].firstname + ' ' + contact[index].lastname,
+    // 'initial': contact[index].initials,
+    // 'color': contact[index].color
+    //   }
+    // }
   }
   else {
-    chosenContacts.splice(id, 1);
-    if (i >= 0) {
-      tasks[i].assignedTo[index] = {
-        'id': `${index}`, 'check': ''
-      }
-    }
+    chosenContacts.splice(inis, 1);
+    // if (i >= 0) {
+    //   console.log('größer 0 i:', i);
+      // tasks[i].assignedTo[index] = {
+      //   'id': `${index}`, 'check': ''
+      // }
+    // }
+  // }
   }
+  console.log(chosenContacts);
   showTheJustChosenContacts(chosenContacts);
 }
 
@@ -571,7 +610,7 @@ function showTheJustChosenContacts(theContacts) {
   document.getElementById(`showAssignedPeople`).innerHTML = ``;
   for (let j = 0; j < theContacts.length; j++) {
 
-    document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[theContacts[j]].color}" >${contacts[theContacts[j]].initials}</div>`;
+    document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${theContacts[j].color}" >${theContacts[j].initial}</div>`;
   }
 }
 

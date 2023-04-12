@@ -2,6 +2,7 @@
 let currentOpenTask;
 let currentdraggableElement;
 let stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
+let some = [];
 
 let a = 0;
 
@@ -79,8 +80,8 @@ function countTrue(i) {
 function renderContactsOnBoard(i, element) {
     document.getElementById(`assignToBoard${i}`).innerHTML = ``;
     let some = [];
-    some = element.assignedTo.filter(x => x.check == 'checked');
-    let contactsLeft;
+    some = element.assignedTo
+       let contactsLeft;
     let countIt = some.length
     if (some.length > 3) {
         contactsLeft = (some.length - 2);
@@ -88,7 +89,7 @@ function renderContactsOnBoard(i, element) {
     }
     for (let j = 0; j < countIt; j++) {
         const element = some[j];
-        document.getElementById(`assignToBoard${i}`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
+        document.getElementById(`assignToBoard${i}`).innerHTML += `<div class="bigNameCircle bg${element.color}" >${element.initial}</div>`;
 
     }
     if (contactsLeft > 0) document.getElementById(`assignToBoard${i}`).innerHTML += `<div class="bigNameCircle bgDark" >+${contactsLeft}</div>`;
@@ -160,7 +161,7 @@ function showTask(index) {
 <div class="fullUseOfSpace">
     <div class="fullUseOfSpaceTop">
             <div class="overlayOneRow">
-                <div class="overlayCategory" id="categoryBgColorShowTask${index}">${element.category}</div>
+                <div class="overlayCategory" id="categoryBgColorShowTask${j}">${element.category}</div>
                 <div id="closeTask" onclick="closeTask()">&#8592;</div>
             </div>
             <div class="overlayTitle">${element.title}</div>
@@ -177,8 +178,8 @@ function showTask(index) {
 </div>
 `;
     showAssigned(element);
-    getbgColor(index);
-    renderBgCategoryShowTask(index);
+    getbgColor(j);
+    renderBgCategoryShowTask(j);
 }
 
 
@@ -241,10 +242,10 @@ function closeTask() {
 
 function showAssigned(element) {
        for (let index = 0; index < element.assignedTo.length; index++) {
-
-        if (element.assignedTo[index].check == "checked") {
-            document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${contacts[index].color}">${contacts[index].initials}</div> <div>${contacts[index].firstname} ${contacts[index].lastname}</div></div>`;
-        }
+let assigns = element.assignedTo[index];
+        // if (element.assignedTo[index].check == "checked") {
+            document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${assigns.color}">${assigns.initial}</div> <div>${assigns.name}</div></div>`;
+        // }
     }
 }
 
@@ -270,7 +271,7 @@ function saveExistingTask(i) {
         'description': description.value,
         'duedate': dueDate.value,
         'priority': prio,
-        'assignedTo': getAssignedContacts(),
+        'assignedTo': chosenContacts,
         'category': tasks[i].category,
         'subtasks': getExistingSubtasks(i)
     }
@@ -450,14 +451,13 @@ function testRenderNewTask() {
 
 function filterTheAssignedPeople(i) {
     document.getElementById(`showAssignedPeople`).innerHTML = ``;
-    let some = [];
-    some = tasks[i].assignedTo.filter(x => x.check == 'checked');
-    for (let j = 0; j < some.length; j++) {
-        const element = some[j];
-        document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${contacts[element.id].color}" >${contacts[element.id].initials}</div>`;
+    some = [];
+     some = tasks[i].assignedTo;
+     console.log(some);
+   
+    for (let j = 0; j < tasks[i].assignedTo.length; j++) {
+        
+        document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${tasks[i].assignedTo[j].color}" >${tasks[i].assignedTo[j].initial}</div>`;
     }
-
-    some.forEach(element => {
-        chosenContacts.push(+element.id);
-    });
+chosenContacts = tasks[i].assignedTo;
    }
