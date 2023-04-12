@@ -158,15 +158,12 @@ function getSubtasks() {
 
 function getAssignedContacts() {
   contactsAssignTo = [];
-  // let check;
-  for (let index = 0; index < contacts.length; index++) {
+   for (let index = 0; index < contacts.length; index++) {
     let contactID = document.getElementById(`user${index}`).value;
      let checkbox = document.getElementById(`user${index}`).checked;
 let contactIndex = contacts.findIndex(obj => obj.id == contactID);
      if (checkbox) {
-    //  check = 'checked';
-    // else { check = ``; }
-
+   
     let contactAssignTo = {
       'name': contacts[contactIndex].firstname +' '+ contacts[contactIndex].lastname,
       'initial': contacts[contactIndex].initials,
@@ -571,7 +568,6 @@ function chooseTheContact(i, index) {
   chosenContacts = tasks[i].assignedTo;
   }
 
-
   let chosenContact = {
     'name': contacts[index].firstname + ' ' + contacts[index].lastname,
     'initial': contacts[index].initials,
@@ -579,29 +575,12 @@ function chooseTheContact(i, index) {
   };
 
   let inis = chosenContacts.findIndex(obj => obj.initial == chosenContact.initial);
-
-  // let id = chosenContacts.indexOf(index);
   if (inis == -1) {
     chosenContacts.push(chosenContact);
-    // if (i >= 0) {
-      
-    //   tasks[i].assignedTo[index] = {
-    //     'name': contact[index].firstname + ' ' + contact[index].lastname,
-    // 'initial': contact[index].initials,
-    // 'color': contact[index].color
-    //   }
-    // }
-  }
+     }
   else {
     chosenContacts.splice(inis, 1);
-    // if (i >= 0) {
-    //   console.log('größer 0 i:', i);
-      // tasks[i].assignedTo[index] = {
-      //   'id': `${index}`, 'check': ''
-      // }
-    // }
-  // }
-  }
+     }
   console.log(chosenContacts);
   showTheJustChosenContacts(chosenContacts);
 }
@@ -609,7 +588,6 @@ function chooseTheContact(i, index) {
 function showTheJustChosenContacts(theContacts) {
   document.getElementById(`showAssignedPeople`).innerHTML = ``;
   for (let j = 0; j < theContacts.length; j++) {
-
     document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${theContacts[j].color}" >${theContacts[j].initial}</div>`;
   }
 }

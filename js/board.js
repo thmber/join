@@ -193,8 +193,6 @@ function showEditTask(i) {
     document.getElementById('BTN-save').classList.remove('d-none');
     document.getElementById('BTN').style.display = "flex";
     document.getElementById('BTN').style.justifyContent = "end";
-    // document.getElementById('totalInput').style = `display: block`;
-    // document.getElementById('inputUnit').classList.add('d-none');
     document.getElementById('inputUnit').style.display = "none";
     document.getElementById('see').classList.add('d-none');
     createSaveButton(i);
@@ -243,9 +241,8 @@ function closeTask() {
 function showAssigned(element) {
        for (let index = 0; index < element.assignedTo.length; index++) {
 let assigns = element.assignedTo[index];
-        // if (element.assignedTo[index].check == "checked") {
-            document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${assigns.color}">${assigns.initial}</div> <div>${assigns.name}</div></div>`;
-        // }
+                    document.getElementById('assign').innerHTML += `<div class="row"><div class="bigNameCircle bg${assigns.color}">${assigns.initial}</div> <div>${assigns.name}</div></div>`;
+       
     }
 }
 
