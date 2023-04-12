@@ -50,7 +50,7 @@ function sendMailForgotPassword(){
     let userMail = document.getElementById('mail-user-forgot').value;
     let user = users.find(u => u.email == userMail);
     let id = user['id'];
-    window.location.href = `resetpass.html?msg=${id}`
+    window.location.href = `gruppe-5008.developerakademie.net/resetpass.html?msg=${id}`
     
 }
 

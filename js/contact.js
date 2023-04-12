@@ -1,89 +1,33 @@
 
 
-let contacts = [{
-        'firstname': 'Timotheus',
-        'lastname': 'Höttges',
-        'email': 'telefonieren@gmx.de',
-        'phone': '+49 172 927 860 29',
-        'initials': 'TH',
-        'color': 1,
-        'id': 0,
-    },
-    {
-        'firstname': 'Christian',
-        'lastname': 'Sewing',
-        'email': 'pleite@yahoo.com',
-        'phone': '+49 171 987 872 29',
-        'initials': 'CS',
-        'color': 2,
-        'id': 1,
-    },
-    {
-        'firstname': 'Jennifer',
-        'lastname': 'Morgan',
-        'email': 'tippen@web.de',
-        'phone': '+49 176 911 222 69',
-        'initials': 'JM',
-        'color': 3,
-        'id': 2,
-    },
-    {
-        'firstname': 'Carla',
-        'lastname': 'Krivet',
-        'email': 'drkrivet@telekom.com',
-        'phone': '+49 174 993 445 22',
-        'initials': 'CK',
-        'color': 4,
-        'id': 3,
-    },
-    {
-        'firstname': 'Herbert',
-        'lastname': 'Diess',
-        'email': 'rasen@web.de',
-        'phone': '+49 170 222 345 44',
-        'initials': 'HD',
-        'color': 5,
-        'id': 4,
-    },
-    {
-        'firstname': 'Niklas',
-        'lastname': 'Östberg',
-        'email': 'sofa@gmx.de',
-        'phone': '+49 177 232 454 99',
-        'initials': 'NÖ',
-        'color': 6,
-        'id': 5,
-    },
-    {
-        'firstname': 'Rolf',
-        'lastname': 'Buch',
-        'email': 'energyundkraft@web.de',
-        'phone': '+49 86 - 353 874 35',
-        'initials': 'RB',
-        'color': 7,
-        'id': 6,
-    },
-    {
-        'firstname': 'Simone',
-        'lastname': 'Bagel-Trah',
-        'email': 'klebestark@gmail.com',
-        'phone': '+49 175 - 393 234 99',
-        'initials': 'SB',
-        'color': 8,
-        'id': 7,
-    }
-];
-
-
-
-let neededLetters = ['H', 'S', 'M', 'K', 'D', 'Ö', 'B'];
+let contacts = [];
+let neededLetters = [];
 let onlyLastnames = [];
 let onlyFirstnames = [];
 let sortedContacts = [];
 let same = false;
 
 
-function renderContacts() {
+function getNeededLetters(){
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i]['lastname'];
+        let neededLetter = contact.charAt(0).toUpperCase();
+        if (neededLetters.indexOf(neededLetter) == -1) {
+            neededLetters.push(neededLetter)
+        }
+    }
+}
+
+
+async function saveContactsToBackend(){
+    await backend.setItem('contacts', JSON.stringify(contacts));
+    
+}
+
+
+async function renderContacts() {
+        await init();
+        getNeededLetters();
         sortNeededLetters();
         sortContactsAlphabeticallyByLastName();
         let contactlist = document.getElementById('contact-list-content');
@@ -186,7 +130,7 @@ function checkIfLetterIsUsedForName(letter){
 }
 
 
-function saveEditedContact(color, index){
+async function saveEditedContact(color, index){
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-mail').value;
     let newPhone = document.getElementById('new-contact-phone').value;
@@ -204,6 +148,7 @@ function saveEditedContact(color, index){
     
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color, 'id': newAndOldID};
     contacts.push(newContact);
+    await saveContactsToBackend();
     showContact(firstname, lastname, initials, newMail, color, newPhone, index, newAndOldID);
     clearAndPush(lastname, color, initials);
     renderContacts();
@@ -219,7 +164,7 @@ function clearAndPush(lastname, color, initials){
 }
 
 
-function saveNewContact(){
+async function saveNewContact(){
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-mail').value;
     let newPhone = document.getElementById('new-contact-phone').value;
@@ -236,9 +181,10 @@ function saveNewContact(){
     }
     let initials = firstname.charAt(0) + lastname.charAt(0);
     let randomcolor = Math.floor((Math.random()) * 11) + 1;
-    let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor, 'id': contacts.length};
+    let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor, 'id': contacts.length};    
     contacts.push(newContact);
-    clearAndPush(lastname, randomcolor, initials)
+    await saveContactsToBackend();
+    clearAndPush(lastname, randomcolor, initials);
     showContact(firstname, lastname, initials, newMail, randomcolor, newPhone, (contacts.length-1), contacts.length-1);
     renderContacts();
 }
