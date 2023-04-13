@@ -12,8 +12,8 @@ loadRememberedUser();
 async function signUp(){
     let newName = document.getElementById('signup-name').value;
     let newNamesplitted = newName.split(' ');
-    let newFirstname = newNamesplitted[0];
-    let newLastname = newNamesplitted[1];   
+    let newFirstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
+    let newLastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);  
     let newMail = document.getElementById('signup-email').value;
     checkIfMailIsAlreadyUsed(newMail);
     if (mailTaken == true) {
