@@ -18,7 +18,7 @@ let subtasks = [];
         
 
 function addNewCategory(){
-      let addedCategory = document.getElementById('input-new-category').value;
+    let addedCategory = document.getElementById('input-new-category').value;
     if (addedCategory.length < 1) {
         return;
     }
@@ -97,7 +97,7 @@ function renderCategoryOptionsInAddTask(){
     let options = document.getElementById('category-options');
     options.innerHTML = generateNewCategoryOption();
                     for (let i = 0; i < categories.length; i++) {
-                        let category = categories[i]['category'];
+                        let category = categories[i]['categoryName'];
                         let color = categories[i]['color'];
                         options.innerHTML += generatCategoryOptions(color, category);
                     }

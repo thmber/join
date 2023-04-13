@@ -75,10 +75,19 @@ async function saveNewPassword(){
 
 
 function sendMailForgotPassword(){
-    let userMail = document.getElementById('mail-user-forgot').value;
+    let userMail = document.getElementById('mailadress-forgot').value;
     let user = users.find(u => u.email == userMail);
-    let id = user['id'];
-    window.location.href = `./success_mail.html?msg=${id}`
+    if (user) {
+        let id = user['id'];
+        document.getElementById('message-forgot').value = `Hello Join-User! \n \n Click on the link below to reset your password \n \n https://gruppe-5008.developerakademie.net/resetpass.html?msg=${id} \n \n Your Join-Team`;
+        document.getElementById('button-submit-forgot').click();
+    }
+    else{
+        document.getElementById('warning-message').classList.remove('d-none');
+        setTimeout(() => {
+            document.getElementById('warning-message').classList.add('d-none');
+        }, 2000);
+    }
     
 }
 
@@ -227,18 +236,19 @@ function showForgotPassword(){
         <div class="underline-login" id="login-underline">
         </div>
         <div class="worry-not">
-                 <span>Don't worry! 
-                    We will send you an email with the instructions to reset your password.</span>
-            </div>
-        <div class="login-form">
-            <div class="login-box">
-                <input type="email" required minlength="5" placeholder="Email" id="mail-user-forgot">
-                <img src="assets/img/icon-email.svg" alt="">
-            </div>
-            <div class="login-and-guest">
-                <button onclick="sendMailForgotPassword()" class="login" id="forgotten-mail-button">Send me the email</button>
-            </div>
+            <span>Don't worry! We will send you an email with the instructions to reset your password.</span>
         </div>
+        <form class="send-mail-form" action="send_mail.php" method="POST">
+            <div class="login-box">
+                <input type="email" placeholder="Email" name="mailadress" id="mailadress-forgot">
+            </div>
+            <input name="name" placeholder="Dein Name" id="name-forgot">
+            <textarea name="message" placeholder="Deine Nachricht an uns" id="message-forgot"></textarea>
+            <button type="submit" id="button-submit-forgot">Mail senden</button>
+        </form>
+        <span class="warning-message d-none" id="warning-message">email is not registered</span>
+        <button class="continue" id="button-send-mail-forgotten" onclick="sendMailForgotPassword()">Continue</button>
+
     `;
 }
 

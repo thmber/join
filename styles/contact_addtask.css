@@ -64,7 +64,7 @@ textarea{
     margin-left: 10px;
     margin-right: 10px;
     width: 800px;
-    min-height: 400px;
+    min-height: 500px;
     border-radius: 10px;
     background-color: white;
     position: relative;
@@ -159,7 +159,7 @@ textarea{
 }
 .new-category-option input{
     height: 36px;
-    width: 120px;
+    width: 160px;
     border: none;
     cursor: pointer;
 }

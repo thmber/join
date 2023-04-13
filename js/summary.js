@@ -31,28 +31,26 @@ function getTasksNotDone(){
     }
 }
 
-function getGreeting(hoursFormat){
-    if (hoursFormat < 10) {
+function getGreeting(hours){
+    if (hours < 10) {
         position = 0;  
     }
-    if(hoursFormat >= 10 && hoursFormat <15){
+    if(hours >= 10 && hours <15){
         position = 1;
     }
-    if (hoursFormat >= 15 && hoursFormat <19) {
+    if (hours >= 15 && hours <19) {
         position = 2;
     }
-    if (hoursFormat >= 19) {
+    if (hours >= 19) {
         position = 3;
     }
-
 }
 
 
 function getGreetingTime(){
-    let date = new Date().toISOString().split("T")[1];
-    let hours = date.charAt(0)+date.charAt(1);
-    let hoursFormat = +hours + 2;
-    getGreeting(hoursFormat);
+    let date = new Date();
+    let hours = date.getHours();
+    getGreeting(hours);
     allCounts.push(greetings[position])
 }
 
