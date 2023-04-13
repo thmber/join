@@ -1,10 +1,13 @@
 
 let currentOpenTask;
 let currentdraggableElement;
-let stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
+const stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
 let some = [];
-
+let checkMobile;
 let a = 0;
+let AUDIO_MOVE = new Audio('assets/sound/splat.mp3');
+
+
 
 function clearBoard() {
     document.getElementById('todo').innerHTML = ``;
@@ -24,6 +27,7 @@ function renderCompleteBoard() {
         }
         renderContactsOnBoard(index, element);
         renderBgCategory(index);
+        renderTheMovingPic(index);
     }
     renderPlaceholder();
 }
@@ -33,13 +37,68 @@ function renderPlaceholder() {
         generatePlaceholderBox(`${element}`);
     });
 }
+function checkIfMobile(){
+    if (/Android|iPhone|iPad/i.test(navigator.userAgent)){
+        console.log('this is mobile');
+        checkMobile = true
+    }
+    else {
+        checkMobile = false;
+    }
+    return checkMobile;
+}
+
 
 
 function showTasksOnBoard() {
+    checkIfMobile();
     clearBoard();
     renderCompleteBoard();
+    
+    
 }
 
+function showTheMovingBox(i){
+    console.log('hi');
+    document.getElementById(`box${i}`).innerHTML = ``;
+ document.getElementById(`box${i}`).innerHTML = `<div class="boxLayer" id="boxLayer${i}"></div>`;
+   let links = getMovingLinks(i);
+   renderMovingTo(i, links);
+  
+}
+
+function getMovingLinks(i){
+    let whereToGo = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
+    let position = whereToGo.indexOf(tasks[i].status);
+   whereToGo.splice(position,1);
+    return whereToGo;
+}
+
+
+function renderMovingTo(i, links){
+   document.getElementById(`boxLayer${i}`).innerHTML += `<div>Move this task to:<div><div class="back" onclick="event.stopPropagation(); goBack()">&#x2715;</div>`;
+    for(j = 0; j< links.length; j++){
+        let destination = links[j];
+    document.getElementById(`boxLayer${i}`).innerHTML += `<div>
+    <button class="boxLayerButton" onclick="event.stopPropagation(); moveTask(${i}, '${destination}')">${destination}</button></div>`
+       }
+}
+
+function moveTask(i, desti){
+   tasks[i].status = desti;
+AUDIO_MOVE.play();
+showTasksOnBoard();
+}
+
+function goBack(){
+    showTasksOnBoard();
+}
+function renderTheMovingPic(i){
+    
+if (checkMobile == true){
+    document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${i}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
+}
+}
 
 function renderBgCategory(index) {
     let count = getTheRightBgColor(tasks[index].category);
@@ -115,6 +174,7 @@ function setStatus(stat) {
     tasks[currentdraggableElement].status = stat;
     saveTasks();
     showTasksOnBoard();
+    AUDIO_MOVE.play();
 }
 
 

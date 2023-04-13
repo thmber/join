@@ -11,7 +11,7 @@ function renderProgressBar(index, element) {
 
 function showTasksOnBoardHTML(index, element) {
     return `
-    <div class="box"  onclick="showTask(${element.id})" draggable="true" ondragstart="startDragging(${element.id})">
+    <div class="box" id="box${index}"  onclick="showTask(${element.id})" draggable="true" ondragstart="startDragging(${element.id})">
         <div class="category" id="categoryBgColor${index}">${element.category}</div>
         <div class="title">${element.title}</div>
         <div class="description">${element.description}</div>

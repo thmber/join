@@ -33,6 +33,15 @@ h3 {
 
 
 }
+.moveIt {
+    width: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+   
+  }
+
+ 
 
 .box {
     cursor: pointer;
@@ -47,12 +56,42 @@ h3 {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
     margin-bottom: 5px;
-
-
-
-
+    position: relative;
+    min-height: 120px;
 
 }
+
+.boxLayer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:last baseline;
+   padding: 15px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+   justify-content: end;
+    border: 1px solid #0e90d2;
+    border-radius: 30px;
+}
+.back {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+.boxLayerButton {
+    padding: 5px;
+    background-color: #333 ;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 3px;
+    width: 150px;
+    cursor: pointer;
+}
+
 
 .headline {
     display: flex;
