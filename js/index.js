@@ -69,7 +69,7 @@ async function saveNewPassword(){
    setTimeout(() => {
      messageBox.style.display = "none";
      window.location.href = "index.html";
-   }, 1000);
+   }, 2000);
 
 }
 
