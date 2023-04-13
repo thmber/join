@@ -64,7 +64,12 @@ function resetPassword(){
 
 async function saveNewPassword(){
     await backend.setItem('users', JSON.stringify(users));
-    window.location.href = "index.html"
+    let messageBox = document.getElementById('you-reset');
+    messageBox.style.display = "flex"
+   setTimeout(() => {
+     messageBox.style.display = "none";
+     window.location.href = "index.html";
+   }, 1000);
 
 }
 

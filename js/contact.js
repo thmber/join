@@ -22,6 +22,7 @@ function getNeededLetters(){
 async function saveContactsToBackend(){
     await backend.setItem('contacts', JSON.stringify(contacts));
     
+    
 }
 
 
