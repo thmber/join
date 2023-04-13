@@ -454,6 +454,31 @@ input{
     align-items: center;
     justify-content: center;
 }
+.create-new-message{
+    width: 250px;
+    color: white;
+    background-color: rgb(41, 54, 70);
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    transform: translate(-50%, 700px);
+    padding: 10px 20px 10px 20px;
+    border-radius: 15px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: createmessage 1.5s ease-in-out forwards;
+    display: none;
+}
+@keyframes createmessage {
+    0%{transform: translate(-50%, 700px);}
+    25%{transform: translate(-50%, 0);}
+    75%{transform: translate(-50%, 0);}
+    100%{transform: translate(-50%, 700px);}
+
+}
+
 /* ################################## for mobiles ############## */
 
 @media (max-width: 1200px){

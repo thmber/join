@@ -21,7 +21,13 @@ function getNeededLetters(){
 
 async function saveContactsToBackend(){
     await backend.setItem('contacts', JSON.stringify(contacts));
-    
+    let messageBox = document.getElementById('create-success-message');
+    setTimeout(() => {
+        messageBox.style.display = "flex";
+        setTimeout(() => {
+        messageBox.style.display = "none";
+        }, 1500);
+   }, 500);
     
 }
 
