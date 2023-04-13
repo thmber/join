@@ -3,6 +3,7 @@ let activeUser = [];
 let users = [];
 let userExists = false;
 let rememberedID;
+let mailTaken = false;
 const urlParams = new URLSearchParams(window.location.search);
 const msg = +urlParams.get('msg');
 loadRememberedUser();
@@ -12,8 +13,13 @@ async function signUp(){
     let newName = document.getElementById('signup-name').value;
     let newNamesplitted = newName.split(' ');
     let newFirstname = newNamesplitted[0];
-    let newLastname = newNamesplitted[1];
+    let newLastname = newNamesplitted[1];   
     let newMail = document.getElementById('signup-email').value;
+    checkIfMailIsAlreadyUsed(newMail);
+    if (mailTaken == true) {
+        showMailTakenWarning();
+        return;
+    }
     let newPassword = document.getElementById('signup-password').value;
     newUser = {'firstname': newFirstname, 
                 'lastname': newLastname, 
@@ -26,6 +32,23 @@ async function signUp(){
     window.location.href = 'summary.html';
 }
 
+
+function checkIfMailIsAlreadyUsed(email){
+    let found = users.find(u => u.email == email);
+    if (found) {
+        mailTaken = true;
+    }
+}
+
+
+function showMailTakenWarning(){
+    let messageBox = document.getElementById('error-message-login');
+    messageBox.style.display = "flex";
+    messageBox.innerHTML = `email is already taken`;
+    setTimeout(() => {
+        messageBox.style.display = "none";
+    }, 1000);
+}
 
 function resetPassword(){
     let newPass = document.getElementById('new-password').value;
@@ -50,7 +73,7 @@ function sendMailForgotPassword(){
     let userMail = document.getElementById('mail-user-forgot').value;
     let user = users.find(u => u.email == userMail);
     let id = user['id'];
-    window.location.href = `gruppe-5008.developerakademie.net/resetpass.html?msg=${id}`
+    window.location.href = `./success_mail.html?msg=${id}`
     
 }
 
@@ -176,6 +199,8 @@ function showSignUp(){
             <div class="login-box">
                 <input type="email" required minlength="5" placeholder="Email" id="signup-email">
                 <img src="assets/img/icon-email.svg" alt="">
+            </div>
+            <div class="error-message-login" id="error-message-login">
             </div>
             <div class="login-box">
                 <input required minlength="5" type="password" placeholder="Password" id="signup-password">
