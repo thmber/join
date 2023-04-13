@@ -245,6 +245,8 @@ font-size: 0.8em;
     justify-content: center;
 }
 
+
+
 .makeBgDarker {
     height: 100vh;
     width: 100%;
@@ -655,6 +657,7 @@ h1 {
        border-radius: 0;
        bottom: 80px;
        justify-content: center;
+       overflow: scroll;
     }
 
     .makeBgDarker {
@@ -704,12 +707,15 @@ h1 {
         font-size: 30px;
         line-height: 35px;
     }
+
+   
 }
 
 @media (max-width: 550px){
 
     .overlayTask {
 justify-content: flex-start;
+overflow: scroll;
     }
     .fullUseOfSpaceTop {
         width: 100%;

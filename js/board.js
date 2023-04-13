@@ -1,7 +1,7 @@
 
 let currentOpenTask;
 let currentdraggableElement;
-const stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
+let stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
 let some = [];
 let checkMobile;
 let a = 0;
@@ -59,7 +59,7 @@ function showTasksOnBoard() {
 }
 
 function showTheMovingBox(i){
-    console.log('hi');
+    
     document.getElementById(`box${i}`).innerHTML = ``;
  document.getElementById(`box${i}`).innerHTML = `<div class="boxLayer" id="boxLayer${i}"></div>`;
    let links = getMovingLinks(i);
@@ -86,8 +86,11 @@ function renderMovingTo(i, links){
 
 function moveTask(i, desti){
    tasks[i].status = desti;
-AUDIO_MOVE.play();
+   console.log(tasks[i].status);
 showTasksOnBoard();
+saveTasks();
+AUDIO_MOVE.play();
+
 }
 
 function goBack(){
