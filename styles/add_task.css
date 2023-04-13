@@ -66,6 +66,10 @@ input {
   background-color: white;
 }
 
+.inputArea img {
+  cursor: pointer;
+}
+
 .inputArea {
   color: grey;
   border-radius: 8px;
@@ -79,6 +83,7 @@ input {
   padding-right: 15px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  
 }
 
 #optionsCat {
@@ -225,7 +230,7 @@ input {
 
 .plus {
   position: absolute;
-  top: 33px;
+  top: 30px;
   right: 10px;
   cursor: pointer;
 }
@@ -374,6 +379,7 @@ input {
    padding: 10px 40px 10px 20px;
   background-color: whitesmoke;
    z-index: 10;
+   margin-bottom: 80px;
 }
 
 .missingInfoText {

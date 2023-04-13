@@ -75,6 +75,7 @@ function checkInput(title, description, category, prio) {
   let descriptionOK;
   let categoryOK;
   let prioOK;
+  let contactOK;
   if (title.length == 0) {
     titleOK = false;
     let missingTitle = document.getElementById('missingTitle');
@@ -98,6 +99,16 @@ function checkInput(title, description, category, prio) {
   else { categoryOK = true; }
 
 
+if(chosenContacts.length == 0){
+  contactOK = false;
+  let missingContact = document.getElementById('missingContact');
+  missingContact.classList.remove('d-none');
+}
+else {
+  contactOK = true;
+}
+
+
 
   if (prio == undefined) {
     prioOK = false;
@@ -106,7 +117,7 @@ function checkInput(title, description, category, prio) {
   }
   else { prioOK = true; }
 
-  let totalOK = (titleOK && descriptionOK && categoryOK && prioOK)
+  let totalOK = (titleOK && descriptionOK && categoryOK && prioOK && contactOK)
   return totalOK;
 }
 
@@ -581,8 +592,9 @@ function chooseTheContact(i, index) {
   else {
     chosenContacts.splice(inis, 1);
      }
-  console.log(chosenContacts);
+ 
   showTheJustChosenContacts(chosenContacts);
+  document.getElementById('missingContact').classList.add('d-none');
 }
 
 function showTheJustChosenContacts(theContacts) {

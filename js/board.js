@@ -37,21 +37,21 @@ function renderPlaceholder() {
         generatePlaceholderBox(`${element}`);
     });
 }
-function checkIfMobile(){
-    if (/Android|iPhone|iPad/i.test(navigator.userAgent)){
-        console.log('this is mobile');
-        checkMobile = true
-    }
-    else {
-        checkMobile = false;
-    }
-    return checkMobile;
-}
+// function checkIfMobile(){
+//     if (/Android|iPhone|iPad/i.test(navigator.userAgent)){
+//         console.log('this is mobile');
+//         checkMobile = true
+//     }
+//     else {
+//         checkMobile = false;
+//     }
+//     return checkMobile;
+// }
 
 
 
 function showTasksOnBoard() {
-    checkIfMobile();
+    // checkIfMobile();
     clearBoard();
     renderCompleteBoard();
     
@@ -98,9 +98,9 @@ function goBack(){
 }
 function renderTheMovingPic(i){
     
-if (checkMobile == true){
+// if (checkMobile == true){
     document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${i}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
-}
+// }
 }
 
 function renderBgCategory(index) {
@@ -324,6 +324,8 @@ function loadTheTaskContent(i) {
 function saveExistingTask(i) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
+//     let totalOK = checkInput(title.value, description.value, category.textContent, prio);
+//  if(totalOK){
     let task = {
         'id': i,
         'status': tasks[i].status,
@@ -342,6 +344,7 @@ function saveExistingTask(i) {
     clearInputFields(title, description, dueDate);
     currentOpenTask = -1;
     chosenContacts = [];
+// }
 }
 
 function clearInputFields(title, description, dueDate) {
