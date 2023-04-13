@@ -22,6 +22,31 @@ function showTasksOnBoardHTML(index, element) {
 </div>` ;
 }
 
+function showTaskHTML(index, element, j){
+    return `
+        <div class="fullUseOfSpace">
+        <div class="fullUseOfSpaceTop">
+                <div class="overlayOneRow">
+                    <div class="overlayCategory" id="categoryBgColorShowTask${j}">${element.category}</div>
+                    <div id="closeTask" onclick="closeTask()">&#8592;</div>
+                </div>
+                <div class="overlayTitle">${element.title}</div>
+                <div class="overlayDescription">${element.description}</div>
+                <div class="overlayContent"><b>Due Date: </b> ${element.duedate}</div>
+                <div class="overlayContent"><b>Priority: </b><div id="priority">${element.priority}<img id="prioPic" src="assets/img/${element.priority}.svg"></div></div>
+            
+                <div id="assignTo${index}" class="assignTo"><b> Assigned To:</b></div>
+                <div id="assign"></div>
+        </div>
+            <div class="fullUseOfSpaceBottom">
+                <div id="edit${j}" class="edit" onclick="showEditTask(${j})"><img  id="edit${j}" src="./assets/img/edit.svg" ></div>
+            </div>
+    </div>
+    `;
+}
+
+
+
 function testRenderNewTaskHTML(){
     return `
     <div class="whiteBg">
