@@ -21,3 +21,19 @@ order: 0;
 flex-grow: 0;
 }
 
+.topic {
+    font-size: 1.8em;
+    color: rgba(11, 173, 221);
+    font-weight: 500;
+    margin-top: 50px;
+ 
+}
+
+.impressum {
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.impressum a {
+ text-decoration: none;
+}
