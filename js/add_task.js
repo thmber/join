@@ -32,7 +32,7 @@ function searchTheMaxID(){
      }
      console.log(allIDs);
   let maxID = Math.max(...allIDs);
-   return maxID + 1;
+   return (maxID + 1);
 }
 
 function addTask() {
@@ -70,9 +70,16 @@ function addTask() {
 function goToBoard() {
   setTimeout(() => {
     document.location = "../board.html"
-  }, 3000);
+  }, 2000);
 }
 
+function closeItQuick(){
+  // document.location = "../board.html";
+  document.getElementById('overlayTask').classList.add('d-none');
+  document.getElementById('makeBgDarker').classList.add('d-none');
+  document.getElementById('newTask').classList.add('d-none');
+  showTasksOnBoard();
+}
 function resetOverlay() {
   if (!document.getElementById('makeBgDarker').classList.contains('d-none')) {
     document.getElementById('makeBgDarker').classList.add('d-none');

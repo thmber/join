@@ -519,6 +519,7 @@ function filterTasks() {
 
 
 function testRenderNewTask() {
+    document.getElementById('newTask').innerHTML = ``;
     freezeBackground();
     showDarkOverlay();
     document.getElementById('newTask').classList.remove('d-none');
@@ -544,7 +545,6 @@ function filterTheAssignedPeople(i) {
 
 function deleteTask(i){
     tasks.splice(i,1);
-    closeTask();
-       saveTasks();
-    console.log(tasks);
+         saveTasks();
+       goToBoard();
 }
