@@ -315,6 +315,10 @@ function closeTask() {
     document.getElementById('makeBgDarker').classList.add('d-none');
     document.getElementById('overlayTask').classList.add('d-none');
     document.getElementById('editTask').classList.add('d-none');
+    document.getElementById('newTask').classList.add('d-none');
+    document.getElementById('addTaskForm').classList.add('d-none');
+    // document.getElementById('addTaskForm').innerHTML = ``;
+    // document.getElementById('newTask').innerHTML = ``;
     showTasksOnBoard();
     currentOpenTask = -1;
     chosenContacts = [];
@@ -518,6 +522,7 @@ function testRenderNewTask() {
     document.getElementById('newTask').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
     document.getElementById('newTask').innerHTML += testRenderNewTaskHTML();
+    delayDate();
     renderTheContacts();
 }
 

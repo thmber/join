@@ -486,6 +486,12 @@ input {
   .headline {
     width: 70%;
   }
+
+  .infoText {
+    z-index: 100;
+    left: 15%;
+   
+  }
 }
 
 @media (max-width: 630px) {
@@ -500,6 +506,7 @@ input {
   .containerAddTaskRightSide {
     width: 100%;
   }
+
 }
 
 @media (max-width: 600px) {

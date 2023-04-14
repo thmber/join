@@ -304,6 +304,7 @@ function renderDate() {
   let currentDate = document.getElementById('dueDate');
   let possibleDueDate = getTodayDate();
   currentDate.value = possibleDueDate;
+  currentDate.setAttribute('min', possibleDueDate );
 }
 
 
