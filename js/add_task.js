@@ -1,6 +1,7 @@
 
 
 let tasks = [];
+let allIDs = [];
 let chosenContacts = [];
 let more = true;
 let prio;
@@ -24,7 +25,15 @@ let priorities = [{
   color: 'green'
 }];
 
-
+function searchTheMaxID(){
+  allIDs = [];
+  for (i= 0; i < tasks.length; i++){
+       allIDs.push(tasks[i].id);
+     }
+     console.log(allIDs);
+  let maxID = Math.max(...allIDs);
+   return maxID + 1;
+}
 
 function addTask() {
   let title = document.getElementById('title');
@@ -34,7 +43,7 @@ function addTask() {
   let autoID;
 
   if (tasks.length > 0) {
-    autoID = tasks.length
+    autoID = searchTheMaxID();
   }
   else autoID = 0;
   let totalOK = checkInput(title.value, description.value, category.textContent, prio);

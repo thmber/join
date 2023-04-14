@@ -103,7 +103,9 @@ function goBack() {
 }
 
 function renderTheMovingPic(i) {
-    document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${i}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
+    // let index = getTheRightTask(i);
+    // console.log(i, index)
+ document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${tasks[i].id}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
 }
 
 // function renderBgCategory(index) {
@@ -195,7 +197,7 @@ function generatePlaceholderBox(status) {
  * @param {*} id current active Task
  */
 function startDragging(id) {
-    currentdraggableElement = id;
+    currentdraggableElement = getTheRightTask(id);
     let allPlaceholder = document.querySelectorAll('.placeholder');
     for (let i = 0; i < allPlaceholder.length; i++) {
         allPlaceholder[i].classList.remove('d-none');
@@ -538,4 +540,11 @@ function filterTheAssignedPeople(i) {
         document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${tasks[i].assignedTo[j].color}" >${tasks[i].assignedTo[j].initial}</div>`;
     }
     chosenContacts = tasks[i].assignedTo;
+}
+
+function deleteTask(i){
+    tasks.splice(i,1);
+    closeTask();
+       saveTasks();
+    console.log(tasks);
 }

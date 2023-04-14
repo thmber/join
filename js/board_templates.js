@@ -39,7 +39,7 @@ function showTaskHTML(index, element, j){
                 <div id="assign"></div>
         </div>
             <div class="fullUseOfSpaceBottom">
-                <div id="edit${j}" class="edit" onclick="showEditTask(${j})"><img  id="edit${j}" src="./assets/img/edit.svg" ></div>
+                <div id="edit${j}" class="edit" onclick="showEditTask(${j})"><div id="deleteIt" onclick="deleteTask(${j})"><img src="./assets/img/delete.png"></div><img  id="edit${j}" src="./assets/img/edit.svg" ></div>
             </div>
     </div>
     `;

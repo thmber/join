@@ -554,7 +554,20 @@ flex-direction: column;
     z-index: -1;
 }
 
+#deleteIt {
+    width: 45px;
+    height: 45px;
+    background-color: #2A3647;
+    margin-right: 5px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+#deleteIt img {
+    width: 30px;
+}
 @keyframes newcontact {
     0% {
         transform: translate (500%, -50%);
