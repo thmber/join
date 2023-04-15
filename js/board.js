@@ -546,5 +546,5 @@ function filterTheAssignedPeople(i) {
 function deleteTask(i){
     tasks.splice(i,1);
          saveTasks();
-       goToBoard();
+       goToBoard(300);
 }

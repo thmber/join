@@ -62,15 +62,15 @@ function addTask() {
     tasks.push(task);
     saveTasks();
     flyingInfo();
-    goToBoard();
+    goToBoard(2000);
   }
 }
 
 
-function goToBoard() {
+function goToBoard(delay) {
   setTimeout(() => {
     document.location = "../board.html"
-  }, 2000);
+  }, delay);
 }
 
 function closeItQuick(){
