@@ -3,8 +3,7 @@ let activeUser = [];
 let users = [];
 let userExists = false;
 let rememberedID;
-let mailTaken = false;
-let onlyOneName = false;
+let warningMessages = ['a user with this email is already registered', 'Please enter first and last name']
 const urlParams = new URLSearchParams(window.location.search);
 const msg = +urlParams.get('msg');
 loadRememberedUser();
@@ -13,18 +12,16 @@ loadRememberedUser();
 async function signUp(){
     let newName = document.getElementById('signup-name').value;
     let newNamesplitted = newName.split(' ');
-    checkIfFirstAndLastName(newNamesplitted);
-    if (onlyOneName == true) {
-        onlyOneName == false;
+    if (newNamesplitted.length == 1) {
+        showSignupWarning(1);
         return;
     }
     let newFirstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let newLastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);  
     let newMail = document.getElementById('signup-email').value;
-    checkIfMailIsAlreadyUsed(newMail);
-    if (mailTaken == true) {
+    let found = users.find(u => u.email == newMail);
+    if (found) {
         showMailTakenWarning();
-        mailTaken = false;
         return;
     }
     let newPassword = document.getElementById('signup-password').value;
@@ -43,30 +40,18 @@ async function signUp(){
 function checkIfFirstAndLastName(newName){
     if (newName.length == 1) {
         onlyOneName = true;
-        document.getElementById('error-message-signup').innerHTML = `Please enter first and last name`;
-        document.getElementById('error-message-signup').style.display = "flex";
-        setTimeout(() => {
-            document.getElementById('error-message-signup').style.display = "none";
-        }, 1500);
     }
 }
 
-function checkIfMailIsAlreadyUsed(email){
-    let found = users.find(u => u.email == email);
-    if (found) {
-        mailTaken = true;
-    }
-}
-
-
-function showMailTakenWarning(){
+function showSignupWarning(position){
     let messageBox = document.getElementById('error-message-signup');
     messageBox.style.display = "flex";
-    messageBox.innerHTML = `a user with this email is already registered`;
+    messageBox.innerHTML = `${warningMessages[position]}`;
     setTimeout(() => {
         messageBox.style.display = "none";
-    }, 1000);
+    }, 1500);
 }
+
 
 function resetPassword(){
     let newPass = document.getElementById('new-password').value;
@@ -75,7 +60,6 @@ function resetPassword(){
     if (newPass == newPassConfirmed) {
         user['password'] = newPass;
         saveNewPassword();
-       
     }
 }
 
@@ -88,7 +72,6 @@ async function saveNewPassword(){
      messageBox.style.display = "none";
      window.location.href = "index.html";
    }, 2000);
-
 }
 
 

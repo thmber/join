@@ -88,6 +88,11 @@ function getNumberofTasks(category, status, relevantArray){
 }
 
 
+function goToBoard(){
+    window.location.href = "board.html"
+
+}
+
 
 function generateSummaryHTML(){
     let content = document.getElementById('summary-content');
@@ -105,21 +110,21 @@ function generateSummaryHTML(){
         <div class="summary-and-greeting-box">
             <div class="summary-box">
                 <div class="summary-row">
-                    <div class="single-box single-first-row animation1">
+                    <div onclick="goToBoard()" class="single-box single-first-row animation1">
                         <span class="big-number">${tasks.length}</span>
                         <span>Tasks in <br>Board</span>
                     </div>
-                    <div class="single-box single-first-row animation2">
+                    <div onclick="goToBoard()" class="single-box single-first-row animation2">
                         <span class="big-number">${allCounts[0]}</span>
                         <span>Tasks in <br>Progress</span>
                     </div>
-                    <div class="single-box single-first-row animation3">
+                    <div onclick="goToBoard()" class="single-box single-first-row animation3">
                         <span class="big-number">${allCounts[1]}</span>
                         <span>Awaiting <br> Feedback</span>
                     </div>
                 </div>
                 <div class="summary-row">
-                    <div class="single-box single-second-row animation4">
+                    <div onclick="goToBoard()" class="single-box single-second-row animation4">
                         <div class="urgent-box">
                             <div class="second-line-urgent-box">
                                 <img src="assets/img/urgent_icon.svg" alt="" id="urgent-summary">
@@ -138,7 +143,7 @@ function generateSummaryHTML(){
                     </div>
                 </div>
                 <div class="summary-row">
-                    <div class="single-box single-third-row animation5">
+                    <div onclick="goToBoard()" class="single-box single-third-row animation5">
                         <div class="summary-img-box">
                             <img class="summary-icon" src="assets/img/edit_white.png" alt="">
                         </div>
@@ -147,7 +152,7 @@ function generateSummaryHTML(){
                             <span>To-do</span>
                         </div>
                     </div>
-                    <div class="single-box single-third-row animation6">
+                    <div onclick="goToBoard()" class="single-box single-third-row animation6">
                         <div class="summary-img-box">
                             <img class="summary-icon" src="assets/img/icon-done.svg" alt="">
                         </div>
