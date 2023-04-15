@@ -230,10 +230,18 @@ input {
 
 .plus {
   position: absolute;
-  top: 30px;
+  top: 33px;
   right: 10px;
   cursor: pointer;
 }
+
+
+/* .plusZwei {
+  position: absolute;
+  top: 28px;
+  right: 10px;
+  cursor: pointer;
+} */
 
 #displaySubtasks {
   font-size: 12px;
@@ -419,6 +427,10 @@ input {
   display: none;
 }
 
+#dueDate {
+  cursor: pointer;
+}
+
 @keyframes flyInAndOut {
   0% {}
 
@@ -495,6 +507,10 @@ input {
 }
 
 @media (max-width: 630px) {
+  .plus {
+        top: 28px;
+      }
+
   #totalInput {
     font-size: 0.8em;
   }
