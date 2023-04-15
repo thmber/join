@@ -106,7 +106,7 @@ function generateCardHTML(id){
     content.style.display = "flex";
     content.innerHTML = `
     <div class="card" id="card">
-    <form action="#" onsubmit="saveNewTask()" autocomplete="off">
+    <form onsubmit="saveNewTask()" autocomplete="off">
          <div class="card-left">
             <span class="add-task-head-title">Add Task</span>
             <label for="add-task-title">Title</label>

@@ -1,11 +1,10 @@
-
-
 let contacts = [];
 let neededLetters = [];
 let onlyLastnames = [];
 let onlyFirstnames = [];
 let sortedContacts = [];
 let same = false;
+let colorCodes = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
 
 
 function getNeededLetters(){
@@ -151,8 +150,7 @@ async function saveEditedContact(color, index){
     let newNamesplitted = newName.split(' ');
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
-    let initials = firstname.charAt(0) + lastname.charAt(0);
-    
+    let initials = firstname.charAt(0) + lastname.charAt(0); 
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color, 'id': newAndOldID};
     contacts.push(newContact);
     await saveContactsToBackend();

@@ -98,8 +98,9 @@ function renderCategoryOptionsInAddTask(){
     options.innerHTML = generateNewCategoryOption();
                     for (let i = 0; i < categories.length; i++) {
                         let category = categories[i]['categoryName'];
-                        let color = categories[i]['color'];
-                        options.innerHTML += generatCategoryOptions(color, category);
+                        let color = categories[i]['categoryColor'];
+                        let colorConverted = colorCodes.indexOf(color) +1;
+                        options.innerHTML += generatCategoryOptions(colorConverted, category);
                     }
 
 

@@ -21,7 +21,7 @@ async function signUp(){
     let newMail = document.getElementById('signup-email').value;
     let found = users.find(u => u.email == newMail);
     if (found) {
-        showMailTakenWarning();
+        showSignupWarning(0);
         return;
     }
     let newPassword = document.getElementById('signup-password').value;
