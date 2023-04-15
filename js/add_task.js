@@ -74,10 +74,12 @@ function goToBoard(delay) {
 }
 
 function closeItQuick(){
+closeOverlayAddTask();
   // document.location = "../board.html";
-  document.getElementById('overlayTask').classList.add('d-none');
-  document.getElementById('makeBgDarker').classList.add('d-none');
-  document.getElementById('newTask').classList.add('d-none');
+   document.getElementById('overlayTask').classList.add('d-none');
+  // document.getElementById('makeBgDarker').classList.add('d-none');
+   document.getElementById('newTask').classList.add('d-none');
+
   showTasksOnBoard();
 }
 function resetOverlay() {
