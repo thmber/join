@@ -102,22 +102,8 @@ function goBack() {
 }
 
 function renderTheMovingPic(i) {
-    // let index = getTheRightTask(i);
-   
- document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${tasks[i].id}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
+    document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${tasks[i].id}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
 }
-
-// function renderBgCategory(index) {
-//     let count = getTheRightBgColor(tasks[index].category);
-//     let bgColor = categories[count].categoryColor;
-//     document.getElementById(`categoryBgColor${index}`).style.backgroundColor = bgColor;
-// }
-
-// function renderBgCategoryShowTask(index) {
-//     let count = getTheRightBgColor(tasks[index].category);
-//     let bgColor = categories[count].categoryColor;
-//     document.getElementById(`categoryBgColorShowTask${index}`).style.backgroundColor = bgColor;
-// }
 
 /**
  * 
@@ -220,11 +206,6 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-// function getTheAssignedContacts(objID) {
-//     let searchFor = objID;
-//     let whatINeed = contacts.findIndex(obj => obj.id == searchFor);
-//     return whatINeed;
-// }
 
 function getTheRightTask(objID) {
     let searchFor = objID;
@@ -248,7 +229,7 @@ function freezeBackground() {
 function showTask(index) {
     freezeBackground();
     currentOpenTask = index;
-    document.getElementById('makeBgDarker').classList.remove('d-none');
+    showDarkOverlay();
     document.getElementById('overlayTask').innerHTML = ``;
     let j = getTheRightTask(index);
     document.getElementById('overlayTask').classList.remove('d-none');
@@ -263,11 +244,11 @@ function showEditTask(i) {
     showAddTaskOverlay();
     changeTheLook();
     createSaveButton(i);
-   loadAllTheTaskContent(i);
+    loadAllTheTaskContent(i);
 }
 
 
-function loadAllTheTaskContent(i){
+function loadAllTheTaskContent(i) {
     loadTheTaskContent(i);
     renderContactsAssignBoard(i);
     filterTheAssignedPeople(i);
@@ -298,7 +279,7 @@ function getbgColor(index) {
         changeColor('red');
     }
     else if (tasks[index].priority == 'medium') {
-         changeColor('orange');
+        changeColor('orange');
     }
     else if (tasks[index].priority == 'low') {
         changeColor('green');
@@ -306,7 +287,7 @@ function getbgColor(index) {
 }
 
 
-function changeColor(color){
+function changeColor(color) {
     document.getElementById('prioPic').classList.add('invert');
     document.getElementById('priority').classList.add(color);
 }
@@ -318,12 +299,15 @@ function closeTask() {
     document.getElementById('editTask').classList.add('d-none');
     document.getElementById('newTask').classList.add('d-none');
     document.getElementById('addTaskForm').classList.add('d-none');
-    // document.getElementById('addTaskForm').innerHTML = ``;
-    // document.getElementById('newTask').innerHTML = ``;
     showTasksOnBoard();
+    resetData();
+    loosenBackground();
+}
+
+function resetData() {
     currentOpenTask = -1;
     chosenContacts = [];
-    loosenBackground();
+    subtasks_interim = [];
 }
 
 function showAssigned(element) {
@@ -347,7 +331,7 @@ function loadTheTaskContent(i) {
 function saveExistingTask(i) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
-        let task = {
+    let task = {
         'id': i,
         'status': tasks[i].status,
         'title': title.value,
@@ -363,10 +347,7 @@ function saveExistingTask(i) {
     document.getElementById('addTaskForm').classList.add('d-none');
     showTask(i)
     clearInputFields(title, description, dueDate);
-    currentOpenTask = -1;
-    chosenContacts = [];
-    subtasks_interim = [];
-    
+    resetData();
 }
 
 
@@ -395,22 +376,17 @@ function getExistingSubtasks(i) {
 
 function showExistingSubtasks(i) {
     if (tasks[i].subtasks.length > 0) {
-
         tasks[i].subtasks.forEach((element, j) => {
-            document.getElementById('displaySubtasks').innerHTML += `
-  <div class="wrapper">
-  <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${j}">
-  <label for="subtask">${element.subtaskName}</label>
-</div>`;
+            document.getElementById('displaySubtasks').innerHTML += showExistingSubtasksHTML(element, j);
         });
     }
 }
 
-function readPrio(i) {
-    if (tasks[i].priority == 'urgent') renderUrgentHTML();
-    else if (tasks[i].priority == 'medium') renderMediumHTML();
-    else if (tasks[i].priority == 'low') renderLowHTML();
 
+function readPrio(i) {
+    if (tasks[i].priority == 'urgent') renderPrioButton(renderUrgentHTML2());
+    else if (tasks[i].priority == 'medium') renderPrioButton(renderMediumHTML2());
+    else if (tasks[i].priority == 'low') renderPrioButton(renderLowHTML2());
 }
 
 
@@ -439,57 +415,28 @@ function loosenBackground() {
     document.body.scroll = "yes";
 }
 
-function renderUrgentHTML() {
+
+function renderPrioButton(func) {
     document.getElementById('prioButtons').innerHTML = ``;
-    document.getElementById('prioButtons').innerHTML +=
-        ` <button onclick="selectButton(0)" class="buttonPrio red" id="urgent">Urgent<img id="picurgent"
-    src="assets/img/urgent.svg" style="filter:brightness(0) invert(1)"></button>
-    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
-    src="assets/img/medium.svg"></button>
-    <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
-    src="assets/img/low.svg"></button>`
+    document.getElementById('prioButtons').innerHTML += func;
 }
-function renderMediumHTML() {
-    document.getElementById('prioButtons').innerHTML = ``;
-    document.getElementById('prioButtons').innerHTML += ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
-    src="assets/img/urgent.svg"></button>
-    <button onclick="selectButton(1)" class="buttonPrio orange" id="medium">Medium<img id="picmedium"
-    src="assets/img/medium.svg" style="filter:brightness(0) invert(1)"></button>
-    <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
-    src="assets/img/low.svg"></button>`
-}
-function renderLowHTML() {
-    document.getElementById('prioButtons').innerHTML = ``;
-    document.getElementById('prioButtons').innerHTML += ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
-    src="assets/img/urgent.svg"></button>
-    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
-    src="assets/img/medium.svg"></button>
-    <button onclick="selectButton(2)" class="buttonPrio green" id="low">Low<img id="piclow"
-    src="assets/img/low.svg" style="filter:brightness(0) invert(1)"></button>`
-}
+
 
 function renderSubtasks(i) {
     subtasks_interim = tasks[i].subtasks;
-      document.getElementById('displaySubtasks').innerHTML = ``;
+    document.getElementById('displaySubtasks').innerHTML = ``;
     let subs = tasks[i].subtasks;
-
     let ch = ``;
     for (let index = 0; index < subs.length; index++) {
         const element = subs[index];
-
         if (element.check) ch = 'checked';
-
-        document.getElementById('displaySubtasks').innerHTML += `
-      <div class="wrapper">
-        <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
-        <label for="subtask">${element.subtaskName}</label>
-        <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
-      </div>`;
+        document.getElementById('displaySubtasks').innerHTML += renderSubtasksHTML(element, index, ch);
         ch = '';
     }
 }
 
-function deleteTheSubtask(i){
+
+function deleteTheSubtask(i) {
     subtasks_interim.splice(i, 1);
     showSubtasks(subtasks_interim);
 }
@@ -511,15 +458,12 @@ function filterTasks() {
     let regex = new RegExp(search);
     let content = document.getElementById('cols');
     let boxes = content.querySelectorAll('.box');
-
     for (let i = 0; i < boxes.length; i++) {
         let title = boxes[i].querySelector('.title').innerHTML;
         let description = boxes[i].querySelector('.description').innerHTML;
-
         if (regex.test(title.toLowerCase()) || regex.test(description.toLowerCase())) {
             boxes[i].style.display = 'flex';
-        } else {
-            boxes[i].style.display = 'none';
+        } else { boxes[i].style.display = 'none';
         }
     }
 }
@@ -541,16 +485,15 @@ function filterTheAssignedPeople(i) {
     document.getElementById(`showAssignedPeople`).innerHTML = ``;
     some = [];
     some = tasks[i].assignedTo;
-  
     for (let j = 0; j < tasks[i].assignedTo.length; j++) {
-
         document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${tasks[i].assignedTo[j].color}" >${tasks[i].assignedTo[j].initial}</div>`;
     }
     chosenContacts = tasks[i].assignedTo;
 }
 
-function deleteTask(i){
-    tasks.splice(i,1);
-         saveTasks();
-       goToBoard(300);
+
+function deleteTask(i) {
+    tasks.splice(i, 1);
+    saveTasks();
+    goToBoard(300);
 }

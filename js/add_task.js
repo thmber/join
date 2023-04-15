@@ -26,40 +26,56 @@ let priorities = [{
   color: 'green'
 }];
 
-function searchTheMaxID(){
+function searchTheMaxID() {
   allIDs = [];
-  for (i= 0; i < tasks.length; i++){
-       allIDs.push(tasks[i].id);
-     }
-     let maxID = Math.max(...allIDs);
-   return (maxID + 1);
+  for (i = 0; i < tasks.length; i++) {
+    allIDs.push(tasks[i].id);
+  }
+  let maxID = Math.max(...allIDs);
+  return (maxID + 1);
 }
+
+// function addTask() {
+//   let title = document.getElementById('title');
+//   let description = document.getElementById('description');
+//   let category = document.getElementById('selectedCategory');
+//   let duedate = document.getElementById('dueDate');
+//   let autoID;
+
+//   if (tasks.length > 0) {
+//     autoID = searchTheMaxID();
+//   }
+//   else autoID = 0;
+//   let totalOK = checkInput(title.value, description.value, category.textContent, prio);
+//   if (totalOK) {
+//     let task = {
+//       'id': autoID,
+//       'status': 'todo',
+//       'title': title.value,
+//       'description': description.value,
+//       'duedate': duedate.value,
+//       'priority': prio,
+//       'assignedTo': getAssignedContacts(),
+//       'category': category.textContent,
+//       'subtasks': getSubtasks()
+//     }
+//     tasks.push(task);
+//     saveTasks();
+//     flyingInfo();
+//     goToBoard(2000);
+//     subtasks_interim = [];
+//   }
+// }
+
 
 function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('selectedCategory');
   let duedate = document.getElementById('dueDate');
-  let autoID;
-
-  if (tasks.length > 0) {
-    autoID = searchTheMaxID();
-  }
-  else autoID = 0;
   let totalOK = checkInput(title.value, description.value, category.textContent, prio);
   if (totalOK) {
-    let task = {
-      'id': autoID,
-      'status': 'todo',
-      'title': title.value,
-      'description': description.value,
-      'duedate': duedate.value,
-      'priority': prio,
-      'assignedTo': getAssignedContacts(),
-      'category': category.textContent,
-      'subtasks': getSubtasks()
-    }
-    tasks.push(task);
+    tasks.push(createSingleTask(findAvailableTaskID(), title, description, duedate, prio, category));
     saveTasks();
     flyingInfo();
     goToBoard(2000);
@@ -67,6 +83,29 @@ function addTask() {
   }
 }
 
+function findAvailableTaskID() {
+  let autoID;
+  if (tasks.length > 0) {
+    autoID = searchTheMaxID();
+  }
+  else { autoID = 0 };
+  return autoID;
+}
+
+function createSingleTask(autoID, title, description, duedate, prio, category) {
+  let task = {
+    'id': autoID,
+    'status': 'todo',
+    'title': title.value,
+    'description': description.value,
+    'duedate': duedate.value,
+    'priority': prio,
+    'assignedTo': getAssignedContacts(),
+    'category': category.textContent,
+    'subtasks': getSubtasks()
+  }
+  return task;
+}
 
 function goToBoard(delay) {
   setTimeout(() => {
@@ -74,20 +113,21 @@ function goToBoard(delay) {
   }, delay);
 }
 
-function closeItQuick(){
-closeOverlayAddTask();
-  // document.location = "../board.html";
-   document.getElementById('overlayTask').classList.add('d-none');
+function closeItQuick() {
+  closeOverlayAddTask();
+  document.getElementById('overlayTask').classList.add('d-none');
   document.getElementById('makeBgDarker').classList.add('d-none');
-   document.getElementById('newTask').classList.add('d-none');
-
+  document.getElementById('newTask').classList.add('d-none');
   showTasksOnBoard();
 }
+
+
 function resetOverlay() {
   if (!document.getElementById('makeBgDarker').classList.contains('d-none')) {
     document.getElementById('makeBgDarker').classList.add('d-none');
   }
 }
+
 
 function checkInput(title, description, category, prio) {
   let titleOK;
@@ -95,6 +135,7 @@ function checkInput(title, description, category, prio) {
   let categoryOK;
   let prioOK;
   let contactOK;
+
   if (title.length == 0) {
     titleOK = false;
     let missingTitle = document.getElementById('missingTitle');
@@ -118,14 +159,14 @@ function checkInput(title, description, category, prio) {
   else { categoryOK = true; }
 
 
-if(chosenContacts.length == 0){
-  contactOK = false;
-  let missingContact = document.getElementById('missingContact');
-  missingContact.classList.remove('d-none');
-}
-else {
-  contactOK = true;
-}
+  if (chosenContacts.length == 0) {
+    contactOK = false;
+    let missingContact = document.getElementById('missingContact');
+    missingContact.classList.remove('d-none');
+  }
+  else {
+    contactOK = true;
+  }
 
 
 
@@ -140,47 +181,20 @@ else {
   return totalOK;
 }
 
-
-// function addSubtask() {
-//   let subtaskField = document.getElementById('subtask');
-//   let singleSubtask = subtaskField.value;
-
-//   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
-
-//     for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
-//       subtasks_namen.push(tasks[currentOpenTask].subtasks[index].subtaskName);
-//     }
-//     more = false;
-//   }
-
-//   if (singleSubtask.length > 0) {
-//     subtasks_namen.push(singleSubtask);
-//   }
-//   subtaskField.value = ``;
-//   showSubtasks(subtasks_namen);
-// }
-
-
-
 function addSubtask() {
   let subtaskField = document.getElementById('subtask');
   let singleSubtask = subtaskField.value;
-  //  subtasks_interim = [];
-
   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
- subtasks_interim = tasks[currentOpenTask].subtasks;
-    // for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
-    //   subtasks_namen.push(tasks[currentOpenTask].subtasks[index].subtaskName);
-    }
-    more = false;
-  
+    subtasks_interim = tasks[currentOpenTask].subtasks;
+  }
+  more = false;
 
   if (singleSubtask.length > 0) {
     let subtask_interim = {
       'subtaskName': singleSubtask,
       'check': false
     }
-    
+
     subtasks_interim.push(subtask_interim);
   }
   subtaskField.value = ``;
@@ -188,22 +202,11 @@ function addSubtask() {
 }
 
 
-// function showSubtasks(subtasks_name) {
-//   document.getElementById('displaySubtasks').innerHTML = ``;
-//   subtasks_name.forEach((element, index) => {
-//     document.getElementById('displaySubtasks').innerHTML += `
-//     <div class="wrapper">
-//       <input type="checkbox" name="subtask" value="${element}" id="input${index}">
-//       <label for="subtask">${element}</label>
-//     </div>`;
-//   });
-// }
-
 
 function showSubtasks(subtasks_interim) {
   let gecheckt;
   document.getElementById('displaySubtasks').innerHTML = ``;
-  
+
   subtasks_interim.forEach((element, index) => {
     gecheckt = '';
     if (subtasks_interim[index].check) gecheckt = 'checked';
@@ -215,19 +218,6 @@ function showSubtasks(subtasks_interim) {
     </div>`;
   });
 }
-
-// function getSubtasks() {
-//   subtasks = [];
-//   for (let index = 0; index < subtasks_namen.length; index++) {
-//     let subtask = {
-//       'subtaskName': subtasks_namen[index],
-//       'check': document.getElementById(`input${index}`).checked
-//     }
-//     subtasks.push(subtask);
-//   }
-//   return subtasks;
-
-// }
 
 
 function getSubtasks() {
@@ -245,19 +235,19 @@ function getSubtasks() {
 
 function getAssignedContacts() {
   contactsAssignTo = [];
-   for (let index = 0; index < contacts.length; index++) {
+  for (let index = 0; index < contacts.length; index++) {
     let contactID = document.getElementById(`user${index}`).value;
-     let checkbox = document.getElementById(`user${index}`).checked;
-let contactIndex = contacts.findIndex(obj => obj.id == contactID);
-     if (checkbox) {
-   
-    let contactAssignTo = {
-      'name': contacts[contactIndex].firstname +' '+ contacts[contactIndex].lastname,
-      'initial': contacts[contactIndex].initials,
-      'color': contacts[contactIndex].color
+    let checkbox = document.getElementById(`user${index}`).checked;
+    let contactIndex = contacts.findIndex(obj => obj.id == contactID);
+    if (checkbox) {
+
+      let contactAssignTo = {
+        'name': contacts[contactIndex].firstname + ' ' + contacts[contactIndex].lastname,
+        'initial': contacts[contactIndex].initials,
+        'color': contacts[contactIndex].color
+      }
+      contactsAssignTo.push(contactAssignTo);
     }
-    contactsAssignTo.push(contactAssignTo);
-  }
   }
   return contactsAssignTo;
 }
@@ -380,7 +370,7 @@ function renderDate() {
   let currentDate = document.getElementById('dueDate');
   let possibleDueDate = getTodayDate();
   currentDate.value = possibleDueDate;
-  currentDate.setAttribute('min', possibleDueDate );
+  currentDate.setAttribute('min', possibleDueDate);
 }
 
 
@@ -395,7 +385,7 @@ function delayDate() {
 
 
 function renderContactsAssignTo() {
-   document.getElementById('optionsUser').innerHTML = ``;
+  document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
     const element = contacts[index];
     document.getElementById('optionsUser').innerHTML += renderContactsAssignToHTML(index, element);
@@ -406,7 +396,7 @@ function renderContactsAssignTo() {
 
 
 function renderContactsAssignToHTML(index, element) {
-   return `
+  return `
   <div class="checkbox">
   <label for="user${index}">${element.firstname} ${element.lastname}</label>
   <input type="checkbox" onchange="chooseTheContact(-1, ${index})" name="assignedTo" value="${element.id}" id="user${index}" >
@@ -418,22 +408,22 @@ function renderContactsAssignToHTML(index, element) {
 function renderContactsAssignBoard(i) {
   let check;
   document.getElementById('optionsUser').innerHTML = ``;
- 
+
   for (let index = 0; index < contacts.length; index++) {
     let contact = contacts[index];
-        
-    
-    
+
+
+
     for (let a = 0; a < tasks[i].assignedTo.length; a++) {
-             if (contact.firstname + ' ' + contact.lastname == tasks[i].assignedTo[a].name) {
-            check = 'checked'
-             break;
-            }
-            
-             else {
-               check = '';
-                   }
-          }
+      if (contact.firstname + ' ' + contact.lastname == tasks[i].assignedTo[a].name) {
+        check = 'checked'
+        break;
+      }
+
+      else {
+        check = '';
+      }
+    }
 
     document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(i, index, contact, check);
   }
@@ -586,7 +576,7 @@ function checkIfInputIsComplete(field) {
   else {
     categorynameIsChosen = true;
   }
-   return (categorynameIsChosen && colorspotIsChosen);
+  return (categorynameIsChosen && colorspotIsChosen);
 }
 
 function resetCategoryChoice() {
@@ -652,8 +642,8 @@ function resetMissingText() {
 
 function chooseTheContact(i, index) {
 
-  if (i>= 0){
-  chosenContacts = tasks[i].assignedTo;
+  if (i >= 0) {
+    chosenContacts = tasks[i].assignedTo;
   }
 
   let chosenContact = {
@@ -665,11 +655,11 @@ function chooseTheContact(i, index) {
   let inis = chosenContacts.findIndex(obj => obj.initial == chosenContact.initial);
   if (inis == -1) {
     chosenContacts.push(chosenContact);
-     }
+  }
   else {
     chosenContacts.splice(inis, 1);
-     }
- 
+  }
+
   showTheJustChosenContacts(chosenContacts);
   document.getElementById('missingContact').classList.add('d-none');
 }

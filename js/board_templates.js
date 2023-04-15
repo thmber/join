@@ -132,3 +132,46 @@ function testRenderNewTaskHTML(){
 </div>`
 
 }
+
+function showExistingSubtasksHTML(element, j){
+    return `
+    <div class="wrapper">
+    <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${j}">
+    <label for="subtask">${element.subtaskName}</label>
+  </div>`;
+}
+
+function renderUrgentHTML2(){
+    return  ` <button onclick="selectButton(0)" class="buttonPrio red" id="urgent">Urgent<img id="picurgent"
+    src="assets/img/urgent.svg" style="filter:brightness(0) invert(1)"></button>
+    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+    src="assets/img/medium.svg"></button>
+    <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+    src="assets/img/low.svg"></button>`
+    }
+
+    function renderMediumHTML2(){
+        return ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+        src="assets/img/urgent.svg"></button>
+        <button onclick="selectButton(1)" class="buttonPrio orange" id="medium">Medium<img id="picmedium"
+        src="assets/img/medium.svg" style="filter:brightness(0) invert(1)"></button>
+        <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
+        src="assets/img/low.svg"></button>`
+    }
+
+    function renderLowHTML2(){
+        return` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+    src="assets/img/urgent.svg"></button>
+    <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
+    src="assets/img/medium.svg"></button>
+    <button onclick="selectButton(2)" class="buttonPrio green" id="low">Low<img id="piclow"
+    src="assets/img/low.svg" style="filter:brightness(0) invert(1)"></button>`}
+
+    function renderSubtasksHTML(element, index, ch){
+        return `
+        <div class="wrapper">
+          <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
+          <label for="subtask">${element.subtaskName}</label>
+          <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
+        </div>`;
+    }
