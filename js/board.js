@@ -91,7 +91,6 @@ function renderMovingTo(i, links) {
  */
 function moveTask(i, desti) {
     tasks[i].status = desti;
-    console.log(tasks[i].status);
     showTasksOnBoard();
     saveTasks();
     AUDIO_MOVE.play();
@@ -104,7 +103,7 @@ function goBack() {
 
 function renderTheMovingPic(i) {
     // let index = getTheRightTask(i);
-    // console.log(i, index)
+   
  document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${tasks[i].id}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
 }
 
@@ -366,6 +365,7 @@ function saveExistingTask(i) {
     clearInputFields(title, description, dueDate);
     currentOpenTask = -1;
     chosenContacts = [];
+    subtasks_interim = [];
     
 }
 
@@ -469,7 +469,8 @@ function renderLowHTML() {
 }
 
 function renderSubtasks(i) {
-    document.getElementById('displaySubtasks').innerHTML = ``;
+    subtasks_interim = tasks[i].subtasks;
+      document.getElementById('displaySubtasks').innerHTML = ``;
     let subs = tasks[i].subtasks;
 
     let ch = ``;
@@ -482,9 +483,15 @@ function renderSubtasks(i) {
       <div class="wrapper">
         <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
         <label for="subtask">${element.subtaskName}</label>
+        <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
       </div>`;
         ch = '';
     }
+}
+
+function deleteTheSubtask(i){
+    subtasks_interim.splice(i, 1);
+    showSubtasks(subtasks_interim);
 }
 
 
@@ -534,8 +541,7 @@ function filterTheAssignedPeople(i) {
     document.getElementById(`showAssignedPeople`).innerHTML = ``;
     some = [];
     some = tasks[i].assignedTo;
-    console.log(some);
-
+  
     for (let j = 0; j < tasks[i].assignedTo.length; j++) {
 
         document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${tasks[i].assignedTo[j].color}" >${tasks[i].assignedTo[j].initial}</div>`;

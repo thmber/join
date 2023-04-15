@@ -6,6 +6,7 @@ let chosenContacts = [];
 let more = true;
 let prio;
 let subtasks_namen = [];
+let subtasks_interim = [];
 let subtasks = [];
 let contactsAssignTo = [];
 let taskID = 0;
@@ -30,8 +31,7 @@ function searchTheMaxID(){
   for (i= 0; i < tasks.length; i++){
        allIDs.push(tasks[i].id);
      }
-     console.log(allIDs);
-  let maxID = Math.max(...allIDs);
+     let maxID = Math.max(...allIDs);
    return (maxID + 1);
 }
 
@@ -63,6 +63,7 @@ function addTask() {
     saveTasks();
     flyingInfo();
     goToBoard(2000);
+    subtasks_interim = [];
   }
 }
 
@@ -77,7 +78,7 @@ function closeItQuick(){
 closeOverlayAddTask();
   // document.location = "../board.html";
    document.getElementById('overlayTask').classList.add('d-none');
-  // document.getElementById('makeBgDarker').classList.add('d-none');
+  document.getElementById('makeBgDarker').classList.add('d-none');
    document.getElementById('newTask').classList.add('d-none');
 
   showTasksOnBoard();
@@ -140,43 +141,100 @@ else {
 }
 
 
+// function addSubtask() {
+//   let subtaskField = document.getElementById('subtask');
+//   let singleSubtask = subtaskField.value;
+
+//   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
+
+//     for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
+//       subtasks_namen.push(tasks[currentOpenTask].subtasks[index].subtaskName);
+//     }
+//     more = false;
+//   }
+
+//   if (singleSubtask.length > 0) {
+//     subtasks_namen.push(singleSubtask);
+//   }
+//   subtaskField.value = ``;
+//   showSubtasks(subtasks_namen);
+// }
+
+
+
 function addSubtask() {
   let subtaskField = document.getElementById('subtask');
   let singleSubtask = subtaskField.value;
+  //  subtasks_interim = [];
 
   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
-
-    for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
-      subtasks_namen.push(tasks[currentOpenTask].subtasks[index].subtaskName);
+ subtasks_interim = tasks[currentOpenTask].subtasks;
+    // for (let index = 0; index < tasks[currentOpenTask].subtasks.length; index++) {
+    //   subtasks_namen.push(tasks[currentOpenTask].subtasks[index].subtaskName);
     }
     more = false;
-  }
+  
 
   if (singleSubtask.length > 0) {
-    subtasks_namen.push(singleSubtask);
+    let subtask_interim = {
+      'subtaskName': singleSubtask,
+      'check': false
+    }
+    
+    subtasks_interim.push(subtask_interim);
   }
   subtaskField.value = ``;
-  showSubtasks(subtasks_namen);
+  showSubtasks(subtasks_interim);
 }
 
 
-function showSubtasks(subtasks_name) {
+// function showSubtasks(subtasks_name) {
+//   document.getElementById('displaySubtasks').innerHTML = ``;
+//   subtasks_name.forEach((element, index) => {
+//     document.getElementById('displaySubtasks').innerHTML += `
+//     <div class="wrapper">
+//       <input type="checkbox" name="subtask" value="${element}" id="input${index}">
+//       <label for="subtask">${element}</label>
+//     </div>`;
+//   });
+// }
+
+
+function showSubtasks(subtasks_interim) {
+  let gecheckt;
   document.getElementById('displaySubtasks').innerHTML = ``;
-  subtasks_name.forEach((element, index) => {
+  
+  subtasks_interim.forEach((element, index) => {
+    gecheckt = '';
+    if (subtasks_interim[index].check) gecheckt = 'checked';
     document.getElementById('displaySubtasks').innerHTML += `
     <div class="wrapper">
-      <input type="checkbox" name="subtask" value="${element}" id="input${index}">
-      <label for="subtask">${element}</label>
+      <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${index}" ${gecheckt}>
+      <label for="subtask">${element.subtaskName}</label>
+      <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
     </div>`;
   });
 }
 
+// function getSubtasks() {
+//   subtasks = [];
+//   for (let index = 0; index < subtasks_namen.length; index++) {
+//     let subtask = {
+//       'subtaskName': subtasks_namen[index],
+//       'check': document.getElementById(`input${index}`).checked
+//     }
+//     subtasks.push(subtask);
+//   }
+//   return subtasks;
+
+// }
+
 
 function getSubtasks() {
   subtasks = [];
-  for (let index = 0; index < subtasks_namen.length; index++) {
+  for (let index = 0; index < subtasks_interim.length; index++) {
     let subtask = {
-      'subtaskName': subtasks_namen[index],
+      'subtaskName': subtasks_interim[index].subtaskName,
       'check': document.getElementById(`input${index}`).checked
     }
     subtasks.push(subtask);
