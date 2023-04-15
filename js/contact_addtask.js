@@ -9,7 +9,7 @@ let prio = '';
 let previousPrio = '';
 let today = new Date().toISOString().split("T")[0];
 let previousColorAvatar = 0;
-let testtask = [];
+let tasks = [];
 let percentage;
 let subtasksDone;
 let categories = [];
@@ -292,11 +292,11 @@ function definePrio(chosenPrio){
 }
 
 
-function saveNewTask(){
+async function saveNewTask(){
             let taskTitle = document.getElementById('add-task-title').value;
             let taskdescription = document.getElementById('add-task-description').value;
             let taskduedate = document.getElementById('due-date-input').value;
-            let newTask = {'id': '',
+            let newTask = {'id': tasks.length,
                             'status': 'todo', 
                             'title': taskTitle, 
                             'description': taskdescription,
@@ -306,7 +306,13 @@ function saveNewTask(){
                             'category': chosenCategory, 
                             'subtasks': subtasks,
                             'subtasksdone': percentage};
-            testtask.push(newTask);
+            tasks.push(newTask);
+            await saveNewTaskToBackend();
+}
+
+
+async function saveNewTaskToBackend(){
+            await backend.setItem('tasks', JSON.stringify(tasks));
             document.getElementById('card').classList.add('close-card-animation');
             resetInputs();
             setTimeout(() => {
@@ -314,7 +320,6 @@ function saveNewTask(){
                 content.style.display = "none";
             }, 525);
 }
-
 
         
 function getDueDate() {

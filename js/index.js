@@ -37,6 +37,7 @@ async function signUp(){
 }
 
 
+
 function checkIfFirstAndLastName(newName){
     if (newName.length == 1) {
         onlyOneName = true;
