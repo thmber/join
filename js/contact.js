@@ -29,7 +29,6 @@ async function saveContactsToBackend(message){
         messageBox.style.display = "none";
         }, 2000);
    }, 500);
-    
 }
 
 
