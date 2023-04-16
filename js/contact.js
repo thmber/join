@@ -262,7 +262,6 @@ function animateCloseContact(randomcolor, initiales){
             document.getElementById('new-contact-right-content').style.width = "0";
             document.getElementById('new-contact-circle-name').style.opacity = "0";
             document.getElementById('new-contact-left').style.transform = "scale(0)";
-
             setTimeout(() => {
                 document.getElementById('overlay-box').classList.add('d-none');
                 document.getElementById('new-contact-right-content').style.width = "60%";
