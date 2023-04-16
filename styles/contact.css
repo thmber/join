@@ -157,7 +157,7 @@ input{
 }
 .contact-main-name {
     display: flex;
-    margin-top: 40px;
+    margin-top: 10px;
     margin-left: 60px;
     align-items: center;
     height: 100px;
@@ -484,7 +484,9 @@ input{
     margin: 0;
     min-height: 14px;
 }
-
+.kanban-text{
+    display: none;
+}
 /* ################################## for mobiles ############## */
 
 @media (max-width: 1200px){
@@ -533,6 +535,9 @@ input{
 @media (max-width: 900px){
     .test{
         display: none;
+    }
+    .kanban-text{
+        display: flex;
     }
     .contact-container{
         margin: 0;
@@ -626,9 +631,6 @@ input{
     }
     .contact-new-save{
         margin-left: 0;
-    }
-    .contact-main-name{
-        margin-top: 10px;
     }
     .pen-text{
         display: none;

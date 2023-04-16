@@ -29,6 +29,7 @@ function showContact(firstname, lastname, initiales, email, color, phone, index,
     }
     document.getElementById('show-contact-content').innerHTML = `
             <div class="contact-headline-box">
+                <span class="kanban-text">Kanban Projekt Management Tool</span>
                 <span class="contact-headline">Contacts</span>
                 <span class="arrow-back-to-contact" onclick="backToContactListMobile()">&#10132;</span>
                     <div class="vertical-and-better">
