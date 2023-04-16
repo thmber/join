@@ -1,4 +1,3 @@
-
 let currentOpenTask;
 let currentdraggableElement;
 let stati = ['todo', 'inProgress', 'awaitingFeedback', 'done'];
@@ -97,9 +96,11 @@ function moveTask(i, desti) {
 
 }
 
+
 function goBack() {
     showTasksOnBoard();
 }
+
 
 function renderTheMovingPic(i) {
     document.getElementById(`box${i}`).innerHTML += `<img class="moveIt" id="moveIt${tasks[i].id}" onclick="event.stopPropagation();showTheMovingBox(${i})" src="assets/img/icons8-bewegen.png" alt=""></img>`;
@@ -270,9 +271,11 @@ function changeTheLook() {
     document.getElementById('see').classList.add('d-none');
 }
 
+
 function createSaveButton(i) {
     document.getElementById('BTN').innerHTML = `<button class="btn" id="ok" onclick="saveExistingTask(${i})">Ok<img src=""></button>`;
 }
+
 
 function getbgColor(index) {
     if (tasks[index].priority == 'urgent') {
@@ -308,7 +311,9 @@ function resetData() {
     currentOpenTask = -1;
     chosenContacts = [];
     subtasks_interim = [];
+    subtasks = [];
 }
+
 
 function showAssigned(element) {
     for (let index = 0; index < element.assignedTo.length; index++) {
@@ -329,6 +334,15 @@ function loadTheTaskContent(i) {
 
 
 function saveExistingTask(i) {
+    tasks[i] = changeTheExistingTask(i);
+    saveTasks();
+    document.getElementById('addTaskForm').classList.add('d-none');
+    showTask(tasks[i].id);
+    // clearInputFields(title, description, dueDate);
+    resetData();
+}
+
+function changeTheExistingTask(i){
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let task = {
@@ -342,23 +356,17 @@ function saveExistingTask(i) {
         'category': tasks[i].category,
         'subtasks': getExistingSubtasks(i)
     }
-    tasks[i] = task;
-    saveTasks();
-    document.getElementById('addTaskForm').classList.add('d-none');
-    showTask(tasks[i].id);
-    clearInputFields(title, description, dueDate);
-    resetData();
+    return task;
 }
 
+// function clearInputFields(title, description, dueDate) {
+//     title.value = '';
+//     description.value = '';
+//     dueDate.value = getTodayDate();
+//     subtasks = [];
 
-function clearInputFields(title, description, dueDate) {
-    title.value = '';
-    description.value = '';
-    dueDate.value = getTodayDate();
-    subtasks = [];
 
-
-}
+// }
 function getExistingSubtasks(i) {
     data = tasks[i].subtasks.length;
     if (data < subtasks_namen.length) data = subtasks_namen.length;
@@ -451,6 +459,7 @@ function showAddTaskOverlay() {
 function showDarkOverlay() {
     document.getElementById('makeBgDarker').classList.remove('d-none');
 }
+
 
 function filterTasks() {
     let search = document.getElementById('search').value;

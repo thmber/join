@@ -1,5 +1,3 @@
-
-
 let tasks = [];
 let allIDs = [];
 let chosenContacts = [];
@@ -171,10 +169,6 @@ function saveTasks() {
 }
 
 
-
-
-
-
 function getAssignedToUser() {
   let checkboxes = document.querySelectorAll('input[name="assignedTo"]:checked');
   let values = [];
@@ -211,7 +205,6 @@ function toggleIt(param1, param2, param3, param4) {
   else {
     document.getElementById(param2).style.borderRadius = `8px`;
   }
-
   if (!document.getElementById(param3).classList.contains('d-none')) {
     document.getElementById(param3).classList.add('d-none')
     document.getElementById(param4).style.borderRadius = `8px`;
@@ -385,6 +378,7 @@ function checkColorspot(){
   return colorspotIsChosen;
 }
 
+
 function checkCategoryName(field){
   let categorynameIsChosen = false;
   if (field.value == '') {
@@ -396,6 +390,7 @@ function checkCategoryName(field){
   }
   return categorynameIsChosen;
 }
+
 /**
  * This function gives the active Button the right look and sets the inactive to default
  * @param {*} id
@@ -444,6 +439,7 @@ function resetMissingText() {
   document.getElementById('missingPrio').classList.add('d-none');
 }
 
+
 function chooseTheContact(i, index) {
   if (i >= 0) {
     chosenContacts = tasks[i].assignedTo;
@@ -460,6 +456,7 @@ function chooseTheContact(i, index) {
   showTheJustChosenContacts(chosenContacts);
 }
 
+
 function showTheJustChosenContacts(theContacts) {
   document.getElementById(`showAssignedPeople`).innerHTML = ``;
   for (let j = 0; j < theContacts.length; j++) {
@@ -474,6 +471,7 @@ function flyingInfo() {
   document.getElementById('infoText').classList.add('infoText')
   resetFlyingInfo();
 }
+
 
 function resetFlyingInfo() {
   setTimeout(() => {
