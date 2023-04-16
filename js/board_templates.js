@@ -66,13 +66,13 @@ function testRenderNewTaskHTML(){
         <textarea id="description" onfocus="hideMissingText('missingDescription')" class="inputDescription" type="textarea"
             placeholder="Enter a Description"></textarea>
                     </div>
-    <div class="missingInfoText d-none" id="missingDescription">Please enter a discription </div>
+    <div class="missingInfoText d-none" id="missingDescription">Please enter a description </div>
     
     <div class="inputUnit" id="inputUnit">
         <label>Category</label>
         <div class="inputArea" id="newCateg">
             <div id="selectedCategory">Select a Category</div>
-            <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
+            <img src="assets/img/openMenuIcon.svg" onclick="toggleIt('seeCat', 'newCateg', 'see', 'toggleID')" alt="">
         </div>
         <div id="seeCat" class="d-none">
             <div class="options" id="optionsCat"></div>
@@ -84,7 +84,7 @@ function testRenderNewTaskHTML(){
         <label>Assigned to</label>
         <div class="inputArea" id="toggleID">
             <div id="selected">Assigned to</div>
-            <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsAss()" alt="">
+            <img src="assets/img/openMenuIcon.svg" onclick="toggleIt('see', 'toggleID', 'seeCat', 'newCateg')" alt="">
         </div>
         <div id="see" class="d-none">
             <div class="options" id="optionsUser"></div>

@@ -13,18 +13,8 @@ let taskID = 0;
 let categories = [];
 let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
 let colorspot;
-let priorities = [{
-  prio: 'urgent',
-  color: 'red'
-},
-{
-  prio: 'medium',
-  color: 'orange'
-},
-{
-  prio: 'low',
-  color: 'green'
-}];
+let priorities = [{ prio: 'urgent', color: 'red' }, { prio: 'medium', color: 'orange' }, { prio: 'low', color: 'green' }];
+
 
 function searchTheMaxID() {
   allIDs = [];
@@ -35,46 +25,13 @@ function searchTheMaxID() {
   return (maxID + 1);
 }
 
-// function addTask() {
-//   let title = document.getElementById('title');
-//   let description = document.getElementById('description');
-//   let category = document.getElementById('selectedCategory');
-//   let duedate = document.getElementById('dueDate');
-//   let autoID;
-
-//   if (tasks.length > 0) {
-//     autoID = searchTheMaxID();
-//   }
-//   else autoID = 0;
-//   let totalOK = checkInput(title.value, description.value, category.textContent, prio);
-//   if (totalOK) {
-//     let task = {
-//       'id': autoID,
-//       'status': 'todo',
-//       'title': title.value,
-//       'description': description.value,
-//       'duedate': duedate.value,
-//       'priority': prio,
-//       'assignedTo': getAssignedContacts(),
-//       'category': category.textContent,
-//       'subtasks': getSubtasks()
-//     }
-//     tasks.push(task);
-//     saveTasks();
-//     flyingInfo();
-//     goToBoard(2000);
-//     subtasks_interim = [];
-//   }
-// }
-
 
 function addTask() {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('selectedCategory');
   let duedate = document.getElementById('dueDate');
-  let totalOK = checkInput(title.value, description.value, category.textContent, prio);
-  if (totalOK) {
+  if (checkAllInputs(title, description, category)) {
     tasks.push(createSingleTask(findAvailableTaskID(), title, description, duedate, prio, category));
     saveTasks();
     flyingInfo();
@@ -82,6 +39,7 @@ function addTask() {
     subtasks_interim = [];
   }
 }
+
 
 function findAvailableTaskID() {
   let autoID;
@@ -91,6 +49,13 @@ function findAvailableTaskID() {
   else { autoID = 0 };
   return autoID;
 }
+
+
+function checkAllInputs(title, description, category) {
+  let totalOK = checkTheInput(title.value.length, 'missingTitle', 0) && checkTheInput(description.value.length, 'missingDescription', 0) && checkTheInput(category.textContent, 'missingCategory', 'Select a Category') && checkTheInput(chosenContacts, 'missingContact', 0) && checkTheInput(prio, 'missingPrio', undefined);
+  return totalOK;
+}
+
 
 function createSingleTask(autoID, title, description, duedate, prio, category) {
   let task = {
@@ -107,11 +72,13 @@ function createSingleTask(autoID, title, description, duedate, prio, category) {
   return task;
 }
 
+
 function goToBoard(delay) {
   setTimeout(() => {
     document.location = "../board.html"
   }, delay);
 }
+
 
 function closeItQuick() {
   closeOverlayAddTask();
@@ -129,57 +96,16 @@ function resetOverlay() {
 }
 
 
-function checkInput(title, description, category, prio) {
-  let titleOK;
-  let descriptionOK;
-  let categoryOK;
-  let prioOK;
-  let contactOK;
-
-  if (title.length == 0) {
-    titleOK = false;
-    let missingTitle = document.getElementById('missingTitle');
-    missingTitle.classList.remove('d-none');
+function checkTheInput(item, area, vgl) {
+  let itemOK = true;
+  if (item == vgl) {
+    itemOK = false;
+    let missingText = document.getElementById(area);
+    missingText.classList.remove('d-none');
   }
-  else {
-    titleOK = true;
-  }
-  if (description.length == 0) {
-    descriptionOK = false;
-    let missingDescription = document.getElementById('missingDescription');
-    missingDescription.classList.remove('d-none');
-  }
-  else { descriptionOK = true; }
-
-  if (category == 'Select a Category') {
-    categoryOK = false;
-    let missingCategory = document.getElementById('missingCategory');
-    missingCategory.classList.remove('d-none');
-  }
-  else { categoryOK = true; }
-
-
-  if (chosenContacts.length == 0) {
-    contactOK = false;
-    let missingContact = document.getElementById('missingContact');
-    missingContact.classList.remove('d-none');
-  }
-  else {
-    contactOK = true;
-  }
-
-
-
-  if (prio == undefined) {
-    prioOK = false;
-    let missingPrio = document.getElementById('missingPrio');
-    missingPrio.classList.remove('d-none');
-  }
-  else { prioOK = true; }
-
-  let totalOK = (titleOK && descriptionOK && categoryOK && prioOK && contactOK)
-  return totalOK;
+  return itemOK;
 }
+
 
 function addSubtask() {
   let subtaskField = document.getElementById('subtask');
@@ -188,19 +114,13 @@ function addSubtask() {
     subtasks_interim = tasks[currentOpenTask].subtasks;
   }
   more = false;
-
   if (singleSubtask.length > 0) {
-    let subtask_interim = {
-      'subtaskName': singleSubtask,
-      'check': false
-    }
-
+    let subtask_interim = { 'subtaskName': singleSubtask, 'check': false }
     subtasks_interim.push(subtask_interim);
   }
   subtaskField.value = ``;
   showSubtasks(subtasks_interim);
 }
-
 
 
 function showSubtasks(subtasks_interim) {
@@ -210,12 +130,7 @@ function showSubtasks(subtasks_interim) {
   subtasks_interim.forEach((element, index) => {
     gecheckt = '';
     if (subtasks_interim[index].check) gecheckt = 'checked';
-    document.getElementById('displaySubtasks').innerHTML += `
-    <div class="wrapper">
-      <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${index}" ${gecheckt}>
-      <label for="subtask">${element.subtaskName}</label>
-      <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
-    </div>`;
+    document.getElementById('displaySubtasks').innerHTML += showSubtasksHTML(element, index, gecheckt);
   });
 }
 
@@ -233,6 +148,7 @@ function getSubtasks() {
 
 }
 
+
 function getAssignedContacts() {
   contactsAssignTo = [];
   for (let index = 0; index < contacts.length; index++) {
@@ -240,11 +156,8 @@ function getAssignedContacts() {
     let checkbox = document.getElementById(`user${index}`).checked;
     let contactIndex = contacts.findIndex(obj => obj.id == contactID);
     if (checkbox) {
-
       let contactAssignTo = {
-        'name': contacts[contactIndex].firstname + ' ' + contacts[contactIndex].lastname,
-        'initial': contacts[contactIndex].initials,
-        'color': contacts[contactIndex].color
+        'name': contacts[contactIndex].firstname + ' ' + contacts[contactIndex].lastname, 'initial': contacts[contactIndex].initials, 'color': contacts[contactIndex].color
       }
       contactsAssignTo.push(contactAssignTo);
     }
@@ -258,27 +171,7 @@ function saveTasks() {
 }
 
 
-function toggleOptions() {
-  let seeCat = document.getElementById('seeCat');
-  seeCat.classList.toggle('d-none');
 
-
-  let checkit = !seeCat.classList.contains('d-none');
-  if (checkit) {
-    document.getElementById('newCateg').style.borderBottomLeftRadius = `0px`;
-    document.getElementById('newCateg').style.borderBottomRightRadius = `0px`;
-  }
-  else {
-    document.getElementById('newCateg').style.borderRadius = `8px`;
-  }
-
-  if (!document.getElementById('see').classList.contains('d-none')) {
-    document.getElementById('see').classList.add('d-none')
-    document.getElementById('toggleID').style.borderRadius = `8px`;
-  }
-  else { }
-  renderCategories();
-}
 
 
 
@@ -307,23 +200,23 @@ function selectCategory(param) {
 }
 
 
-function toggleOptionsAss() {
-  let see = document.getElementById('see');
-  see.classList.toggle('d-none');
-
-  let checkit = !see.classList.contains('d-none');
-  if (checkit) {
-    document.getElementById('toggleID').style.borderBottomLeftRadius = `0px`;
-    document.getElementById('toggleID').style.borderBottomRightRadius = `0px`;
+function toggleIt(param1, param2, param3, param4) {
+  let seeCat = document.getElementById(param1);
+  seeCat.classList.toggle('d-none');
+  let checkIt = !seeCat.classList.contains('d-none');
+  if (checkIt) {
+    document.getElementById(param2).style.borderBottomLeftRadius = `0px`;
+    document.getElementById(param2).style.borderBottomRightRadius = `0px`;
   }
   else {
-    document.getElementById('toggleID').style.borderRadius = `8px`;
+    document.getElementById(param2).style.borderRadius = `8px`;
   }
 
-  if (!document.getElementById('seeCat').classList.contains('d-none')) {
-    document.getElementById('seeCat').classList.add('d-none')
-    document.getElementById('newCateg').style.borderRadius = `8px`;
+  if (!document.getElementById(param3).classList.contains('d-none')) {
+    document.getElementById(param3).classList.add('d-none')
+    document.getElementById(param4).style.borderRadius = `8px`;
   }
+  renderCategories();
 }
 
 
@@ -332,25 +225,11 @@ function setToggleID(i) {
   <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsContactsAssignTo(${i})" alt="">`;
 }
 
+
 function toggleOptionsContactsAssignTo(i) {
   document.getElementById('see').classList.toggle('d-none');
   renderContactsAssignBoard(i);
 }
-
-
-function selectAssignTo(param) {
-  let category = document.getElementById(`${param}`).textContent;
-  document.getElementById('selected').innerHTML = category;
-  document.getElementById('see').classList.add('d-none');
-}
-
-
-function addAssignPeople(param) {
-  let name = document.getElementById(param).textContent;
-  let beginners = name.match(/\b\w/g).join('')
-  document.getElementById('showAssignedPeople').innerHTML += `<div class="bigNameCircle">${beginners}</div>`
-}
-
 /**
  * 
  * @returns The soonest Date (today) valid for Due Date in Form Add Task
@@ -390,55 +269,26 @@ function renderContactsAssignTo() {
     const element = contacts[index];
     document.getElementById('optionsUser').innerHTML += renderContactsAssignToHTML(index, element);
   }
-
-
 }
-
-
-function renderContactsAssignToHTML(index, element) {
-  return `
-  <div class="checkbox">
-  <label for="user${index}">${element.firstname} ${element.lastname}</label>
-  <input type="checkbox" onchange="chooseTheContact(-1, ${index})" name="assignedTo" value="${element.id}" id="user${index}" >
-</div>`;
-}
-
 
 
 function renderContactsAssignBoard(i) {
   let check;
   document.getElementById('optionsUser').innerHTML = ``;
-
   for (let index = 0; index < contacts.length; index++) {
     let contact = contacts[index];
-
-
-
     for (let a = 0; a < tasks[i].assignedTo.length; a++) {
       if (contact.firstname + ' ' + contact.lastname == tasks[i].assignedTo[a].name) {
         check = 'checked'
         break;
       }
-
       else {
         check = '';
       }
     }
-
     document.getElementById('optionsUser').innerHTML += renderContactsAssignBoardHTML(i, index, contact, check);
   }
 }
-
-
-
-function renderContactsAssignBoardHTML(i, index, contact, check) {
-  return `
-  <div class="checkbox" id="${index}">
-  <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
-  <input type="checkbox" name="assignedTo" onchange="chooseTheContact(${i},${index})" value="${contact.id}" id="user${index}" ${check}>
-</div>`;
-}
-
 
 
 function renderContactsAssignAddTask(i) {
@@ -448,20 +298,6 @@ function renderContactsAssignAddTask(i) {
     document.getElementById('optionsUser').innerHTML += renderContactsAssignAddTaskHTML(index, element);
   }
 }
-
-
-function renderContactsAssignAddTaskHTML(index, element) {
-  return `
-  <div class="checkbox" id="${index}">
-  <label for="user${index}">${contacts[index].firstname} ${contacts[index].lastname}</label>
-  <input type="checkbox" name="assignedTo" onchange="chooseTheContact( -1,${index})" value="${element[index].id}" id="user${index}" ${element[index].check}>
-</div>`;
-}
-
-
-
-
-
 
 
 function renderCategories() {
@@ -474,17 +310,6 @@ function renderCategories() {
 }
 
 
-function renderNewCategoryHTML() {
-  return `<span id="newCat" class="item" onclick="addANewCategory()">New Category</span>`;
-}
-
-
-function renderCategoriesHTML(index, element) {
-  return `
-  <div class="duo" <span id="${index}" class="item" onclick="selectCategory(${index})">${element.categoryName}</span><span class="circle" style="background-color: ${element.categoryColor};"></span></div>`;
-}
-
-
 function addANewCategory() {
   document.getElementById('missingCategory').classList.add('d-none');
   document.getElementById(`inputUnit`).innerHTML = addANewCategoryHTML();
@@ -493,20 +318,9 @@ function addANewCategory() {
 }
 
 
-
 function renderInputUnit() {
   document.getElementById(`inputUnit`).innerHTML = ``;
-  document.getElementById(`inputUnit`).innerHTML += `
- 
-  <label>Category</label>
-  <div class="inputArea" id="newCateg">
-      <div id="selectedCategory">Select a Category</div>
-      <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
-  </div>
-  <div id="seeCat" class="d-none">
-      <div class="options" id="optionsCat"></div>
-  </div>
-</div>`;
+  document.getElementById(`inputUnit`).innerHTML += renderInputUnitHTML();
   renderCategories();
   selectCategory(categories.length - 1);
 }
@@ -517,12 +331,6 @@ function renderColorSpots() {
     const element = colorspots[index];
     document.getElementById('colorspots').innerHTML += renderColorSpotsHTML(index, element);
   }
-}
-
-
-function renderColorSpotsHTML(index, element) {
-  return `
-  <div class="colorspot" id="col${index}" onclick="rememberColor(${index})"></div> `;
 }
 
 
@@ -541,57 +349,53 @@ function resetUnselectedSpots(index) {
   }
 }
 
+
 function addNewCat() {
   let newCatField = document.getElementById('showNewCat');
-
   if (checkIfInputIsComplete(newCatField)) {
     document.getElementById('missingColorspot').classList.add('d-none');
     let category = {
-      'categoryName': newCatField.value,
-      'categoryColor': colorspot
-    }
+      'categoryName': newCatField.value,'categoryColor': colorspot}
     categories.push(category);
     backend.setItem('categories', JSON.stringify(categories));
     renderInputUnit();
   }
-
 }
 
+
 function checkIfInputIsComplete(field) {
-  let colorspotIsChosen = false;
-  let categorynameIsChosen = false;
-  if (colorspot == undefined) {
-    document.getElementById('missingColorspot').classList.remove('d-none');
-
-  }
-  else {
-    colorspotIsChosen = true;
-  }
-
-  if (field.value == '') {
-    categorynameIsChosen = false;
-    document.getElementById('missingColorspot').classList.remove('d-none');
-
-  }
-  else {
-    categorynameIsChosen = true;
-  }
-  return (categorynameIsChosen && colorspotIsChosen);
+    return (checkCategoryName(field) && checkColorspot());
 }
 
 function resetCategoryChoice() {
   let inputUnit = document.getElementById('inputUnit');
   inputUnit.innerHTML = ``;
-  inputUnit.innerHTML += ` <label>Category</label>
-  <div class="inputArea" id="newCateg">
-      <div id="selectedCategory">Select a Category</div>
-      <img src="assets/img/openMenuIcon.svg" onclick="toggleOptions()" alt="">
-  </div>
-  <div id="seeCat" class="d-none">
-      <div class="options" id="optionsCat"> </div>
-  </div>`;
+  inputUnit.innerHTML += resetCategoryChoiceHTML();
 }
 
+
+function checkColorspot(){
+  let colorspotIsChosen = false;
+  if (colorspot == undefined) {
+    document.getElementById('missingColorspot').classList.remove('d-none');
+  }
+  else {
+    colorspotIsChosen = true;
+  }
+  return colorspotIsChosen;
+}
+
+function checkCategoryName(field){
+  let categorynameIsChosen = false;
+  if (field.value == '') {
+    categorynameIsChosen = false;
+    document.getElementById('missingColorspot').classList.remove('d-none');
+  }
+  else {
+    categorynameIsChosen = true;
+  }
+  return categorynameIsChosen;
+}
 /**
  * This function gives the active Button the right look and sets the inactive to default
  * @param {*} id
@@ -641,17 +445,11 @@ function resetMissingText() {
 }
 
 function chooseTheContact(i, index) {
-
   if (i >= 0) {
     chosenContacts = tasks[i].assignedTo;
   }
-
   let chosenContact = {
-    'name': contacts[index].firstname + ' ' + contacts[index].lastname,
-    'initial': contacts[index].initials,
-    'color': contacts[index].color
-  };
-
+    'name': contacts[index].firstname + ' ' + contacts[index].lastname,'initial': contacts[index].initials,'color': contacts[index].color};
   let inis = chosenContacts.findIndex(obj => obj.initial == chosenContact.initial);
   if (inis == -1) {
     chosenContacts.push(chosenContact);
@@ -659,9 +457,7 @@ function chooseTheContact(i, index) {
   else {
     chosenContacts.splice(inis, 1);
   }
-
   showTheJustChosenContacts(chosenContacts);
-  document.getElementById('missingContact').classList.add('d-none');
 }
 
 function showTheJustChosenContacts(theContacts) {
@@ -669,6 +465,7 @@ function showTheJustChosenContacts(theContacts) {
   for (let j = 0; j < theContacts.length; j++) {
     document.getElementById(`showAssignedPeople`).innerHTML += `<div class="bigNameCircle bg${theContacts[j].color}" >${theContacts[j].initial}</div>`;
   }
+  document.getElementById('missingContact').classList.add('d-none');
 }
 
 
@@ -683,6 +480,4 @@ function resetFlyingInfo() {
     document.getElementById('infoText').classList.add('d-none');
     document.getElementById('infoText').classList.remove('infoText')
   }, 4000);
-
-
 }
