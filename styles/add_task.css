@@ -27,7 +27,7 @@ input {
 }
 
 .containerAddTaskRightSide {
-   width: 100%
+  width: 100%
 }
 
 .inputUnit {
@@ -53,7 +53,7 @@ input {
   font-family: 'Poppins';
   word-wrap: break-word;
   font-size: 16px;
-   padding: 10px 10px;
+  padding: 10px 10px;
   height: 108px;
   background: #FFFFFF;
   border: 1px solid #D1D1D1;
@@ -83,7 +83,7 @@ input {
   padding-right: 15px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  
+
 }
 
 #optionsCat {
@@ -91,7 +91,7 @@ input {
 }
 
 #optionsUser {
-   overflow: scroll;
+  overflow: scroll;
 }
 
 .options {
@@ -152,7 +152,6 @@ input {
   border: 1px solid white;
   color: white;
   margin-right: -5px;
-
 }
 
 .prioButtons {
@@ -186,13 +185,12 @@ input {
 #createTaskBTN_task {
   cursor: pointer;
   border: none;
-   color: white;
+  color: white;
   font-weight: bold;
   background-color: rgb(38, 38, 38);
   padding: 10px;
   border-radius: 8px;
   height: 40px;
-  /* width: 150px; */
 }
 
 #createTaskBTN_task:hover {
@@ -234,14 +232,6 @@ input {
   right: 10px;
   cursor: pointer;
 }
-
-
-/* .plusZwei {
-  position: absolute;
-  top: 28px;
-  right: 10px;
-  cursor: pointer;
-} */
 
 #displaySubtasks {
   font-size: 12px;
@@ -363,7 +353,7 @@ input {
   padding: 2px 10px;
   justify-content: space-evenly;
   border-radius: 10px;
-  
+
 }
 
 #prioPic {
@@ -372,7 +362,7 @@ input {
 }
 
 .containerTasks {
-   left: 45%;
+  left: 45%;
   top: 50%;
   min-height: 500px;
   width: 700px;
@@ -383,11 +373,11 @@ input {
 }
 
 .containerAddTask {
-   top: 250px;
-   padding: 10px 40px 10px 20px;
+  top: 250px;
+  padding: 10px 40px 10px 20px;
   background-color: whitesmoke;
-   z-index: 10;
-   margin-bottom: 80px;
+  z-index: 10;
+  margin-bottom: 80px;
 }
 
 .missingInfoText {
@@ -485,16 +475,16 @@ input {
 
   .infoText {
     z-index: 100;
-   
     left: 30%;
-   
   }
 
 }
-@media (max-width: 750px){
+
+@media (max-width: 750px) {
   .buttonPrio {
     gap: 15px;
   }
+
   .headline {
     width: 70%;
   }
@@ -502,14 +492,13 @@ input {
   .infoText {
     z-index: 100;
     left: 15%;
-   
   }
 }
 
 @media (max-width: 630px) {
   .plus {
-        top: 28px;
-      }
+    top: 28px;
+  }
 
   #totalInput {
     font-size: 0.8em;
@@ -537,11 +526,7 @@ input {
 
   .containerAddTask {
     margin-bottom: 80px;
-    
-     
-      padding: 10px 10px 10px 10px;
-     
-  
+    padding: 10px 10px 10px 10px;
   }
 
   #totalInput {
@@ -560,16 +545,17 @@ input {
   .overlayCategory {
     margin: 10px 0 10px 0;
   }
+
   .headline {
     width: 90%;
   }
+
   .mobileCreate {
     display: block;
     color: white;
     background-color: #333;
     padding: 10px;
     width: 100px;
-    /* height: 40px; */
     position: fixed;
     top: 15px;
     z-index: 1000;
@@ -577,24 +563,25 @@ input {
     border-radius: 10px;
     cursor: pointer;
   }
- .whiteBg {
-  background-color: white;
-  display: block;
-  padding: 20px;
-  width: 110px;
-  position: fixed;
-  top: 5px;
-  z-index: 800;
-  right: 10px;
-  height: 21px;
- }
 
- .BTN {
-  display: none;
- }
+  .whiteBg {
+    background-color: white;
+    display: block;
+    padding: 20px;
+    width: 110px;
+    position: fixed;
+    top: 5px;
+    z-index: 800;
+    right: 10px;
+    height: 21px;
+  }
+
+  .BTN {
+    display: none;
+  }
 }
 
-@media (max-width: 450px){
+@media (max-width: 450px) {
   .buttonPrio {
     gap: 5px;
   }

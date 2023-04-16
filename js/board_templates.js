@@ -9,6 +9,7 @@ function renderProgressBar(index, element) {
 </div>`;
 }
 
+
 function showTasksOnBoardHTML(index, element) {
     return `
     <div class="box" id="box${index}"  onclick="showTask(${element.id})" draggable="true" ondragstart="startDragging(${element.id})">
@@ -22,7 +23,8 @@ function showTasksOnBoardHTML(index, element) {
 </div>` ;
 }
 
-function showTaskHTML(index, element, j){
+
+function showTaskHTML(index, element, j) {
     return `
         <div class="fullUseOfSpace">
         <div class="fullUseOfSpaceTop">
@@ -46,19 +48,18 @@ function showTaskHTML(index, element, j){
 }
 
 
-
-function testRenderNewTaskHTML(){
+function testRenderNewTaskHTML() {
     return `
     <div class="whiteBg">
-    <div onclick="addTask()" class="mobileCreate" id="mobileCreate">Create</div>
-</div>
+         <div onclick="addTask()" class="mobileCreate" id="mobileCreate">Create</div>
+    </div>
     <div class="newTaskHeadline"><h1>Add Task</h1><span id="clickMe" onclick="closeIt()">&#10005;</span></div>
     <div class="newTaskThird">
-    <div class="containerAddTaskLeftSide">
-    <div class="inputUnit">
-        <label for="name">Title</label>
-        <input id="title" onfocus="hideMissingText('missingTitle')" class="input" type="text" placeholder="Enter a title">
-               </div>
+        <div class="containerAddTaskLeftSide">
+                <div class="inputUnit">
+                <label for="name">Title</label>
+                <input id="title" onfocus="hideMissingText('missingTitle')" class="input" type="text" placeholder="Enter a title">
+        </div>
     <div class="missingInfoText d-none" id="missingTitle">Please enter a title</div>
 
     <div class="inputUnit">
@@ -118,22 +119,18 @@ function testRenderNewTaskHTML(){
     </div>
     <div id="displaySubtasks"></div>
 
-
     <div class="BTN" id="BTN">
         <button onclick="closeOverlayAddTask()" class="btn light" id="clearBTN">Cancel<img src=""></button>
         <button class="btn" id="createTaskBTN_task" onclick="addTask()">Create Task<img src=""></button>
+        </div>
+            <div class="BTN" id="BTN-save"></div>
+        </div>
     </div>
-    <div class="BTN" id="BTN-save"></div>
-
-
-</div>
-
-</div>
 </div>`
-
 }
 
-function showExistingSubtasksHTML(element, j){
+
+function showExistingSubtasksHTML(element, j) {
     return `
     <div class="wrapper">
     <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${j}">
@@ -141,37 +138,42 @@ function showExistingSubtasksHTML(element, j){
   </div>`;
 }
 
-function renderUrgentHTML2(){
-    return  ` <button onclick="selectButton(0)" class="buttonPrio red" id="urgent">Urgent<img id="picurgent"
+
+function renderUrgentHTML2() {
+    return ` <button onclick="selectButton(0)" class="buttonPrio red" id="urgent">Urgent<img id="picurgent"
     src="assets/img/urgent.svg" style="filter:brightness(0) invert(1)"></button>
     <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
     src="assets/img/medium.svg"></button>
     <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
     src="assets/img/low.svg"></button>`
-    }
+}
 
-    function renderMediumHTML2(){
-        return ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+
+function renderMediumHTML2() {
+    return ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
         src="assets/img/urgent.svg"></button>
         <button onclick="selectButton(1)" class="buttonPrio orange" id="medium">Medium<img id="picmedium"
         src="assets/img/medium.svg" style="filter:brightness(0) invert(1)"></button>
         <button onclick="selectButton(2)" class="buttonPrio" id="low">Low<img id="piclow"
         src="assets/img/low.svg"></button>`
-    }
+}
 
-    function renderLowHTML2(){
-        return` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
+
+function renderLowHTML2() {
+    return ` <button onclick="selectButton(0)" class="buttonPrio" id="urgent">Urgent<img id="picurgent"
     src="assets/img/urgent.svg"></button>
     <button onclick="selectButton(1)" class="buttonPrio" id="medium">Medium<img id="picmedium"
     src="assets/img/medium.svg"></button>
     <button onclick="selectButton(2)" class="buttonPrio green" id="low">Low<img id="piclow"
-    src="assets/img/low.svg" style="filter:brightness(0) invert(1)"></button>`}
+    src="assets/img/low.svg" style="filter:brightness(0) invert(1)"></button>`
+}
 
-    function renderSubtasksHTML(element, index, ch){
-        return `
+
+function renderSubtasksHTML(element, index, ch) {
+    return `
         <div class="wrapper">
           <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
           <label for="subtask">${element.subtaskName}</label>
           <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
         </div>`;
-    }
+}

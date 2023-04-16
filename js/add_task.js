@@ -164,8 +164,8 @@ function getAssignedContacts() {
 }
 
 
-function saveTasks() {
-  backend.setItem('tasks', JSON.stringify(tasks));
+async function saveTasks() {
+  await backend.setItem('tasks', JSON.stringify(tasks));
 }
 
 
@@ -343,14 +343,14 @@ function resetUnselectedSpots(index) {
 }
 
 
-function addNewCat() {
+async function addNewCat() {
   let newCatField = document.getElementById('showNewCat');
   if (checkIfInputIsComplete(newCatField)) {
     document.getElementById('missingColorspot').classList.add('d-none');
     let category = {
       'categoryName': newCatField.value,'categoryColor': colorspot}
     categories.push(category);
-    backend.setItem('categories', JSON.stringify(categories));
+    await backend.setItem('categories', JSON.stringify(categories));
     renderInputUnit();
   }
 }
@@ -479,3 +479,14 @@ function resetFlyingInfo() {
     document.getElementById('infoText').classList.remove('infoText')
   }, 4000);
 }
+
+// window.onload = function() {
+// var outside = document.getElementById('body');
+// outside.addEventListener("click", function(e) {console.log("test") }, false); 
+// }
+
+// function hideMenu(){
+//   console.log('hi');
+//   var seeOpt = document.getElementById('seeCat');
+//   seeOpt.classList.add('d-none');
+// }
