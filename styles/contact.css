@@ -468,7 +468,7 @@ input{
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: createmessage 1.5s ease-in-out forwards;
+    animation: createmessage 2s ease-in-out forwards;
     display: none;
 }
 @keyframes createmessage {
@@ -477,6 +477,12 @@ input{
     75%{transform: translate(-50%, 0);}
     100%{transform: translate(-50%, 700px);}
 
+}
+.warning-message{
+    font-size: 12px;
+    color: red;
+    margin: 0;
+    min-height: 14px;
 }
 
 /* ################################## for mobiles ############## */

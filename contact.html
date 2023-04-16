@@ -22,7 +22,7 @@
 </head>
 
 
-<body onload="renderContacts(), includeHTML('Contacts')">
+<body onload="renderContactsatStart(), includeHTML('Contacts')">
    
     <div w3-include-html="templates/sidebar.html"></div>
     <div w3-include-html="templates/header.html"></div>
@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="create-new-message" id="create-success-message">
-            <span>Contact successfully created</span>
+            <span id="message-text-contacts">Contact successfully created</span>
         </div>
     </div>
 </body>

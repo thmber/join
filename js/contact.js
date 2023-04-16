@@ -18,32 +18,39 @@ function getNeededLetters(){
 }
 
 
-async function saveContactsToBackend(){
+async function saveContactsToBackend(message){
     await backend.setItem('contacts', JSON.stringify(contacts));
     let messageBox = document.getElementById('create-success-message');
+    let messageBoxText = document.getElementById('message-text-contacts');
+    messageBoxText.innerHTML = `Contact successfully ${message}`;
     setTimeout(() => {
         messageBox.style.display = "flex";
         setTimeout(() => {
         messageBox.style.display = "none";
-        }, 1500);
+        }, 2000);
    }, 500);
     
 }
 
 
-async function renderContacts() {
+async function renderContactsatStart() {
         await init();
-        getNeededLetters();
-        sortNeededLetters();
-        sortContactsAlphabeticallyByLastName();
-        let contactlist = document.getElementById('contact-list-content');
-        for (let i = 0; i < neededLetters.length; i++) {
-            let letter = neededLetters[i];
-            contactlist.innerHTML += generateLettersHTML(letter);
-            for (let j = 0; j < contacts.length; j++) {
-                generateContactForEachLetter(letter, j, contactlist);
-            }
+        renderContacts();
+}
+
+
+function renderContacts(){
+    getNeededLetters();
+    sortNeededLetters();
+    sortContactsAlphabeticallyByLastName();
+    let contactlist = document.getElementById('contact-list-content');
+    for (let i = 0; i < neededLetters.length; i++) {
+        let letter = neededLetters[i];
+        contactlist.innerHTML += generateLettersHTML(letter);
+        for (let j = 0; j < contacts.length; j++) {
+            generateContactForEachLetter(letter, j, contactlist);
         }
+    }
 }
 
 
@@ -121,6 +128,7 @@ function addNewContact(){
     }, 225);
 }
 
+
 function checkIfLetterIsUsedForName(letter){
     let letterposition = neededLetters.indexOf(`${letter}`);
     let letterIsNeeded = 0;
@@ -140,20 +148,21 @@ async function saveEditedContact(color, index){
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-mail').value;
     let newPhone = document.getElementById('new-contact-phone').value;
-    if (newName.length == 0 || newName.indexOf(' ') == -1) {
-        return;
-    }
     let letter = contacts[index].lastname.charAt(0);
     checkIfLetterIsUsedForName(letter);
     let newAndOldID = contacts[index]['id'];
     contacts.splice(index, 1);
     let newNamesplitted = newName.split(' ');
+    if (newNamesplitted.length == 1) {
+        showWarningMessageContact();
+        return;
+     }
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
     let initials = firstname.charAt(0) + lastname.charAt(0); 
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': color, 'id': newAndOldID};
     contacts.push(newContact);
-    await saveContactsToBackend();
+    await saveContactsToBackend('edited');
     showContact(firstname, lastname, initials, newMail, color, newPhone, index, newAndOldID);
     clearAndPush(lastname, color, initials);
     renderContacts();
@@ -165,19 +174,24 @@ function clearAndPush(lastname, color, initials){
     animateCloseContact(color, initials);
     clearNewContactInput();
     clearContactList();
-
 }
 
+function showWarningMessageContact(){
+    document.getElementById('warning-contact-new-edit').innerHTML = 'Please enter first and last name';
+    setTimeout(() => {
+        document.getElementById('warning-contact-new-edit').innerHTML = '';
+    }, 1000);
+}
 
-async function saveNewContact(){
+ async function saveNewContact(){
     let newName = document.getElementById('new-contact-name').value;
     let newMail = document.getElementById('new-contact-mail').value;
     let newPhone = document.getElementById('new-contact-phone').value;
-    if (newName.length == 0 || newName.indexOf(' ') == -1) {
-        showWarningName();
-        return;
-    }
     let newNamesplitted = newName.split(' ');
+    if (newNamesplitted.length == 1) {
+       showWarningMessageContact();
+       return;
+    }
     let firstname = newNamesplitted[0].toUpperCase().charAt(0) + newNamesplitted[0].substring(1);
     let lastname = newNamesplitted[1].toUpperCase().charAt(0) + newNamesplitted[1].substring(1);
     if (onlyLastnames.indexOf(lastname+firstname) > -1) {
@@ -188,23 +202,12 @@ async function saveNewContact(){
     let randomcolor = Math.floor((Math.random()) * 11) + 1;
     let newContact = {'firstname': firstname, 'lastname': lastname, 'email': newMail, 'phone': newPhone, 'initials': initials, 'color': randomcolor, 'id': contacts.length};    
     contacts.push(newContact);
-    await saveContactsToBackend();
+    await saveContactsToBackend('created');
     clearAndPush(lastname, randomcolor, initials);
     showContact(firstname, lastname, initials, newMail, randomcolor, newPhone, (contacts.length-1), contacts.length-1);
     renderContacts();
 }
 
-
-
-
-function showWarningName(){
-    document.getElementById('new-contact-name').style.color = "red";
-    document.getElementById('new-contact-name').value = "first and last name";
-    setTimeout(() => {
-        document.getElementById('new-contact-name').style.color = "rgb(11, 173, 221)";
-        document.getElementById('new-contact-name').value = ""; 
-    }, 320);
-}
 
 
 function pushNewNeedLetter(lastname){

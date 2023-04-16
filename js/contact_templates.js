@@ -77,38 +77,40 @@ function generateLeftSideNewContact(){
 
 
 function generateRightSideNewContact(){
-    return        ` <div class="new-contact-circle-name" id="new-contact-circle-name">
-                         <div class="edit-contact-circle">
+    return        ` <form onsubmit="saveNewContact(); return false;" class="new-contact-circle-name" id="new-contact-circle-name">
+                        <div class="edit-contact-circle">
                             <div class="contact-circle-big contact-circle-card bg0" id="circle-new-contact">
                                 <img src="assets/img/person-icon-big.png" alt="">
                             </div>  
                         </div>
                         <div class="contact-new-inputs" id="contact-new-inputs">
                             <span onclick="closeNewContact()" class="close-contact-cross">&#10005;</span>
+                                <div class="warning-message" id="warning-contact-new-edit">
+                                </div>
                                 <div class="input-form-new-contact">
-                                    <input type="text" id="new-contact-name" placeholder ="first and last name" pattern="^\S+\s\S+$" >
+                                    <input required type="text" id="new-contact-name" placeholder ="first and last name" oninvalid="this.setCustomValidity('Enter first and last name')">
                                     <img src="assets/img/icon_person.png" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input type="email" id="new-contact-mail" placeholder ="e-mail">
+                                    <input required type="email" id="new-contact-mail" placeholder ="e-mail" oninvalid="this.setCustomValidity('Enter a valid email')">
                                     <img src="assets/img/icon-email.svg" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input type="text" id="new-contact-phone" placeholder ="phone">
+                                    <input required type="text" id="new-contact-phone" placeholder ="phone">
                                     <img src="assets/img/icon-phone.png" alt="">
                                 </div>
                             <div class="create-cancel-box" id="create-edit-content">
-                                <button class="contact-new-cancel" id="contact-new-cancel" onclick="closeNewContact()">
+                                <button type="button" class="contact-new-cancel" id="contact-new-cancel" onclick="closeNewContact()">
                                     <span>Cancel</span>
                                     <span>&#10005;</span>
                                 </button>
-                                <button class="contact-new-create" onclick="saveNewContact()">
+                                <button type="submit" class="contact-new-create">
                                     <span>Create Contact</span>
                                     <img src="assets/img/create-icon.png" alt="">
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </form>
     `;
 }
 
@@ -127,7 +129,7 @@ function generateLeftSideEditContact(){
 
 
 function generateRightSideEditContact(firstname, lastname, email, phone, initials, color, index){
-    return        ` <div class="new-contact-circle-name" id="new-contact-circle-name">
+    return        ` <form onsubmit="saveEditedContact(${color}, ${index}); return false;" class="new-contact-circle-name" id="new-contact-circle-name">
                         <div class="edit-contact-circle">
                             <div class="contact-circle-big contact-circle-card bg${color}" id="circle-new-contact">
                              ${initials}
@@ -135,25 +137,27 @@ function generateRightSideEditContact(firstname, lastname, email, phone, initial
                         </div>
                         <div class="contact-new-inputs" id="contact-new-inputs">
                             <span onclick="closeNewContact()" class="close-contact-cross">&#10005;</span>
+                                <div class="warning-message" id="warning-contact-new-edit">
+                                </div>
                                 <div class="input-form-new-contact">
-                                    <input value="${firstname} ${lastname}" type="text" id="new-contact-name" placeholder ="first and last name">
+                                    <input required value="${firstname} ${lastname}" type="text" id="new-contact-name" placeholder ="first and last name">
                                     <img src="assets/img/icon_person.png" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input value="${email}" type="email" id="new-contact-mail" placeholder ="e-mail">
+                                    <input required value="${email}" type="email" id="new-contact-mail" placeholder ="e-mail">
                                     <img src="assets/img/icon-email.svg" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input value="${phone}" type="text" id="new-contact-phone" placeholder ="phone">
+                                    <input required value="${phone}" type="text" id="new-contact-phone" placeholder ="phone">
                                     <img src="assets/img/icon-phone.png" alt="">
                                 </div>
                             <div class="create-cancel-box" id="create-edit-content">
-                                 <button class="contact-new-save" onclick="saveEditedContact(${color}, ${index})">
+                                 <button type="submit" class="contact-new-save">
                                     <span>Save</span>
                                     <img src="assets/img/create-icon.png" alt="">
                                 </button>
                             </div>
                         </div>
-                    </div>
+                    </form>
     `;
 }
