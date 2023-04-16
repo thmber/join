@@ -332,7 +332,7 @@ function saveExistingTask(i) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let task = {
-        'id': i,
+        'id': tasks[i].id,
         'status': tasks[i].status,
         'title': title.value,
         'description': description.value,
@@ -345,7 +345,7 @@ function saveExistingTask(i) {
     tasks[i] = task;
     saveTasks();
     document.getElementById('addTaskForm').classList.add('d-none');
-    showTask(i)
+    showTask(tasks[i].id);
     clearInputFields(title, description, dueDate);
     resetData();
 }

@@ -111,7 +111,7 @@ function addSubtask() {
   let subtaskField = document.getElementById('subtask');
   let singleSubtask = subtaskField.value;
   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
-    subtasks_interim = tasks[currentOpenTask].subtasks;
+    subtasks_interim = tasks[getTheRightTask(currentOpenTask)].subtasks;
   }
   more = false;
   if (singleSubtask.length > 0) {
