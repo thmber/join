@@ -175,12 +175,14 @@ function clearAndPush(lastname, color, initials){
     clearContactList();
 }
 
+
 function showWarningMessageContact(){
     document.getElementById('warning-contact-new-edit').innerHTML = 'Please enter first and last name';
     setTimeout(() => {
         document.getElementById('warning-contact-new-edit').innerHTML = '';
     }, 1000);
 }
+
 
  async function saveNewContact(){
     let newName = document.getElementById('new-contact-name').value;
