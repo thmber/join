@@ -421,6 +421,10 @@ input {
   cursor: pointer;
 }
 
+#subtask {
+  padding-right: 30px;
+}
+
 @keyframes flyInAndOut {
   0% {}
 

@@ -133,8 +133,10 @@ function testRenderNewTaskHTML() {
 function showExistingSubtasksHTML(element, j) {
     return `
     <div class="wrapper">
+    <div id="firstPart">
     <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${j}">
     <label for="subtask">${element.subtaskName}</label>
+    </div>
   </div>`;
 }
 
@@ -172,10 +174,10 @@ function renderLowHTML2() {
 function renderSubtasksHTML(element, index, ch) {
     return `
         <div class="wrapper">
-           
+           <div id="firstPart">
                 <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
                 <label for="subtask">${element.subtaskName}</label>
-           
+           </div>
          <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
         </div>`;
 }
