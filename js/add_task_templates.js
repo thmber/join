@@ -62,10 +62,13 @@ function renderContactsAssignToHTML(index, element) {
 
 function showSubtasksHTML(element, index, gecheckt) {
   return `
+  
       <div class="wrapper">
-        <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${index}" ${gecheckt}>
-        <label for="subtask">${element.subtaskName}</label>
-        <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
+          <div id="firstPart">
+             <input type="checkbox" name="subtask" value="${element.subtaskName}" id="input${index}" ${gecheckt}>
+             <label for="subtask">${element.subtaskName}</label>
+           </div>
+         <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
       </div>`;
 }
 

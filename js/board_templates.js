@@ -172,8 +172,10 @@ function renderLowHTML2() {
 function renderSubtasksHTML(element, index, ch) {
     return `
         <div class="wrapper">
-          <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
-          <label for="subtask">${element.subtaskName}</label>
-          <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
+           
+                <input id="input${index}" type="checkbox" name="subtask" value="${element.subtaskName}" ${ch} >
+                <label for="subtask">${element.subtaskName}</label>
+           
+         <div class="rubbish" onclick="deleteTheSubtask(${index})"><img src="./assets/img/abfall.png"></div>
         </div>`;
 }
