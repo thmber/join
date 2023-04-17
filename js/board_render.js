@@ -63,10 +63,11 @@ function renderBg(index, area) {
 /**
  * delays the rendering of the board until the JSON is available
  */
-function delay() {
-    setTimeout(function () {
-        showTasksOnBoard();
-    }, 300);
+async function delay() {
+    // setTimeout(function () {
+       await init();
+      showTasksOnBoard();
+    // }, 300);
 }
 /**
  * It renders the assigned Contacts on board
@@ -201,3 +202,10 @@ function renderMovingTo(i, links) {
     <button class="boxLayerButton" onclick="event.stopPropagation(); moveTask(${i}, '${destination}')">${destination}</button></div>`
     }
 }
+
+
+function setToggleID(i) {
+    document.getElementById('toggleID').innerHTML = `<div id="selected">Assigned to</div>
+    <img src="assets/img/openMenuIcon.svg" onclick="toggleOptionsContactsAssignTo(${i})" alt="">`;
+  }
+  
