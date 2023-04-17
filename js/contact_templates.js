@@ -89,11 +89,11 @@ function generateRightSideNewContact(){
                                 <div class="warning-message" id="warning-contact-new-edit">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input required type="text" id="new-contact-name" placeholder ="first and last name" oninvalid="this.setCustomValidity('Enter first and last name')">
+                                    <input required type="text" id="new-contact-name" placeholder ="first and last name" title="Enter first and last name">
                                     <img src="assets/img/icon_person.png" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input required type="email" id="new-contact-mail" placeholder ="e-mail" oninvalid="this.setCustomValidity('Enter a valid email')">
+                                    <input required type="email" id="new-contact-mail" placeholder ="e-mail">
                                     <img src="assets/img/icon-email.svg" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
