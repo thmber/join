@@ -249,7 +249,7 @@ function renderTheContacts() {
 
 
 function delayDate() {
-  setTimeout(renderDate, 200);
+  setTimeout(renderDate, 300);
 }
 
 
@@ -476,14 +476,3 @@ function resetFlyingInfo() {
     document.getElementById('infoText').classList.remove('infoText')
   }, 4000);
 }
-
-// window.onload = function() {
-// var outside = document.getElementById('body');
-// outside.addEventListener("click", function(e) {console.log("test") }, false); 
-// }
-
-// function hideMenu(){
-//   console.log('hi');
-//   var seeOpt = document.getElementById('seeCat');
-//   seeOpt.classList.add('d-none');
-// }

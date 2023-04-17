@@ -319,3 +319,15 @@ function deleteTask(i) {
     saveTasks();
     goToBoard(300);
 }
+
+
+window.addEventListener('click', function(e) {
+    if (document.getElementById('newCateg')){
+   if(!document.getElementById('newCateg').contains(e.target) && (!document.getElementById('toggleID').contains(e.target)) && (!this.document.getElementById('optionsUser').contains(e.target))){
+    document.getElementById('newCateg').style.borderRadius = `8px`;
+    document.getElementById('toggleID').style.borderRadius = `8px`;
+    document.getElementById('seeCat').classList.add('d-none');
+    document.getElementById('see').classList.add('d-none');
+      }
+}
+});
