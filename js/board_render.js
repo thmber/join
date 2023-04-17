@@ -174,8 +174,9 @@ function testRenderNewTask() {
     document.getElementById('newTask').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
     document.getElementById('newTask').innerHTML += testRenderNewTaskHTML();
-    delayDate();
+    // delayDate();
     renderTheContacts();
+    renderDate();
 }
 
 

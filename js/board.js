@@ -324,22 +324,22 @@ function deleteTask(i) {
  * 
  * @returns The soonest Date (today) valid for Due Date in Form Add Task
  */
-function getTodayDate() {
-    let today = new Date();
-    let day = today.getDate();
-    let month = today.getMonth() + 1;
-    let year = today.getFullYear();
-    let completeDate;
-    completeDate = year.toString().padStart(4, '0') + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
-    return completeDate;
-  }
+// function getTodayDate() {
+//     let today = new Date();
+//     let day = today.getDate();
+//     let month = today.getMonth() + 1;
+//     let year = today.getFullYear();
+//     let completeDate;
+//     completeDate = year.toString().padStart(4, '0') + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
+//     return completeDate;
+//   }
   
   
    function renderDate() {
     let currentDate = document.getElementById('dueDate');
-    let possibleDueDate = getTodayDate();
-    currentDate.value = possibleDueDate;
-    currentDate.setAttribute('min', possibleDueDate);
+    // let possibleDueDate = getTodayDate();
+    currentDate.value = today;
+    currentDate.setAttribute('min', today);
   }
 
   function toggleIt(param1, param2, param3, param4) {

@@ -12,6 +12,7 @@ let categories = [];
 let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1d', '#81adfd', '#0048cd', '#ffb0f7', '#f500dc'];
 let colorspot;
 let priorities = [{ prio: 'urgent', color: 'red' }, { prio: 'medium', color: 'orange' }, { prio: 'low', color: 'green' }];
+let today = new Date().toISOString().split("T")[0];
 
 
 function searchTheMaxID() {
@@ -202,8 +203,10 @@ function renderTheContacts() {
 }
 
 
-function delayDate() {
-  setTimeout(renderDate, 300);
+async function delayDate() {
+await init();
+  // setTimeout(renderDate, 300);
+  renderDate();
 }
 
 
