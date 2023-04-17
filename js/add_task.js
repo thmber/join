@@ -54,7 +54,7 @@ function checkAllInputs(title, description, category) {
   let totalOK = checkTheInput(title.value.length, 'missingTitle', 0) && checkTheInput(description.value.length, 'missingDescription', 0) && checkTheInput(category.textContent, 'missingCategory', 'Select a Category')  && checkTheInput(prio, 'missingPrio', undefined);
   return totalOK;
 }
-// && checkTheInput(chosenContacts, 'missingContact', 0)
+
 
 function createSingleTask(autoID, title, description, duedate, prio, category) {
   let task = {

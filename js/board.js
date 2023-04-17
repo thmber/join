@@ -217,7 +217,7 @@ function saveExistingTask(i) {
     resetData();
 }
 
-function changeTheExistingTask(i){
+function changeTheExistingTask(i) {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let task = {
@@ -309,7 +309,8 @@ function filterTasks() {
         let description = boxes[i].querySelector('.description').innerHTML;
         if (regex.test(title.toLowerCase()) || regex.test(description.toLowerCase())) {
             boxes[i].style.display = 'flex';
-        } else { boxes[i].style.display = 'none';
+        } else {
+            boxes[i].style.display = 'none';
         }
     }
 }
@@ -320,55 +321,40 @@ function deleteTask(i) {
     goToBoard(300);
 }
 
-/**
- * 
- * @returns The soonest Date (today) valid for Due Date in Form Add Task
- */
-// function getTodayDate() {
-//     let today = new Date();
-//     let day = today.getDate();
-//     let month = today.getMonth() + 1;
-//     let year = today.getFullYear();
-//     let completeDate;
-//     completeDate = year.toString().padStart(4, '0') + '-' + month.toString().padStart(2, '0') + '-' + day.toString().padStart(2, '0');
-//     return completeDate;
-//   }
-  
-  
-   function renderDate() {
+
+function renderDate() {
     let currentDate = document.getElementById('dueDate');
-    // let possibleDueDate = getTodayDate();
     currentDate.value = today;
     currentDate.setAttribute('min', today);
-  }
+}
 
-  function toggleIt(param1, param2, param3, param4) {
+function toggleIt(param1, param2, param3, param4) {
     let seeCat = document.getElementById(param1);
     seeCat.classList.toggle('d-none');
     let checkIt = !seeCat.classList.contains('d-none');
     if (checkIt) {
-      document.getElementById(param2).style.borderBottomLeftRadius = `0px`;
-      document.getElementById(param2).style.borderBottomRightRadius = `0px`;
+        document.getElementById(param2).style.borderBottomLeftRadius = `0px`;
+        document.getElementById(param2).style.borderBottomRightRadius = `0px`;
     }
     else {
-      document.getElementById(param2).style.borderRadius = `8px`;
+        document.getElementById(param2).style.borderRadius = `8px`;
     }
     if (!document.getElementById(param3).classList.contains('d-none')) {
-      document.getElementById(param3).classList.add('d-none')
-      document.getElementById(param4).style.borderRadius = `8px`;
+        document.getElementById(param3).classList.add('d-none')
+        document.getElementById(param4).style.borderRadius = `8px`;
     }
     renderCategories();
-  }
-  
-
-window.addEventListener('click', function(e) {
-    if (document.getElementById('newCateg')){
-   if(!document.getElementById('newCateg').contains(e.target) && (!document.getElementById('toggleID').contains(e.target)) && (!this.document.getElementById('optionsUser').contains(e.target))){
-    document.getElementById('newCateg').style.borderRadius = `8px`;
-    document.getElementById('toggleID').style.borderRadius = `8px`;
-    document.getElementById('seeCat').classList.add('d-none');
-    document.getElementById('see').classList.add('d-none');
-      }
 }
+
+
+window.addEventListener('click', function (e) {
+    if (document.getElementById('newCateg')) {
+        if (!document.getElementById('newCateg').contains(e.target) && (!document.getElementById('toggleID').contains(e.target)) && (!this.document.getElementById('optionsUser').contains(e.target))) {
+            document.getElementById('newCateg').style.borderRadius = `8px`;
+            document.getElementById('toggleID').style.borderRadius = `8px`;
+            document.getElementById('seeCat').classList.add('d-none');
+            document.getElementById('see').classList.add('d-none');
+        }
+    }
 });
 
