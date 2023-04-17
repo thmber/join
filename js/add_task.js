@@ -205,8 +205,8 @@ function renderTheContacts() {
 
 async function delayDate() {
 await init();
-  // setTimeout(renderDate, 300);
-  renderDate();
+   setTimeout(renderDate, 300);
+  
 }
 
 
