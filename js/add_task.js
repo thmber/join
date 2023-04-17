@@ -111,7 +111,7 @@ function addSubtask() {
   if ((currentOpenTask >= 0) && more) { // wenn in einem existierendem Task gearbeitet wird
     subtasks_interim = tasks[getTheRightTask(currentOpenTask)].subtasks;
   }
-  more = false;
+  more = false; // verhindern, dass die Subtasks doppelt angezeigt werden
   if (singleSubtask.length > 0) {
     let subtask_interim = { 'subtaskName': singleSubtask, 'check': false }
     subtasks_interim.push(subtask_interim);
@@ -124,7 +124,6 @@ function addSubtask() {
 function showSubtasks(subtasks_interim) {
   let gecheckt;
   document.getElementById('displaySubtasks').innerHTML = ``;
-
   subtasks_interim.forEach((element, index) => {
     gecheckt = '';
     if (subtasks_interim[index].check) gecheckt = 'checked';
@@ -137,13 +136,11 @@ function getSubtasks() {
   subtasks = [];
   for (let index = 0; index < subtasks_interim.length; index++) {
     let subtask = {
-      'subtaskName': subtasks_interim[index].subtaskName,
-      'check': document.getElementById(`input${index}`).checked
+      'subtaskName': subtasks_interim[index].subtaskName,'check': document.getElementById(`input${index}`).checked
     }
     subtasks.push(subtask);
   }
   return subtasks;
-
 }
 
 
@@ -238,7 +235,7 @@ function getTodayDate() {
 }
 
 
-function renderDate() {
+ function renderDate() {
   let currentDate = document.getElementById('dueDate');
   let possibleDueDate = getTodayDate();
   currentDate.value = possibleDueDate;
@@ -252,7 +249,7 @@ function renderTheContacts() {
 
 
 function delayDate() {
-  setTimeout(renderDate, 100);
+  setTimeout(renderDate, 200);
 }
 
 
