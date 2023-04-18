@@ -37,7 +37,7 @@ let logOutShown = false;
 function showLogout(){
     let button = document.getElementById('logout-button');
     if (logOutShown == false) {
-        button.style.display = "unset";
+        button.style.display = "flex";
         logOutShown = true;
     }
     else{

@@ -33,7 +33,7 @@ async function signUp(){
     activeUser = newUser;
     users.push(newUser)
     await saveUser(newUser);
-    window.location.href = 'summary.html';
+    showLogin();
 }
 
 
