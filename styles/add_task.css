@@ -50,7 +50,7 @@ input {
 }
 
 .inputDescription {
-  font-family: 'Poppins';
+  font-family: 'Inter', sans-serif;
   word-wrap: break-word;
   font-size: 16px;
   padding: 10px 10px;

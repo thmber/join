@@ -1,5 +1,6 @@
 body {
     box-sizing: border-box;
+   
 }
 
 h3 {
@@ -70,6 +71,7 @@ h3 {
 }
 
 .back {
+    
     position: absolute;
     top: 10px;
     right: 20px;
@@ -540,10 +542,15 @@ b {
     right: 50px;
 }
 
-a .stepToSummary:active {
+.stepToSummary:active {
     text-decoration: none;
+    color: black;
 }
 
+.stepToSummary:visited {
+    color:black;
+    text-decoration: none;
+}
 
 @keyframes newcontact {
     0% {
@@ -592,9 +599,9 @@ a .stepToSummary:active {
 
 @media (max-width: 1050px) {
 
-    h3 {
+    /* h3 {
         font-size: 0.7em;
-    }
+    } */
 
     .box {
         font-size: 0.8em;
@@ -679,7 +686,6 @@ a .stepToSummary:active {
         display: none;
     }
 }
-
 @media (max-width: 750px) {
     .cols {
         flex-direction: column;
