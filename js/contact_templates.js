@@ -97,7 +97,7 @@ function generateRightSideNewContact(){
                                     <img src="assets/img/icon-email.svg" alt="">
                                 </div>
                                 <div class="input-form-new-contact">
-                                    <input required type="text" id="new-contact-phone" placeholder ="phone">
+                                    <input required type="tel" pattern="[0-9]+" id="new-contact-phone" placeholder ="phone">
                                     <img src="assets/img/icon-phone.png" alt="">
                                 </div>
                             <div class="create-cancel-box" id="create-edit-content">

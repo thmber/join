@@ -12,7 +12,7 @@
 }
 input::placeholder, textarea::placeholder{
     color: lightgrey;
-    font-family: 'Poppins', 'sans-serif';
+    font-family: 'Inter', sans-serif;
     
 }
 input, textarea{
