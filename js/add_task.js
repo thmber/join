@@ -13,6 +13,7 @@ let colorspots = ['#f99090', '#ff1717', '#fac66e', '#845400', '#b6fa81', '#07ab1
 let colorspot;
 let priorities = [{ prio: 'urgent', color: 'red' }, { prio: 'medium', color: 'orange' }, { prio: 'low', color: 'green' }];
 let today = new Date().toISOString().split("T")[0];
+let para = 'todo';
 
 
 function searchTheMaxID() {
@@ -25,13 +26,13 @@ function searchTheMaxID() {
 }
 
 
-function addTask() {
+function addTask(para) {
   let title = document.getElementById('title');
   let description = document.getElementById('description');
   let category = document.getElementById('selectedCategory');
   let duedate = document.getElementById('dueDate');
   if (checkAllInputs(title, description, category)) {
-    tasks.push(createSingleTask(findAvailableTaskID(), title, description, duedate, prio, category));
+    tasks.push(createSingleTask(findAvailableTaskID(), title, description, duedate, prio, category, para));
     saveTasks();
     flyingInfo();
     goToBoard(2000);
@@ -56,10 +57,10 @@ function checkAllInputs(title, description, category) {
 }
 
 
-function createSingleTask(autoID, title, description, duedate, prio, category) {
+function createSingleTask(autoID, title, description, duedate, prio, category, para) {
   let task = {
     'id': autoID,
-    'status': 'todo',
+    'status': para,
     'title': title.value,
     'description': description.value,
     'duedate': duedate.value,

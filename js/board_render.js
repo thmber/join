@@ -166,13 +166,13 @@ function renderSubtasks(i) {
         ch = '';
     }
 }
-function testRenderNewTask() {
+function testRenderNewTask(para) {
     document.getElementById('newTask').innerHTML = ``;
     freezeBackground();
     showDarkOverlay();
     document.getElementById('newTask').classList.remove('d-none');
     document.getElementById('overlayTask').innerHTML = ``;
-    document.getElementById('newTask').innerHTML += testRenderNewTaskHTML();
+    document.getElementById('newTask').innerHTML += testRenderNewTaskHTML(para);
     renderTheContacts();
     renderDate();
 }

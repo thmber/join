@@ -47,8 +47,8 @@
                         </div>
                     </div>
                     <div id="createTaskBTN_area"><button class="btn" id="createTaskBTN"
-                            onclick="testRenderNewTask()">Add Task &#xFF0B;</button><button class="btn"
-                            id="mobileCreateTaskBTN" onclick="testRenderNewTask()"><img
+                            onclick="testRenderNewTask('todo')">Add Task &#xFF0B;</button><button class="btn"
+                            id="mobileCreateTaskBTN" onclick="testRenderNewTask('todo')"><img
                                 src="assets/img/addTaskMobile.svg"></button></div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="cols" id="cols">
                 <div class="col">
                     <div class="headline">
-                        <h3>To do</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask()"
+                        <h3>To do</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask('todo')"
                             alt="">
                     </div>
                     <div class="col" id="todo" ondrop="setStatus('todo')" ondragover="allowDrop(event)"></div>
@@ -64,7 +64,7 @@
                 <div class="col">
                     <div class="headline">
                         <h3>In Progress</h3><img src="assets/img/plusbutton.svg" id="clickMe"
-                            onclick="testRenderNewTask()" alt="">
+                            onclick="testRenderNewTask('inProgress')" alt="">
                     </div>
                     <div class="col" id="inProgress" ondrop="setStatus('inProgress')" ondragover="allowDrop(event)">
                     </div>
@@ -72,14 +72,14 @@
                 <div class="col">
                     <div class="headline">
                         <h3>Awaiting Feedback</h3><img src="assets/img/plusbutton.svg" id="clickMe"
-                            onclick="testRenderNewTask()" alt="">
+                            onclick="testRenderNewTask('awaitingFeedback')" alt="">
                     </div>
                     <div class="col" id="awaitingFeedback" ondrop="setStatus('awaitingFeedback')"
                         ondragover="allowDrop(event)"></div>
                 </div>
                 <div class="col">
                     <div class="headline">
-                        <h3>Done</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask()"
+                        <h3>Done</h3><img src="assets/img/plusbutton.svg" id="clickMe" onclick="testRenderNewTask('done')"
                             alt="">
                     </div>
                     <div class="col" id="done" ondrop="setStatus('done')" ondragover="allowDrop(event)"></div>
