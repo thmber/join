@@ -203,14 +203,6 @@ function renderTheContacts() {
 }
 
 
-async function delayDate() {
-await init();
-   setTimeout(renderDate, 300);
-   setTimeout(renderContactsAssignTo, 300);
-  
-}
-
-
 function renderContactsAssignTo() {
   document.getElementById('optionsUser').innerHTML = ``;
   for (let index = 0; index < contacts.length; index++) {
@@ -264,6 +256,14 @@ function addANewCategory() {
   document.getElementById('seeCat').classList.add('d-none');
   renderColorSpots();
 }
+
+
+async function delayDate() {
+  await init();
+     setTimeout(renderDate, 300);
+     setTimeout(renderContactsAssignTo, 300);
+    
+  }
 
 
 function renderInputUnit() {
@@ -333,18 +333,6 @@ function checkColorspot(){
   return colorspotIsChosen;
 }
 
-
-function checkCategoryName(field){
-  let categorynameIsChosen = false;
-  if (field.value == '') {
-    categorynameIsChosen = false;
-    document.getElementById('missingColorspot').classList.remove('d-none');
-  }
-  else {
-    categorynameIsChosen = true;
-  }
-  return categorynameIsChosen;
-}
 
 /**
  * This function gives the active Button the right look and sets the inactive to default
@@ -425,6 +413,19 @@ function flyingInfo() {
   document.getElementById('infoText').classList.remove('d-none');
   document.getElementById('infoText').classList.add('infoText')
   resetFlyingInfo();
+}
+
+
+function checkCategoryName(field){
+  let categorynameIsChosen = false;
+  if (field.value == '') {
+    categorynameIsChosen = false;
+    document.getElementById('missingColorspot').classList.remove('d-none');
+  }
+  else {
+    categorynameIsChosen = true;
+  }
+  return categorynameIsChosen;
 }
 
 

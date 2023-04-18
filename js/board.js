@@ -293,11 +293,6 @@ function showAddTaskOverlay() {
 }
 
 
-function showDarkOverlay() {
-    document.getElementById('makeBgDarker').classList.remove('d-none');
-}
-
-
 function filterTasks() {
     let search = document.getElementById('search').value;
     search = search.toLowerCase();
@@ -346,6 +341,10 @@ function toggleIt(param1, param2, param3, param4) {
     renderCategories();
 }
 
+
+function showDarkOverlay() {
+    document.getElementById('makeBgDarker').classList.remove('d-none');
+}
 
 window.addEventListener('click', function (e) {
     if (document.getElementById('newCateg')) {
