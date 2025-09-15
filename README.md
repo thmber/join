@@ -1,4 +1,4 @@
-# :office: Join
+# :computer: Join - Kanban-inspired Task Manager
 
 ![Join Screenshot](assets/img/join.avif)
 
@@ -33,14 +33,6 @@ Open [http://localhost:4200](http://localhost:4200) in your browser.
 
 ## :notes: Live Demo
 
-Check out the live join: [thmber.github.io/join](thmahler.net/join)
-
-## :bike: About Me
-
-I'm , a passionate developer focused on web technologies.
-
-## :computer: Contact
-
-thmahler(at)gmx.net
+Check out the live join: [thmahler.net/join](thmahler.net/join)
 
 ---
