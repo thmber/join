@@ -21,6 +21,7 @@
 
 ## :notes: Live Demo
 
-Check out the live join: [thmahler.net/join](thmahler.net/join)
+Check out the live join: 
+[join](https://thmahler.net/join)
 
 ---
