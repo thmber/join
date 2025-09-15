@@ -1,4 +1,4 @@
-# :computer: Join - Kanban-inspired Task Manager
+# :computer: <font color= rgb(41, 54, 70)>  Join - Kanban-inspired Task Manager  </font>
 
 ![Join Screenshot](assets/img/join.avif)
 
