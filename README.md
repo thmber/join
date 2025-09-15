@@ -1,4 +1,4 @@
-# :computer: <p style="color:blue"> Join - Kanban-inspired Task Manager  </p>
+# :computer: $${\color{blue}Blue}$$ Join - Kanban-inspired Task Manager 
 
 ![Join Screenshot](assets/img/join.avif)
 
