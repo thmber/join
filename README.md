@@ -1,10 +1,11 @@
-# :computer: Join: Kanban-inspired Task Manager
+# :pushpin: Join
 
 ![Join Screenshot](assets/img/join.avif)
 
 ## :sunflower: Features
 
-- Login with User-Password
+- Kanban-inspired task-manager
+- Login with user-Password
 - Summary of upcoming tasks
 - List of Contacts
 - Board with draggable Tasks
