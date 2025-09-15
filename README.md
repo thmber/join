@@ -1,4 +1,4 @@
-# :computer: $${\color{blue}Blue}$$ Join - Kanban-inspired Task Manager 
+# :computer: $${\color{blue}Join - Kanban-inspired Task Manager }$$
 
 ![Join Screenshot](assets/img/join.avif)
 
