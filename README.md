@@ -1,6 +1,6 @@
 # :office: Join
 
-![Portfolio Screenshot](src/assets/img/join.avif)
+![Join Screenshot](assets/img/join.avif)
 
 ## :sunflower: Features
 
@@ -13,10 +13,10 @@
 
 ## :toolbox: Built With
 
-![Javascript](src/assets/img/javascript.png)
-![CSS](src/assets/img/css.png)
-![Git](src/assets/img/git.png)
-![Html](src/assets/img/html.png)
+![Javascript](assets/img/javascript.png)
+![CSS](assets/img/css.png)
+![Git](assets/img/git.png)
+![Html](assets/img/html.png)
 
 ## :seedling: Getting Started
 
@@ -33,7 +33,7 @@ Open [http://localhost:4200](http://localhost:4200) in your browser.
 
 ## :notes: Live Demo
 
-Check out the live portfolio: [thmber.github.io/portfolio](thmahler.net/join)
+Check out the live join: [thmber.github.io/join](thmahler.net/join)
 
 ## :bike: About Me
 
